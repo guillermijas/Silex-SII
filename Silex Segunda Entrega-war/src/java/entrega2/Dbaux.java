@@ -60,6 +60,7 @@ public class Dbaux implements Serializable{
        avuno.setGravedad(entrega1.Enum.gravedad.LEVE);
        //avuno.setCliente("pepe");
        avuno.setIdAviso(1L);
+       avuno.setImagen("img/o.jpg");
        avuno.setDescripcion("Se ha roto todo necesito AYUDA");
        avisos.add(avuno);
               Aviso avdos = new Aviso();
