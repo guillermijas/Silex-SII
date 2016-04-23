@@ -78,7 +78,9 @@ public class control_registro implements Serializable {
         else 
         {
             if(checkPasswords())
-            return event.getNewStep();
+            {
+                return event.getNewStep();
+            }
             else
             {
                 return event.getOldStep();
