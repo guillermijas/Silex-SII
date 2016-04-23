@@ -105,7 +105,7 @@ public class Usuario implements Serializable {
         return especializacion;
     }
 
-    public boolean isDisponibilidad() {
+    public boolean getDisponibilidad() {
         return disponibilidad;
     }
 

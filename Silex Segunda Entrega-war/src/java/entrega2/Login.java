@@ -90,7 +90,36 @@ public class Login {
         }
         return page;
     }
+   
+    public List <Usuario> getListaUsuarios()
+    {
+        return this.usuarios;
+    }
     
+    public void insertNewUser(Usuario us)
+    {
+        // Primero comprobamos que ese usuario no está ya en la base de datos
+        boolean already = false;
+        
+        for (Usuario u : usuarios)
+        {
+            if(u.getUsername().equals(us.getUsername()))
+            {
+                already = true;
+            }
+        }
+        
+        if(!already)
+        {
+            usuarios.add(us);
+        }
+        else
+        {
+            
+        }
+    }
+    
+    /*
     public String register()
     {
         // Primero comprobamos que ese email no está ya en la base de datos
@@ -130,4 +159,5 @@ public class Login {
         }
         return page;
     }
+*/
 }

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Registro en el sistema</title>
+    </h:head>
+    <h:body>
+        <h:form>    
+            <p:growl id="growl" sticky="true" showDetail="true"/>
+
+            <p:wizard flowListener="#{control_registro.onFlowProcess}">
+                <p:tab id="Login" title="Login">
+                    <p:panel header="Login">
+                        <p:messages />
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <h:outputText value="Nombre de usuario: *" />
+                            <p:inputText value="#{control_registro.user.username}" required="true" label="Nombre de usuario: *"/>
+
+                            <h:outputText value="Contraseña: *" />
+                            <p:inputText id = "pwd1" value="#{control_registro.pwd1}" type ="password" required="true" label="Contraseña"/>
+                            
+                            <h:outputText value="Repetir contraseña: *" />
+                            <p:inputText id = "pwd2" value="#{control_registro.pwd2}" type ="password" required="true" label="Contraseña2"/>
+                            
+                            <c:choose>
+                                <c:when test = "#{empty control_registro.pwd1}">
+                                    
+                                </c:when>
+                                <c:when test = "#{control_registro.checkPasswords()}">
+                                    <h:commandLink action="#{control_registro.keepPwd()}"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <h:outputText value ="" />
+                                    <h:outputText value = "Las contraseñas no coinciden" style ="color: red" />
+                                    
+                                </c:otherwise>
+                            </c:choose>
+                            <h:outputText value="Ir al final: " />
+                            <h:selectBooleanCheckbox value="#{control_registro.skip}" />
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+                <p:tab id="user_data" title="Datos Usuario">
+                    <p:panel header="Datos Usuario">
+                        <p:messages />
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <h:outputText value="DNI: " />
+                            <p:inputText value="#{control_registro.user.dni}" />
+
+                            <h:outputText value="Nombre: " />
+                            <p:inputText value="#{control_registro.user.nombre}" />
+
+                            <h:outputText value="Apellidos: " />
+                            <p:inputText value="#{control_registro.user.apellidos}" />
+                            
+                            <h:outputText value="Teléfono: " />
+                            <p:inputText value="#{control_registro.user.telefono}" />
+                            
+                            <h:outputText value="Dirección: " />
+                            <p:inputText value="#{control_registro.user.dirección}" />
+                            
+                            <h:outputText value="Email: " />
+                            <p:inputText value="#{control_registro.user.email}" />
+
+                            <h:outputText value="Ir al final: " />
+                            <h:selectBooleanCheckbox value="#{control_registro.skip}" />
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+                
+                <p:tab id="contact" title="Información Específica">
+                    <p:panel header="Información Específica">
+                        <p:messages />
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <h:outputText value="Tipo: " />
+                            <p:inputText value="#{control_registro.user.tipo}" label="Email"/>
+
+                            <h:outputText value="Especialización: " />
+                            <p:inputText value="#{control_registro.user.especializacion}" label = "Especializacion"/>
+
+                            <h:outputText value="Disponibilidad: " />
+                            <p:inputSwitch value="#{control_registro.user.disponibilidad}" label = "Disponibilidad"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+                <p:tab id="confirm" title="Confirmacion">
+                    <p:panel header="Confirmacion">
+                        <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Nombre usuario: " />
+                                <h:outputText value="#{control_registro.user.username}" styleClass="outputLabel"/>
+
+                                <h:outputText value="DNI: " />
+                                <h:outputText value="#{control_registro.user.dni}" styleClass="outputLabel"/>
+
+                                <h:outputText value="Nombre: " />
+                                <h:outputText value="#{control_registro.user.nombre}" styleClass="outputLabel"/>
+                                
+                                <h:outputText value="Apellidos: " />
+                                <h:outputText value="#{control_registro.user.apellidos}" styleClass="outputLabel"/>
+                                
+                                <h:outputText value="Email: " />
+                                <h:outputText value="#{control_registro.user.email}" styleClass="outputLabel"/>
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Dirección: " />
+                                <h:outputText value="#{control_registro.user.dirección}" styleClass="outputLabel"/>
+
+                                <h:outputText value="Teléfono: " />
+                                <h:outputText value="#{control_registro.user.telefono}" styleClass="outputLabel"/>
+
+                                <h:outputText value="Tipo: " />
+                                <h:outputText value="#{control_registro.user.tipo}" styleClass="outputLabel"/>
+                                
+                                <h:outputText value="Especialización: " />
+                                <h:outputText value="#{control_registro.user.especializacion}" styleClass="outputLabel"/>
+                            </h:panelGrid>
+                        </h:panelGrid>
+
+                        <p:commandButton value="Registrarse" actionListener="#{control_registro.save}" update="growl" process="@this"/>
+                    </p:panel>
+                </p:tab>
+            </p:wizard>
+        </h:form>
+    </h:body>
+</html>
