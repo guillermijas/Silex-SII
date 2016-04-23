@@ -11,9 +11,7 @@ import javax.persistence.Id;
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    
-    
-    
+ 
     // Usuario
     private String username;
     private String password;
