@@ -69,4 +69,8 @@ public class ControlAutorizacion implements Serializable {
         usuario = null;
         return "login.xhtml";
     }
+
+    public String regAviso() {
+        return "regAviso.xhtml";
+    }
 }
