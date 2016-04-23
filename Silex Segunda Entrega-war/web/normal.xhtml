@@ -6,9 +6,9 @@
     <ui:define name="title">Página para el usuario normal</ui:define>
     <ui:define name="content">
         <c:choose>
-            <c:when test="#{controlAutorizacion.usuario.rol == 'NORMAL'}">
+            <c:when test="#{controlAutorizacion.usuario.rol == 'CLIENTE'}">
                 <h1>Usuario normal</h1>
-                <p>¡¡Bienvenido <h:outputText value="#{controlAutorizacion.usuario.usuario}"/>!!</p>
+                <p>¡¡Bienvenido <h:outputText value="#{controlAutorizacion.usuario.username}"/>!!</p>
             </c:when>
             <c:otherwise>
                 <ui:include src="/WEB-INF/templates/errorAutorizacion.xhtml"/>
