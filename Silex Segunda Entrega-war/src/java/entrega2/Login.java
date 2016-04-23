@@ -42,8 +42,8 @@ public class Login {
         this.user = usuario;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.password = contrasenia;
+    public void setPassword(String pass) {
+        this.password = pass;
     }
 
     public String autenticar() 
