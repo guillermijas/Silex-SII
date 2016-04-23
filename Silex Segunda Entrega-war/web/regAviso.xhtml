@@ -9,7 +9,7 @@
     <ui:define name="title">Autenticando</ui:define>
     <ui:define name="content">
         <h1>Crear aviso</h1>
-        <div position="absolute" align="left">
+        <div >
             <h:form>
                 <table>
                     <tr>
@@ -32,7 +32,7 @@
                     <tr>
                         <td> Descripción general: </td>
                         <td>
-                            <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" counterTemplate="Quedan {0} caracteres." autoResize="false" />
+                            <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" counterTemplate="{0}" autoResize="false" />
                             <h:outputText id="display" />
                         </td>
                     </tr>        
@@ -50,7 +50,7 @@
                     <tr>
                         <td> Acciones a realizar: </td>
                         <td>
-                            <p:inputTextarea rows="5" cols="30" counter="display1" maxlength="200" counterTemplate="Quedan {0} caracteres." autoResize="false" />
+                            <p:inputTextarea rows="5" cols="30" counter="display1" maxlength="200" counterTemplate="{0}" autoResize="false" />
                             <h:outputText id="display1" />
                         </td>
                     </tr>
@@ -92,7 +92,7 @@
             </h:form>
 
         </div>
-        <div position="absolute" align="right">
+        <div float="left">
             <h:form>
                 <h3>Ayudas y recomendaciones</h3>
                 <p:tabView orientation="left">
