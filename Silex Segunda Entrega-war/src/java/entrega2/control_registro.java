@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package entrega2;
- 
+
 import entrega1.Usuario;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
@@ -17,61 +17,56 @@ import org.primefaces.event.FlowEvent;
 @ManagedBean
 @ViewScoped
 public class control_registro implements Serializable {
- 
+
     @Inject
     private Login login;
-    
+
     private Usuario user = new Usuario();
     private String pwd1;
     private String pwd2;
-     
+
     private boolean skip;
-    
-    public String getPwd1()
-    {
+
+    public String getPwd1() {
         return this.pwd1;
     }
-    
-    public void setPwd1(String pwd1)
-    {
+
+    public void setPwd1(String pwd1) {
         this.pwd1 = pwd1;
     }
-    
-        public String getPwd2()
-    {
+
+    public String getPwd2() {
         return this.pwd2;
     }
-    
-    public void setPwd2(String pwd2)
-    {
+
+    public void setPwd2(String pwd2) {
         this.pwd2 = pwd2;
     }
-     
-    public Usuario getUser() 
-    {
+
+    public Usuario getUser() {
         return user;
     }
- 
+
     public void setUsuario(Usuario user) {
         this.user = user;
     }
-     
-    public void save() {        
+
+    public void save() {
         FacesMessage msg = new FacesMessage("Successful", "Welcome " + user.getUsername());
         FacesContext.getCurrentInstance().addMessage(null, msg);
         login.insertNewUser(user); // Guardamos el nuevo usuario
     }
-     
+
     public boolean isSkip() {
         return skip;
     }
- 
+
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
-     
+
     public String onFlowProcess(FlowEvent event) {
-        if(skip) {
+        if (skip) {
             skip = false;   //Si vuelve atrás, los datos se reinician
             return "confirm";
         }
@@ -87,14 +82,12 @@ public class control_registro implements Serializable {
             }
         }
     }
-    
-    public boolean checkPasswords()
-    {
-            return pwd1.equals(pwd2);
+
+    public boolean checkPasswords() {
+        return pwd1.equals(pwd2);
     }
-    
-    public void keepPwd()
-    {
+
+    public void keepPwd() {
         user.setPassword(pwd1);
     }
 }

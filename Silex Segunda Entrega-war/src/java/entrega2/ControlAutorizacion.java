@@ -73,4 +73,10 @@ public class ControlAutorizacion implements Serializable {
     public String regAviso() {
         return "regAviso.xhtml";
     }
+    public String register() {
+        return "register.xhtml";
+    }
+     public String normal() {
+        return "normal.xhtml";
+    }
 }
