@@ -9,84 +9,85 @@
     <ui:define name="title">Autenticando</ui:define>
     <ui:define name="content">
         <h1>Crear aviso</h1>
-        <table>
-            <tr>
-                <td> Ubicación: </td>
-                <td> <p:inputText /> </td> <!-- ubicacion del aviso -->
-            </tr>
-            <tr>
-                <td>
-                    <p:selectBooleanCheckbox value="" /> 
-                    <h:outputText value=" Urgente " />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p:selectBooleanCheckbox value="" /> 
-                    <h:outputText value=" Planificado " />
-                </td>
-            </tr>
+        <h:form>
+            <table>
+                <tr>
+                    <td> Ubicación: </td>
+                    <td><p:inputText/></td> <!-- ubicacion del aviso -->
+                </tr>
+                <tr>
+                    <td>
+                        <h:form>
+                            <p:selectBooleanCheckbox value="" /> 
+                            <h:outputText value=" Urgente " />
+                        </h:form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:form>
+                            <p:selectBooleanCheckbox value="" /> 
+                            <h:outputText value=" Planificado " />
+                        </h:form>
 
-            <tr>
-                <td> Descripción general: </td>
-                <td>
-                    <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" counterTemplate="Quedan {0} caracteres." autoResize="false" />
-                    <h:outputText id="display" />
-                </td>
-            </tr>
-            <tr> 
-                <td> Asignar a supervisor: </td>
-                <td> 
-                    <select size="1" name="opcion">
-                        <option value="uno">Pepe</option>
-                        <option value="dos">Juan</option>
-                        <option value="tres">Manolo</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td> Acciones a realizar: </td>
-                <td>
-                    <p:inputTextarea rows="5" cols="30" counter="display1" maxlength="200" counterTemplate="Quedan {0} caracteres." autoResize="false" />
-                    <h:outputText id="display1" />
-                </td>
-            </tr>
+                    </td>
+                </tr>
 
-
-            <tr>   
-                <td>
-                    Adjuntar imagen: 
-                </td>
-                <td>
-                    <h:form enctype="multipart/form-data">
-                        <p:growl id="messages" showDetail="true" />
-                        <p:fileUpload value="#{fileUploadView.file}" mode="simple" />
-                        <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadView.upload}" disabled="true" />
-                    </h:form>
-                </td>
+                <tr>
+                    <td> Descripción general: </td>
+                    <td>
+                        <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" counterTemplate="Quedan {0} caracteres." autoResize="false" />
+                        <h:outputText id="display" />
+                    </td>
+                </tr>
+                <tr> 
+                    <td> Asignar a supervisor: </td>
+                    <td> 
+                        <select size="1" name="opcion">
+                            <option value="uno">Pepe</option>
+                            <option value="dos">Juan</option>
+                            <option value="tres">Manolo</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Acciones a realizar: </td>
+                    <td>
+                        <p:inputTextarea rows="5" cols="30" counter="display1" maxlength="200" counterTemplate="Quedan {0} caracteres." autoResize="false" />
+                        <h:outputText id="display1" />
+                    </td>
+                </tr>
 
 
-            </tr>
-            <tr>
-                <td>
-                    <form action="">
-                        <h:commandButton value="Orden de trabajo"/> 
-                    </form>
-                </td> 
-            </tr>
-            <tr>
-                <td>
-                    <form action="">
-                        <h:commandButton value="Aceptar"/> 
-                    </form>
-                </td>
-                <td>
-                    <form action="">
-                        <h:commandButton value="Cancelar"/> 
-                    </form>
-                </td>
-            </tr>
-        </table>
+                <tr>   
+                    <td>
+                        Adjuntar imagen: 
+                    </td>
+                    <td>
+                        <h:form enctype="multipart/form-data">
+                            <p:growl id="messages" showDetail="true" />
+                            <p:fileUpload value="#{fileUploadView.file}" mode="simple" />
+                        </h:form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form>
+                            <h:commandButton value="Orden de trabajo"/> 
+                        </form>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:commandButton value="Aceptar" action="#{controlAutorizacion.home()}"/> 
+                    </td>
+                    <td>
+                        <h:commandButton value="Aceptar" action="#{controlAutorizacion.home()}"/> 
+                    </td>
+                </tr>
+            </table>
+        </h:form>
     </ui:define>    
 </ui:composition>
 
