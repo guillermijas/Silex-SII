@@ -11,13 +11,21 @@ import javax.persistence.Id;
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    
+    
+    
+    // Usuario
+    private String username;
+    private String password;
+    private Enum.Rol rol;
+    
+    // Datos
     private String dni;
     private String nombre;
     private String apellidos;
     private Long telefono;
     private String dirección;
     private String email;
-    private String rol;
     
     //rol supervisor
     private String zonaCargo;
@@ -26,7 +34,39 @@ public class Usuario implements Serializable {
     private String tipo;
     private String especializacion;
     private boolean disponibilidad;
+    
+    public Usuario ()
+    {
+        
+    }
+    
+    public Usuario(String username, String password, Enum.Rol rol)
+    {
+        this.username = username;
+        this.password = password;
+        this.rol = rol;
+    }
+    
+    public String getUsername()
+    {
+        return this.username;
+    }
+    
+    public void setUsername(String user)
+    {
+        this.username = user;
+    }
 
+    public String getPassword()
+    {
+        return this.password;
+    }
+    
+    public void setPassword(String pass)
+    {
+        this.password = pass;
+    }
+    
     public String getDni() {
         return dni;
     }
@@ -51,7 +91,7 @@ public class Usuario implements Serializable {
         return email;
     }
 
-    public String getRol() {
+    public Enum.Rol getRol() {
         return rol;
     }
 
@@ -95,7 +135,7 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
-    public void setRol(String rol) {
+    public void setRol(Enum.Rol rol) {
         this.rol = rol;
     }
 
