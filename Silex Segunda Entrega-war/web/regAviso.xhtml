@@ -9,116 +9,123 @@
     <ui:define name="title">Autenticando</ui:define>
     <ui:define name="content">
         <h1>Crear aviso</h1>
-        <div >
-            <h:form>
-                <table>
-                    <tr>
-                        <td> Ubicación: </td>
-                        <td> <p:inputText /> </td> <!-- ubicacion del aviso -->
-                    </tr>
-                    <tr>
-                        <td>
-                            <p:selectBooleanCheckbox value="" /> 
-                            <h:outputText value=" Urgente " />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p:selectBooleanCheckbox value="" /> 
-                            <h:outputText value=" Planificado " />
-                        </td>
-                    </tr>
+        <table>
+            <tr>
+                <td width="60%">
+                    <div>
+                        <h:form>
+                            <table>
+                                <tr>
+                                    <td> Ubicación: </td>
+                                    <td> <p:inputText /> </td> <!-- ubicacion del aviso -->
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p:selectBooleanCheckbox value="" /> 
+                                        <h:outputText value=" Urgente " />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p:selectBooleanCheckbox value="" /> 
+                                        <h:outputText value=" Planificado " />
+                                    </td>
+                                </tr>
 
-                    <tr>
-                        <td> Descripción general: </td>
-                        <td>
-                            <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" counterTemplate="{0}" autoResize="false" />
-                            <h:outputText id="display" />
-                        </td>
-                    </tr>        
+                                <tr>
+                                    <td> Descripción general: </td>
+                                    <td>
+                                        <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" counterTemplate="{0}" autoResize="false" />
+                                        <h:outputText id="display" />
+                                    </td>
+                                </tr>        
 
-                    <tr> 
-                        <td> Asignar a supervisor: </td>
-                        <td> 
-                            <select size="1" name="opcion">
-                                <option value="uno">Pepe</option>
-                                <option value="dos">Juan</option>
-                                <option value="tres">Manolo</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> Acciones a realizar: </td>
-                        <td>
-                            <p:inputTextarea rows="5" cols="30" counter="display1" maxlength="200" counterTemplate="{0}" autoResize="false" />
-                            <h:outputText id="display1" />
-                        </td>
-                    </tr>
+                                <tr> 
+                                    <td> Asignar a supervisor: </td>
+                                    <td> 
+                                        <select size="1" name="opcion">
+                                            <option value="uno">Pepe</option>
+                                            <option value="dos">Juan</option>
+                                            <option value="tres">Manolo</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Acciones a realizar: </td>
+                                    <td>
+                                        <p:inputTextarea rows="5" cols="30" counter="display1" maxlength="200" counterTemplate="{0}" autoResize="false" />
+                                        <h:outputText id="display1" />
+                                    </td>
+                                </tr>
 
-                    <tr>   
-                        <td>
-                            Adjuntar imagen: 
-                        </td>
-                        <td>
-                            <h:form enctype="multipart/form-data">
-                                <p:growl id="messages" showDetail="true" />
-                                <p:fileUpload value="#{fileUploadView.file}" mode="simple" />
-                                <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadView.upload}" disabled="true" />
-                            </h:form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <form action="">
-                                <h:commandButton value="Orden de trabajo"/> 
-                            </form>
-                        </td> 
-                    </tr>
-                    <tr>
-                        <td>
-                            <form action="">
-                                <h:commandButton value="Aceptar"/> 
-                            </form>
-                        </td>
-                        <td>
-                            <div align="right">
-                                <form action="">
-                                    <h:commandButton value="Cancelar"/> 
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </h:form>
+                                <tr>   
+                                    <td>
+                                        Adjuntar imagen: 
+                                    </td>
+                                    <td>
+                                        <h:form enctype="multipart/form-data">
+                                            <p:growl id="messages" showDetail="true" />
+                                            <p:fileUpload value="#{fileUploadView.file}" mode="simple" />
+                                            <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadView.upload}" disabled="true" />
+                                        </h:form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <form action="">
+                                            <h:commandButton value="Orden de trabajo"/> 
+                                        </form>
+                                    </td> 
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <form action="">
+                                            <h:commandButton value="Aceptar"/> 
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <div align="right">
+                                            <form action="">
+                                                <h:commandButton value="Cancelar"/> 
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h:form>
 
-        </div>
-        <div float="left">
-            <h:form>
-                <h3>Ayudas y recomendaciones</h3>
-                <p:tabView orientation="left">
-                    <p:tab title="Godfather Part I">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
-                            <h:outputText
-                                value="The story begins as Don Vito Corleone..." />
-                        </h:panelGrid>
-                    </p:tab>
-                    <p:tab title="Godfather Part II">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
-                            <h:outputText value="Francis Ford Coppola's legendary..." />
-                        </h:panelGrid>
-                    </p:tab>
-                    <p:tab title="Godfather Part III">
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
-                            <h:outputText value="After a break of more than 15 years..." />
-                        </h:panelGrid>
-                    </p:tab>
-                </p:tabView>
-            </h:form>
-        </div>
-
+                    </div>
+                </td>
+                <td>
+                    <div position="relative" float="right">
+                        <h:form>
+                            <h3>Ayudas y recomendaciones</h3>
+                            <p:tabView orientation="left">
+                                <p:tab title="Godfather Part I">
+                                    <h:panelGrid columns="2" cellpadding="10">
+                                        <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
+                                        <h:outputText
+                                            value="The story begins as Don Vito Corleone..." />
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="Godfather Part II">
+                                    <h:panelGrid columns="2" cellpadding="10">
+                                        <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                                        <h:outputText value="Francis Ford Coppola's legendary..." />
+                                    </h:panelGrid>
+                                </p:tab>
+                                <p:tab title="Godfather Part III">
+                                    <h:panelGrid columns="2" cellpadding="10">
+                                        <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                                        <h:outputText value="After a break of more than 15 years..." />
+                                    </h:panelGrid>
+                                </p:tab>
+                            </p:tabView>
+                        </h:form>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </ui:define>    
 </ui:composition>
 
