@@ -13,6 +13,21 @@ public class Dbaux implements Serializable {
 
     private static List<Aviso> avisos = new ArrayList<Aviso>();
     private String ayy = "lmao";
+    private static long numb = 3L;
+    static void addAviso(entrega1.Enum.prioridad prioridad,String direccion,entrega1.Enum.estado estado, entrega1.Enum.gravedad gravedad, entrega1.Cliente cliente, String img, Date fecha_inicio, String Descripcion){
+    Aviso aux = new Aviso();  
+    aux.setPrioridad(prioridad);
+    aux.setDireccion(direccion);
+    aux.setEstado(estado);
+    aux.setGravedad(gravedad);
+    aux.setImagen(img);
+    aux.setCliente(cliente);
+    aux.setFechainicio(fecha_inicio);
+    aux.setDescripcion(Descripcion);
+    numb = numb + 1L;
+    aux.setIdAviso(numb);
+    avisos.add(aux);
+    }
 
     static void init() {
         avisos = new ArrayList<Aviso>();
