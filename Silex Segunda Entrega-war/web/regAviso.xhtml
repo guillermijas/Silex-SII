@@ -16,22 +16,22 @@
             </tr>
             <tr>
                 <td>
-                <p:selectBooleanCheckbox value="" /> 
-                <h:outputText value=" Urgente " />
+                    <p:selectBooleanCheckbox value="" /> 
+                    <h:outputText value=" Urgente " />
                 </td>
             </tr>
             <tr>
                 <td>
-                <p:selectBooleanCheckbox value="" /> 
-                <h:outputText value=" Planificado " />
+                    <p:selectBooleanCheckbox value="" /> 
+                    <h:outputText value=" Planificado " />
                 </td>
             </tr>
-            
+
             <tr>
                 <td> Descripción general: </td>
                 <td>
-                <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" counterTemplate="Quedan {0} caracteres." autoResize="false" />
-                <h:outputText id="display" />
+                    <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" counterTemplate="Quedan {0} caracteres." autoResize="false" />
+                    <h:outputText id="display" />
                 </td>
             </tr>
             <tr> 
@@ -47,12 +47,12 @@
             <tr>
                 <td> Acciones a realizar: </td>
                 <td>
-                <p:inputTextarea rows="5" cols="30" counter="display1" maxlength="200" counterTemplate="Quedan {0} caracteres." autoResize="false" />
-                <h:outputText id="display1" />
+                    <p:inputTextarea rows="5" cols="30" counter="display1" maxlength="200" counterTemplate="Quedan {0} caracteres." autoResize="false" />
+                    <h:outputText id="display1" />
                 </td>
             </tr>
-            
-          
+
+
             <tr>   
                 <td>
                     Adjuntar imagen: 
@@ -64,8 +64,8 @@
                         <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadView.upload}" disabled="true" />
                     </h:form>
                 </td>
-            
-               
+
+
             </tr>
             <tr>
                 <td>
@@ -81,7 +81,7 @@
                     </form>
                 </td>
                 <td>
-                     <form action="">
+                    <form action="">
                         <h:commandButton value="Cancelar"/> 
                     </form>
                 </td>
