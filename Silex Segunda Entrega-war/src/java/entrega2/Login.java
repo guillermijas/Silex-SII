@@ -22,8 +22,8 @@ import static entrega1.Enum.*;
 @RequestScoped
 public class Login {
 
-    private String usuario;
-    private String contrasenia;
+    private String user;
+    private String password;
     private List<Usuario> usuarios;
     
     @Inject
@@ -39,19 +39,19 @@ public class Login {
     }
 
     public String getUsuario() {
-        return usuario;
+        return user;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
+    public String getPassword() {
+        return password;
     }
 
     public void setUsuario(String usuario) {
-        this.usuario = usuario;
+        this.user = usuario;
     }
 
     public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
+        this.password = contrasenia;
     }
 
     public String autenticar() {
@@ -64,7 +64,7 @@ public class Login {
         
         for(Usuario u : usuarios)
         {
-            if (u.getUsername().equals(this.usuario))
+            if (u.getUsername().equals(this.user))
             {
                 isContent = true;
                 index = usuarios.indexOf(u);
@@ -77,7 +77,7 @@ public class Login {
         if (isContent)
         {
             Usuario us = usuarios.get(index);
-            if (us.getPassword().equals(this.contrasenia))
+            if (us.getPassword().equals(this.password))
             {
                 ctrl.setUsuario(us);
                 page = ctrl.home();
@@ -94,6 +94,46 @@ public class Login {
             FacesContext ctx = FacesContext.getCurrentInstance();
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "User not identified", "User not identified")); 
             page = "login.xhtml";
+        }
+        return page;
+    }
+    
+    public String register()
+    {
+        // Primero comprobamos que ese email no está ya en la base de datos
+        String page;
+        boolean already = false;
+        
+        for (Usuario u : usuarios)
+        {
+            if(u.getUsername().equals(this.user))
+            {
+                already = true;
+            }
+        }
+        
+        if (!already)
+        {
+            // Ahora especificamos que la contraseña tiene que tener al menos 8 caracteres
+            if (this.password.length() >= 8)
+            {
+                Usuario usuario = new Usuario(getUsuario(),getPassword(),Rol.CLIENTE);
+                usuarios.add(usuario);
+                ctrl.setUsuario(usuario);
+                page = ctrl.home();  
+            }
+            else
+            {
+                FacesContext ctx = FacesContext.getCurrentInstance();
+                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "La contraseña debe tener al menos 8 caracteres", "La contraseña debe tener al menos 8 caracteres"));
+                page = "register.xhtml";
+            }
+        }
+        else
+        {
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario ya registrado en el sistema", "Usuario ya registrado en el sistema")); 
+            page = "register.xhtml";
         }
         return page;
     }
