@@ -9,10 +9,8 @@
     <ui:define name="title">Autenticando</ui:define>
     <ui:define name="content">
         <h1>Crear aviso</h1>
-        
-
-            <div position="absolute" align="left">
-                <h:form>
+        <div position="absolute" align="left">
+            <h:form>
                 <table>
                     <tr>
                         <td> Ubicación: </td>
@@ -68,8 +66,6 @@
                                 <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadView.upload}" disabled="true" />
                             </h:form>
                         </td>
-
-
                     </tr>
                     <tr>
                         <td>
@@ -85,13 +81,15 @@
                             </form>
                         </td>
                         <td>
-                            <form action="">
-                                <h:commandButton value="Cancelar"/> 
-                            </form>
+                            <div align="right">
+                                <form action="">
+                                    <h:commandButton value="Cancelar"/> 
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 </table>
-        </h:form>
+            </h:form>
 
         </div>
         <div position="absolute" align="right">
