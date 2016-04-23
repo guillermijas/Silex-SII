@@ -116,7 +116,8 @@ public class Login {
         }
         else
         {
-            
+            FacesContext ctx = FacesContext.getCurrentInstance();
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario ya existente", "Usuario ya existente")); 
         }
     }
     
