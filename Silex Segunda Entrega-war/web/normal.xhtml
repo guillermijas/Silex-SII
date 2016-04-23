@@ -2,19 +2,35 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
     <ui:define name="title">Página para el usuario normal</ui:define>
     <ui:define name="content">
-        <c:choose>
-            <c:when test="#{controlAutorizacion.usuario.rol == 'CLIENTE'}">
+         <!--><c:choose><-->
+          <!-->  <c:when test="#{controlAutorizacion.usuario.rol == 'CLIENTE'}"><-->
                 <h1>Usuario normal</h1>
                 <p>¡¡Bienvenido <h:outputText value="#{controlAutorizacion.usuario.username}"/>!!</p>
-            </c:when>
+                 <h:form id="form">           
+                    <p:growl id="msgs" showDetail="true" />
+                    <h3 style="margin-top:0">Avisoss</h3>
+                    <p:accordionPanel>
+                        <c:forEach var="item" items="#{dbaux.avisos}">
+                           <p:tab title="#{item.idAviso}">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <img src="#{item.imagen}" alt="Mountain View"></img>
+                                <h:outputText value="#{item.descripcion}" />
+                            </h:panelGrid>
+                        </p:tab>
+                        </c:forEach>
+                    </p:accordionPanel>
+                </h:form>
+           <!--> </c:when> 
             <c:otherwise>
                 <ui:include src="/WEB-INF/templates/errorAutorizacion.xhtml"/>
-            </c:otherwise>
-        </c:choose>
+            </c:otherwise> 
+        </c:choose><-->
     </ui:define>
 </ui:composition>
+
 
 

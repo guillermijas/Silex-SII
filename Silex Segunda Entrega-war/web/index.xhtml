@@ -1,17 +1,21 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>EMASA Avisos</title>
-    </h:head>
-    <h:body>
-        <div>
-            <form action="faces/login.xhtml" style="text-align: right">
-                <h:commandButton value="Iniciar Sesion"/>
-            </form>
-        </div>
-    </h:body>
-</html>
+<ui:composition template="/WEB-INF/templates/plantillaHome.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Pagina Principal</ui:define>
+    <ui:define name="content">
+        <h:form class="top">
+            <ul class="menulist">
+                <li><h:commandLink action="#{controlAutorizacion.login()}" value="Iniciar Sesión"/></li>
+                <li><h:commandLink action="#{controlAutorizacion.index()}" value="Registrarse"/></li>
+                <li><h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/></li>
+            </ul>
+        </h:form>
+    </ui:define>
+</ui:composition>
 

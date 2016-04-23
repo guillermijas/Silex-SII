@@ -35,17 +35,10 @@ public class ControlAutorizacion implements Serializable {
             if (usuario.getRol().equals(Rol.CLIENTE)) // Si el usuario es normal
             {
                 page = "normal.xhtml";
-            } 
-            else 
-            {
-                if (usuario.getRol().equals(Rol.SUPERVISOR))
-                {
-                     page = "admin.xhtml";
-                }  
+            } else if (usuario.getRol().equals(Rol.SUPERVISOR)) {
+                page = "admin.xhtml";
             }
-        } 
-        else 
-        {
+        } else {
             page = "login.xhtml";
         }
 
@@ -62,11 +55,22 @@ public class ControlAutorizacion implements Serializable {
 
     public ControlAutorizacion() {
     }
-    
+
     public String index() {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ctx.getExternalContext().invalidateSession();
         usuario = null;
         return "index.xhtml";
+    }
+
+    public String login() {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        ctx.getExternalContext().invalidateSession();
+        usuario = null;
+        return "login.xhtml";
+    }
+
+    public String regAviso() {
+        return "regAviso.xhtml";
     }
 }

@@ -28,6 +28,7 @@ public class Login {
         usuarios = new ArrayList<Usuario>();
         usuarios.add(new Usuario("pepe", "asdf", Rol.CLIENTE));
         usuarios.add(new Usuario("manolo", "qwer", Rol.OPERARIO));
+        Dbaux.init();
     }
 
     public String getUsuario() {
