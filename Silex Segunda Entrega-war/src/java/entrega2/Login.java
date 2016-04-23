@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package entrega2;
 
 import java.util.ArrayList;
@@ -14,10 +10,6 @@ import javax.inject.Inject;
 import entrega1.*;
 import static entrega1.Enum.*;
 
-/**
- *
- * @author francis
- */
 @Named(value = "login")
 @RequestScoped
 public class Login {
@@ -25,7 +17,7 @@ public class Login {
     private String user;
     private String password;
     private List<Usuario> usuarios;
-    
+
     @Inject
     private ControlAutorizacion ctrl;
 
@@ -54,7 +46,8 @@ public class Login {
         this.password = contrasenia;
     }
 
-    public String autenticar() {
+    public String autenticar() 
+    {
         // Implementar este método
         // Buscamos en el arraylist al usuario, y si está y la contraseña coincide, le damos paso, en función de su rol
         
@@ -85,14 +78,14 @@ public class Login {
             else
             {
                 FacesContext ctx = FacesContext.getCurrentInstance();
-                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong Password", "Wrong Password")); 
+                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña inválidos", "Usuario o contraseña inválidos")); 
                 page = "login.xhtml";
             }
         }
         else
         {
             FacesContext ctx = FacesContext.getCurrentInstance();
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "User not identified", "User not identified")); 
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña inválidos", "Usuario o contraseña inválidos")); 
             page = "login.xhtml";
         }
         return page;
