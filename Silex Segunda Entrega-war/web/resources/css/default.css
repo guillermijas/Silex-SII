@@ -15,7 +15,10 @@ h1 {
     padding: 0px;
     color: #D20005;
 }
-
+.contenido{
+    position: relative;
+    background: #AFAFAF;
+}
 a:link, a:visited {
   color: #045491;
   font-weight : bold;

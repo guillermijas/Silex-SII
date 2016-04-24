@@ -8,26 +8,30 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
         <title>
             <ui:insert name="title">Facelets Template</ui:insert>
         </title>
     </h:head>
 
     <h:body>
-        <div id="top" class="top" style="position: relative; width: 500px; margin-left: 200px">
-            <h:form id="menu">
-                <ul class="menulist">
-                    <li><h:commandLink action="#{controlAutorizacion.index()}" value="Página principal"/></li>
-                    <li><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></li>
-                    <c:if test="#{!empty controlAutorizacion.usuario}">
-                        <li><h:commandLink action="#{controlAutorizacion.logout()}" value="Salir"/></li>
-                    </c:if>
-                </ul>
-            </h:form>
-        </div>
+        <div class="container">        
+            <div id="top" class="top">
+                <h:form id="menu">
+                    <ul class="menulist">
+                        <li><h:commandLink action="#{controlAutorizacion.index()}" value="Página principal"/></li>
+                        <li><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></li>
+                        <c:if test="#{!empty controlAutorizacion.usuario}">
+                            <li><h:commandLink action="#{controlAutorizacion.logout()}" value="Salir"/></li>
+                        </c:if>
+                    </ul>
+                </h:form>
+            </div>
 
-        <div id="content" class="center_content" style="position: relative; width: 500px; margin-left: 200px">
-            <ui:insert name="content">Content</ui:insert>
+            <div id="content" class="center_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
         </div>
     </h:body>
 
