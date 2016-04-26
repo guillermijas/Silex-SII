@@ -14,6 +14,8 @@ public class Aviso implements Serializable {
     private String descripcion;
     private String imagen;
     private String direccion;
+    private boolean urgente;
+    private boolean planificado;
     private Enum.estado estado;
     private Enum.prioridad prioridad;
     @Temporal(TemporalType.DATE)
@@ -23,7 +25,7 @@ public class Aviso implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "OT_fk")
     private OrdenDeTrabajo ordendeTrabajo;
-
+    
     @ManyToOne
     private Cliente cliente;
     @ManyToOne
@@ -59,7 +61,15 @@ public class Aviso implements Serializable {
     public Date getFechainicio() {
         return fechainicio;
     }
+    
+    public boolean isUrgente() {
+        return urgente;
+    }
 
+    public boolean isPlanificado() {
+        return planificado;
+    }
+    
     public Date getFechafin() {
         return fechafin;
     }
@@ -120,6 +130,15 @@ public class Aviso implements Serializable {
         this.imagen = imagen;
     }
 
+    public void setUrgente(boolean urgente) {
+        this.urgente = urgente;
+    }
+
+    public void setPlanificado(boolean planificado) {
+        this.planificado = planificado;
+    }
+
+    
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
@@ -162,8 +181,8 @@ public class Aviso implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.idAviso);
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.idAviso);
         return hash;
     }
 
@@ -185,9 +204,12 @@ public class Aviso implements Serializable {
         return true;
     }
 
+    
     @Override
     public String toString() {
-        return "Aviso{" + "idAviso=" + idAviso + ", gravedad=" + gravedad + ", descripcion=" + descripcion + ", imagen=" + imagen + ", direccion=" + direccion + ", estado=" + estado + ", prioridad=" + prioridad + '}';
+        return "Aviso{" + "idAviso=" + idAviso + ", gravedad=" + gravedad + ", descripcion=" + descripcion + ", imagen=" + imagen + ", direccion=" + direccion + ", urgente=" + urgente + ", planificado=" + planificado + ", estado=" + estado + ", prioridad=" + prioridad + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", ordendeTrabajo=" + ordendeTrabajo + ", cliente=" + cliente + ", callcenter=" + callcenter + ", supervisor=" + supervisor + ", operario=" + operario + '}';
     }
+
+    
 
 }
