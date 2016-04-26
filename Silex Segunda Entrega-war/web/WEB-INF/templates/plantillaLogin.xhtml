@@ -8,25 +8,29 @@
         <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap-min.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap-theme-min.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
         <title>
-            <ui:insert name="title">Facelets Template</ui:insert>
+            <ui:insert name="title">Iniciar Sesion</ui:insert>
         </title>
     </h:head>
 
     <h:body>
-            <div id="top" class="top">
-                <h:form id="menu">
-                    <ul class="menulist">
-                        <li><h:commandLink action="#{controlAutorizacion.index()}" value="Página principal"/></li>
-                        <li><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></li>
-                        <c:if test="#{!empty controlAutorizacion.usuario}">
-                            <li><h:commandLink action="#{controlAutorizacion.logout()}" value="Salir"/></li>
-                        </c:if>
-                    </ul>
-                </h:form>
-            </div>
-        <div class="container" style="max-width: 600px; min-width: 300px;">        
-            <div id="content" class="center_content">
+        <div id="top" class="top" style="min-width: 400px">
+            <h:form id="menu">
+                <ul class="menulist">
+                    <li><h:commandLink action="#{controlAutorizacion.index()}" value="Página principal" class="col-lg-1" style="min-width: 160px"/></li>
+                    <li><h:commandLink action="#{controlAutorizacion.register()}" value="Registrarse" class="col-lg-1" style="min-width: 160px"/></li>
+                </ul>
+            </h:form>
+        </div>
+        <div class="container" style="max-width: 600px; min-width: 300px;">
+                       
+            <h1 class="text-center" style="color: #66afe9"><img src="../img/logo-emasa.png"/></h1>
+            <h2 class="text-center" style="color: #66afe9">Gestor de avisos</h2><br/><br/>
+                
+            <div id="content" class="center_content" style="padding: 30px;">
                 <ui:insert name="content">Content</ui:insert>
             </div>
         </div>
