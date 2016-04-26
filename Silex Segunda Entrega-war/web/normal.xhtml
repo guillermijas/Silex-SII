@@ -18,7 +18,8 @@
                         <c:forEach var="item" items="#{dbaux.avisos}">
                             <p:tab title="#{item.idAviso}">
                                 <h:panelGrid columns="2" cellpadding="10">
-                                    <img src="#{item.imagen}" alt="Mountain View"></img>
+                                   
+                                   <a href="#{item.imagen}" data-lightbox="#{item.imagen}" data-title="Antonio Resines"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                     <h:outputText value="#{item.descripcion}" />
                                 </h:panelGrid>
                             </p:tab>
@@ -32,6 +33,3 @@
         </c:choose>
     </ui:define>
 </ui:composition>
-
-
-
