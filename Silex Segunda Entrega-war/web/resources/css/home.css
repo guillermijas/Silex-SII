@@ -1,0 +1,10 @@
+body { 
+    background-color: #81BEF7;
+    background-image: url("malaga.jpg");
+    background-repeat: no-repeat; 
+}
+
+#logo{
+    position:relative;
+    
+}
