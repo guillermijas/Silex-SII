@@ -10,11 +10,17 @@
             <c:when test="#{empty controlAutorizacion.usuario}">
                 <h:form class="text-center">
                     <h3>Usuario </h3>
-                    <td><h:inputText class="input-lg" value="#{login.usuario}"/></td>
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-user"></span>
+                        <h:inputText class="form-control input-lg" value="#{login.usuario}"/>
+                    </div>
                     <h3>Contraseña </h3>
-                    <h:inputSecret class="input-lg" value="#{login.password}"/>
-                    <br/><br/><br/>
-                    <h:commandButton class="btn-lg" value="Autenticar" action="#{login.autenticar()}"/>
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                        <h:inputText class="form-control input-lg" value="#{login.password}"/>
+                    </div>
+                    <br/><br/>
+                    <h:commandButton class="btn btn-lg" style="background-color:#2b83b5; color: white" value="Autenticar" action="#{login.autenticar()}"/>
                     <br/><br/>
                     <div class="row">
                         <div class="col-lg-6">
