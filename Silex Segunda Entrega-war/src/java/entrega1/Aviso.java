@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
+
 @Entity
 public class Aviso implements Serializable {
 
@@ -14,6 +15,7 @@ public class Aviso implements Serializable {
     private String descripcion;
     private String imagen;
     private String direccion;
+    private Coordenada localizacion;
     private boolean urgente;
     private boolean planificado;
     private Enum.estado estado;
@@ -113,7 +115,11 @@ public class Aviso implements Serializable {
     public Operario getOperario() {
         return operario;
     }
-
+    
+    public Coordenada getLocalizacion(){
+        return localizacion;
+    }
+    
     public void setIdAviso(Long idAviso) {
         this.idAviso = idAviso;
     }
@@ -133,7 +139,11 @@ public class Aviso implements Serializable {
     public void setUrgente(boolean urgente) {
         this.urgente = urgente;
     }
-
+    
+    public void setLocalizacion(Coordenada localizacion){
+        this.localizacion = localizacion;
+    }
+    
     public void setPlanificado(boolean planificado) {
         this.planificado = planificado;
     }

@@ -6,6 +6,7 @@
 package entrega2;
 
 import entrega1.Aviso;
+import entrega1.Coordenada;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,6 +55,7 @@ public class Dbaux implements Serializable{
     static void init() {
        avisos = new ArrayList<Aviso>();
        Aviso avuno = new Aviso();
+       avuno.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=m&q=loc:36.715914","-4.477880"));
        avuno.setPrioridad(entrega1.Enum.prioridad.MEDIA);
        avuno.setDireccion("calle catorce");
        avuno.setEstado(entrega1.Enum.estado.INCIDENCIA);
@@ -68,6 +70,8 @@ public class Dbaux implements Serializable{
        avdos.setDireccion("calle catorce");
        avdos.setEstado(entrega1.Enum.estado.INCIDENCIA);
        avdos.setGravedad(entrega1.Enum.gravedad.LEVE);
+       avdos.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=m&q=loc:48.067652","12.858095"));
+
        //avdos.setCliente("pepe");
        avdos.setIdAviso(2L);
        avdos.setDescripcion("Holaaa");
@@ -80,6 +84,7 @@ public class Dbaux implements Serializable{
        avtres.setGravedad(entrega1.Enum.gravedad.LEVE);
        //avtres.setCliente("pepe");
        avtres.setIdAviso(3L);
+       avtres.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=m&q=loc:36.715914","4.477880"));
        avtres.setDescripcion("Mi vecino aun no usa telegram y queiro matarlo");
        avisos.add(avtres);
        
