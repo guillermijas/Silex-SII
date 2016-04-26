@@ -16,11 +16,13 @@
                     <br/><br/><br/>
                     <h:commandButton class="btn-lg" value="Autenticar" action="#{login.autenticar()}"/>
                     <br/><br/>
-                    <h:panelGrid columns="3">
-                        <h:outputText value="Recordar cuenta"/>
-                        <input type="checkbox" style="margin-left: 10px;"/>
-                        <a class="text-right">¿Ha olvidado su contraseña?</a>
-                    </h:panelGrid>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h:outputText value="Recordar cuenta"/>
+                            <input type="checkbox"/>
+                        </div>
+                        <a class="text-right, col-lg-6">¿Ha olvidado su contraseña?</a>
+                    </div>
 
                 </h:form>
             </c:when>
