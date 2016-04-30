@@ -60,8 +60,6 @@ public class control_registro implements Serializable
         user.setRol(entrega1.Enum.Rol.CLIENTE); // Por defecto se añade como cliente
         database.insertNewUser(user); // Guardamos el nuevo usuario
         ctrl.setUsuario(user);
-        FacesMessage msg = new FacesMessage("Registro Completo", "Bienvenido " + user.getUsername());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
         return ctrl.home();
     }
 

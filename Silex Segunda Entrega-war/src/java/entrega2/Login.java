@@ -82,7 +82,7 @@ public class Login {
     
     public void deleteUser(Usuario us)
     {
-        if(database.isAlreadyContent(us))
+        if(database.isUsernameContent(us.getUsername()))
         {
             database.deleteUser(us);
         }

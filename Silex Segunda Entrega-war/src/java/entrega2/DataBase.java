@@ -5,7 +5,6 @@
  */
 package entrega2;
 
-import entrega1.Enum.Rol;
 import entrega1.Usuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,21 +25,12 @@ public class DataBase {
     /**
      * Creates a new instance of DataBase
      */
-    @Inject
-    private Hash hash;
     
     private List<Usuario> usuarios = new ArrayList<Usuario>();
     
     public DataBase() 
     {
-        // Añadimos dos usuarios de prueba
-       // usuarios.add(new Usuario("pepe", hash.getHash("asdf"), Rol.CLIENTE));
-        //usuarios.add(new Usuario("manolo", hash.getHash("qwer"), Rol.OPERARIO));
-    }
-    
-    public boolean isAlreadyContent(Usuario us)
-    {
-        return usuarios.contains(us);
+        
     }
     
     public boolean isUsernameContent(String username)
@@ -61,9 +51,11 @@ public class DataBase {
    public void insertNewUser(Usuario us)
     {
         // Primero comprobamos que ese usuario no está ya en la base de datos   
-        if(!isAlreadyContent(us))
+        if(!isUsernameContent(us.getUsername()))
         {
             usuarios.add(us);
+            FacesMessage msg = new FacesMessage("Registro Completo", "Bienvenido " + us.getUsername());
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
         else
         {
