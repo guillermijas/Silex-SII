@@ -3,7 +3,8 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">Página para el usuario normal</ui:define>
     <ui:define name="content">
         <c:choose>
@@ -17,22 +18,56 @@
        <p:tabView>
         <p:tab title="En proceso">
             <h:panelGrid columns="2" cellpadding="10">
-                                    <p:accordionPanel>
+                     <p:accordionPanel>
                         <c:forEach var="item" items="#{dbaux.avisos}">
                             <p:tab title="#{item.idAviso}">
                                 <h:panelGrid columns="2" cellpadding="10">
+                            <p:panelGrid columns="2">
+                             <f:facet name="header">
+                              <a href="#{item.imagen}" data-lightbox="#{item.imagen}" data-title="Antonio Resines"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
+                              </f:facet>    
+                            <f:facet name="header">
+                             <a href="#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>                                           
+                            </f:facet>    
+
+                             <h:outputText value="Dirección" />
+                             <h:outputText value="#{item.direccion}" />
+ 
+                             <h:outputText value="Fecha Inicio" />
+                             <h:outputText value="#{item.fechainicio}" />
+                             
+                             <h:outputText value="Fecha Fin" />
+                             <h:outputText value="#{item.fechafin}" />
+                             
+                             <c:choose>
+                             <c:when test="#{item.urgente} == 'false'}">
+                             <h:outputText value="Urgente" />
+                             <input type="checkbox" disabled="disabled"></input>
+                             </c:when>
+                             <c:otherwise>
+                             <h:outputText value="Urgente" />
+                             <input type="checkbox" disabled="disabled" checked="checked"></input>
+                             </c:otherwise>
+                             </c:choose>
+                             
+                            <h:outputText value="Gravedad" />
+                            <h:outputText value="#{item.gravedad}" />
+                             
+                            
+                            <h:outputText value="Estado" />
+                            <h:outputText value="#{item.estado}" />
+
+                                 
+                            <h:outputText value="Prioridad" />
+                            <h:outputText value="#{item.prioridad}" />
+
+                            <h:outputText value="Descripcion" />
+                            <h:outputText value="#{item.descripcion}" />
+
+                             </p:panelGrid>        
                                    
-                                   <a href="#{item.imagen}" data-lightbox="#{item.imagen}" data-title="Antonio Resines"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
-                                   <a href="#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>                                           
-                                   <h:outputText value="#{item.direccion}" />
-                                   <h:outputText value="#{item.estado}" />
-                                   <h:outputText value="#{item.fechafin}" />
-                                   <h:outputText value="#{item.fechainicio}" />
-                                   <h:outputText value="#{item.gravedad}" />
-                                   <h:outputText value="#{item.urgente}" />
-                                   <h:outputText value="#{item.prioridad}" />
-                                   <h:outputText value="#{item.descripcion}" />
-                                </h:panelGrid>
+                                                             
+                             </h:panelGrid>
                             </p:tab>
                         </c:forEach>
                     </p:accordionPanel>
