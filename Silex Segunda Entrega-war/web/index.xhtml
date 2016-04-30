@@ -10,10 +10,15 @@
     <ui:define name="title">Pagina Principal</ui:define>
     <ui:define name="content">
         <h:form class="top">
+            <div class="logo">
+            <!--><a href="#{item.imagen}" data-lightbox="#{item.imagen}" data-title="Antonio Resines"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a><-->
+           <img src="img/logo.png" alt="No hay imagen" width="150" height="150"></img>
+            </div>
             <ul class="menulist">
                 <li><h:commandLink action="#{controlAutorizacion.login()}" value="Iniciar Sesión"/></li>
                 <li><h:commandLink action="#{controlAutorizacion.register()}" value="Registrarse"/></li>
                 <li><h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/></li>
+                <li><h:commandLink action="#{controlAutorizacion.regOT()}" value="Nueva OT"/></li>
             </ul>
         </h:form>
     </ui:define>

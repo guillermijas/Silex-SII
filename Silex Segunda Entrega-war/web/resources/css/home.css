@@ -1,12 +1,21 @@
+body { 
+    background-color: #81BEF7;
+    background-image: url("malaga.jpg");
+    background-repeat: no-repeat; 
+}
+
+.logo{
+    align-content: center;
+}
+
 
 #top {
     position: relative;
     background-color: #036fab;
     color: white;
-    padding: 10px;
+    padding: 5px;
     height: 3em;
-    margin: 0px 0px 0px 0px;
-    width: max-content;
+    margin: 0px 0px 5px 0px;
 }
 
 #bottom {

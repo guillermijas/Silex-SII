@@ -14,17 +14,37 @@
                     <p:growl id="msgs" showDetail="true" />
                     <h3 style="margin-top:0">Avisos</h3>
                     <h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/>
-                    <p:accordionPanel>
+       <p:tabView>
+        <p:tab title="En proceso">
+            <h:panelGrid columns="2" cellpadding="10">
+                                    <p:accordionPanel>
                         <c:forEach var="item" items="#{dbaux.avisos}">
                             <p:tab title="#{item.idAviso}">
                                 <h:panelGrid columns="2" cellpadding="10">
-                                    <img src="#{item.imagen}" alt="Mountain View"></img>
-                                    <h:outputText value="#{item.descripcion}" />
+                                   
+                                   <a href="#{item.imagen}" data-lightbox="#{item.imagen}" data-title="Antonio Resines"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
+                                   <a href="#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>                                           
+                                   <h:outputText value="#{item.direccion}" />
+                                   <h:outputText value="#{item.estado}" />
+                                   <h:outputText value="#{item.fechafin}" />
+                                   <h:outputText value="#{item.fechainicio}" />
+                                   <h:outputText value="#{item.gravedad}" />
+                                   <h:outputText value="#{item.urgente}" />
+                                   <h:outputText value="#{item.prioridad}" />
+                                   <h:outputText value="#{item.descripcion}" />
                                 </h:panelGrid>
                             </p:tab>
                         </c:forEach>
                     </p:accordionPanel>
-                </h:form>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Terminadas">
+            <h:panelGrid columns="2" cellpadding="10">
+                <h:outputText value="Jaimito estaba teniendo sexo con su profesora en la casa de ella cuando de pronto llega su marido y Jaimito, desnudo, lo único que hace es esconderse detrás de un equipo de música que le faltaban algunos botones. Por el agujero de la perilla del volúmen, a Jaimito se le escapan las bolas. El marido trata de subir el volumen de la radio y entonces Jaimito canta Radio Rivadavia te informa la hora, guacho hijo de pu** soltame las bolas" />
+            </h:panelGrid>
+        </p:tab>
+         </p:tabView>
+            </h:form>
             </c:when> 
             <c:otherwise>
                 <ui:include src="/WEB-INF/templates/errorAutorizacion.xhtml"/>
@@ -32,6 +52,3 @@
         </c:choose>
     </ui:define>
 </ui:composition>
-
-
-

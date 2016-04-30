@@ -8,57 +8,30 @@
     <ui:define name="content">
         <c:choose>
             <c:when test="#{empty controlAutorizacion.usuario}">
-                <h:form id="login">
-                    <table>
-                        <tr>
-                            <td>Usuario: </td>
-                            <td><h:inputText value="#{login.usuario}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Contraseña: </td>
-                            <td><h:inputSecret value="#{login.password}"/></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <h:commandButton value="Autenticar" action="#{login.autenticar()}"/>
-                            </td>
-                        </tr>
-                    </table>
+                <h:form class="text-center">
+                    <h3>Usuario </h3>
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-user"></span>
+                        <h:inputText class="form-control input-lg" value="#{login.usuario}"/>
+                    </div>
+                    <h3>Contraseña </h3>
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                        <h:inputSecret class="form-control input-lg" value="#{login.password}"/>
+                    </div>
+                    <br/><br/>
+                    <h:commandButton class="btn btn-lg" style="background-color:#2b83b5; color: white" value="Autenticar" action="#{login.autenticar()}"/>
+                    <br/><br/>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h:outputText value="Recordar cuenta"/>
+                            <input type="checkbox"/>
+                        </div>
+                        <a class="text-right, col-lg-6">¿Ha olvidado su contraseña?</a>
+                    </div>
 
-
-
-                </h:form>
-                <h:form id="form">           
-                    <p:growl id="msgs" showDetail="true" />
-
-                    <h3 style="margin-top:0">Basic</h3>
-                    <p:accordionPanel>
-                        <p:tab title="Godfather Part I">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
-                                <h:outputText
-                                    value="The story begins as Don Vito Corleone..." />
-                            </h:panelGrid>
-                        </p:tab>
-                        <p:tab title="Godfather Part II">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
-                                <h:outputText value="Francis Ford Coppola's legendary..." />
-                            </h:panelGrid>
-                        </p:tab>
-                        <p:tab title="Godfather Part III">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
-                                <h:outputText value="After a break of more than 15 years..." />
-                            </h:panelGrid>
-                        </p:tab>
-                    </p:accordionPanel>
                 </h:form>
             </c:when>
-
-
-
-
             <c:otherwise>
                 <p>Debe salir de la aplicación si quiere entrar como otro usuario</p>
             </c:otherwise>

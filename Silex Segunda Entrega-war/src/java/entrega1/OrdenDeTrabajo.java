@@ -14,6 +14,8 @@ public class OrdenDeTrabajo implements Serializable{
     private String direccion;
     private Enum.estado estado;
     private Enum.prioridad prioridad;
+    private boolean urgente;
+    private boolean planificado;
     private String instrucciones;
     @Temporal(TemporalType.DATE)
     private Date fechainicio;
@@ -32,6 +34,15 @@ public class OrdenDeTrabajo implements Serializable{
         return serialVersionUID;
     }
 
+    public boolean isUrgente() {
+        return urgente;
+    }
+
+    public boolean isPlanificado() {
+        return planificado;
+    }
+
+ 
     public Long getIdOT() {
         return idOT;
     }
@@ -108,6 +119,15 @@ public class OrdenDeTrabajo implements Serializable{
         this.prioridad = prioridad;
     }
 
+    public void setUrgente(boolean urgente) {
+        this.urgente = urgente;
+    }
+
+    public void setPlanificado(boolean planificado) {
+        this.planificado = planificado;
+    }
+    
+    
     public void setInstrucciones(String instrucciones) {
         this.instrucciones = instrucciones;
     }
@@ -155,8 +175,10 @@ public class OrdenDeTrabajo implements Serializable{
 
     @Override
     public String toString() {
-        return "OrdenDeTrabajo{" + "idOT=" + idOT + ", gravedad=" + gravedad + ", imagen=" + imagen + ", direccion=" + direccion + ", estado=" + estado + ", prioridad=" + prioridad + ", instrucciones=" + instrucciones + '}';
+        return "OrdenDeTrabajo{" + "idOT=" + idOT + ", gravedad=" + gravedad + ", imagen=" + imagen + ", direccion=" + direccion + ", estado=" + estado + ", prioridad=" + prioridad + ", urgente=" + urgente + ", planificado=" + planificado + ", instrucciones=" + instrucciones + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", aviso=" + aviso + ", operarios=" + operarios + '}';
     }
+
+   
     
     
 }
