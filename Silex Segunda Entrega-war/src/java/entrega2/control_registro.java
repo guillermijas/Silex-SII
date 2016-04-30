@@ -16,10 +16,14 @@ import org.primefaces.event.FlowEvent;
 
 @ManagedBean
 @ViewScoped
-public class control_registro implements Serializable {
-
+public class control_registro implements Serializable 
+{
     @Inject
-    private Login login;
+    private DataBase database;
+    @Inject
+    private ControlAutorizacion ctrl;
+    @Inject 
+    private Hash hash;
 
     private Usuario user = new Usuario();
     private String pwd1;
@@ -51,10 +55,14 @@ public class control_registro implements Serializable {
         this.user = user;
     }
 
-    public void save() {
-        FacesMessage msg = new FacesMessage("Successful", "Welcome " + user.getUsername());
+    public String save() 
+    {
+        user.setRol(entrega1.Enum.Rol.CLIENTE); // Por defecto se añade como cliente
+        database.insertNewUser(user); // Guardamos el nuevo usuario
+        ctrl.setUsuario(user);
+        FacesMessage msg = new FacesMessage("Registro Completo", "Bienvenido " + user.getUsername());
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        login.insertNewUser(user); // Guardamos el nuevo usuario
+        return ctrl.home();
     }
 
     public boolean isSkip() {
@@ -64,30 +72,50 @@ public class control_registro implements Serializable {
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
-
-    public String onFlowProcess(FlowEvent event) {
-        if (skip) {
-            skip = false;   //Si vuelve atrás, los datos se reinician
-            return "confirm";
-        }
-        else 
+    
+    public String onFlowProcess(FlowEvent event)
+    {
+        // Primero separamos si se trata de la parte inicial o no
+        if (event.getOldStep().equals("Login"))
         {
             if(checkPasswords())
             {
-                return event.getNewStep();
+                keepPwd();
+                if(skip)
+                {
+                    skip = false;
+                    return "confirm";
+                }
+                else
+                {
+                    return event.getNewStep();
+                }
             }
             else
             {
                 return event.getOldStep();
             }
         }
+        else
+        {
+            if(skip)
+            {
+                skip = false;
+                return "confirm";
+            }
+            else
+            {
+                return event.getNewStep();
+            }
+        }
     }
 
-    public boolean checkPasswords() {
+    public boolean checkPasswords() 
+    {
         return pwd1.equals(pwd2);
     }
 
     public void keepPwd() {
-        user.setPassword(pwd1);
+        user.setPassword(hash.getHash(pwd1)); // Guardamos el hash por seguridad
     }
 }

@@ -64,9 +64,6 @@ public class ControlAutorizacion implements Serializable {
     }
 
     public String login() {
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        ctx.getExternalContext().invalidateSession();
-        usuario = null;
         return "login.xhtml";
     }
 

@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="Silex_Segunda_Entrega-warPU" transaction-type="JTA">
-    <jta-data-source>jdbc/sample</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <jta-data-source>jdbc/Silex-SII</jta-data-source>
+    <class>entrega1.Aviso</class>
+    <class>entrega1.CallCenter</class>
+    <class>entrega1.Cliente</class>
+    <class>entrega1.Operario</class>
+    <class>entrega1.OrdenDeTrabajo</class>
+    <class>entrega1.Supervisor</class>
+    <class>entrega1.Usuario</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.create-source" value="emasabbdd.ddl"/>
       <property name="javax.persistence.schema-generation.scripts.action" value="create"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="javax.persistence.schema-generation.scripts.create-target" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>

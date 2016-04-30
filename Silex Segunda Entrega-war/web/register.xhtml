@@ -2,9 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Registro en el sistema</title>
+        <title>Registro</title>
     </h:head>
     <h:body>
         <h:form>    
@@ -17,24 +18,23 @@
                         <h:panelGrid columns="2" columnClasses="label, value">
                             <h:outputText value="Nombre de usuario: *" />
                             <p:inputText value="#{control_registro.user.username}" required="true" label="Nombre de usuario: *"/>
-
+                            
                             <h:outputText value="Contraseña: *" />
-                            <p:inputText id = "pwd1" value="#{control_registro.pwd1}" type ="password" required="true" label="Contraseña"/>
+                            <p:password id = "pwd1" value="#{control_registro.pwd1}" required="true" label="Contraseña"/>
                             
                             <h:outputText value="Repetir contraseña: *" />
-                            <p:inputText id = "pwd2" value="#{control_registro.pwd2}" type ="password" required="true" label="Contraseña2"/>
+                            <p:password id = "pwd2" value="#{control_registro.pwd2}" required="true" label="Contraseña2"/>
                             
                             <c:choose>
                                 <c:when test = "#{empty control_registro.pwd1}">
                                     
                                 </c:when>
-                                <c:when test = "#{control_registro.checkPasswords()}">
-                                    <h:commandLink action="#{control_registro.keepPwd()}"/>
+                                <c:when test = "#{control_registro.checkPasswords()} ">
+                                    
                                 </c:when>
                                 <c:otherwise>
                                     <h:outputText value ="" />
-                                    <h:outputText value = "Las contraseñas no coinciden" style ="color: red" />
-                                    
+                                    <h:outputText value = "Las contraseñas no coinciden" style ="color: red" />     
                                 </c:otherwise>
                             </c:choose>
                             <h:outputText value="Ir al final: " />
@@ -63,7 +63,13 @@
                             <p:inputText value="#{control_registro.user.dirección}" />
                             
                             <h:outputText value="Email: " />
-                            <p:inputText value="#{control_registro.user.email}" />
+                            <p:inputText value="#{control_registro.user.email}" validatorMessage="Formato de email incorrecto">
+                                <f:validateRegex pattern=".+@.+" />
+                                <!--
+                                La expresión es
+                                "([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+"
+                                -->
+                            </p:inputText>
 
                             <h:outputText value="Ir al final: " />
                             <h:selectBooleanCheckbox value="#{control_registro.skip}" />
@@ -71,7 +77,7 @@
                     </p:panel>
                 </p:tab>
                 
-                <p:tab id="contact" title="Información Específica">
+                <p:tab id="info" title="Información Específica">
                     <p:panel header="Información Específica">
                         <p:messages />
                         <h:panelGrid columns="2" columnClasses="label, value">
@@ -122,7 +128,7 @@
                             </h:panelGrid>
                         </h:panelGrid>
 
-                        <p:commandButton value="Registrarse" actionListener="#{control_registro.save()}" action="#{controlAutorizacion.normal()}" update="growl" process="@this"/>
+                        <p:commandButton value="Registrarse" actionListener="#{control_registro.save()}" update="growl" process="@this"/>
                     </p:panel>
                 </p:tab>
             </p:wizard>
