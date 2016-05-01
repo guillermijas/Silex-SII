@@ -35,10 +35,10 @@ public class ControlAutorizacion implements Serializable {
 
         if (usuario != null) // Si hay usuario
         {
-            if (usuario.getRol().equals(Rol.CLIENTE)) // Si el usuario es normal
+            if (usuario.getRol().equals("CLIENTE")) // Si el usuario es normal
             {
                 page = "normal.xhtml";
-            } else if (usuario.getRol().equals(Rol.SUPERVISOR)) {
+            } else if (usuario.getRol().equals("ADMINISTRADOR")) {
                 page = "admin.xhtml";
             }
         } else {

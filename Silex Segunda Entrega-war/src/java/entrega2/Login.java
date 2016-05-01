@@ -53,7 +53,6 @@ public class Login {
         String page;
         
         // Una vez comprobado, compruebo si la contraseña es correcta
-        
         if (!database.emptyDataBase() && database.isUsernameContent(this.user))
         {
             Usuario us = database.getUserbyIndex(database.getIndexUsername(this.user));

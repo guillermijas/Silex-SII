@@ -32,7 +32,6 @@ public class DataBase {
     {
         
     }
-    
     public boolean isUsernameContent(String username)
     {
         boolean isContent = false;

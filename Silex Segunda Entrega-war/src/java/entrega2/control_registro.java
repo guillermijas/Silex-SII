@@ -57,7 +57,12 @@ public class control_registro implements Serializable
 
     public String save() 
     {
-        user.setRol(entrega1.Enum.Rol.CLIENTE); // Por defecto se añade como cliente
+        if(user.getUsername().equals("adminn")){
+            user.setRol("ADMINISTRADOR");
+        }
+        else{
+        user.setRol("CLIENTE"); // Por defecto se añade como cliente
+        }
         database.insertNewUser(user); // Guardamos el nuevo usuario
         ctrl.setUsuario(user);
         return ctrl.home();

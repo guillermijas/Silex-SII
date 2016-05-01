@@ -15,7 +15,7 @@ public class Usuario implements Serializable {
     // Usuario
     private String username;
     private String password;
-    private Enum.Rol rol;
+    private String rol;
     
     // Datos
     private String dni;
@@ -38,7 +38,7 @@ public class Usuario implements Serializable {
         
     }
     
-    public Usuario(String username, String password, Enum.Rol rol)
+    public Usuario(String username, String password, String rol)
     {
         this.username = username;
         this.password = password;
@@ -89,7 +89,7 @@ public class Usuario implements Serializable {
         return email;
     }
 
-    public Enum.Rol getRol() {
+    public String getRol() {
         return rol;
     }
 
@@ -133,7 +133,7 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
-    public void setRol(Enum.Rol rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
