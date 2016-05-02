@@ -8,13 +8,11 @@ import java.io.Serializable;
 import javax.faces.context.FacesContext;
 import java.util.List;
 
-
 @Named(value = "controlAutorizacion")
 @SessionScoped
 public class ControlAutorizacion implements Serializable {
 
     private Usuario usuario;
-   
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
@@ -57,7 +55,7 @@ public class ControlAutorizacion implements Serializable {
     }
 
     public ControlAutorizacion() {
-        
+
     }
 
     public String index() {
@@ -70,21 +68,22 @@ public class ControlAutorizacion implements Serializable {
     public String login() {
         return "login.xhtml";
     }
-    
+
     public String regOT() {
-       
-        
+
         return "regOT.xhtml";
     }
-    
+
     public String regAviso() {
         return "regAviso.xhtml";
     }
+
     public String register() {
         return "register.xhtml";
     }
-     public String normal() {
+
+    public String normal() {
         return "normal.xhtml";
     }
-     
+
 }

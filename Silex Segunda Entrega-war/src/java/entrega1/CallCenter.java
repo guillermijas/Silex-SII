@@ -1,23 +1,25 @@
 package entrega1;
+
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
-
 @Entity
-public class CallCenter implements Serializable{
+public class CallCenter implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String dni;
     private String nombre;
     private String apellidos;
     private Long telefono;
     private String dirección;
     private String email;
-    
+
     @OneToMany(targetEntity = Aviso.class)
     private List<Aviso> listaAvisos;
-    
+
     public CallCenter() {
     }
 
@@ -72,14 +74,12 @@ public class CallCenter implements Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    public List<Aviso> getListaAvisos()
-    {
+
+    public List<Aviso> getListaAvisos() {
         return this.listaAvisos;
     }
-    
-    public void setListaAvisos(List<Aviso> l)
-    {
+
+    public void setListaAvisos(List<Aviso> l) {
         this.listaAvisos = l;
     }
 
@@ -102,7 +102,7 @@ public class CallCenter implements Serializable{
             return false;
         }
         final CallCenter other = (CallCenter) obj;
-        if(!Objects.equals(this.dni, other.dni)) {
+        if (!Objects.equals(this.dni, other.dni)) {
             return false;
         }
         return true;
@@ -112,6 +112,5 @@ public class CallCenter implements Serializable{
     public String toString() {
         return "CallCenter{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", direcci\u00f3n=" + dirección + ", email=" + email + '}';
     }
-    
-    
+
 }

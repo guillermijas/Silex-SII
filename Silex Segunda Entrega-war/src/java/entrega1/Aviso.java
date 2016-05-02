@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
-
 @Entity
 public class Aviso implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idAviso;
     private Enum.gravedad gravedad;
     private String descripcion;
@@ -27,7 +27,7 @@ public class Aviso implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "OT_fk")
     private OrdenDeTrabajo ordendeTrabajo;
-    
+
     @ManyToOne
     private Cliente cliente;
     @ManyToOne
@@ -63,7 +63,7 @@ public class Aviso implements Serializable {
     public Date getFechainicio() {
         return fechainicio;
     }
-    
+
     public boolean isUrgente() {
         return urgente;
     }
@@ -71,7 +71,7 @@ public class Aviso implements Serializable {
     public boolean isPlanificado() {
         return planificado;
     }
-    
+
     public Date getFechafin() {
         return fechafin;
     }
@@ -115,11 +115,11 @@ public class Aviso implements Serializable {
     public Operario getOperario() {
         return operario;
     }
-    
-    public Coordenada getLocalizacion(){
+
+    public Coordenada getLocalizacion() {
         return localizacion;
     }
-    
+
     public void setIdAviso(Long idAviso) {
         this.idAviso = idAviso;
     }
@@ -139,16 +139,15 @@ public class Aviso implements Serializable {
     public void setUrgente(boolean urgente) {
         this.urgente = urgente;
     }
-    
-    public void setLocalizacion(Coordenada localizacion){
+
+    public void setLocalizacion(Coordenada localizacion) {
         this.localizacion = localizacion;
     }
-    
+
     public void setPlanificado(boolean planificado) {
         this.planificado = planificado;
     }
 
-    
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
@@ -214,12 +213,9 @@ public class Aviso implements Serializable {
         return true;
     }
 
-    
     @Override
     public String toString() {
         return "Aviso{" + "idAviso=" + idAviso + ", gravedad=" + gravedad + ", descripcion=" + descripcion + ", imagen=" + imagen + ", direccion=" + direccion + ", urgente=" + urgente + ", planificado=" + planificado + ", estado=" + estado + ", prioridad=" + prioridad + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", ordendeTrabajo=" + ordendeTrabajo + ", cliente=" + cliente + ", callcenter=" + callcenter + ", supervisor=" + supervisor + ", operario=" + operario + '}';
     }
-
-    
 
 }

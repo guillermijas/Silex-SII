@@ -5,9 +5,11 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-public class OrdenDeTrabajo implements Serializable{
+public class OrdenDeTrabajo implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idOT;
     private Enum.gravedad gravedad;
     private String imagen;
@@ -24,9 +26,8 @@ public class OrdenDeTrabajo implements Serializable{
     @OneToOne(targetEntity = Aviso.class)
     private Aviso aviso;
     @ManyToMany(mappedBy = "ordenesTrabajo")
-    private List <Operario> operarios;
-    
-    
+    private List<Operario> operarios;
+
     public OrdenDeTrabajo() {
     }
 
@@ -42,7 +43,6 @@ public class OrdenDeTrabajo implements Serializable{
         return planificado;
     }
 
- 
     public Long getIdOT() {
         return idOT;
     }
@@ -82,7 +82,7 @@ public class OrdenDeTrabajo implements Serializable{
     public Enum.prioridad getPrioridad() {
         return prioridad;
     }
-                             
+
     public String getInstrucciones() {
         return instrucciones;
     }
@@ -126,17 +126,16 @@ public class OrdenDeTrabajo implements Serializable{
     public void setPlanificado(boolean planificado) {
         this.planificado = planificado;
     }
-    
-    
+
     public void setInstrucciones(String instrucciones) {
         this.instrucciones = instrucciones;
     }
-    
-    public void setOperarios(List <Operario> o){
+
+    public void setOperarios(List<Operario> o) {
         this.operarios = o;
     }
-    
-    public List <Operario> getOperarios(){
+
+    public List<Operario> getOperarios() {
         return this.operarios;
     }
 
@@ -178,7 +177,4 @@ public class OrdenDeTrabajo implements Serializable{
         return "OrdenDeTrabajo{" + "idOT=" + idOT + ", gravedad=" + gravedad + ", imagen=" + imagen + ", direccion=" + direccion + ", estado=" + estado + ", prioridad=" + prioridad + ", urgente=" + urgente + ", planificado=" + planificado + ", instrucciones=" + instrucciones + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", aviso=" + aviso + ", operarios=" + operarios + '}';
     }
 
-   
-    
-    
 }

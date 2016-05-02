@@ -1,12 +1,15 @@
 package entrega1;
+
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
 @Entity
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String dni;
     private String nombre;
     private String apellidos;
@@ -15,9 +18,9 @@ public class Cliente implements Serializable{
     private String email;
     // Establecemos la relacion de cliente con aviso
     @OneToMany(targetEntity = Aviso.class)
-    private List <Aviso> listaAvisos;
-    
-    public Cliente(){
+    private List<Aviso> listaAvisos;
+
+    public Cliente() {
     }
 
     public static long getSerialVersionUID() {
@@ -71,18 +74,15 @@ public class Cliente implements Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
-    public void setListaAvisos(List<Aviso> l)
-    {
+
+    public void setListaAvisos(List<Aviso> l) {
         this.listaAvisos = l;
     }
-    
-    public List<Aviso> getListaAvisos()
-    {
+
+    public List<Aviso> getListaAvisos() {
         return this.listaAvisos;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -112,6 +112,5 @@ public class Cliente implements Serializable{
     public String toString() {
         return "Cliente{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", direcci\u00f3n=" + dirección + ", email=" + email + '}';
     }
-    
-    
+
 }

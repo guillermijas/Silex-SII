@@ -9,19 +9,21 @@ package entrega1;
  *
  * @author operador
  */
-public  class Coordenada{
+public class Coordenada {
+
     private String height = "0.0";
     private String lenght = "0.0";
-    public Coordenada(String h, String l){
+
+    public Coordenada(String h, String l) {
         this.height = h;
         this.lenght = l;
-        }
-        public String getHeight(){
-        return height;    
-        }
-        public String getLenght(){
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public String getLenght() {
         return lenght;
-        }
+    }
 }
-
-

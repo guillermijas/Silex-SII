@@ -14,13 +14,13 @@ import org.primefaces.event.FlowEvent;
 
 @ManagedBean
 @ViewScoped
-public class control_registro implements Serializable 
-{
+public class control_registro implements Serializable {
+
     @Inject
     private DataBase database;
     @Inject
     private ControlAutorizacion ctrl;
-    @Inject 
+    @Inject
     private Hash hash;
 
     private Usuario user = new Usuario();
@@ -53,13 +53,11 @@ public class control_registro implements Serializable
         this.user = user;
     }
 
-    public String save() 
-    {
-        if(user.getUsername().equals("adminn")){
+    public String save() {
+        if (user.getUsername().equals("adminn")) {
             user.setRol("ADMINISTRADOR");
-        }
-        else{
-        user.setRol("CLIENTE"); // Por defecto se añade como cliente
+        } else {
+            user.setRol("CLIENTE"); // Por defecto se añade como cliente
         }
         database.insertNewUser(user); // Guardamos el nuevo usuario
         ctrl.setUsuario(user);
@@ -73,46 +71,30 @@ public class control_registro implements Serializable
     public void setSkip(boolean skip) {
         this.skip = skip;
     }
-    
-    public String onFlowProcess(FlowEvent event)
-    {
+
+    public String onFlowProcess(FlowEvent event) {
         // Primero separamos si se trata de la parte inicial o no
-        if (event.getOldStep().equals("Login"))
-        {
-            if(checkPasswords())
-            {
+        if (event.getOldStep().equals("Login")) {
+            if (checkPasswords()) {
                 keepPwd();
-                if(skip)
-                {
+                if (skip) {
                     skip = false;
                     return "confirm";
-                }
-                else
-                {
+                } else {
                     return event.getNewStep();
                 }
-            }
-            else
-            {
+            } else {
                 return event.getOldStep();
             }
-        }
-        else
-        {
-            if(skip)
-            {
-                skip = false;
-                return "confirm";
-            }
-            else
-            {
-                return event.getNewStep();
-            }
+        } else if (skip) {
+            skip = false;
+            return "confirm";
+        } else {
+            return event.getNewStep();
         }
     }
 
-    public boolean checkPasswords() 
-    {
+    public boolean checkPasswords() {
         return pwd1.equals(pwd2);
     }
 

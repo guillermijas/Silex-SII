@@ -24,8 +24,7 @@ public class Login {
     /**
      * Creates a new instance of Login
      */
-    public Login() 
-    {
+    public Login() {
         Dbaux.init();
     }
 
@@ -45,50 +44,39 @@ public class Login {
         this.password = hash.getHash(pass); // Guardamos directamente el hash
     }
 
-    public String autenticar() 
-    {
+    public String autenticar() {
         // Implementar este método
         // Buscamos en el arraylist al usuario, y si está y la contraseña coincide, le damos paso, en función de su rol
-        
+
         String page;
-        
+
         // Una vez comprobado, compruebo si la contraseña es correcta
-        if (!database.emptyDataBase() && database.isUsernameContent(this.user))
-        {
+        if (!database.emptyDataBase() && database.isUsernameContent(this.user)) {
             Usuario us = database.getUserbyIndex(database.getIndexUsername(this.user));
-            
+
             if (us.getPassword().equals(this.password)) // Comparamos con el hash
             {
                 ctrl.setUsuario(us);
                 page = ctrl.home();
-            }
-            else
-            {
+            } else {
                 FacesContext ctx = FacesContext.getCurrentInstance();
-                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña inválidos", "Usuario o contraseña inválidos")); 
+                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña inválidos", "Usuario o contraseña inválidos"));
                 page = "login.xhtml";
             }
-        }
-        else
-        {
+        } else {
             FacesContext ctx = FacesContext.getCurrentInstance();
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña inválidos", "Usuario o contraseña inválidos")); 
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña inválidos", "Usuario o contraseña inválidos"));
             page = "login.xhtml";
         }
         return page;
     }
-    
-    
-    public void deleteUser(Usuario us)
-    {
-        if(database.isUsernameContent(us.getUsername()))
-        {
+
+    public void deleteUser(Usuario us) {
+        if (database.isUsernameContent(us.getUsername())) {
             database.deleteUser(us);
-        }
-        else
-        {
+        } else {
             FacesContext ctx = FacesContext.getCurrentInstance();
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error eliminando usuario", "Usuario inexistente")); 
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error eliminando usuario", "Usuario inexistente"));
         }
     }
 }

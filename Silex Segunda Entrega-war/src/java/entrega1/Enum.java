@@ -13,12 +13,9 @@ public class Enum {
     public enum gravedad {
         LEVE, MEDIA, ALTA
     }
-    
-    public enum Rol
-    {
+
+    public enum Rol {
         CLIENTE, CALL_CENTER, SUPERVISOR, OPERARIO, ADMIN;
     }
-    
-    
 
 }

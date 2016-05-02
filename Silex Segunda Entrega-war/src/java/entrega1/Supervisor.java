@@ -5,9 +5,11 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-public class Supervisor implements Serializable{
+public class Supervisor implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String dni;
     private String nombre;
     private String apellidos;
@@ -16,11 +18,10 @@ public class Supervisor implements Serializable{
     private String email;
     private String zonaCargo;
     @OneToMany(targetEntity = Aviso.class)
-    private List <Aviso> listaAvisos;
+    private List<Aviso> listaAvisos;
     @OneToMany(targetEntity = OrdenDeTrabajo.class)
-    private List <OrdenDeTrabajo> ordentrabajo;
-    
-    
+    private List<OrdenDeTrabajo> ordentrabajo;
+
     public Supervisor() {
     }
 
@@ -87,14 +88,12 @@ public class Supervisor implements Serializable{
     public void setZonaCargo(String zonaCargo) {
         this.zonaCargo = zonaCargo;
     }
-    
-    public List<Aviso> getListaAvisos()
-    {
+
+    public List<Aviso> getListaAvisos() {
         return this.listaAvisos;
     }
-    
-    public void setListaAvisos(List<Aviso> l)
-    {
+
+    public void setListaAvisos(List<Aviso> l) {
         this.listaAvisos = l;
     }
 
@@ -127,6 +126,5 @@ public class Supervisor implements Serializable{
     public String toString() {
         return "Supervisor{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", direcci\u00f3n=" + dirección + ", email=" + email + ", zonaCargo=" + zonaCargo + '}';
     }
-    
-    
+
 }

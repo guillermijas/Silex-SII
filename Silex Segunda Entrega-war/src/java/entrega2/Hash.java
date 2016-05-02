@@ -22,35 +22,30 @@ public class Hash {
     /**
      * Creates a new instance of Hash
      */
-    
     private final int tam_bytes = 16;
     private final String algorithm = "SHA-256";
-    
-    public Hash() 
-    {
-        
+
+    public Hash() {
+
     }
-    
-    private byte [] doHash (String text)
-    {
-        byte [] digest = new byte [tam_bytes];
-        byte [] buffer = text.getBytes();
+
+    private byte[] doHash(String text) {
+        byte[] digest = new byte[tam_bytes];
+        byte[] buffer = text.getBytes();
 
         try {
-               MessageDigest mD = MessageDigest.getInstance(algorithm);
-               mD.reset();
-               mD.update(buffer);
-               digest = mD.digest();
-        } catch (NoSuchAlgorithmException e)
-        {
-               e.printStackTrace();
+            MessageDigest mD = MessageDigest.getInstance(algorithm);
+            mD.reset();
+            mD.update(buffer);
+            digest = mD.digest();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
         return digest;
     }
-    
-    public String getHash(String password)
-    {
+
+    public String getHash(String password) {
         return new BigInteger(1, doHash(password)).toString(16);
     }
-    
+
 }

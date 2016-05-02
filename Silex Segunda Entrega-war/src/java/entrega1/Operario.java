@@ -1,12 +1,15 @@
 package entrega1;
+
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
 @Entity
-public class Operario implements Serializable{
+public class Operario implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String dni;
     private String nombre;
     private String apellidos;
@@ -16,23 +19,22 @@ public class Operario implements Serializable{
     private String tipo;
     private String especializacion;
     private boolean disponibilidad;
-    
+
     @ManyToMany
     @JoinTable(name = "OPERARIO_ORDENTRABAJO",
-        joinColumns = @JoinColumn(name = "operario_fk"),
-        inverseJoinColumns = @JoinColumn(name = "ordendetrabajo_fk"))
+            joinColumns = @JoinColumn(name = "operario_fk"),
+            inverseJoinColumns = @JoinColumn(name = "ordendetrabajo_fk"))
     private List<OrdenDeTrabajo> ordenesTrabajo;
-    
+
     @OneToMany(mappedBy = "operario", fetch = FetchType.LAZY, targetEntity = Aviso.class)
     private List<Aviso> listaAvisos;
-    
+
     @ManyToOne(targetEntity = Operario.class)
     private Operario capataz;
-            
+
     @OneToMany(targetEntity = Operario.class)
     List<Operario> operariosRelacionados;
-    
-    
+
     public Operario() {
     }
 
@@ -140,8 +142,6 @@ public class Operario implements Serializable{
         this.operariosRelacionados = operariosRelacionados;
     }
 
-   
-
     @Override
     public int hashCode() {
         int hash = 7;
@@ -171,6 +171,5 @@ public class Operario implements Serializable{
     public String toString() {
         return "Operario{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", direcci\u00f3n=" + dirección + ", email=" + email + ", tipo=" + tipo + ", especializacion=" + especializacion + ", disponibilidad=" + disponibilidad + '}';
     }
-    
-    
+
 }
