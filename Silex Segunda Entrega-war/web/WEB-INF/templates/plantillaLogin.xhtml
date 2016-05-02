@@ -17,23 +17,24 @@
     </h:head>
 
     <h:body>
-        <div id="top" class="top" style="min-width: 400px">
-            <h:form id="menu">
-                <ul class="menulist">
-                    <li><h:commandLink action="#{controlAutorizacion.index()}" value="Página principal" class="col-lg-1" style="min-width: 160px"/></li>
-                    <li><h:commandLink action="#{controlAutorizacion.register()}" value="Registrarse" class="col-lg-1" style="min-width: 160px"/></li>
-                </ul>
+         <div id="top" class="row">
+            <h:form> 
+                <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.index()}" value="Página principal"/></div>
+                <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></div>
+                <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.register()}" value="Registrarse"/></div>
             </h:form>
         </div>
-        <div class="container" style="max-width: 600px; min-width: 300px;">
-                       
-            <h1 class="text-center" style="color: #66afe9"><img src="../img/logo-emasa.png"/></h1>
-            <h2 class="text-center" style="color: #66afe9">Gestor de avisos</h2><br/><br/>
-                
-            <div id="content" class="center_content" style="padding: 30px;">
+        
+        <div class="container" style="max-width: 600px;">
+            <h5 class="text-center"><img src="../img/logo-emasa.png"/></h5>
+            <h2 class="text-center" style="color: #66afe9">Gestor de avisos</h2><br/>
+
+            <div id="content" class="center_content">
                 <ui:insert name="content">Content</ui:insert>
             </div>
         </div>
+        <div style="height: 50px;"/>
+
     </h:body>
 
 </html>

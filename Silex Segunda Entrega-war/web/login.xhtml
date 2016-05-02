@@ -20,16 +20,15 @@
                         <h:inputSecret class="form-control input-lg" value="#{login.password}"/>
                     </div>
                     <br/><br/>
-                    <h:commandButton class="btn btn-lg" style="background-color:#2b83b5; color: white" value="Autenticar" action="#{login.autenticar()}"/>
+                    <h:commandButton class="btn btn-lg" style="background-color:#2b83b5; color: white" value="Iniciar sesión" action="#{login.autenticar()}"/>
                     <br/><br/>
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="text-center col-xs-12 col-md-6">
                             <h:outputText value="Recordar cuenta"/>
                             <input type="checkbox"/>
                         </div>
-                        <a class="text-right, col-lg-6">¿Ha olvidado su contraseña?</a>
+                        <a class="text-center col-xs-12 col-md-6" href="">¿Ha olvidado su contraseña?</a>
                     </div>
-
                 </h:form>
             </c:when>
             <c:otherwise>

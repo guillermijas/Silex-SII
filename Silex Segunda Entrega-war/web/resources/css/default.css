@@ -15,19 +15,43 @@ h1 {
     padding: 0px;
     color: #D20005;
 }
+
 .contenido{
     position: relative;
     background: #AFAFAF;
 }
 a:link, a:visited {
-  color: #045491;
-  font-weight : bold;
-  text-decoration: none;
+    color: #045491;
+    font-weight : bold;
+    text-decoration: none;
 }
 
 a:link:hover, a:visited:hover  {
-  color: #045491;
-  font-weight : bold;
-  text-decoration : underline;
+    color: #045491;
+    font-weight : bold;
+    text-decoration : underline;
 }
-
+.campodescripcion{
+    max-width: 470px;
+    max-height: 200px;
+    min-width: 200px;
+    min-height: 50px;
+}
+.pie{
+    display: block;
+    color: #333333;
+    font-size: 12px;
+    text-height: initial;
+    text-decoration: none;
+    margin-left: 3px;
+}
+.oblig{
+    color: #D20005;
+    font-weight: bold
+}
+.campo{
+    width: 90%;
+}
+.barraconfirmacion{
+    margin-top: 30px;
+}

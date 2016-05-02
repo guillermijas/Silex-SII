@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<ui:composition template="/WEB-INF/templates/plantilla1.xhtml"  
+<ui:composition template="/WEB-INF/templates/plantilla_formulario.xhtml"  
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -7,131 +7,204 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">Crear aviso</ui:define>
-    <ui:define name="content">
-        <h1>Crear aviso</h1>
-        <table>
+
+
+
+
+
+    <ui:define name="titulo">
+        <h1 class="col-md-10" style="color: ">Nuevo Aviso <small class="text-right"> #34809</small></h1>
+        <br/>
+    </ui:define>
+
+
+
+
+
+
+    <ui:define name="panel-lateral">
+        <div class="row" style="margin-top: 50px;">
+            <h:form style="text-align: center;">
+                <h:commandLink class="btn-default col-xs-4 col-md-5" style="padding: 5px 20px 5px 20px;">
+                    <span class="glyphicon glyphicon-file"> PDF</span>
+                </h:commandLink>
+
+                <h:commandLink class="btn-default col-xs-4 col-md-5" style="margin-left: 30px; padding: 5px 20px 5px 20px;">
+                    <span class="glyphicon glyphicon-print"> Imprimir</span>
+                </h:commandLink>
+            </h:form>
+            <br/><br/>
+            <h3>Consejos</h3>
+            <h:form class="col-md-12">
+                <p:tabView orientation="top">
+                    <p:tab title="Dirección">
+                        <h:panelGrid columns="1" cellpadding="5">
+                            <p> En la dirección debe aparecer al menos la calle y
+                                el número del inmueble más cercano posible a la incidencia.
+                            </p><br/>
+                            <p> El código postal reduce la lista de candidatos a 
+                                resolver el trabajo, siendo un campo indispensable.
+                            </p><br/>
+                            <p> De tratarse de una inicidencia sin dirección, ya sea en
+                                carreteras o recintos rurales, se requerirán coordenadas GPS"
+                            </p>
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Asignación">
+                        <h:panelGrid columns="1" cellpadding="5">
+                            <p> Los operarios que aparecen en la lista coinciden en CP con la dirección dada
+                                y se encuentran en estado disponible.
+                            </p>
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Cliente">
+                        <h:panelGrid columns="1" cellpadding="5">
+                            <p> El identificador de avisos se le puede ofrecer
+                                al cliente para adjuntar una imagen al aviso.
+                            </p><br/>
+                            <p> Es tarea del cliente interesado mandar un correo
+                                electrónico con imagenes o videos adjuntos a 
+                                <em style="color: #286090; text-decoration: none">avisos@emasa.es</em>
+                                con el número del aviso en el asunto.</p>
+                        </h:panelGrid>
+                    </p:tab>
+                </p:tabView>
+            </h:form>
+        </div>
+    </ui:define>
+
+
+
+
+
+
+    <ui:define name="titulo-pestaña1">
+        <h3>Ubicación</h3>
+    </ui:define>
+
+    <ui:define name="titulo-pestaña2">
+        <h3>Aviso</h3>
+    </ui:define>
+
+    <ui:define name="titulo-pestaña3">
+        <h3>Cliente</h3>
+    </ui:define>
+
+
+
+
+
+
+    <ui:define name="campos-pestaña1">
+        <p:inputText class="campo"/>
+        <label for="direccion" class="pie">Calle, número</label>
+        <table class="campo">
             <tr>
-                <td width="60%">
-                    <div>
-                        <h:form>
-                            <table>
-                                <tr>
-                                    <td> Ubicación: </td>
-                                    <td> <p:inputText /> </td> <!-- ubicacion del aviso -->
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p:selectBooleanCheckbox value="" /> 
-                                        <h:outputText value=" Urgente " />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p:selectBooleanCheckbox value="" /> 
-                                        <h:outputText value=" Planificado " />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td> Descripción general: </td>
-                                    <td>
-                                        <p:inputTextarea rows="5" cols="30" counter="display" maxlength="200" counterTemplate="{0}" autoResize="false" />
-                                        <h:outputText id="display" />
-                                    </td>
-                                </tr>        
-
-                                <tr> 
-                                    <td> Asignar a supervisor: </td>
-                                    <td> 
-                                        <select size="1" name="opcion">
-                                            <option value="uno">Pepe</option>
-                                            <option value="dos">Juan</option>
-                                            <option value="tres">Manolo</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td> Acciones a realizar: </td>
-                                    <td>
-                                        <p:inputTextarea rows="5" cols="30" counter="display1" maxlength="200" counterTemplate="{0}" autoResize="false" />
-                                        <h:outputText id="display1" />
-                                    </td>
-                                </tr>
-
-                                <tr>   
-                                    <td>
-                                        Adjuntar imagen: 
-                                    </td>
-                                    <td>
-                                        <h:form enctype="multipart/form-data">
-                                            <p:growl id="messages" showDetail="true" />
-                                            <p:fileUpload value="#{fileUploadView.file}" mode="simple" />
-                                            <p:commandButton value="Submit" ajax="false" actionListener="#{fileUploadView.upload}" disabled="true" />
-                                        </h:form>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <form action="">
-                                            <h:commandButton value="Orden de trabajo"/> 
-                                        </form>
-                                    </td> 
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <form action="">
-                                            <h:commandButton value="Aceptar"/> 
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <div align="right">
-                                            <form action="">
-                                                <h:commandButton value="Cancelar"/> 
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </h:form>
-
-                    </div>
+                <td>
+                    <p:inputText class="campo" required="true" requiredMessage="Código postal obligatorio"/>
                 </td>
                 <td>
-                    <div position="relative" float="right">
-                        <h:form>
-                            <h3>Ayudas y recomendaciones</h3>
-                            <p:tabView orientation="left">
-                                <p:tab title="Godfather Part I">
-                                    <h:panelGrid columns="2" cellpadding="10">
-                                        <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
-                                        <h:outputText
-                                            value="The story begins as Don Vito Corleone..." />
-                                    </h:panelGrid>
-                                </p:tab>
-                                <p:tab title="Godfather Part II">
-                                    <h:panelGrid columns="2" cellpadding="10">
-                                        <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
-                                        <h:outputText value="Francis Ford Coppola's legendary..." />
-                                    </h:panelGrid>
-                                </p:tab>
-                                <p:tab title="Godfather Part III">
-                                    <h:panelGrid columns="2" cellpadding="10">
-                                        <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
-                                        <h:outputText value="After a break of more than 15 years..." />
-                                    </h:panelGrid>
-                                </p:tab>
-                            </p:tabView>
-                        </h:form>
-                    </div>
+                    <p:inputText style="width: 100%" required="true" requiredMessage="Municipio obligatorio"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="pie">Codigo Postal <span class="oblig">*</span></label>
+                </td>
+                <td>
+                    <label class="pie">Municipio <span class="oblig">*</span></label>
                 </td>
             </tr>
         </table>
-    </ui:define>    
+        <p:inputText class="campo"/>
+        <label class="pie">Coordenadas GPS</label>
+    </ui:define>
+
+
+
+
+
+
+    <ui:define name="campos-pestaña2">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="pie"><p:selectBooleanCheckbox value=""/>
+                    <span class="glyphicon glyphicon-alert"/>
+                    Urgente </p>
+            </div>
+            <div class="col-md-3">
+                <p class="pie"><p:selectBooleanCheckbox value=""/>
+                    <span class="glyphicon glyphicon-time"/>
+                    Planificado </p>
+            </div>
+        </div>
+
+        <p:inputTextarea counter="cnt_descripcion" maxlength="200" counterTemplate="{0}"
+                         autoResize="true" class="campodescripcion" required="true" 
+                         requiredMessage="Descripción obligatoria" style="width: 100%;"/>
+        <h:outputText id="cnt_descripcion"/>
+        <label class="pie">Descripción de la avería<span class="oblig">*</span></label>
+
+        <h:form>
+            <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="true"
+                          multiple="true" update="messages" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
+                          style="width: 90%;"/>
+            <p:growl id="messages" showDetail="true" />
+        </h:form>    
+        <br/>
+    </ui:define>
+
+
+
+
+
+    <ui:define name="campos-pestaña3">
+        <table class="campo">
+            <tr>
+                <td>
+                    <p:inputText class="campo" required="true" requiredMessage="Nombre obligatorio"/>
+                </td>
+                <td>
+                    <p:inputText style="width: 100%" required="true" requiredMessage="Apellido obligatorio"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="pie">Nombre <span class="oblig">*</span></label>
+                </td>
+                <td>
+                    <label class="pie">Apellidos <span class="oblig">*</span></label>
+                </td>
+            </tr> <tr>
+                <td>
+                    <p:inputText class="campo" required="true" requiredMessage="Teléfono obligatorio"/>
+                </td>
+                <td>
+                    <p:inputText style="width: 100%"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="pie">Teléfono <span class="oblig">*</span></label>
+                </td>
+                <td>
+                    <label class="pie">Correo electrónico</label>
+                </td>
+            </tr>
+        </table>
+    </ui:define>
+
+
+
+
+
+
+    <ui:define name="btn_confirmar">
+        <h:commandButton action="#{controlAutorizacion.home()}" value="Confirmar" class="btn-primary"/>
+    </ui:define>
+
+    <ui:define name="btn_cancelar">
+        <h:commandButton action="#{controlAutorizacion.home()}" immediate="true" value="Cancelar" class="btn-danger"/>
+    </ui:define>
+
 </ui:composition>
-
-
-
-
-
-
-
