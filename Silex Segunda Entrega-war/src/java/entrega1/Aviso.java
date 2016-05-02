@@ -15,6 +15,8 @@ public class Aviso implements Serializable {
     private String descripcion;
     private String imagen;
     private String direccion;
+    private String cp;
+    private String municipio;
     private Coordenada localizacion;
     private boolean urgente;
     private boolean planificado;
@@ -187,6 +189,33 @@ public class Aviso implements Serializable {
     public void setOperario(Operario operario) {
         this.operario = operario;
     }
+
+    public void setCp(String cp) {
+        this.cp = cp;
+    }
+
+    public String getCp() {
+        return cp;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     @Override
     public int hashCode() {

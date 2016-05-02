@@ -1,12 +1,10 @@
 package entrega2;
 
 import entrega1.*;
-import static entrega1.Enum.*;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
-import java.util.List;
 
 @Named(value = "controlAutorizacion")
 @SessionScoped
