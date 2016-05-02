@@ -5,16 +5,20 @@
  */
 package entrega1;
 
+import java.io.Serializable;
+
 /**
  *
  * @author operador
  */
-public class Coordenada {
+public class Coordenada implements Serializable {
 
+    private String linkGoogle = "";
     private String height = "0.0";
     private String lenght = "0.0";
 
-    public Coordenada(String h, String l) {
+    public Coordenada(String link, String h, String l) {
+        linkGoogle = link;
         this.height = h;
         this.lenght = l;
     }
@@ -26,4 +30,9 @@ public class Coordenada {
     public String getLenght() {
         return lenght;
     }
+
+    public String getLinkGoogle() {
+        return linkGoogle;
+    }
+
 }

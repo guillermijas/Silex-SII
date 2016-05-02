@@ -45,9 +45,6 @@ public class Login {
     }
 
     public String autenticar() {
-        // Implementar este método
-        // Buscamos en el arraylist al usuario, y si está y la contraseña coincide, le damos paso, en función de su rol
-
         String page;
 
         // Una vez comprobado, compruebo si la contraseña es correcta
