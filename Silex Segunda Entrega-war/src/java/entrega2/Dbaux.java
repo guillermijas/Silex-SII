@@ -74,9 +74,9 @@ public class Dbaux implements Serializable {
         avuno.setDescripcion("Se ha roto todo necesito AYUDA");
         avuno.setUrgente(true);
         avuno.setPlanificado(false);
+        avuno.setCliente(new Cliente());
         avisos.add(avuno);
-        
-        
+
         Aviso avdos = new Aviso();
         avdos.setPrioridad(entrega1.Enum.prioridad.MEDIA);
         avdos.setDireccion("calle catorce");
@@ -88,6 +88,8 @@ public class Dbaux implements Serializable {
         avdos.setCliente(peep);
         avdos.setIdAviso(2L);
         avdos.setDescripcion("Holaaa");
+        avdos.setCliente(new Cliente());
+
         avisos.add(avdos);
 
         Aviso avtres = new Aviso();
@@ -99,6 +101,8 @@ public class Dbaux implements Serializable {
         avtres.setIdAviso(3L);
         avtres.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=m&q=loc:","36.715914", "4.477880"));
         avtres.setDescripcion("Mi vecino aun no usa telegram y queiro matarlo");
+        avtres.setCliente(new Cliente());
+
         avisos.add(avtres);
 
         

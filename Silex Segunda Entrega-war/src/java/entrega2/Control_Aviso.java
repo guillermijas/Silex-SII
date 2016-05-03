@@ -37,6 +37,10 @@ public class Control_Aviso implements Serializable {
         return aviso.getDireccion();
     }
 
+    public void setDireccion(String dire) {
+        aviso.setDireccion(dire);
+    }
+
     public String getId() {
         String ident = "";
         Long numero = aviso.getIdAviso();
@@ -51,55 +55,82 @@ public class Control_Aviso implements Serializable {
         return aviso.getCp();
     }
 
+    public void setCP(String cp) {
+        aviso.setCp(cp);
+    }
+
     public String getMunicipio() {
         return aviso.getMunicipio();
+    }
+
+    public void setMunicipio(String muni) {
+        aviso.setMunicipio(muni);
     }
 
     public String getGPS() {
         return aviso.getLocalizacion().getHeight() + " , " + aviso.getLocalizacion().getLenght();
     }
 
+    public void setGPS(String gps) {
+        String latitud = gps.substring(0, gps.lastIndexOf(" "));
+        String longitud = gps.substring(gps.lastIndexOf(" "), gps.length());
+        aviso.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=m&q=loc:",latitud, longitud));
+    }
+
     public String getDescripcion() {
         return aviso.getDescripcion();
+    }
+
+    public void setDescripcion(String des) {
+        aviso.setDescripcion(des);
     }
 
     public boolean getUrgente() {
         return aviso.isUrgente();
     }
 
+    public void setUrgente(boolean urg) {
+        aviso.setUrgente(urg);
+    }
+
     public boolean getPlanificado() {
         return aviso.isPlanificado();
     }
 
+    public void setPlanificado(boolean plan) {
+        aviso.setPlanificado(plan);
+    }
+
     public String getNombreCliente() {
-        String nombre = "";
-        if (aviso.getCliente() != null) {
-            nombre = aviso.getCliente().getNombre();
-        }
-        return nombre;
+        return aviso.getCliente().getNombre();
+    }
+
+    public void setNombreCliente(String nom) {
+        aviso.getCliente().setNombre(nom);
     }
 
     public String getApellidosCliente() {
-        String apellidos = "";
-        if (aviso.getCliente() != null) {
-            apellidos = aviso.getCliente().getApellidos();
-        }
-        return apellidos;
+        return aviso.getCliente().getApellidos();
+
+    }
+
+    public void setApellidosCliente(String apell) {
+        aviso.getCliente().setNombre(apell);
     }
 
     public String getEmailCliente() {
-       String email = "";
-        if (aviso.getCliente() != null) {
-            email = aviso.getCliente().getEmail();
-        }
-        return email;
+        return aviso.getCliente().getEmail();
+    }
+
+    public void setEmailCliente(String email) {
+        aviso.getCliente().setNombre(email);
     }
 
     public String getTelefonoCliente() {
-        String tlfn = "";
-        if (aviso.getCliente() != null) {
-            tlfn = aviso.getCliente().getTelefono()+"";
-        }
-        return tlfn;
+        return aviso.getCliente().getTelefono() + "";
+    }
+
+    public void setTelefonoCliente(String telef) {
+        aviso.getCliente().setTelefono(Long.parseLong(telef));
     }
 }

@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Coordenada implements Serializable {
 
-    private String linkGoogle = "";
+    private String linkGoogle = "http://maps.google.com/maps?z=12&t=m&q=loc:";
     private String height = "0.0";
     private String lenght = "0.0";
 
