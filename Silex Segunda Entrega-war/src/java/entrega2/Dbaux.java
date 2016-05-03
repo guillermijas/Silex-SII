@@ -73,7 +73,7 @@ public class Dbaux implements Serializable {
         avuno.setImagen("img/o.jpg");
         avuno.setDescripcion("Se ha roto todo necesito AYUDA");
         avuno.setUrgente(true);
-        avuno.setPlanificado(false);
+        avuno.setPlanificado(true);
         avisos.add(avuno);
 
         Aviso avdos = new Aviso();
