@@ -83,7 +83,7 @@
 
 
     <ui:define name="campos-pestaña1">
-        <p:inputText class="campo" alt="direccion" value="#{controlAviso.direccion}"/>
+        <p:inputText class="campo" alt="direccion"/>
         <label for="direccion" class="pie">Calle, número</label>
         <table class="campo">
             <tr>
@@ -112,12 +112,12 @@
     <ui:define name="campos-pestaña2">
         <div class="row">
             <div class="col-md-3">
-                <p class="pie"><p:selectBooleanCheckbox value="#{controlAviso.urgente}"/>
+                <p class="pie"><p:selectBooleanCheckbox/>
                     <span class="glyphicon glyphicon-alert"/>
                     Urgente </p>
             </div>
             <div class="col-md-3">
-                <p class="pie"><p:selectBooleanCheckbox value="#{controlAviso.planificado}"/>
+                <p class="pie"><p:selectBooleanCheckbox/>
                     <span class="glyphicon glyphicon-time"/>
                     Planificado </p>
             </div>
