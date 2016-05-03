@@ -6,6 +6,7 @@
 package entrega2;
 
 import entrega1.Aviso;
+import entrega1.Cliente;
 import entrega1.Coordenada;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import javax.inject.Named;
 public class Dbaux implements Serializable {
 
     private static List<Aviso> avisos = new ArrayList<Aviso>();
+    private static List<Aviso> avisosfinished = new ArrayList<Aviso>();
     private String ayy = "lmao";
     private static long numb = 3L;
 
@@ -57,30 +59,35 @@ public class Dbaux implements Serializable {
 
     static void init() {
         avisos = new ArrayList<Aviso>();
+        avisosfinished = new ArrayList<Aviso>();
         Aviso avuno = new Aviso();
-        avuno.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=m&q=loc:","36.715914", "-4.477880"));
+        avuno.setLocalizacion(new Coordenada("36.715914", "-4.477880"));
         avuno.setPrioridad(entrega1.Enum.prioridad.MEDIA);
         avuno.setDireccion("calle catorce");
         avuno.setEstado(entrega1.Enum.estado.INCIDENCIA);
         avuno.setGravedad(entrega1.Enum.gravedad.LEVE);
-        //avuno.setCliente("pepe");
+        Cliente pep = new Cliente();
+        pep.setUsername("pepe");
+        avuno.setCliente(pep);
         avuno.setIdAviso(1L);
         avuno.setImagen("img/o.jpg");
         avuno.setDescripcion("Se ha roto todo necesito AYUDA");
         avuno.setUrgente(true);
         avuno.setPlanificado(false);
         avisos.add(avuno);
-        
-        
+
         Aviso avdos = new Aviso();
         avdos.setPrioridad(entrega1.Enum.prioridad.MEDIA);
         avdos.setDireccion("calle catorce");
         avdos.setEstado(entrega1.Enum.estado.INCIDENCIA);
         avdos.setGravedad(entrega1.Enum.gravedad.LEVE);
-        avdos.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=m&q=loc:","48.067652", "12.858095"));
-        //avdos.setCliente("pepe");
+        avdos.setLocalizacion(new Coordenada("48.067652", "12.858095"));
+        Cliente peep = new Cliente();
+        peep.setUsername("pin");
+        avdos.setCliente(peep);
         avdos.setIdAviso(2L);
         avdos.setDescripcion("Holaaa");
+
         avisos.add(avdos);
 
         Aviso avtres = new Aviso();
@@ -90,9 +97,23 @@ public class Dbaux implements Serializable {
         avtres.setGravedad(entrega1.Enum.gravedad.LEVE);
         //avtres.setCliente("pepe");
         avtres.setIdAviso(3L);
-        avtres.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=m&q=loc:","36.715914", "4.477880"));
+        avtres.setLocalizacion(new Coordenada("36.715914", "4.477880"));
         avtres.setDescripcion("Mi vecino aun no usa telegram y queiro matarlo");
+
         avisos.add(avtres);
+
+        
+        Aviso avc = new Aviso();
+        avc.setPrioridad(entrega1.Enum.prioridad.MEDIA);
+        avc.setDireccion("calle catorce");
+        avc.setEstado(entrega1.Enum.estado.INCIDENCIA);
+        avc.setGravedad(entrega1.Enum.gravedad.LEVE);
+        avc.setCliente(pep);
+        avc.setIdAviso(3L);
+        avc.setImagen("img/o2.jpg");
+        avc.setLocalizacion(new Coordenada("43.645074", "-115.993081"));
+        avc.setDescripcion("He quitado el usb en modo no seguro aiudenme");
+        avisosfinished.add(avc);
 
     }
 
@@ -102,5 +123,8 @@ public class Dbaux implements Serializable {
 
     public List<Aviso> getAvisos() {
         return avisos;
+    }
+     public List<Aviso> getAvisosfinished() {
+        return avisosfinished;
     }
 }
