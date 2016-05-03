@@ -7,7 +7,7 @@ public class Enum {
     }
 
     public enum estado {
-        INCIDENCIA, NUEVA, PENDIENTE_ASIG, EN_PROCESO, PENDIENTE_CONF, FINALIZADA, CERRADA
+        INCIDENCIA, NUEVA, EN_PROCESO, CERRADA
     }
 
     public enum gravedad {

@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-
+import entrega1.Enum.estado;
 /**
  *
  * @author operador
@@ -23,8 +23,8 @@ import javax.inject.Named;
 @SessionScoped
 public class Dbaux implements Serializable {
 
-    private static List<Aviso> avisos = new ArrayList<Aviso>();
-    private static List<Aviso> avisosfinished = new ArrayList<Aviso>();
+    private static List<Aviso> avisos = new ArrayList<>();
+   
     private String ayy = "lmao";
     private static long numb = 3L;
 
@@ -59,7 +59,7 @@ public class Dbaux implements Serializable {
 
     static void init() {
         avisos = new ArrayList<Aviso>();
-        avisosfinished = new ArrayList<Aviso>();
+        
         Aviso avuno = new Aviso();
         avuno.setLocalizacion(new Coordenada("36.715914", "-4.477880"));
         avuno.setPrioridad(entrega1.Enum.prioridad.MEDIA);
@@ -73,13 +73,13 @@ public class Dbaux implements Serializable {
         avuno.setImagen("img/o.jpg");
         avuno.setDescripcion("Se ha roto todo necesito AYUDA");
         avuno.setUrgente(true);
-        avuno.setPlanificado(false);
+        avuno.setPlanificado(true);
         avisos.add(avuno);
 
         Aviso avdos = new Aviso();
         avdos.setPrioridad(entrega1.Enum.prioridad.MEDIA);
         avdos.setDireccion("calle catorce");
-        avdos.setEstado(entrega1.Enum.estado.INCIDENCIA);
+        avdos.setEstado(entrega1.Enum.estado.NUEVA);
         avdos.setGravedad(entrega1.Enum.gravedad.LEVE);
         avdos.setLocalizacion(new Coordenada("48.067652", "12.858095"));
         Cliente peep = new Cliente();
@@ -93,7 +93,7 @@ public class Dbaux implements Serializable {
         Aviso avtres = new Aviso();
         avtres.setPrioridad(entrega1.Enum.prioridad.MEDIA);
         avtres.setDireccion("calle catorce");
-        avtres.setEstado(entrega1.Enum.estado.INCIDENCIA);
+        avtres.setEstado(entrega1.Enum.estado.EN_PROCESO);
         avtres.setGravedad(entrega1.Enum.gravedad.LEVE);
         //avtres.setCliente("pepe");
         avtres.setIdAviso(3L);
@@ -106,25 +106,62 @@ public class Dbaux implements Serializable {
         Aviso avc = new Aviso();
         avc.setPrioridad(entrega1.Enum.prioridad.MEDIA);
         avc.setDireccion("calle catorce");
-        avc.setEstado(entrega1.Enum.estado.INCIDENCIA);
+        avc.setEstado(entrega1.Enum.estado.CERRADA);
         avc.setGravedad(entrega1.Enum.gravedad.LEVE);
         avc.setCliente(pep);
         avc.setIdAviso(3L);
         avc.setImagen("img/o2.jpg");
         avc.setLocalizacion(new Coordenada("43.645074", "-115.993081"));
         avc.setDescripcion("He quitado el usb en modo no seguro aiudenme");
-        avisosfinished.add(avc);
-
+        avisos.add(avc);
+        
     }
-
+    
     public String getAyy() {
         return ayy;
     }
-
+    
+    public List<Aviso> getAvisosNueva(){
+        List<Aviso> lista= new ArrayList<>();
+        for(int i=0; i<avisos.size();i++){
+            if(avisos.get(i).getEstado().equals(estado.NUEVA)){
+                lista.add(avisos.get(i));
+            }
+        }
+        return lista;
+    }
+    
+    public List<Aviso> getAvisosEnProceso(){
+        List<Aviso> lista= new ArrayList<>();
+        for(int i=0; i<avisos.size();i++){
+            if(avisos.get(i).getEstado().equals(estado.EN_PROCESO)){
+                lista.add(avisos.get(i));
+            }
+        }
+        return lista;
+    }
+    
+    public List<Aviso> getAvisosCerrada(){
+        List<Aviso> lista= new ArrayList<>();
+        for(int i=0; i<avisos.size();i++){
+            if(avisos.get(i).getEstado().equals(estado.CERRADA)){
+                lista.add(avisos.get(i));
+            }
+        }
+        return lista;
+    }
+    
+    public List<Aviso> getAvisosIncidencia(){
+        List<Aviso> lista= new ArrayList<>();
+        for(int i=0; i<avisos.size();i++){
+            if(avisos.get(i).getEstado()==estado.INCIDENCIA){
+                lista.add(avisos.get(i));
+            }
+        }
+        return lista;
+    }
     public List<Aviso> getAvisos() {
         return avisos;
     }
-     public List<Aviso> getAvisosfinished() {
-        return avisosfinished;
-    }
+    
 }

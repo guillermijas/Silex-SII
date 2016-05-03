@@ -72,7 +72,7 @@ public class Control_Aviso implements Serializable {
     }
 
     public void setGPS(String gps) {
-        String latitud = gps.substring(0, gps.lastIndexOf(" "));
+        String latitud = gps.substring(0, gps.indexOf(" "));
         String longitud = gps.substring(gps.lastIndexOf(" "), gps.length());
         aviso.setLocalizacion(new Coordenada(latitud, longitud));
     }
@@ -115,7 +115,7 @@ public class Control_Aviso implements Serializable {
     }
 
     public void setApellidosCliente(String apell) {
-        aviso.getCliente().setNombre(apell);
+        aviso.getCliente().setApellidos(apell);
     }
 
     public String getEmailCliente() {
@@ -123,11 +123,15 @@ public class Control_Aviso implements Serializable {
     }
 
     public void setEmailCliente(String email) {
-        aviso.getCliente().setNombre(email);
+        aviso.getCliente().setEmail(email);
     }
 
     public String getTelefonoCliente() {
-        return aviso.getCliente().getTelefono() + "";
+        if (aviso.getCliente().getTelefono() != null) {
+            return aviso.getCliente().getTelefono() + "";
+        } else {
+            return "";
+        }
     }
 
     public void setTelefonoCliente(String telef) {
