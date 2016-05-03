@@ -116,7 +116,7 @@ public class Dbaux implements Serializable {
         avisosfinished.add(avc);
 
     }
-
+    
     public String getAyy() {
         return ayy;
     }
