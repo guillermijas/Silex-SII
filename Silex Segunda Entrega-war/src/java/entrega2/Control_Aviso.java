@@ -74,7 +74,7 @@ public class Control_Aviso implements Serializable {
     public void setGPS(String gps) {
         String latitud = gps.substring(0, gps.lastIndexOf(" "));
         String longitud = gps.substring(gps.lastIndexOf(" "), gps.length());
-        aviso.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=m&q=loc:",latitud, longitud));
+        aviso.setLocalizacion(new Coordenada(latitud, longitud));
     }
 
     public String getDescripcion() {

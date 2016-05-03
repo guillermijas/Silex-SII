@@ -11,7 +11,7 @@
             <c:when test="#{controlAutorizacion.usuario.rol == 'CLIENTE'}">
                 <h1>Usuario normal</h1>
                 <p>¡¡Bienvenido <h:outputText value="#{controlAutorizacion.usuario.username}"/>!!</p>
-                <h:form id="form">           
+              <h:form id="form">           
                     <p:growl id="msgs" showDetail="true" />
                     <h3 style="margin-top:0">Avisos</h3>
                     <h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/>
@@ -20,8 +20,9 @@
                             <h:panelGrid columns="2" cellpadding="10">
                                 <p:accordionPanel>
                                     <c:forEach var="item" items="#{dbaux.avisos}">
-                                        <c:choose>
+                                         <c:choose>
                                            <c:when test ="#{item.cliente.username == controlAutorizacion.usuario.username}">
+
                                            <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
                                             <h:panelGrid columns="2" cellpadding="10">
                                                 <p:panelGrid columns="2">
@@ -71,9 +72,8 @@
   
 
                                         </p:tab>
-   
-                                           </c:when>
-                                        </c:choose>
+                                      </c:when>
+                                      </c:choose>
                                     </c:forEach>
                                 </p:accordionPanel>
                             </h:panelGrid>
@@ -82,8 +82,9 @@
                             <h:panelGrid columns="2" cellpadding="10">
                                 <p:accordionPanel>
                                     <c:forEach var="item" items="#{dbaux.avisosfinished}">
-                                        <c:choose>
+                                          <c:choose>
                                            <c:when test ="#{item.cliente.username == controlAutorizacion.usuario.username}">
+
                                            <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
                                             <h:panelGrid columns="2" cellpadding="10">
                                                 <p:panelGrid columns="2">
@@ -133,9 +134,8 @@
   
 
                                         </p:tab>
-   
                                            </c:when>
-                                        </c:choose>
+                                          </c:choose>
                                     </c:forEach>
                                 </p:accordionPanel>
                             </h:panelGrid>

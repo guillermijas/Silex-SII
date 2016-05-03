@@ -61,7 +61,7 @@ public class Dbaux implements Serializable {
         avisos = new ArrayList<Aviso>();
         avisosfinished = new ArrayList<Aviso>();
         Aviso avuno = new Aviso();
-        avuno.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=m&q=loc:","36.715914", "-4.477880"));
+        avuno.setLocalizacion(new Coordenada("36.715914", "-4.477880"));
         avuno.setPrioridad(entrega1.Enum.prioridad.MEDIA);
         avuno.setDireccion("calle catorce");
         avuno.setEstado(entrega1.Enum.estado.INCIDENCIA);
@@ -74,7 +74,6 @@ public class Dbaux implements Serializable {
         avuno.setDescripcion("Se ha roto todo necesito AYUDA");
         avuno.setUrgente(true);
         avuno.setPlanificado(false);
-        avuno.setCliente(new Cliente());
         avisos.add(avuno);
 
         Aviso avdos = new Aviso();
@@ -82,13 +81,12 @@ public class Dbaux implements Serializable {
         avdos.setDireccion("calle catorce");
         avdos.setEstado(entrega1.Enum.estado.INCIDENCIA);
         avdos.setGravedad(entrega1.Enum.gravedad.LEVE);
-        avdos.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=m&q=loc:","48.067652", "12.858095"));
+        avdos.setLocalizacion(new Coordenada("48.067652", "12.858095"));
         Cliente peep = new Cliente();
         peep.setUsername("pin");
         avdos.setCliente(peep);
         avdos.setIdAviso(2L);
         avdos.setDescripcion("Holaaa");
-        avdos.setCliente(new Cliente());
 
         avisos.add(avdos);
 
@@ -99,9 +97,8 @@ public class Dbaux implements Serializable {
         avtres.setGravedad(entrega1.Enum.gravedad.LEVE);
         //avtres.setCliente("pepe");
         avtres.setIdAviso(3L);
-        avtres.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=m&q=loc:","36.715914", "4.477880"));
+        avtres.setLocalizacion(new Coordenada("36.715914", "4.477880"));
         avtres.setDescripcion("Mi vecino aun no usa telegram y queiro matarlo");
-        avtres.setCliente(new Cliente());
 
         avisos.add(avtres);
 
@@ -114,7 +111,7 @@ public class Dbaux implements Serializable {
         avc.setCliente(pep);
         avc.setIdAviso(3L);
         avc.setImagen("img/o2.jpg");
-        avc.setLocalizacion(new Coordenada("http://maps.google.com/maps?z=12&t=k&q=loc:","43.645074", "-115.993081"));
+        avc.setLocalizacion(new Coordenada("43.645074", "-115.993081"));
         avc.setDescripcion("He quitado el usb en modo no seguro aiudenme");
         avisosfinished.add(avc);
 
