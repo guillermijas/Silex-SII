@@ -11,13 +11,8 @@ public class OrdenDeTrabajo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idOT;
-    private Enum.gravedad gravedad;
-    private String imagen;
-    private String direccion;
-    private Enum.estado estado;
-    private Enum.prioridad prioridad;
-    private boolean urgente;
-    private boolean planificado;
+    private Enumeraciones.estado estado;
+    private Enumeraciones.prioridad prioridad;
     private String instrucciones;
     @Temporal(TemporalType.DATE)
     private Date fechainicio;
@@ -35,24 +30,20 @@ public class OrdenDeTrabajo implements Serializable {
         return serialVersionUID;
     }
 
-    public boolean isUrgente() {
-        return urgente;
-    }
-
-    public boolean isPlanificado() {
-        return planificado;
-    }
-
     public Long getIdOT() {
         return idOT;
     }
 
-    public void setFechainicio(Date fechainicio) {
-        this.fechainicio = fechainicio;
+    public Enumeraciones.estado getEstado() {
+        return estado;
     }
 
-    public void setFechafin(Date fechafin) {
-        this.fechafin = fechafin;
+    public Enumeraciones.prioridad getPrioridad() {
+        return prioridad;
+    }
+
+    public String getInstrucciones() {
+        return instrucciones;
     }
 
     public Date getFechainicio() {
@@ -63,88 +54,44 @@ public class OrdenDeTrabajo implements Serializable {
         return fechafin;
     }
 
-    public Enum.gravedad getGravedad() {
-        return gravedad;
-    }
-
-    public String getStringn() {
-        return imagen;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public Enum.estado getEstado() {
-        return estado;
-    }
-
-    public Enum.prioridad getPrioridad() {
-        return prioridad;
-    }
-
-    public String getInstrucciones() {
-        return instrucciones;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
     public Aviso getAviso() {
         return aviso;
+    }
+
+    public List<Operario> getOperarios() {
+        return operarios;
     }
 
     public void setIdOT(Long idOT) {
         this.idOT = idOT;
     }
 
-    public void setGravedad(Enum.gravedad gravedad) {
-        this.gravedad = gravedad;
-    }
-
-    public void setStringn(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public void setEstado(Enum.estado estado) {
+    public void setEstado(Enumeraciones.estado estado) {
         this.estado = estado;
     }
 
-    public void setPrioridad(Enum.prioridad prioridad) {
+    public void setPrioridad(Enumeraciones.prioridad prioridad) {
         this.prioridad = prioridad;
-    }
-
-    public void setUrgente(boolean urgente) {
-        this.urgente = urgente;
-    }
-
-    public void setPlanificado(boolean planificado) {
-        this.planificado = planificado;
     }
 
     public void setInstrucciones(String instrucciones) {
         this.instrucciones = instrucciones;
     }
 
-    public void setOperarios(List<Operario> o) {
-        this.operarios = o;
+    public void setFechainicio(Date fechainicio) {
+        this.fechainicio = fechainicio;
     }
 
-    public List<Operario> getOperarios() {
-        return this.operarios;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setFechafin(Date fechafin) {
+        this.fechafin = fechafin;
     }
 
     public void setAviso(Aviso aviso) {
         this.aviso = aviso;
+    }
+
+    public void setOperarios(List<Operario> operarios) {
+        this.operarios = operarios;
     }
 
     @Override
@@ -174,7 +121,7 @@ public class OrdenDeTrabajo implements Serializable {
 
     @Override
     public String toString() {
-        return "OrdenDeTrabajo{" + "idOT=" + idOT + ", gravedad=" + gravedad + ", imagen=" + imagen + ", direccion=" + direccion + ", estado=" + estado + ", prioridad=" + prioridad + ", urgente=" + urgente + ", planificado=" + planificado + ", instrucciones=" + instrucciones + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", aviso=" + aviso + ", operarios=" + operarios + '}';
+        return "OrdenDeTrabajo{" + "idOT=" + idOT + ", estado=" + estado + ", prioridad=" + prioridad + ", instrucciones=" + instrucciones + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", aviso=" + aviso + ", operarios=" + operarios + '}';
     }
 
 }

@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import entrega1.Enum.estado;
+import entrega1.Enumeraciones.estado;
 /**
  *
  * @author operador
@@ -28,7 +28,7 @@ public class Dbaux implements Serializable {
     private String ayy = "lmao";
     private static long numb = 3L;
 
-    static void addAviso(entrega1.Enum.prioridad prioridad, String direccion, entrega1.Enum.estado estado, entrega1.Enum.gravedad gravedad, entrega1.Cliente cliente, String img, Date fecha_inicio, String Descripcion) {
+    static void addAviso(entrega1.Enumeraciones.prioridad prioridad, String direccion, entrega1.Enumeraciones.estado estado, entrega1.Enumeraciones.gravedad gravedad, entrega1.Cliente cliente, String img, Date fecha_inicio, String Descripcion) {
         Aviso aux = new Aviso();
         aux.setPrioridad(prioridad);
         aux.setDireccion(direccion);
@@ -45,10 +45,10 @@ public class Dbaux implements Serializable {
 
     static void addAviso(String direccion, entrega1.Cliente cliente, String Descripcion) {
         Aviso aux = new Aviso();
-        aux.setPrioridad(entrega1.Enum.prioridad.MEDIA);
+        aux.setPrioridad(entrega1.Enumeraciones.prioridad.MEDIA);
         aux.setDireccion("direccion");
-        aux.setEstado(entrega1.Enum.estado.INCIDENCIA);
-        aux.setGravedad(entrega1.Enum.gravedad.LEVE);
+        aux.setEstado(entrega1.Enumeraciones.estado.INCIDENCIA);
+        aux.setGravedad(entrega1.Enumeraciones.gravedad.LEVE);
         aux.setCliente(cliente);
         aux.setDescripcion(Descripcion);
         numb = numb + 1L;
@@ -62,10 +62,10 @@ public class Dbaux implements Serializable {
         
         Aviso avuno = new Aviso();
         avuno.setLocalizacion(new Coordenada("36.715914", "-4.477880"));
-        avuno.setPrioridad(entrega1.Enum.prioridad.MEDIA);
+        avuno.setPrioridad(entrega1.Enumeraciones.prioridad.MEDIA);
         avuno.setDireccion("calle catorce");
-        avuno.setEstado(entrega1.Enum.estado.INCIDENCIA);
-        avuno.setGravedad(entrega1.Enum.gravedad.LEVE);
+        avuno.setEstado(entrega1.Enumeraciones.estado.INCIDENCIA);
+        avuno.setGravedad(entrega1.Enumeraciones.gravedad.LEVE);
         Cliente pep = new Cliente();
         pep.setUsername("pepe");
         avuno.setCliente(pep);
@@ -77,10 +77,10 @@ public class Dbaux implements Serializable {
         avisos.add(avuno);
 
         Aviso avdos = new Aviso();
-        avdos.setPrioridad(entrega1.Enum.prioridad.MEDIA);
+        avdos.setPrioridad(entrega1.Enumeraciones.prioridad.MEDIA);
         avdos.setDireccion("calle catorce");
-        avdos.setEstado(entrega1.Enum.estado.NUEVA);
-        avdos.setGravedad(entrega1.Enum.gravedad.LEVE);
+        avdos.setEstado(entrega1.Enumeraciones.estado.NUEVA);
+        avdos.setGravedad(entrega1.Enumeraciones.gravedad.LEVE);
         avdos.setLocalizacion(new Coordenada("48.067652", "12.858095"));
         Cliente peep = new Cliente();
         peep.setUsername("pin");
@@ -91,10 +91,10 @@ public class Dbaux implements Serializable {
         avisos.add(avdos);
 
         Aviso avtres = new Aviso();
-        avtres.setPrioridad(entrega1.Enum.prioridad.MEDIA);
+        avtres.setPrioridad(entrega1.Enumeraciones.prioridad.MEDIA);
         avtres.setDireccion("calle catorce");
-        avtres.setEstado(entrega1.Enum.estado.EN_PROCESO);
-        avtres.setGravedad(entrega1.Enum.gravedad.LEVE);
+        avtres.setEstado(entrega1.Enumeraciones.estado.EN_PROCESO);
+        avtres.setGravedad(entrega1.Enumeraciones.gravedad.LEVE);
         //avtres.setCliente("pepe");
         avtres.setIdAviso(3L);
         avtres.setLocalizacion(new Coordenada("36.715914", "4.477880"));
@@ -104,10 +104,10 @@ public class Dbaux implements Serializable {
 
         
         Aviso avc = new Aviso();
-        avc.setPrioridad(entrega1.Enum.prioridad.MEDIA);
+        avc.setPrioridad(entrega1.Enumeraciones.prioridad.MEDIA);
         avc.setDireccion("calle catorce");
-        avc.setEstado(entrega1.Enum.estado.CERRADA);
-        avc.setGravedad(entrega1.Enum.gravedad.LEVE);
+        avc.setEstado(entrega1.Enumeraciones.estado.CERRADA);
+        avc.setGravedad(entrega1.Enumeraciones.gravedad.LEVE);
         avc.setCliente(pep);
         avc.setIdAviso(3L);
         avc.setImagen("img/o2.jpg");
