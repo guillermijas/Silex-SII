@@ -102,9 +102,9 @@
         <label for="detalles" class="titulo">Prioridad</label>
         <td>
             <h:panelGrid columns="1" style="margin-bottom: 10px">
-                <h:outputText id="output" value="Prioridad 1" />
+                <h:outputText id="output" value="1" />
                 <h:inputHidden id="txt2" value="#{sliderView.number2}" />
-                <p:slider for="txt2" display="output" style="width: 200px" maxValue="5" minValue="1" step="1" displayTemplate="Prioridad {value}" />
+                <p:slider for="txt2" display="output" style="width: 200px" maxValue="5" minValue="1" step="1" displayTemplate="{value}" />
             </h:panelGrid>
         </td>
         <br/>
@@ -113,9 +113,9 @@
 
         <label for="detalles" class="titulo">Gravedad</label>
         <h:panelGrid columns="1" style="margin-bottom: 10px">
-            <h:outputText id="output1" value="Gravedad 1" />
+            <h:outputText id="output1" value="1" />
             <h:inputHidden id="txt3" value="#{sliderView.number3}" />
-            <p:slider for="txt3" display="output1" style="width: 200px" maxValue="5" minValue="1" step="1" displayTemplate="Gravedad {value}" />
+            <p:slider for="txt3" display="output1" style="width: 200px" maxValue="5" minValue="1" step="1" displayTemplate="{value}" />
         </h:panelGrid>
         <br/>
 
@@ -159,8 +159,8 @@
         <br/>
 
         <h:form>
-            <p:selectManyCheckbox id="grid" value="#{checkboxView1.selectedOperarios}" layout="grid" columns="3">
-                <f:selectItems value="#{checkboxView1.operarios}" var="op" itemLabel="#{op}" itemValue="#{op}" />
+            <p:selectManyCheckbox id="grid"  value="#{checkboxView1.selectedOperarios}" layout="responsive" columns="3" style="margin-right: 15px">
+                <f:selectItems class="col-md-2"   value="#{checkboxView1.operarios}" var="op" itemLabel="#{op}" itemValue="#{op}"  />
             </p:selectManyCheckbox>
         </h:form>
     </ui:define>

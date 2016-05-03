@@ -17,7 +17,7 @@ public class CheckboxView1 {
         operarios.add("Pepe");
         operarios.add("Juan");
         operarios.add("Manolo");
-
+        operarios.add("Antonio");
     }
 
     public String[] getSelectedOperarios() {
