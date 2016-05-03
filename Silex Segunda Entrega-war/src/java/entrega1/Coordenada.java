@@ -3,128 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entrega2;
+package entrega1;
 
-import entrega1.Aviso;
-import entrega1.Cliente;
-import entrega1.Coordenada;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 
 /**
  *
  * @author operador
  */
-@Named(value = "dbaux")
-@SessionScoped
-public class Dbaux implements Serializable {
+public class Coordenada implements Serializable {
 
-    private static List<Aviso> avisos = new ArrayList<Aviso>();
-    private static List<Aviso> avisosfinished = new ArrayList<Aviso>();
-    private String ayy = "lmao";
-    private static long numb = 3L;
+    private String linkGoogle = "http://maps.google.com/maps?z=12&t=m&q=loc:";
+    private String height = "0.0";
+    private String lenght = "0.0";
 
-    static void addAviso(entrega1.Enum.prioridad prioridad, String direccion, entrega1.Enum.estado estado, entrega1.Enum.gravedad gravedad, entrega1.Cliente cliente, String img, Date fecha_inicio, String Descripcion) {
-        Aviso aux = new Aviso();
-        aux.setPrioridad(prioridad);
-        aux.setDireccion(direccion);
-        aux.setEstado(estado);
-        aux.setGravedad(gravedad);
-        aux.setImagen(img);
-        aux.setCliente(cliente);
-        aux.setFechainicio(fecha_inicio);
-        aux.setDescripcion(Descripcion);
-        numb = numb + 1L;
-        aux.setIdAviso(numb);
-        avisos.add(aux);
+    public Coordenada(String h, String l) {
+        this.height = h;
+        this.lenght = l;
     }
 
-    static void addAviso(String direccion, entrega1.Cliente cliente, String Descripcion) {
-        Aviso aux = new Aviso();
-        aux.setPrioridad(entrega1.Enum.prioridad.MEDIA);
-        aux.setDireccion("direccion");
-        aux.setEstado(entrega1.Enum.estado.INCIDENCIA);
-        aux.setGravedad(entrega1.Enum.gravedad.LEVE);
-        aux.setCliente(cliente);
-        aux.setDescripcion(Descripcion);
-        numb = numb + 1L;
-        aux.setIdAviso(numb);
-        avisos.add(aux);
-
+    public String getHeight() {
+        return height;
     }
 
-    static void init() {
-        avisos = new ArrayList<Aviso>();
-        avisosfinished = new ArrayList<Aviso>();
-        Aviso avuno = new Aviso();
-        avuno.setLocalizacion(new Coordenada("36.715914", "-4.477880"));
-        avuno.setPrioridad(entrega1.Enum.prioridad.MEDIA);
-        avuno.setDireccion("calle catorce");
-        avuno.setEstado(entrega1.Enum.estado.INCIDENCIA);
-        avuno.setGravedad(entrega1.Enum.gravedad.LEVE);
-        Cliente pep = new Cliente();
-        pep.setUsername("pepe");
-        avuno.setCliente(pep);
-        avuno.setIdAviso(1L);
-        avuno.setImagen("img/o.jpg");
-        avuno.setDescripcion("Se ha roto todo necesito AYUDA");
-        avuno.setUrgente(true);
-        avuno.setPlanificado(false);
-        avisos.add(avuno);
-
-        Aviso avdos = new Aviso();
-        avdos.setPrioridad(entrega1.Enum.prioridad.MEDIA);
-        avdos.setDireccion("calle catorce");
-        avdos.setEstado(entrega1.Enum.estado.INCIDENCIA);
-        avdos.setGravedad(entrega1.Enum.gravedad.LEVE);
-        avdos.setLocalizacion(new Coordenada("48.067652", "12.858095"));
-        Cliente peep = new Cliente();
-        peep.setUsername("pin");
-        avdos.setCliente(peep);
-        avdos.setIdAviso(2L);
-        avdos.setDescripcion("Holaaa");
-
-        avisos.add(avdos);
-
-        Aviso avtres = new Aviso();
-        avtres.setPrioridad(entrega1.Enum.prioridad.MEDIA);
-        avtres.setDireccion("calle catorce");
-        avtres.setEstado(entrega1.Enum.estado.INCIDENCIA);
-        avtres.setGravedad(entrega1.Enum.gravedad.LEVE);
-        //avtres.setCliente("pepe");
-        avtres.setIdAviso(3L);
-        avtres.setLocalizacion(new Coordenada("36.715914", "4.477880"));
-        avtres.setDescripcion("Mi vecino aun no usa telegram y queiro matarlo");
-
-        avisos.add(avtres);
-
-        
-        Aviso avc = new Aviso();
-        avc.setPrioridad(entrega1.Enum.prioridad.MEDIA);
-        avc.setDireccion("calle catorce");
-        avc.setEstado(entrega1.Enum.estado.INCIDENCIA);
-        avc.setGravedad(entrega1.Enum.gravedad.LEVE);
-        avc.setCliente(pep);
-        avc.setIdAviso(3L);
-        avc.setImagen("img/o2.jpg");
-        avc.setLocalizacion(new Coordenada("43.645074", "-115.993081"));
-        avc.setDescripcion("He quitado el usb en modo no seguro aiudenme");
-        avisosfinished.add(avc);
-
+    public String getLenght() {
+        return lenght;
     }
 
-    public String getAyy() {
-        return ayy;
+    public String getLinkGoogle() {
+        return linkGoogle;
     }
 
-    public List<Aviso> getAvisos() {
-        return avisos;
-    }
-     public List<Aviso> getAvisosfinished() {
-        return avisosfinished;
-    }
 }
