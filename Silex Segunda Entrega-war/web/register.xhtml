@@ -1,137 +1,136 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Registro</title>
-    </h:head>
-    <h:body>
-        <h:form>    
-            <p:growl id="growl" sticky="true" showDetail="true"/>
-
-            <p:wizard flowListener="#{control_registro.onFlowProcess}">
-                <p:tab id="Login" title="Login">
-                    <p:panel header="Login">
-                        <p:messages />
-                        <h:panelGrid columns="2" columnClasses="label, value">
-                            <h:outputText value="Nombre de usuario: *" />
-                            <p:inputText value="#{control_registro.user.username}" required="true" label="Nombre de usuario: *"/>
-                            
-                            <h:outputText value="Contraseña: *" />
-                            <p:password id = "pwd1" value="#{control_registro.pwd1}" required="true" label="Contraseña"/>
-                            
-                            <h:outputText value="Repetir contraseña: *" />
-                            <p:password id = "pwd2" value="#{control_registro.pwd2}" required="true" label="Contraseña2"/>
-                            
-                            <c:choose>
-                                <c:when test = "#{empty control_registro.pwd1}">
-                                    
-                                </c:when>
-                                <c:when test = "#{control_registro.checkPasswords()} ">
-                                    
-                                </c:when>
-                                <c:otherwise>
-                                    <h:outputText value ="" />
-                                    <h:outputText value = "Las contraseñas no coinciden" style ="color: red" />     
-                                </c:otherwise>
-                            </c:choose>
-                            <h:outputText value="Ir al final: " />
-                            <h:selectBooleanCheckbox value="#{control_registro.skip}" />
-                        </h:panelGrid>
-                    </p:panel>
-                </p:tab>
-
-                <p:tab id="user_data" title="Datos Usuario">
-                    <p:panel header="Datos Usuario">
-                        <p:messages />
-                        <h:panelGrid columns="2" columnClasses="label, value">
-                            <h:outputText value="DNI: " />
-                            <p:inputText value="#{control_registro.user.dni}" />
-
-                            <h:outputText value="Nombre: " />
-                            <p:inputText value="#{control_registro.user.nombre}" />
-
-                            <h:outputText value="Apellidos: " />
-                            <p:inputText value="#{control_registro.user.apellidos}" />
-                            
-                            <h:outputText value="Teléfono: " />
-                            <p:inputText value="#{control_registro.user.telefono}" />
-                            
-                            <h:outputText value="Dirección: " />
-                            <p:inputText value="#{control_registro.user.dirección}" />
-                            
-                            <h:outputText value="Email: " />
-                            <p:inputText value="#{control_registro.user.email}" validatorMessage="Formato de email incorrecto">
-                                <f:validateRegex pattern=".+@.+" />
-                                <!--
-                                La expresión es
-                                "([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+"
-                                -->
-                            </p:inputText>
-
-                            <h:outputText value="Ir al final: " />
-                            <h:selectBooleanCheckbox value="#{control_registro.skip}" />
-                        </h:panelGrid>
-                    </p:panel>
-                </p:tab>
-                
-                <p:tab id="info" title="Información Específica">
-                    <p:panel header="Información Específica">
-                        <p:messages />
-                        <h:panelGrid columns="2" columnClasses="label, value">
-                            <h:outputText value="Tipo: " />
-                            <p:inputText value="#{control_registro.user.tipo}" label="Email"/>
-
-                            <h:outputText value="Especialización: " />
-                            <p:inputText value="#{control_registro.user.especializacion}" label = "Especializacion"/>
-
-                            <h:outputText value="Disponibilidad: " />
-                            <p:inputSwitch value="#{control_registro.user.disponibilidad}" label = "Disponibilidad"/>
-                        </h:panelGrid>
-                    </p:panel>
-                </p:tab>
-
-                <p:tab id="confirm" title="Confirmacion">
-                    <p:panel header="Confirmacion">
-                        <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
-                            <h:panelGrid columns="2" columnClasses="label, value">
-                                <h:outputText value="Nombre usuario: " />
-                                <h:outputText value="#{control_registro.user.username}" styleClass="outputLabel"/>
-
-                                <h:outputText value="DNI: " />
-                                <h:outputText value="#{control_registro.user.dni}" styleClass="outputLabel"/>
-
-                                <h:outputText value="Nombre: " />
-                                <h:outputText value="#{control_registro.user.nombre}" styleClass="outputLabel"/>
-                                
-                                <h:outputText value="Apellidos: " />
-                                <h:outputText value="#{control_registro.user.apellidos}" styleClass="outputLabel"/>
-                                
-                                <h:outputText value="Email: " />
-                                <h:outputText value="#{control_registro.user.email}" styleClass="outputLabel"/>
-                            </h:panelGrid>
-
-                            <h:panelGrid columns="2" columnClasses="label, value">
-                                <h:outputText value="Dirección: " />
-                                <h:outputText value="#{control_registro.user.dirección}" styleClass="outputLabel"/>
-
-                                <h:outputText value="Teléfono: " />
-                                <h:outputText value="#{control_registro.user.telefono}" styleClass="outputLabel"/>
-
-                                <h:outputText value="Tipo: " />
-                                <h:outputText value="#{control_registro.user.tipo}" styleClass="outputLabel"/>
-                                
-                                <h:outputText value="Especialización: " />
-                                <h:outputText value="#{control_registro.user.especializacion}" styleClass="outputLabel"/>
-                            </h:panelGrid>
-                        </h:panelGrid>
-
-                        <p:commandButton value="Registrarse" action="#{control_registro.save()}" update="growl" process="@this"/>
-                    </p:panel>
-                </p:tab>
-            </p:wizard>
+<ui:composition template="/WEB-INF/templates/plantilla_formulario.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">Registro</ui:define>
+    <ui:define name="campos-pestaña1">
+        <h:form>
+            <div class="row">
+                <div class="col-md-6">
+                    <h:outputText value="Nombre de usuario: *" />
+                </div>
+                <div class="col-md-6">
+                    <p:inputText value="#{control_registro.user.username}" required="true" label="Nombre de usuario: *"/>
+                    <br/>
+                </div>
+                <div class="col-md-6">
+                    <h:outputText value="Email: *" />
+                </div>
+                <div class="col-md-6">
+                    <p:inputText value="#{control_registro.user.email}" required ="true" validatorMessage="Formato de email incorrecto">
+                        <f:validateRegex pattern=".+@.+"/>
+                        <!--
+                        La expresión es
+                        "([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+"
+                        -->
+                    </p:inputText>
+                    <br/>
+                </div>
+                <div class="col-md-6">
+                    <h:outputText value="Contraseña: *" />
+                </div>
+                <div class="col-md-6">
+                    <p:password id = "pwd1" value="#{control_registro.pwd1}" required="true" label="Contraseña" match="pwd2" validatorMessage="Contraseñas incorrectas"/>
+                    <br/>
+                </div>
+                <div class="col-md-6">
+                    <h:outputText value="Repetir contraseña: *" />
+                </div>
+                <div class="col-md-6">
+                    <p:password id = "pwd2" value="#{control_registro.pwd2}" required="true" label="Contraseña2"/>
+                    <br/>
+                </div>
+            </div>
         </h:form>
-    </h:body>
-</html>
+    </ui:define>
+    <ui:define name="campos-pestaña2">
+        <h:form>
+            <div class="row">
+                <div class="col-md-6">
+                    <h:outputText value="DNI: " />
+                </div>
+                <div class="col-md-6">
+                    <p:inputText value="#{control_registro.user.dni}" />
+                    <br/>
+                </div>
+                <div class="col-md-6">
+                    <h:outputText value="Nombre: " />
+                </div>
+                <div class="col-md-6">
+                    <p:inputText value="#{control_registro.user.nombre}"/>
+                    <br/>
+                </div>
+                <div class="col-md-6">
+                    <h:outputText value="Apellidos: " />
+                </div>
+                <div class="col-md-6">
+                    <p:inputText value="#{control_registro.user.apellidos}" />                                    
+                    <br/>
+                </div>
+                <div class="col-md-6">
+                    <h:outputText value="Sexo: " />
+                </div>
+                <div class="col-md-6">
+                    <select class="form-control" value ="#{control_registro.user.sexo}">
+                        <option disabled ="disabled" selected ="selected" value = ""> Seleccione una opción </option>
+                        <option>Mujer</option>
+                        <option>Hombre</option>
+                    </select>                                    
+                    <br/>
+                </div>
+                <div class="col-md-6">
+                    <h:outputText value="Teléfono: " />
+                </div>
+                <div class="col-md-6">
+                    <p:inputText value="#{control_registro.user.telefono}" />
+                    <br/>
+                </div>
+                <div class="col-md-6">
+                    <h:outputText value="Dirección: " />
+                </div>
+                <div class="col-md-6">
+                    <p:inputText value="#{control_registro.user.dirección}" />
+                    <br/>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+    <ui:define name="campos-pestaña3">
+        <h:form>
+            <div class="row">
+                <div class="col-md-6">
+                    <h:outputText value="Tipo: " />
+                </div>
+                <div class="col-md-6">
+                    <p:inputText value="#{control_registro.user.tipo}" />
+                    <br/>
+                </div>
+                <div class="col-md-6">
+                    <h:outputText value="Especialización: " />
+                </div>
+                <div class="col-md-6">
+                    <p:inputText value="#{control_registro.user.especializacion}"/>
+                    <br/>
+                </div>
+                <div class="col-md-6">
+                    <h:outputText value="Disponibilidad: " />
+                </div>
+                <div class="col-md-6">
+                    <p:selectBooleanCheckbox value="#{control_registro.user.disponibilidad}" />
+                    <br/>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+    <ui:define name="btn_confirmar">
+        <h:commandButton action="#{control_registro.registrar()}" value="Confirmar" class="btn-primary"/>
+    </ui:define>
+
+    <ui:define name="btn_cancelar">
+        <h:commandButton action="index.xhtml" immediate="true" value="Cancelar" class="btn-danger"/>
+    </ui:define>
+</ui:composition>

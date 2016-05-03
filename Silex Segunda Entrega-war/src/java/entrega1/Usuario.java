@@ -26,6 +26,7 @@ public class Usuario implements Serializable {
     private Long telefono;
     private String dirección;
     private String email;
+    private String sexo;
 
     //rol supervisor
     private String zonaCargo;
@@ -63,6 +64,10 @@ public class Usuario implements Serializable {
 
     public String getDni() {
         return dni;
+    }
+    
+    public String getSexo(){
+        return this.sexo;
     }
 
     public String getNombre() {
@@ -131,6 +136,11 @@ public class Usuario implements Serializable {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+    
+    public void setSexo(String sex)
+    {
+        this.sexo = sexo;
     }
 
     public void setZonaCargo(String zonaCargo) {
