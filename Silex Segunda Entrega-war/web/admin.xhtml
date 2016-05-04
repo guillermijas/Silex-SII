@@ -11,7 +11,6 @@
             <c:when test="#{controlAutorizacion.rol == 'ADMINISTRADOR'}">
                 <h1>Usuario normal</h1>
                 <p>¡¡Bienvenido <h:outputText value="#{controlAutorizacion.username}"/>!!</p>
-
                 <!-- avisos -->
                 <h:form id="form">           
                     <p:growl id="msgs" showDetail="true" />
@@ -471,8 +470,6 @@
                         </p:tab>
                     </p:tabView>
                 </h:form>
-
-
             </c:when> 
             <c:otherwise>
                 <ui:include src="/WEB-INF/templates/errorAutorizacion.xhtml"/>
