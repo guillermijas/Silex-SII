@@ -20,7 +20,7 @@ public class ControlAutorizacion implements Serializable {
         return usuario;
     }
     public String phome(Aviso avi) {
-        Dbaux.addAviso(avi.getPrioridad(), usuario, avi.getDireccion(), avi.getEstado(), avi.getGravedad(), avi.getImagen(), avi.getFechainicio(), avi.getDescripcion(), avi.getLocalizacion(), false, false);  
+        Dbaux.addAviso(avi.getPrioridad(), usuario, avi.getDireccion(), avi.getEstado(), avi.getGravedad(), avi.getImagen(), avi.getFechainicio(), avi.getDescripcion(), avi.getLocalizacion(), avi.isUrgente() , avi.isPlanificado());  
              String page = null;
         if (usuario != null) { // Si hay usuario
             switch (usuario.getRol()) {
