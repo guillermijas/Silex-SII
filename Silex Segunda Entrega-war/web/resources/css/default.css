@@ -63,7 +63,7 @@ a:link:hover, a:visited:hover  {
     padding: 10px;
     height: auto;
     margin: 0px 0px 0px 0px;
-    width: 100%;
+    width: 100% !important;
 }
 
 .center_content {
@@ -93,4 +93,10 @@ a:link:hover, a:visited:hover  {
 
 .top a:hover {
     color: #c2dfef;
+}
+
+ul.menulist li {
+    list-style: none;
+    display:inline;
+    margin: 1em;
 }
