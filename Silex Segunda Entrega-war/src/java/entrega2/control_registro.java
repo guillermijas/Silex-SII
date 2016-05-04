@@ -77,6 +77,32 @@ public class control_registro implements Serializable {
         }
     }
 
+        public String registrarOperario()
+    {
+        // Primero comprobamos que las contraseñas coinciden
+        if (checkPasswords())
+        {
+            keepPwd(); // Guardamos esa contraseña en el perfil del usuario
+             // Luego establecemos el rol del usuario
+            if(user.getTipo() == null)
+            {
+                user.setRol("OPERARIO");
+            }
+            else
+            {
+                     
+            }
+            database.insertNewUser(user);
+            ctrl.setUsuario(user);
+            return ctrl.home();
+        }
+        else
+        {      
+            return "register.xhtml";
+        }
+    }
+
+    
     public boolean isSkip() {
         return skip;
     }

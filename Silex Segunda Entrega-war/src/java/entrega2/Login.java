@@ -54,7 +54,15 @@ public class Login {
         ctrl.setUsuario(u);
         return page;
         }
-
+        
+        if(this.user.equals("pepe")){
+        page = "normal.xhtml";
+        Usuario u = new Usuario();
+        u.setRol("OPERARIO");
+        u.setUsername("pepe");
+        ctrl.setUsuario(u);
+        return page;
+        }
         // Una vez comprobado, compruebo si la contraseña es correcta
         if (!database.emptyDataBase() && database.isUsernameContent(this.user)) {
             Usuario us = database.getUserbyIndex(database.getIndexUsername(this.user));
