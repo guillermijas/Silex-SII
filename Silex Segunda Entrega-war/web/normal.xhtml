@@ -373,8 +373,7 @@
                         <p:tab title="En proceso">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getOtEnProceso()}">
-                                    <c:choose>
-                                        <c:when test ="#{dbaux.perteneceAOperario(item.operarios, controlAutorizacion.username) == 'true'}">   
+                                   
                                             <p:fieldset legend="ID Orden de trabajo: #{item.idOT}" toggleable="true" toggleSpeed="500">
                                                 <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
                                                 <h:panelGrid columns="1" cellpadding="5">
@@ -435,8 +434,7 @@
                                                     </div>
                                                 </h:panelGrid>
                                             </p:fieldset>
-                                        </c:when>
-                                    </c:choose>
+                                       
                                 </c:forEach>
                             </h:panelGrid>
                         </p:tab>
@@ -444,8 +442,7 @@
                         <p:tab title="Cerradas">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getOtCerradas()}">
-                                    <c:choose>
-                                        <c:when test ="#{dbaux.perteneceAOperario(item.operarios, controlAutorizacion.username) == 'true'}">   
+                                   
                                             <p:fieldset legend="ID Orden de trabajo: #{item.idOT}" toggleable="true" toggleSpeed="500">
                                                 <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
                                                 <h:panelGrid columns="1" cellpadding="5">
@@ -506,8 +503,7 @@
                                                     </div>
                                                 </h:panelGrid>
                                             </p:fieldset>
-                                        </c:when>
-                                    </c:choose>
+                                        
                                 </c:forEach>
                             </h:panelGrid>
                         </p:tab>

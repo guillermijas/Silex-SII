@@ -102,8 +102,8 @@ public class Dbaux implements Serializable {
         u4.setRol("OPERARIO");
         
         Cliente cl1 = new Cliente();
-        cl1.setNombre("pepe");
-        cl1.setUsername("pepe");
+        cl1.setNombre("manolo");
+        cl1.setUsername("manolo");
         
         
         addAviso(prioridad.MEDIA, u1, "Calle Álamos, 25", estado.INCIDENCIA, gravedad.LEVE, cl1, "img/fuga (1).jpg", new Date(2016, 3, 9), "La presión del agua es muy baja en mi casa.", new Coordenada("36.715914", "-4.477880"), true, false);
