@@ -1,6 +1,6 @@
 package entrega1;
 
-public class Enum {
+public class Enumeraciones {
 
     public enum prioridad {
         BAJA, MEDIA, ALTA

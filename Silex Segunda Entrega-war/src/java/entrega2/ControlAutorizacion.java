@@ -1,6 +1,7 @@
 package entrega2;
 
 import entrega1.*;
+import entrega1.Enumeraciones.Rol;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -83,5 +84,15 @@ public class ControlAutorizacion implements Serializable {
     public String normal() {
         return "normal.xhtml";
     }
-
+    public String getUsername(){
+        return usuario.getUsername();
+    }
+    
+    public String modificarUsuario(){
+        return "index.xhtml";
+    }
+    
+    public String getRol(){
+        return usuario.getRol();
+    }
 }

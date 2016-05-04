@@ -11,7 +11,7 @@ public class Aviso implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idAviso;
-    private Enum.gravedad gravedad;
+    private Enumeraciones.gravedad gravedad;
     private String descripcion;
     private String imagen;
     private String direccion;
@@ -20,8 +20,8 @@ public class Aviso implements Serializable {
     private Coordenada localizacion;
     private boolean urgente;
     private boolean planificado;
-    private Enum.estado estado;
-    private Enum.prioridad prioridad;
+    private Enumeraciones.estado estado;
+    private Enumeraciones.prioridad prioridad;
     @Temporal(TemporalType.DATE)
     private Date fechainicio;
     @Temporal(TemporalType.DATE)
@@ -50,7 +50,7 @@ public class Aviso implements Serializable {
         return idAviso;
     }
 
-    public Enum.gravedad getGravedad() {
+    public Enumeraciones.gravedad getGravedad() {
         return gravedad;
     }
 
@@ -90,11 +90,11 @@ public class Aviso implements Serializable {
         return direccion;
     }
 
-    public Enum.estado getEstado() {
+    public Enumeraciones.estado getEstado() {
         return estado;
     }
 
-    public Enum.prioridad getPrioridad() {
+    public Enumeraciones.prioridad getPrioridad() {
         return prioridad;
     }
 
@@ -126,7 +126,7 @@ public class Aviso implements Serializable {
         this.idAviso = idAviso;
     }
 
-    public void setGravedad(Enum.gravedad gravedad) {
+    public void setGravedad(Enumeraciones.gravedad gravedad) {
         this.gravedad = gravedad;
     }
 
@@ -154,11 +154,11 @@ public class Aviso implements Serializable {
         this.direccion = direccion;
     }
 
-    public void setEstado(Enum.estado estado) {
+    public void setEstado(Enumeraciones.estado estado) {
         this.estado = estado;
     }
 
-    public void setPrioridad(Enum.prioridad prioridad) {
+    public void setPrioridad(Enumeraciones.prioridad prioridad) {
         this.prioridad = prioridad;
     }
 

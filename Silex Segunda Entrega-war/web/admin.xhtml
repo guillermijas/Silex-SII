@@ -11,19 +11,21 @@
             <c:when test="#{controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
                 <h1>Usuario normal</h1>
                 <p>¡¡Bienvenido <h:outputText value="#{controlAutorizacion.usuario.username}"/>!!</p>
-              <h:form id="form">           
+                
+                <!-- avisos -->
+                <h:form id="form">           
                     <p:growl id="msgs" showDetail="true" />
                     <h3 style="margin-top:0">Avisos</h3>
                     <h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/>
-                    <p:tabView>
+                    <p:tabView style="width: fit-content">
                         <p:tab title="Incidencias">
                             <h:panelGrid columns="2" cellpadding="10">
                                 <p:accordionPanel>
                                     <c:forEach var="item" items="#{dbaux.getAvisosIncidencia()}">
-                                           <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
-                                            <h:panelGrid columns="2" cellpadding="10">
+                                        <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
+                                            <h:panelGrid columns="2" cellpadding="10" >
                                                 <p:panelGrid columns="2">
-                                                    <f:facet name="header">
+                                                    <f:facet name="header" >
                                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}" data-title="Antonio Resines"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                                     </f:facet>    
 
@@ -59,14 +61,29 @@
 
                                                     <h:outputText value="Descripcion" />
                                                     <h:outputText value="#{item.descripcion}" />  
-                                                    
+
                                                     <h:outputText value ="Ubicación" />
                                                     <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
 
                                                 </p:panelGrid>
+                                                <div>
                                                 <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-default"/>
+                                                <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-default"/>
+                                                <h:form>           
+                                                    <p:growl id="message" showDetail="true" />
+
+                                                    <p:commandButton value="Cerrar aviso" actionListener="#{dialogView.destroyWorld}" update="message">
+                                                        <p:confirm header="Confirmación" message="¿Está seguro?" icon="ui-icon-alert" />
+                                                    </p:commandButton>
+
+                                                    <p:confirmDialog global="true" >
+                                                        <p:commandButton value="Sí" type="button" action="#{dbaux.cerrarAviso(item.estado)}" oncomplete="deleteDlg.hide();" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
+                                                    </p:confirmDialog>
+                                                </h:form>
+                                                </div>
                                             </h:panelGrid>
-  
+
 
                                         </p:tab>
                                     </c:forEach>
@@ -77,7 +94,7 @@
                             <h:panelGrid columns="2" cellpadding="10">
                                 <p:accordionPanel>
                                     <c:forEach var="item" items="#{dbaux.getAvisosNueva()}">
-                                           <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
+                                        <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
                                             <h:panelGrid columns="2" cellpadding="10">
                                                 <p:panelGrid columns="2">
                                                     <f:facet name="header">
@@ -116,14 +133,29 @@
 
                                                     <h:outputText value="Descripcion" />
                                                     <h:outputText value="#{item.descripcion}" />  
-                                                    
+
                                                     <h:outputText value ="Ubicación" />
                                                     <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
 
                                                 </p:panelGrid>
+                                                <div>
                                                 <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-default"/>
+                                                <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
+                                                <h:form>           
+                                                    <p:growl id="message" showDetail="true" />
+
+                                                    <p:commandButton value="Cerrar aviso" actionListener="#{dialogView.destroyWorld}" update="message">
+                                                        <p:confirm header="Confirmación" message="¿Está seguro?" icon="ui-icon-alert" />
+                                                    </p:commandButton>
+
+                                                    <p:confirmDialog global="true" >
+                                                        <p:commandButton value="Sí" type="button" action="#{dbaux.cerrarAviso(item.estado)}" oncomplete="deleteDlg.hide();" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
+                                                    </p:confirmDialog>
+                                                </h:form>
+                                                </div>
                                             </h:panelGrid>
-  
+
 
                                         </p:tab>
                                     </c:forEach>
@@ -134,7 +166,7 @@
                             <h:panelGrid columns="2" cellpadding="10">
                                 <p:accordionPanel>
                                     <c:forEach var="item" items="#{dbaux.getAvisosEnProceso()}">
-                                           <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
+                                        <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
                                             <h:panelGrid columns="2" cellpadding="10">
                                                 <p:panelGrid columns="2">
                                                     <f:facet name="header">
@@ -173,26 +205,41 @@
 
                                                     <h:outputText value="Descripcion" />
                                                     <h:outputText value="#{item.descripcion}" />  
-                                                    
+
                                                     <h:outputText value ="Ubicación" />
                                                     <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
-
+                                                    
                                                 </p:panelGrid>
+                                                <div>
                                                 <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-default"/>
-                                            </h:panelGrid>
-  
+                                                <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
+                                                <h:form>           
+                                                    <p:growl id="message" showDetail="true" />
 
+                                                    <p:commandButton value="Cerrar aviso" actionListener="#{dialogView.destroyWorld}" update="message">
+                                                        <p:confirm header="Confirmación" message="¿Está seguro?" icon="ui-icon-alert" />
+                                                    </p:commandButton>
+
+                                                    <p:confirmDialog global="true" >
+                                                        <p:commandButton value="Sí" type="button" action="#{dbaux.cerrarAviso(item.estado)}" oncomplete="deleteDlg.hide();" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
+                                                    </p:confirmDialog>
+                                                </h:form>
+                                                </div>
+
+                                            </h:panelGrid>
+                                            
                                         </p:tab>
                                     </c:forEach>
                                 </p:accordionPanel>
                             </h:panelGrid>
                         </p:tab>
-                        
+
                         <p:tab title="Cerradas">
                             <h:panelGrid columns="2" cellpadding="10">
                                 <p:accordionPanel>
                                     <c:forEach var="item" items="#{dbaux.getAvisosCerrada()}">
-                                           <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
+                                        <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
                                             <h:panelGrid columns="2" cellpadding="10">
                                                 <p:panelGrid columns="2">
                                                     <f:facet name="header">
@@ -231,14 +278,29 @@
 
                                                     <h:outputText value="Descripcion" />
                                                     <h:outputText value="#{item.descripcion}" />  
-                                                    
+
                                                     <h:outputText value ="Ubicación" />
                                                     <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
 
                                                 </p:panelGrid>
+                                                <div>
                                                 <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-default"/>
+                                                <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
+                                                <h:form>           
+                                                    <p:growl id="message" showDetail="true" />
+
+                                                    <p:commandButton value="Cerrar aviso" actionListener="#{dialogView.destroyWorld}" update="message">
+                                                        <p:confirm header="Confirmación" message="¿Está seguro?" icon="ui-icon-alert" />
+                                                    </p:commandButton>
+
+                                                    <p:confirmDialog global="true" >
+                                                        <p:commandButton value="Sí" type="button" action="#{dbaux.cerrarAviso(item.estado)}" oncomplete="deleteDlg.hide();" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
+                                                    </p:confirmDialog>
+                                                </h:form>
+                                                </div>
                                             </h:panelGrid>
-  
+
 
                                         </p:tab>
                                     </c:forEach>
@@ -247,6 +309,152 @@
                         </p:tab>
                     </p:tabView>
                 </h:form>
+                
+                <!-- ordenes de trabajo -->
+                <h:form id="form1">           
+                    <p:growl id="msgs" showDetail="true" />
+                    <h3 style="margin-top:0">Ordenes de trabajo</h3>
+                    
+                    <p:tabView style="width: fit-content">
+                        <p:tab title="En proceso">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <p:accordionPanel>
+                                    <c:forEach var="item" items="#{dbaux.getOtEnProceso()}">
+                                        <p:tab title="ID Orden de trabajo: #{item.idOT}">
+                                            <h:panelGrid columns="2" cellpadding="10" >
+                                                <p:panelGrid columns="2">
+                                                    <f:facet name="header" >
+                                                        <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}" data-title="ot"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
+                                                    </f:facet>    
+
+                                                    <h:outputText value="Dirección" />
+                                                    <h:outputText value="#{item.aviso.direccion}" />
+
+                                                    <h:outputText value="Fecha Inicio" />
+                                                    <h:outputText value="#{item.fechainicio}" />
+
+                                                    <c:choose>
+                                                        <c:when test="#{item.aviso.urgente} == 'false'}">
+                                                            <h:outputText value="Urgente" />
+                                                            <input type="checkbox" disabled="disabled"></input>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <h:outputText value="Urgente" />
+                                                            <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    <h:outputText value="Gravedad" />
+                                                    <h:outputText value="#{item.aviso.gravedad}" />
+
+
+                                                    <h:outputText value="Estado" />
+                                                    <h:outputText value="#{item.estado}" />
+
+
+                                                    <h:outputText value="Prioridad" />
+                                                    <h:outputText value="#{item.prioridad}" />
+
+                                                    <h:outputText value="Instrucciones" />
+                                                    <h:outputText value="#{item.instrucciones}" />  
+
+                                                    <h:outputText value ="Ubicación" />
+                                                    <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
+
+                                                </p:panelGrid>
+                                                <div>
+                                                <p:commandButton value="Modificar Orden" action="#{controlAviso.modificarAviso(item.idOT)}" class="btn-default"/>
+                                                <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
+                                                <h:form>           
+                                                    <p:growl id="message" showDetail="true" />
+
+                                                    <p:commandButton value="Cerrar Orden de Trabajo" actionListener="#{dialogView.destroyWorld}" update="message">
+                                                        <p:confirm header="Confirmación" message="¿Está seguro?" icon="ui-icon-alert" />
+                                                    </p:commandButton>
+
+                                                    <p:confirmDialog global="true" >
+                                                        <p:commandButton value="Si" type="button" action="#{dbaux.cerrarOt(item.idOT)}" oncomplete="deleteDlg.hide();" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
+                                                    </p:confirmDialog>
+                                                </h:form>
+                                                </div>
+                                            </h:panelGrid>
+                                        </p:tab>
+                                    </c:forEach>
+                                </p:accordionPanel>
+                            </h:panelGrid>
+                        </p:tab>
+                       
+                        <p:tab title="Cerradas">
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <p:accordionPanel>
+                                    <c:forEach var="item" items="#{dbaux.getOtCerradas()}">
+                                        <p:tab title="ID Orden de trabajo: #{item.idOT}">
+                                            <h:panelGrid columns="2" cellpadding="10" >
+                                                <p:panelGrid columns="2">
+                                                    <f:facet name="header" >
+                                                        <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}" data-title="ot"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
+                                                    </f:facet>    
+
+                                                    <h:outputText value="Dirección" />
+                                                    <h:outputText value="#{item.aviso.direccion}" />
+
+                                                    <h:outputText value="Fecha Inicio" />
+                                                    <h:outputText value="#{item.fechainicio}" />
+
+                                                    <c:choose>
+                                                        <c:when test="#{item.aviso.urgente} == 'false'}">
+                                                            <h:outputText value="Urgente" />
+                                                            <input type="checkbox" disabled="disabled"></input>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <h:outputText value="Urgente" />
+                                                            <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    <h:outputText value="Gravedad" />
+                                                    <h:outputText value="#{item.aviso.gravedad}" />
+
+
+                                                    <h:outputText value="Estado" />
+                                                    <h:outputText value="#{item.estado}" />
+
+
+                                                    <h:outputText value="Prioridad" />
+                                                    <h:outputText value="#{item.prioridad}" />
+
+                                                    <h:outputText value="Instrucciones" />
+                                                    <h:outputText value="#{item.instrucciones}" />  
+
+                                                    <h:outputText value ="Ubicación" />
+                                                    <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
+
+                                                </p:panelGrid>
+                                                <div>
+                                                <p:commandButton value="Modificar Orden" action="#{controlAviso.modificarAviso(item.idOT)}" class="btn-default"/>
+                                                <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
+                                                <h:form>           
+                                                    <p:growl id="message" showDetail="true" />
+
+                                                    <p:commandButton value="Cerrar Orden de Trabajo" actionListener="#{dialogView.destroyWorld}" update="message">
+                                                        <p:confirm header="Confirmación" message="¿Está seguro?" icon="ui-icon-alert" />
+                                                    </p:commandButton>
+
+                                                    <p:confirmDialog global="true" >
+                                                        <p:commandButton value="Si" type="button" action="#{dbaux.cerrarOt(item.idOT)}" oncomplete="deleteDlg.hide();" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
+                                                    </p:confirmDialog>
+                                                </h:form>
+                                                </div>
+                                            </h:panelGrid>
+                                        </p:tab>
+                                    </c:forEach>
+                                </p:accordionPanel>
+                            </h:panelGrid>
+                        </p:tab>
+                    </p:tabView>
+                </h:form>
+                
+                
             </c:when> 
             <c:otherwise>
                 <ui:include src="/WEB-INF/templates/errorAutorizacion.xhtml"/>

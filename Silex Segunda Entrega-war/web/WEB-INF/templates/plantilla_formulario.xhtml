@@ -21,12 +21,13 @@
         
         <div id="top" class="row">
             <h:form> 
-                <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.index()}" value="Página principal"/></div>
+               
                 <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></div>
+                
+                <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/></div>
                 <c:if test="#{!empty controlAutorizacion.usuario}">
                     <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.logout()}" value="Salir"/></div>
                 </c:if>
-                <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/></div>
             </h:form>
         </div>
 
