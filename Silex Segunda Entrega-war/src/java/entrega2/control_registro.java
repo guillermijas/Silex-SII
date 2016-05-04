@@ -7,10 +7,8 @@ package entrega2;
 
 import entrega1.Usuario;
 import java.io.Serializable;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 @ManagedBean
@@ -89,7 +87,7 @@ public class control_registro implements Serializable {
             return "register.xhtml";
         }
     }
-
+    
     public boolean checkPasswords() {
         return pwd1.equals(pwd2);
     }

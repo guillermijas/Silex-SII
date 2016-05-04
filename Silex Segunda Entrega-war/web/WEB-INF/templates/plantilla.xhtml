@@ -7,7 +7,10 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
-        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap-min.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap-theme-min.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
         <link href="resources/css/lightbox.css" rel="stylesheet"></link>
         <title>
             <ui:insert name="title">Facelets Template</ui:insert>
@@ -15,26 +18,33 @@
     </h:head>
 
     <h:body>
-        <div id="contenido">
-            <div id="top" class="top">
-                <h:form id="menu">
-                    <ul class="menulist">
-                       
-                        <li><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></li> 
-                        <li><h:commandLink action="#{controlAutorizacion.modUser()}" value="Modificar usuario"/></li>
-                        <c:if test="#{!empty controlAutorizacion.usuario}">
-                            <li><h:commandLink action="#{controlAutorizacion.logout()}" value="Salir"/></li>
-                        </c:if>
-                    </ul>
-                </h:form>
-            </div>
-
+        <div class="top row">
+            <h:form> 
+                <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></div>
+                <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/></div>
+                <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.modUser()}" value="Modificar usuario"/>
+                <c:if test="#{!empty controlAutorizacion.usuario}">
+                    <c:if test="#{controlAutorizacion.rol == 'ADMINISTRADOR'}">
+                        <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regOperario()}" value="Registrar Operario"/></div>
+                    </c:if>
+                    <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.logout()}" value="Salir"/></div>
+                </c:if>
+            </h:form>
+        </div>
+        <div id="contenido" class="container">
             <div id="content" class="center_content">
-                <ui:insert name="content">Content</ui:insert>
+                <ui:insert name="bienvenida"></ui:insert>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ui:insert name="campoAvisos"></ui:insert>
+                    </div>
+                    <div class="col-md-6">
+                        <ui:insert name="campoOT"></ui:insert>
+                    </div>
+                </div>
             </div>
         </div>
-            <script src="resources/js/lightbox-plus-jquery.js"></script>
-
+        
+        <script src="resources/js/lightbox-plus-jquery.js"></script>
     </h:body>
-
 </html>

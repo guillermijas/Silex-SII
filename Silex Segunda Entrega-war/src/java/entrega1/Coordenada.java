@@ -34,4 +34,10 @@ public class Coordenada implements Serializable {
         return linkGoogle;
     }
 
+    @Override
+    public String toString() {
+        return height + " , " + lenght;
+    }
+
+    
 }

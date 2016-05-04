@@ -33,9 +33,12 @@ public class ControlAutorizacion implements Serializable {
         {
             if (usuario.getRol().equals("CLIENTE")) // Si el usuario es normal
             {
-                page = "normal.xhtml";
+                page = "cliente.xhtml";
             } else if (usuario.getRol().equals("ADMINISTRADOR")) {
                 page = "admin.xhtml";
+            }
+            else if (usuario.getRol().equals("OPERARIO")){
+                page = "normal.xhtml";
             }
         } else {
             page = "login.xhtml";
@@ -74,6 +77,9 @@ public class ControlAutorizacion implements Serializable {
 
     public String regAviso() {
         return "regAviso.xhtml";
+    }
+    public String regOperario() {
+        return "register_operario.xhtml";
     }
 
     public String register() {

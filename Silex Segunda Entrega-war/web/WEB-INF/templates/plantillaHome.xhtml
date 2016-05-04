@@ -6,8 +6,12 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="./resources/css/home.css" rel="stylesheet" type="text/css" />
-            <link href="resources/css/lightbox.css" rel="stylesheet"></link>
+       <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap-min.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap-theme-min.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+        <link href="resources/css/lightbox.css" rel="stylesheet"></link>
 
         <title>
             <ui:insert name="title">Facelets Template</ui:insert>
@@ -15,11 +19,22 @@
     </h:head>
 
     <h:body>
+
+        <div class="top row">
+            <h:form> 
+                <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></div>
+                <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/></div>
+                <c:if test="#{!empty controlAutorizacion.usuario}">
+                    <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.logout()}" value="Salir"/></div>
+                </c:if>
+            </h:form>
+        </div>
+
         <div id="content" class="center_content">
             <ui:insert name="content">Content</ui:insert>
         </div>
-        
-                   <script src="resources/js/lightbox-plus-jquery.js"></script> 
+
+        <script src="resources/js/lightbox-plus-jquery.js"></script> 
     </h:body>
 
 </html>

@@ -135,6 +135,8 @@ public class Control_Aviso implements Serializable {
     }
 
     public void setTelefonoCliente(String telef) {
-        aviso.getCliente().setTelefono(Long.parseLong(telef));
+        if (!telef.equals("")) {
+            aviso.getCliente().setTelefono(Long.parseLong(telef));
+        }
     }
 }

@@ -48,7 +48,7 @@
         <br/>
         <h:form id="form">
             <p:growl id="msgs" showDetail="true" />
-            <p:calendar id="popup" value="#{calendarView.date2}" />
+            <p:calendar id="button" value="#{calendarView.date1}" showOn="button" />
         </h:form>
         <br/> <br/> <br/>
     </ui:define>
@@ -76,43 +76,43 @@
                 </td>
             </tr>
         </table>
-        <p:inputText class="campo"/>
+        <p:inputText class="campo" />
         <label class="pie">Coordenadas GPS</label>
     </ui:define>
 
     <ui:define name="campos-pestaña3"> 
         <br/>
-        
+
         <!-- boolean checkboxes -->
         <div class="row">
             <div class="col-md-3">
-                <p class="pie"><p:selectBooleanCheckbox value=""/>
+                <p class="pie"><p:selectBooleanCheckbox/>
                     <span class="glyphicon glyphicon-alert"/>
                     Urgente </p>
             </div>
             <div class="col-md-3">
-                <p class="pie"><p:selectBooleanCheckbox value=""/>
+                <p class="pie"><p:selectBooleanCheckbox/>
                     <span class="glyphicon glyphicon-time"/>
                     Planificado </p>
             </div>
         </div>
         <br/>
-        
+
         <!--prioridad-->
         <label for="detalles" class="titulo">Prioridad</label>
         <td>
             <h:panelGrid columns="1" style="margin-bottom: 10px">
-                <h:inputHidden id="txt2" value="#{sliderView.number2}" />
+                <h:inputHidden id="txt2" value="#{sliderView.number1}" />
                 <p:slider for="txt2" style="width: 200px" maxValue="3" minValue="1" step="1" displayTemplate="{value}" />
             </h:panelGrid>
         </td>
         <br/>
-        
+
         <!--gravedad-->
 
         <label for="detalles" class="titulo">Gravedad</label>
         <h:panelGrid columns="1" style="margin-bottom: 10px">
-            <h:inputHidden id="txt3" value="#{sliderView.number3}" />
+            <h:inputHidden id="txt3" value="#{sliderView.number2}" />
             <p:slider for="txt3" style="width: 200px" maxValue="3" minValue="1" step="1" displayTemplate="{value}" />
         </h:panelGrid>
         <br/>

@@ -20,17 +20,7 @@ h1 {
     position: relative;
     background: #AFAFAF;
 }
-a:link, a:visited {
-    color: #045491;
-    font-weight : bold;
-    text-decoration: none;
-}
 
-a:link:hover, a:visited:hover  {
-    color: #045491;
-    font-weight : bold;
-    text-decoration : underline;
-}
 .campodescripcion{
     max-width: 470px;
     max-height: 200px;
@@ -54,4 +44,55 @@ a:link:hover, a:visited:hover  {
 }
 .barraconfirmacion{
     margin-top: 30px;
+}
+
+.top {
+    position: relative;
+    background-color: #036fab;
+    color: white;
+    padding: 10px;
+    height: auto;
+    margin: 0px 0px 0px 0px;
+    width: 100%;
+}
+
+.center_content {
+    position: relative;
+    background-color: #dddddd;
+    padding: 30px;
+    box-shadow: 4px 4px 2px #888;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+.top a:link, .top a:visited {
+  color: white !important;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+.top a:hover {
+    color: #c2dfef;
+}
+
+a:link, a:visited {
+    color: #045491;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+    color: #045491;
+    font-weight : bold;
+    text-decoration : underline;
 }

@@ -9,12 +9,14 @@
         <c:choose>
             <c:when test="#{empty controlAutorizacion.usuario}">
                 <h:form class="text-center">
-                    <h3>Usuario </h3>
+                    <h4>Usuario </h4>
                     <div class="input-group">
                         <span class="input-group-addon glyphicon glyphicon-user"></span>
-                        <h:inputText class="form-control input-lg" value="#{login.usuario}"/>
+                        <h:inputText class="form-control input-lg" value="#{login.usuario}">
+                            Usuario
+                        </h:inputText>
                     </div>
-                    <h3>Contraseña </h3>
+                    <h4>Contraseña </h4>
                     <div class="input-group">
                         <span class="input-group-addon glyphicon glyphicon-lock"></span>
                         <h:inputSecret class="form-control input-lg" value="#{login.password}"/>

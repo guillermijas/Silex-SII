@@ -26,7 +26,7 @@ public class Dbaux implements Serializable {
     private static List<Aviso> avisos = new ArrayList<>();
     private static List<OrdenDeTrabajo> ots = new ArrayList<>();
 
-    static void addOt(Aviso av, estado est, prioridad pr, Date fI, String instr ){
+    static void addOt(Aviso av, estado est, prioridad pr, Date fI, String instr, Cliente c ){
         OrdenDeTrabajo ot = new OrdenDeTrabajo();
         ot.setIdOT(Enumeraciones.getIdOt());
         Enumeraciones.incrIdOt();
@@ -35,6 +35,7 @@ public class Dbaux implements Serializable {
         ot.setEstado(est);
         ot.setFechainicio(fI);
         ot.setInstrucciones(instr);
+        ot.setCliente(c);
         ots.add(ot);
     }
     static void addAviso(entrega1.Enumeraciones.prioridad prioridad, String direccion, entrega1.Enumeraciones.estado estado, entrega1.Enumeraciones.gravedad gravedad, entrega1.Cliente cliente, String img, Date fecha_inicio, String Descripcion, Coordenada c, boolean ur, boolean plan) {
@@ -79,11 +80,14 @@ public class Dbaux implements Serializable {
         cl1.setNombre("pepe");
         cl1.setUsername("pepe");
         addAviso(prioridad.MEDIA,"Calle Álamos, 25", estado.INCIDENCIA, gravedad.LEVE, cl1,"img/fuga (1).jpg", new Date(2016,3,9), "La presión del agua es muy baja en mi casa.",new Coordenada("36.715914", "-4.477880"),true,false);
+        addAviso(prioridad.MEDIA,"Calle Álamos, 26", estado.INCIDENCIA, gravedad.LEVE, cl1,"img/fuga (1).jpg", new Date(2016,3,9), "La presión del agua es muy baja en mi hogar.",new Coordenada("36.715914", "-4.477880"),true,false);
+        addAviso(prioridad.MEDIA,"Calle Álamos, 27", estado.INCIDENCIA, gravedad.LEVE, cl1,"img/fuga (1).jpg", new Date(2016,3,9), "La presión del agua es muy baja en mi domicilio.",new Coordenada("36.715914", "-4.477880"),true,false);
+
         addAviso(prioridad.ALTA,"Calle Carretería, 46", estado.NUEVA, gravedad.MEDIA, "img/fuga (1).png", new Date(2016,2,25), "Se ha producido una pequeña fuga en la tubería principal.",new Coordenada("48.067652", "12.858095"),true,false);
         addAviso(prioridad.ALTA,"Avenida de Andalucia", estado.EN_PROCESO, gravedad.LEVE,"img/fuga (2).jpg", new Date(2016,5,1), "Revisión del alcantarillado",new Coordenada("36.715914", "4.477880"),false,true);
         addAviso(prioridad.BAJA,"Avenida Plutarco, 58", estado.CERRADA, gravedad.ALTA, cl1,"img/fuga (3).jpg", new Date(2016,1,28), "Rotura de la válvula",new Coordenada("36.715914", "-4.477880"),true,false);
-        addOt(avisos.get(1), estado.EN_PROCESO, prioridad.ALTA, new Date (2016, 4, 7), "Cambiar la tapa de la alcantarilla" );
-        addOt(avisos.get(2), estado.CERRADA, prioridad.MEDIA, new Date (2016, 4, 7), "Hacer un reconocimiento de la zona" );
+        addOt(avisos.get(1), estado.EN_PROCESO, prioridad.ALTA, new Date (2016, 4, 7), "Cambiar la tapa de la alcantarilla", cl1 );
+        addOt(avisos.get(2), estado.CERRADA, prioridad.MEDIA, new Date (2016, 4, 7), "Hacer un reconocimiento de la zona", cl1);
 
     }
     
