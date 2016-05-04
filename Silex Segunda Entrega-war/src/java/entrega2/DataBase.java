@@ -46,8 +46,14 @@ public class DataBase {
         // Primero comprobamos que ese usuario no está ya en la base de datos   
         if (!isUsernameContent(us.getUsername())) {
             usuarios.add(us);
+            if(us.getRol().equals("OPERARIO")){
+            FacesMessage msg = new FacesMessage("Registro Completo", "Usuario " + us.getUsername() + " creado con éxito.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            }
+            else{
             FacesMessage msg = new FacesMessage("Registro Completo", "Bienvenido " + us.getUsername());
             FacesContext.getCurrentInstance().addMessage(null, msg);
+            }
             return true;
         } else {
             FacesContext ctx = FacesContext.getCurrentInstance();
