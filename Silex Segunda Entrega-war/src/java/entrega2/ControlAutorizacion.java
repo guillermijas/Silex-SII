@@ -1,7 +1,6 @@
 package entrega2;
 
 import entrega1.*;
-import entrega1.Enumeraciones.Rol;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -10,7 +9,7 @@ import javax.faces.context.FacesContext;
 @Named(value = "controlAutorizacion")
 @SessionScoped
 public class ControlAutorizacion implements Serializable {
-
+    
     private Usuario usuario;
 
     public void setUsuario(Usuario usuario) {
@@ -84,12 +83,14 @@ public class ControlAutorizacion implements Serializable {
     public String normal() {
         return "normal.xhtml";
     }
-    public String getUsername(){
-        return usuario.getUsername();
+    
+    public String modUser()
+    {
+        return "modificar_usuario.html";
     }
     
-    public String modificarUsuario(){
-        return "index.xhtml";
+    public String getUsername(){
+        return usuario.getUsername();
     }
     
     public String getRol(){

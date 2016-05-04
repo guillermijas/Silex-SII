@@ -1,10 +1,11 @@
 package entrega2;
 
 
-import entrega1.Usuario;
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 
@@ -18,39 +19,23 @@ public class control_modificar_user implements Serializable
     @Inject
     private Hash hash;
     
-    private Usuario usuario;
-    private String email;
     private String pass;
     private String pass2;
 
-
-    private String nombre;
-    private String apellidos;
-    private String telefono;
-    private String direccion;
-    
-    // Rol supervisor
-    private String zonaCargo;
-
-    //rol operario
-    private String tipo;
-    private String especializacion;
-    private boolean disponibilidad;
-
     public String getEmail() {
-        return email;
+        return ctrl.getUsuario().getEmail();
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        ctrl.getUsuario().setEmail(email);
     }
 
     public String getPass() {
-        return pass;
+        return this.pass;
     }
 
     public void setPass(String p) {
-        this.pass = hash.getHash(p);
+        this.pass = p;
     }
     
         public String getPass2() {
@@ -62,67 +47,67 @@ public class control_modificar_user implements Serializable
     }
 
     public String getNombre() {
-        return nombre;
+        return ctrl.getUsuario().getNombre();
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        ctrl.getUsuario().setNombre(nombre);
     }
 
     public String getApellidos() {
-        return apellidos;
+        return ctrl.getUsuario().getApellidos();
     }
 
     public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+        ctrl.getUsuario().setApellidos(apellidos);
     }
 
-    public String getTelefono() {
-        return telefono;
+    public Long getTelefono() {
+        return ctrl.getUsuario().getTelefono();
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTelefono(Long telefono) {
+        ctrl.getUsuario().setTelefono(telefono);
     }
 
     public String getDireccion() {
-        return direccion;
+        return ctrl.getUsuario().getDirección();
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        ctrl.getUsuario().setDirección(direccion);
     }
 
     public String getZonaCargo() {
-        return zonaCargo;
+        return ctrl.getUsuario().getZonaCargo();
     }
 
     public void setZonaCargo(String zonaCargo) {
-        this.zonaCargo = zonaCargo;
+        ctrl.getUsuario().setZonaCargo(zonaCargo);
     }
 
     public String getTipo() {
-        return tipo;
+        return ctrl.getUsuario().getTipo();
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        ctrl.getUsuario().setTipo(tipo);
     }
 
     public String getEspecializacion() {
-        return especializacion;
+        return ctrl.getUsuario().getEspecializacion();
     }
 
     public void setEspecializacion(String especializacion) {
-        this.especializacion = especializacion;
+        ctrl.getUsuario().setEspecializacion(especializacion);
     }
 
     public boolean isDisponibilidad() {
-        return disponibilidad;
+        return ctrl.getUsuario().getDisponibilidad();
     }
 
     public void setDisponibilidad(boolean disponibilidad) {
-        this.disponibilidad = disponibilidad;
+        ctrl.getUsuario().setDisponibilidad(disponibilidad);
     }
     
     
@@ -131,39 +116,34 @@ public class control_modificar_user implements Serializable
         
     }
     
-    public boolean checkSession()
+    public String update() // Actualiza los cambios en la base de datos y redirige al usuario a la pagina principal
     {
-        if(ctrl.getUsuario() != null)
+        if(checkPasswords())
         {
-            usuario = ctrl.getUsuario();
-            return true;
+            keepPwd();
+            FacesMessage msg = new FacesMessage("Modificación realizada con éxito", "Usuario " + getUsername() + " modificado");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            return ctrl.home();
         }
         else
         {
-            return false;
+            return "modificar_usuario.xhtml";
         }
+        
     }
     
-    public void setUsuario(Usuario us)
+    public boolean checkPasswords()
     {
-        this.usuario = us;
+        return pass.equals(pass2);
     }
     
-    public Usuario getUsuario()
+    public void keepPwd()
     {
-        return this.usuario;
-    }
-    
-    public String update() // Actualiza los cambios en la base de datos y redirige al usuario a la pagina principal
-    {
-        ctrl.setUsuario(usuario);
-        return ctrl.home();
+        ctrl.getUsuario().setPassword(hash.getHash(pass));
     }
     
     public String getUsername()
     {
-        return usuario.getUsername();
+        return ctrl.getUsuario().getUsername();
     }
-    
-    
 }

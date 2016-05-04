@@ -7,8 +7,10 @@ package entrega2;
 
 import entrega1.Usuario;
 import java.io.Serializable;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 @ManagedBean
@@ -63,11 +65,24 @@ public class control_registro implements Serializable {
             }
             else
             {
-                     
+                if(user.getZonaCargo() != null)
+                {
+                    user.setRol("SUPERVISOR");
+                }
+                else
+                {
+                    user.setRol("OPERARIO");
+                }
             }
-            database.insertNewUser(user);
-            ctrl.setUsuario(user);
-            return ctrl.home();
+            if(database.insertNewUser(user))
+            {
+                ctrl.setUsuario(user);
+                return ctrl.home();
+            }
+            else
+            {
+                return "register.xhtml";
+            }  
         }
         else
         {      

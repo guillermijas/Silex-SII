@@ -42,15 +42,17 @@ public class DataBase {
         return isContent;
     }
 
-    public void insertNewUser(Usuario us) {
+    public boolean insertNewUser(Usuario us) { // Y que nos devuelva si lo ha insertado en la base de datos
         // Primero comprobamos que ese usuario no está ya en la base de datos   
         if (!isUsernameContent(us.getUsername())) {
             usuarios.add(us);
             FacesMessage msg = new FacesMessage("Registro Completo", "Bienvenido " + us.getUsername());
             FacesContext.getCurrentInstance().addMessage(null, msg);
+            return true;
         } else {
             FacesContext ctx = FacesContext.getCurrentInstance();
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario ya existente", "Usuario ya existente"));
+            return false;
         }
     }
 
