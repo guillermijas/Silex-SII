@@ -8,7 +8,7 @@
     <ui:define name="title">Bandeja de entrada</ui:define>
     <ui:define name="content">
         <c:choose>
-            <c:when test="#{controlAutorizacion.rol == 'OPERARIO'}">
+            <c:when test="#{controlAutorizacion.usuario.rol == 'OPERARIO'}">
                 <h1>Operario</h1>
                 <p>¡¡Bienvenido <h:outputText value="#{controlAutorizacion.username}"/>!!</p>
 
