@@ -26,8 +26,6 @@ public class control_registro implements Serializable {
     private String pwd1;
     private String pwd2;
 
-    private boolean skip;
-
     public String getPwd1() {
         return this.pwd1;
     }
@@ -75,14 +73,6 @@ public class control_registro implements Serializable {
         {      
             return "register.xhtml";
         }
-    }
-
-    public boolean isSkip() {
-        return skip;
-    }
-
-    public void setSkip(boolean skip) {
-        this.skip = skip;
     }
 
     public boolean checkPasswords() {
