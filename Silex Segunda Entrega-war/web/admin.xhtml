@@ -12,7 +12,7 @@
     <ui:define name="bienvenida">
         <c:choose>
             <c:when test="#{controlAutorizacion.rol == 'ADMINISTRADOR'}">
-                <h1>Usuario normal</h1>
+                <h2>Administrador</h2>
                 <p>¡¡Bienvenido <h:outputText value="#{controlAutorizacion.username}"/>!!</p>
             </c:when>
             <c:otherwise>
