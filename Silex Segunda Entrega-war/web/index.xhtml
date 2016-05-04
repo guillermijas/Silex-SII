@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/plantillaHome.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Pagina Principal</ui:define>
+    <ui:define name="content">
+        <h:form class="top">
+            <div class="logo">
+            <!--><a href="#{item.imagen}" data-lightbox="#{item.imagen}" data-title="Antonio Resines"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a><-->
+           <img src="img/logo.png" alt="No hay imagen" width="150" height="150"></img>
+            </div>
+            <ul class="menulist">
+                <li><h:commandLink action="#{controlAutorizacion.login()}" value="Iniciar Sesión"/></li>
+                <li><h:commandLink action="#{controlAutorizacion.register()}" value="Registrarse"/></li>
+                <li><h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/></li>
+                <li><h:commandLink action="#{controlAutorizacion.regOT()}" value="Nueva OT"/></li>
+            </ul>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
