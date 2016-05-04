@@ -11,7 +11,7 @@
         <c:choose>
             <c:when test="#{controlAutorizacion.rol == 'OPERARIO'}">
                 <h2>Empleado</h2>
-                <p>¡¡Bienvenido <h:outputText value="#{controlAutorizacion.username}"/>!!</p>
+
             </c:when>
             <c:otherwise>
                 <ui:include src="/WEB-INF/templates/errorAutorizacion.xhtml"/>
@@ -27,14 +27,14 @@
                 <h:form id="form">           
                     <p:growl id="msgs" showDetail="true" />
                     <h3 style="margin-top:0">Avisos</h3>
-                    <h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/>
+
                     <p:tabView style="width: fit-content">
                         <p:tab title="Incidencias">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getAvisosIncidencia()}">
                                     <c:choose>
-                                        <c:when test ="#{item.cliente.username == controlAutorizacion.usuario.username}">   
-                                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500">
+                                        <c:when test ="#{item.creador.username == controlAutorizacion.usuario.username}">   
+                                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500">
                                                 <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
                                                 <h:panelGrid columns="1" cellpadding="5">
                                                     <p:panelGrid columns="2">
@@ -114,8 +114,8 @@
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getAvisosNueva()}">
                                     <c:choose>
-                                        <c:when test ="#{item.cliente.username == controlAutorizacion.usuario.username}">   
-                                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500">
+                                        <c:when test ="#{item.creador.username == controlAutorizacion.usuario.username}">   
+                                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500">
                                                 <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
                                                 <h:panelGrid columns="1" cellpadding="5">
                                                     <p:panelGrid columns="2">
@@ -195,8 +195,8 @@
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getAvisosEnProceso()}">
                                     <c:choose>
-                                        <c:when test ="#{item.cliente.username == controlAutorizacion.usuario.username}">   
-                                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500">
+                                        <c:when test ="#{item.creador.username == controlAutorizacion.usuario.username}">   
+                                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500">
                                                 <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
                                                 <h:panelGrid columns="1" cellpadding="5">
                                                     <p:panelGrid columns="2">
@@ -277,8 +277,8 @@
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getAvisosCerrada()}">
                                     <c:choose>
-                                        <c:when test ="#{item.cliente.username == controlAutorizacion.usuario.username}">  
-                                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500">
+                                        <c:when test ="#{item.creador.username == controlAutorizacion.usuario.username}">  
+                                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500">
                                                 <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
                                                 <h:panelGrid columns="1" cellpadding="5">
                                                     <p:panelGrid columns="2">
@@ -374,8 +374,8 @@
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getOtEnProceso()}">
                                     <c:choose>
-                                        <c:when test ="#{item.cliente.username == controlAutorizacion.usuario.username}">   
-                                            <p:fieldset legend="ID Orden de trabajo: #{item.idOT} creada por" toggleable="true" toggleSpeed="500">
+                                        <c:when test ="#{dbaux.perteneceAOperario(item.operarios, controlAutorizacion.username) == 'true'}">   
+                                            <p:fieldset legend="ID Orden de trabajo: #{item.idOT}" toggleable="true" toggleSpeed="500">
                                                 <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
                                                 <h:panelGrid columns="1" cellpadding="5">
                                                     <p:panelGrid columns="2">
@@ -445,8 +445,8 @@
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getOtCerradas()}">
                                     <c:choose>
-                                        <c:when test ="#{item.cliente.username == controlAutorizacion.usuario.username}">   
-                                            <p:fieldset legend="ID Orden de trabajo: #{item.idOT} creada por" toggleable="true" toggleSpeed="500">
+                                        <c:when test ="#{dbaux.perteneceAOperario(item.operarios, controlAutorizacion.username) == 'true'}">   
+                                            <p:fieldset legend="ID Orden de trabajo: #{item.idOT}" toggleable="true" toggleSpeed="500">
                                                 <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
                                                 <h:panelGrid columns="1" cellpadding="5">
                                                     <p:panelGrid columns="2">

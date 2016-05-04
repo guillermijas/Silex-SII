@@ -22,7 +22,7 @@ public class OrdenDeTrabajo implements Serializable {
     @OneToOne(targetEntity = Aviso.class)
     private Aviso aviso;
     @ManyToMany(mappedBy = "ordenesTrabajo")
-    private List<Operario> operarios;
+    private List<Usuario> operarios;
 
     public OrdenDeTrabajo() {
     }
@@ -62,7 +62,7 @@ public class OrdenDeTrabajo implements Serializable {
         return aviso;
     }
 
-    public List<Operario> getOperarios() {
+    public List<Usuario> getOperarios() {
         return operarios;
     }
 
@@ -96,7 +96,7 @@ public class OrdenDeTrabajo implements Serializable {
         this.aviso = aviso;
     }
 
-    public void setOperarios(List<Operario> operarios) {
+    public void setOperarios(List<Usuario> operarios) {
         this.operarios = operarios;
     }
 

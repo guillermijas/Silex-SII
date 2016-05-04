@@ -105,4 +105,6 @@ public class ControlAutorizacion implements Serializable {
     public String getRol() {
         return usuario.getRol();
     }
+    
+    
 }

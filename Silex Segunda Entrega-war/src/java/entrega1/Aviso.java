@@ -29,7 +29,8 @@ public class Aviso implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "OT_fk")
     private OrdenDeTrabajo ordendeTrabajo;
-
+    @ManyToOne
+    private Usuario creador;
     @ManyToOne
     private Cliente cliente;
     @ManyToOne
@@ -126,6 +127,16 @@ public class Aviso implements Serializable {
         return localizacion.toString();
     }
 
+    public Usuario getCreador() {
+        return creador;
+    }
+
+    public void setCreador(Usuario creador) {
+        this.creador = creador;
+    }
+
+    
+    
     public void setGPS(String gps) {
         String latitud = gps.substring(0, gps.indexOf(" "));
         String longitud = gps.substring(gps.lastIndexOf(" "), gps.length());
@@ -243,7 +254,9 @@ public class Aviso implements Serializable {
 
     @Override
     public String toString() {
-        return "Aviso{" + "idAviso=" + idAviso + ", gravedad=" + gravedad + ", descripcion=" + descripcion + ", imagen=" + imagen + ", direccion=" + direccion + ", urgente=" + urgente + ", planificado=" + planificado + ", estado=" + estado + ", prioridad=" + prioridad + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", ordendeTrabajo=" + ordendeTrabajo + ", cliente=" + cliente + ", callcenter=" + callcenter + ", supervisor=" + supervisor + ", operario=" + operario + '}';
+        return "Aviso{" + "idAviso=" + idAviso + ", gravedad=" + gravedad + ", descripcion=" + descripcion + ", imagen=" + imagen + ", direccion=" + direccion + ", cp=" + cp + ", municipio=" + municipio + ", localizacion=" + localizacion + ", urgente=" + urgente + ", planificado=" + planificado + ", estado=" + estado + ", prioridad=" + prioridad + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", ordendeTrabajo=" + ordendeTrabajo + ", creador=" + creador + ", cliente=" + cliente + ", callcenter=" + callcenter + ", supervisor=" + supervisor + ", operario=" + operario + '}';
     }
+
+    
 
 }
