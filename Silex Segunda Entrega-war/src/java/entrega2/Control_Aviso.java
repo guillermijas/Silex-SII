@@ -27,6 +27,11 @@ public class Control_Aviso implements Serializable {
         }
         return page;
     }
+    public String regAviso() {
+        setAviso(Dbaux.AvisoPrueba);
+        String page = "regAviso.xhtml";
+        return page;
+    }
 
     public String finalizarModifAviso() {
         aviso = null;

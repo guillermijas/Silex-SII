@@ -108,7 +108,7 @@
                         <p:tab title="Nuevos">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getAvisosNueva()}">
-                                    <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500">
+                                    <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500">
                                         <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
                                         <h:panelGrid columns="1" cellpadding="5">
                                             <p:panelGrid columns="2">
@@ -176,6 +176,9 @@
                                                         <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
                                                     </p:confirmDialog>
                                                 </h:form>
+                                                <h:outputText value=" "/>
+                                                <p:commandButton value="Crear Aviso" action="#{controlAviso.regAviso()}" class="btn-default"/>
+
                                             </div>  
                                         </h:panelGrid>
                                     </p:fieldset>
@@ -360,7 +363,7 @@
                         <p:tab title="En proceso">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getOtEnProceso()}">
-                                    <p:fieldset legend="ID Orden de trabajo: #{item.idOT} creada por" toggleable="true" toggleSpeed="500">
+                                    <p:fieldset legend="ID Orden de trabajo: #{item.idOT}" toggleable="true" toggleSpeed="500">
                                         <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
                                         <h:panelGrid columns="1" cellpadding="5">
                                             <p:panelGrid columns="2">
@@ -427,7 +430,7 @@
                         <p:tab title="Cerradas">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getOtCerradas()}">
-                                    <p:fieldset legend="ID Orden de trabajo: #{item.idOT} creada por" toggleable="true" toggleSpeed="500">
+                                    <p:fieldset legend="ID Orden de trabajo: #{item.idOT}" toggleable="true" toggleSpeed="500">
                                         <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
                                         <h:panelGrid columns="1" cellpadding="5">
                                             <p:panelGrid columns="2">

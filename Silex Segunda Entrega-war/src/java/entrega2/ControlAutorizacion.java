@@ -19,7 +19,31 @@ public class ControlAutorizacion implements Serializable {
     public Usuario getUsuario() {
         return usuario;
     }
+    public String phome(Aviso avi) {
+        Dbaux.addAviso(avi.getPrioridad(), usuario, avi.getDireccion(), avi.getEstado(), avi.getGravedad(), avi.getImagen(), avi.getFechainicio(), avi.getDescripcion(), avi.getLocalizacion(), false, false);  
+             String page = null;
+        if (usuario != null) { // Si hay usuario
+            switch (usuario.getRol()) {
+                case "CLIENTE":
+                    // Si el usuario es normal
+                    page = "cliente.xhtml";
+                    break;
+                case "ADMINISTRADOR":
+                    page = "admin.xhtml";
+                    break;
+                case "OPERARIO":
+                    page = "normal.xhtml";
+                    break;
+                default:
+                    page = "normal.xhtml";
+                    break;
+            }
+        } else {
+            page = "login.xhtml";
+        }
 
+        return page;   
+    }
     public String home() {
         // Implementar el método
         // Devuelve la página Home dependiendo del rol del usuario

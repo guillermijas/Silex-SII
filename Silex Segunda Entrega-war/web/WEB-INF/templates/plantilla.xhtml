@@ -21,7 +21,7 @@
         <div class="top row">
             <h:form> 
                 <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></div>
-                <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/></div>
+                <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAviso.regAviso()}" value="Nuevo Aviso"/></div>
                 <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.modUser()}" value="Modificar usuario"/></div>
                 <c:if test="#{!empty controlAutorizacion.usuario}">
                     <c:if test="#{controlAutorizacion.rol == 'ADMINISTRADOR'}">
