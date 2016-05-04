@@ -27,7 +27,20 @@ public class Dbaux implements Serializable {
 
     private static List<Aviso> avisos = new ArrayList<>();
     private static List<OrdenDeTrabajo> ots = new ArrayList<>();
+    public static Aviso AvisoPrueba = getViso();
+            
+    public static Aviso getViso(){
+        Usuario u1 = new Usuario();
+        u1.setUsername("pepe");
+        u1.setPassword("asdf");
+        u1.setRol("OPERARIO");
+        Cliente cl1 = new Cliente();
+        cl1.setNombre("manolo");
+        cl1.setUsername("manolo");
 
+    addAviso(prioridad.MEDIA, u1, "Calle Álamos, 25", estado.NUEVA, gravedad.LEVE, cl1, "img/fuga (1).jpg", new Date(2016, 3, 9), "La presión del agua es muy baja en mi casa.", new Coordenada("36.715914", "-4.477880"), true, false);
+    return avisos.get(0);
+    }        
     static void addOt(Aviso av, estado est, prioridad pr, Date fI, String instr, List<Usuario> ops) {
         OrdenDeTrabajo ot = new OrdenDeTrabajo();
         ot.setIdOT(Enumeraciones.getIdOt());
