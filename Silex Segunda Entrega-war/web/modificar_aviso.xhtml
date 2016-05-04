@@ -88,18 +88,18 @@
         <table class="campo">
             <tr>
                 <td>
-                    <p:inputText class="campo" required="true" requiredMessage="Código postal obligatorio" value="#{controlAviso.CP}"/>
+                    <p:inputText class="campo" value="#{controlAviso.CP}"/>
                 </td>
                 <td>
-                    <p:inputText style="width: 100%" required="true" requiredMessage="Municipio obligatorio" value="#{controlAviso.municipio}"/>
+                    <p:inputText style="width: 100%" value="#{controlAviso.municipio}"/>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label class="pie">Codigo Postal <span class="oblig">*</span></label>
+                    <label class="pie">Codigo Postal</label>
                 </td>
                 <td>
-                    <label class="pie">Municipio <span class="oblig">*</span></label>
+                    <label class="pie">Municipio</label>
                 </td>
             </tr>
         </table>
@@ -124,11 +124,10 @@
         </div>
 
         <p:inputTextarea counter="cnt_descripcion" maxlength="200" counterTemplate="{0}"
-                         autoResize="true" class="campodescripcion" required="true" 
-                         requiredMessage="Descripción obligatoria" style="width: 100%;"
+                         autoResize="true" class="campodescripcion" style="width: 100%;"
                          value="#{controlAviso.descripcion}"/>
         <h:outputText id="cnt_descripcion"/>
-        <label class="pie">Descripción de la avería<span class="oblig">*</span></label>
+        <label class="pie">Descripción de la avería</label>
 
         <h:form>
             <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="true"
@@ -147,22 +146,22 @@
         <table class="campo">
             <tr>
                 <td>
-                    <p:inputText class="campo" required="true" requiredMessage="Nombre obligatorio" value="#{controlAviso.nombreCliente}"/>
+                    <p:inputText class="campo" value="#{controlAviso.nombreCliente}"/>
                 </td>
                 <td>
-                    <p:inputText style="width: 100%" required="true" requiredMessage="Apellido obligatorio" value="#{controlAviso.apellidosCliente}"/>
+                    <p:inputText style="width: 100%" value="#{controlAviso.apellidosCliente}"/>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label class="pie">Nombre <span class="oblig">*</span></label>
+                    <label class="pie">Nombre</label>
                 </td>
                 <td>
-                    <label class="pie">Apellidos <span class="oblig">*</span></label>
+                    <label class="pie">Apellidos</label>
                 </td>
             </tr> <tr>
                 <td>
-                    <p:inputText class="campo" required="true" requiredMessage="Teléfono obligatorio" value="#{controlAviso.telefonoCliente}"/>
+                    <p:inputText class="campo" value="#{controlAviso.telefonoCliente}"/>
                 </td>
                 <td>
                     <p:inputText style="width: 100%" value="#{controlAviso.emailCliente}"/>
@@ -170,7 +169,7 @@
             </tr>
             <tr>
                 <td>
-                    <label class="pie">Teléfono <span class="oblig">*</span></label>
+                    <label class="pie">Teléfono</label>
                 </td>
                 <td>
                     <label class="pie">Correo electrónico</label>
