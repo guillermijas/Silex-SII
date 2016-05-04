@@ -76,9 +76,9 @@ h1 {
 }
 
 .top a:link, .top a:visited {
-  color: white !important;
-  font-weight : bold;
-  text-decoration: none;
+    color: white !important;
+    font-weight : bold;
+    text-decoration: none;
 }
 
 .top a:hover {
@@ -95,4 +95,10 @@ a:link:hover, a:visited:hover  {
     color: #045491;
     font-weight : bold;
     text-decoration : underline;
+}
+
+
+fieldset legend {
+  font-size:14px !important;
+  padding:10px;
 }
