@@ -47,9 +47,9 @@
                                                         <h:outputText value="#{item.fechainicio}" />
 
                                                         <c:choose>
-                                                            <c:when test="#{item.urgente} == 'false'}">
+                                                            <c:when test="#{item.urgente}">
                                                                 <h:outputText value="Urgente" />
-                                                                <input type="checkbox" disabled="disabled"></input>
+                                                                <input type="checkbox" disabled="enabled"></input>
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <h:outputText value="Urgente" />
@@ -57,9 +57,9 @@
                                                             </c:otherwise>
                                                         </c:choose>
                                                         <c:choose>
-                                                            <c:when test="#{item.planificado} == 'false'}">
+                                                            <c:when test="#{item.planificado}">
                                                                 <h:outputText value="Planificado" />
-                                                                <input type="checkbox" disabled="disabled"></input>
+                                                                <input type="checkbox" disabled="enabled"></input>
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <h:outputText value="Planificado" />
@@ -128,9 +128,9 @@
                                                         <h:outputText value="#{item.fechainicio}" />
 
                                                         <c:choose>
-                                                            <c:when test="#{item.urgente} == 'false'}">
+                                                            <c:when test="#{item.urgente}">
                                                                 <h:outputText value="Urgente" />
-                                                                <input type="checkbox" disabled="disabled"></input>
+                                                                <input type="checkbox" disabled="enabled"></input>
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <h:outputText value="Urgente" />
@@ -138,9 +138,9 @@
                                                             </c:otherwise>
                                                         </c:choose>
                                                         <c:choose>
-                                                            <c:when test="#{item.planificado} == 'false'}">
+                                                            <c:when test="#{item.planificado}">
                                                                 <h:outputText value="Planificado" />
-                                                                <input type="checkbox" disabled="disabled"></input>
+                                                                <input type="checkbox" disabled="enabled"></input>
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <h:outputText value="Planificado" />
@@ -210,9 +210,9 @@
                                                         <h:outputText value="#{item.fechainicio}" />
 
                                                         <c:choose>
-                                                            <c:when test="#{item.urgente} == 'false'}">
+                                                            <c:when test="#{item.urgente}">
                                                                 <h:outputText value="Urgente" />
-                                                                <input type="checkbox" disabled="disabled"></input>
+                                                                <input type="checkbox" disabled="enabled"></input>
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <h:outputText value="Urgente" />
@@ -220,9 +220,9 @@
                                                             </c:otherwise>
                                                         </c:choose>
                                                         <c:choose>
-                                                            <c:when test="#{item.planificado} == 'false'}">
+                                                            <c:when test="#{item.planificado}">
                                                                 <h:outputText value="Planificado" />
-                                                                <input type="checkbox" disabled="disabled"></input>
+                                                                <input type="checkbox" disabled="enabled"></input>
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <h:outputText value="Planificado" />
