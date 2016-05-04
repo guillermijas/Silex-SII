@@ -50,44 +50,30 @@ public class control_registro implements Serializable {
         this.user = user;
     }
 
-    public String registrar()
-    {
+    public String registrar() {
         // Primero comprobamos que las contraseñas coinciden
-        if (checkPasswords())
-        {
+        if (checkPasswords()) {
             keepPwd(); // Guardamos esa contraseña en el perfil del usuario
-             // Luego establecemos el rol del usuario
-            if(user.getTipo() == null)
-            {
+            // Luego establecemos el rol del usuario
+            if (user.getTipo() == null) {
                 user.setRol("CLIENTE");
+            } else if (user.getZonaCargo() != null) {
+                user.setRol("SUPERVISOR");
+            } else {
+                user.setRol("OPERARIO");
             }
-            else
-            {
-                if(user.getZonaCargo() != null)
-                {
-                    user.setRol("SUPERVISOR");
-                }
-                else
-                {
-                    user.setRol("OPERARIO");
-                }
-            }
-            if(database.insertNewUser(user))
-            {
+            
+            if (database.insertNewUser(user)) {
                 ctrl.setUsuario(user);
                 return ctrl.home();
-            }
-            else
-            {
+            } else {
                 return "register.xhtml";
-            }  
-        }
-        else
-        {      
+            }
+        } else {
             return "register.xhtml";
         }
     }
-    
+
     public boolean checkPasswords() {
         return pwd1.equals(pwd2);
     }
