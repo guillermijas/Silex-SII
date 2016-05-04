@@ -8,32 +8,28 @@ package entrega2;
 import entrega1.Aviso;
 import entrega1.Cliente;
 import entrega1.Coordenada;
+import entrega1.Enumeraciones;
 import entrega1.Enumeraciones.*;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import entrega1.Enumeraciones.estado;
 import entrega1.OrdenDeTrabajo;
-import java.util.Random;
-/**
- *
- * @author operador
- */
+
 @Named(value = "dbaux")
 @SessionScoped
 public class Dbaux implements Serializable {
 
     private static List<Aviso> avisos = new ArrayList<>();
     private static List<OrdenDeTrabajo> ots = new ArrayList<>();
-    private static long numb = 3L;
 
     static void addOt(Aviso av, estado est, prioridad pr, Date fI, String instr ){
-        Random rnd = new Random();
         OrdenDeTrabajo ot = new OrdenDeTrabajo();
-        ot.setIdOT(rnd.nextLong());
+        ot.setIdOT(Enumeraciones.getIdOt());
+        Enumeraciones.incrIdOt();
         ot.setAviso(av);
         ot.setPrioridad(pr);
         ot.setEstado(est);
@@ -41,7 +37,7 @@ public class Dbaux implements Serializable {
         ot.setInstrucciones(instr);
         ots.add(ot);
     }
-    static void addAviso(entrega1.Enumeraciones.prioridad prioridad, String direccion, entrega1.Enumeraciones.estado estado, entrega1.Enumeraciones.gravedad gravedad, entrega1.Cliente cliente, String img, Date fecha_inicio, String Descripcion) {
+    static void addAviso(entrega1.Enumeraciones.prioridad prioridad, String direccion, entrega1.Enumeraciones.estado estado, entrega1.Enumeraciones.gravedad gravedad, entrega1.Cliente cliente, String img, Date fecha_inicio, String Descripcion, Coordenada c, boolean ur, boolean plan) {
         Aviso aux = new Aviso();
         aux.setPrioridad(prioridad);
         aux.setDireccion(direccion);
@@ -51,86 +47,43 @@ public class Dbaux implements Serializable {
         aux.setCliente(cliente);
         aux.setFechainicio(fecha_inicio);
         aux.setDescripcion(Descripcion);
-        numb = numb + 1L;
-        aux.setIdAviso(numb);
+        aux.setIdAviso(Enumeraciones.getIdAviso());
+        Enumeraciones.incrIdAviso();
+        aux.setLocalizacion(c);
+        aux.setUrgente(ur);
+        aux.setPlanificado(plan);
         avisos.add(aux);
     }
 
-    static void addAviso(String direccion, entrega1.Cliente cliente, String Descripcion) {
+    static void addAviso(entrega1.Enumeraciones.prioridad prioridad, String direccion, entrega1.Enumeraciones.estado estado, entrega1.Enumeraciones.gravedad gravedad, String img, Date fecha_inicio, String Descripcion, Coordenada c, boolean ur, boolean plan) {
         Aviso aux = new Aviso();
-        aux.setPrioridad(entrega1.Enumeraciones.prioridad.MEDIA);
-        aux.setDireccion("direccion");
-        aux.setEstado(entrega1.Enumeraciones.estado.INCIDENCIA);
-        aux.setGravedad(entrega1.Enumeraciones.gravedad.LEVE);
-        aux.setCliente(cliente);
+        aux.setPrioridad(prioridad);
+        aux.setDireccion(direccion);
+        aux.setEstado(estado);
+        aux.setGravedad(gravedad);
+        aux.setImagen(img);
+        aux.setFechainicio(fecha_inicio);
         aux.setDescripcion(Descripcion);
-        numb = numb + 1L;
-        aux.setIdAviso(numb);
+        aux.setIdAviso(Enumeraciones.getIdAviso());
+        Enumeraciones.incrIdAviso();
+        aux.setLocalizacion(c);
+        aux.setUrgente(ur);
+        aux.setPlanificado(plan);
         avisos.add(aux);
-
     }
 
     static void init() {
         avisos = new ArrayList<Aviso>();
         ots = new ArrayList<OrdenDeTrabajo>();
-        
-        Aviso avuno = new Aviso();
-        avuno.setLocalizacion(new Coordenada("36.715914", "-4.477880"));
-        avuno.setPrioridad(entrega1.Enumeraciones.prioridad.MEDIA);
-        avuno.setDireccion("calle catorce");
-        avuno.setEstado(entrega1.Enumeraciones.estado.INCIDENCIA);
-        avuno.setGravedad(entrega1.Enumeraciones.gravedad.LEVE);
-        Cliente pep = new Cliente();
-        pep.setUsername("pepe");
-        avuno.setCliente(pep);
-        avuno.setIdAviso(1L);
-        avuno.setImagen("img/o.jpg");
-        avuno.setDescripcion("Se ha roto todo necesito AYUDA");
-        avuno.setUrgente(true);
-        avuno.setPlanificado(true);
-        avisos.add(avuno);
-
-        Aviso avdos = new Aviso();
-        avdos.setPrioridad(entrega1.Enumeraciones.prioridad.MEDIA);
-        avdos.setDireccion("calle catorce");
-        avdos.setEstado(entrega1.Enumeraciones.estado.NUEVA);
-        avdos.setGravedad(entrega1.Enumeraciones.gravedad.LEVE);
-        avdos.setLocalizacion(new Coordenada("48.067652", "12.858095"));
-        Cliente peep = new Cliente();
-        peep.setUsername("pin");
-        avdos.setCliente(peep);
-        avdos.setIdAviso(2L);
-        avdos.setDescripcion("Holaaa");
-
-        avisos.add(avdos);
-
-        Aviso avtres = new Aviso();
-        avtres.setPrioridad(entrega1.Enumeraciones.prioridad.MEDIA);
-        avtres.setDireccion("calle catorce");
-        avtres.setEstado(entrega1.Enumeraciones.estado.EN_PROCESO);
-        avtres.setGravedad(entrega1.Enumeraciones.gravedad.LEVE);
-        //avtres.setCliente("pepe");
-        avtres.setIdAviso(3L);
-        avtres.setLocalizacion(new Coordenada("36.715914", "4.477880"));
-        avtres.setDescripcion("Mi vecino aun no usa telegram y queiro matarlo");
-
-        avisos.add(avtres);
-
-        
-        Aviso avc = new Aviso();
-        avc.setPrioridad(entrega1.Enumeraciones.prioridad.MEDIA);
-        avc.setDireccion("calle catorce");
-        avc.setEstado(entrega1.Enumeraciones.estado.CERRADA);
-        avc.setGravedad(entrega1.Enumeraciones.gravedad.LEVE);
-        avc.setCliente(pep);
-        avc.setIdAviso(3L);
-        avc.setImagen("img/o2.jpg");
-        avc.setLocalizacion(new Coordenada("43.645074", "-115.993081"));
-        avc.setDescripcion("He quitado el usb en modo no seguro aiudenme");
-        avisos.add(avc);
-       // Aviso av, estado est, prioridad pr, Date fI, String instr
-        addOt(avdos, estado.EN_PROCESO, prioridad.ALTA, new Date (2016, 4, 7), "Cambiar la tapa de la alcantarilla" );
-        addOt(avc, estado.CERRADA, prioridad.MEDIA, new Date (2016, 4, 7), "Hacer un reconocimiento de la zona" );
+        Cliente cl1 = new Cliente();
+        cl1.setNombre("pepe");
+        cl1.setUsername("pepe");
+        addAviso(prioridad.MEDIA,"Calle Álamos, 25", estado.INCIDENCIA, gravedad.LEVE, cl1,"img/fuga (1).jpg", new Date(2016,3,9), "La presión del agua es muy baja en mi casa.",new Coordenada("36.715914", "-4.477880"),true,false);
+        addAviso(prioridad.ALTA,"Calle Carretería, 46", estado.NUEVA, gravedad.MEDIA, "img/fuga (1).png", new Date(2016,2,25), "Se ha producido una pequeña fuga en la tubería principal.",new Coordenada("48.067652", "12.858095"),true,false);
+        addAviso(prioridad.ALTA,"Avenida de Andalucia", estado.EN_PROCESO, gravedad.LEVE,"img/fuga (2).jpg", new Date(2016,5,1), "Revisión del alcantarillado",new Coordenada("36.715914", "4.477880"),false,true);
+        addAviso(prioridad.BAJA,"Avenida Plutarco, 58", estado.CERRADA, gravedad.ALTA, cl1,"img/fuga (3).jpg", new Date(2016,1,28), "Rotura de la válvula",new Coordenada("36.715914", "-4.477880"),true,false);
+        addOt(avisos.get(1), estado.EN_PROCESO, prioridad.ALTA, new Date (2016, 4, 7), "Cambiar la tapa de la alcantarilla" );
+        addOt(avisos.get(2), estado.CERRADA, prioridad.MEDIA, new Date (2016, 4, 7), "Hacer un reconocimiento de la zona" );
 
     }
     
@@ -209,6 +162,13 @@ public class Dbaux implements Serializable {
     }
     
    public void cerrarAviso(Long id){
-       
+       int i=0;
+        while(i<avisos.size()){
+            Aviso av = avisos.get(i);
+            if(avisos.get(i).getIdAviso().equals(id)){
+                av.setEstado(estado.CERRADA);
+                av.setFechafin(new Date(2016,5,5));
+            }
+        }
    }
 }
