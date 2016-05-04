@@ -6,7 +6,7 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:define name="title">Registro</ui:define>  
+    <ui:define name="title">Registro Operario</ui:define>  
     <ui:define name="campos-pestaña1">
         <h:form>
             <div class="row">
@@ -129,7 +129,7 @@
     <ui:define name="btn_confirmar">
         <c:choose>
            <c:when test="#{controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
-        <h:commandButton action="#{control_registro.registrarOperario()}" value="Confirmar" class="btn-primary"/>
+        <h:commandButton action="#{control_registro.registrar()}" value="Confirmar" class="btn-primary"/>
            </c:when>
             <c:otherwise>
                     <h:commandButton action="null" value="Necesita ser Administrador"  disabled="#{bean.disable}" class="btn-primary"/>    

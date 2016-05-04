@@ -26,8 +26,6 @@ public class control_registro implements Serializable {
     private String pwd1;
     private String pwd2;
 
-    private boolean skip;
-
     public String getPwd1() {
         return this.pwd1;
     }
@@ -65,52 +63,31 @@ public class control_registro implements Serializable {
             }
             else
             {
-                     
+                if(user.getZonaCargo() != null)
+                {
+                    user.setRol("SUPERVISOR");
+                }
+                else
+                {
+                    user.setRol("OPERARIO");
+                }
             }
-            database.insertNewUser(user);
-            ctrl.setUsuario(user);
-            return ctrl.home();
-        }
-        else
-        {      
-            return "register.xhtml";
-        }
-    }
-
-        public String registrarOperario()
-    {
-        // Primero comprobamos que las contraseñas coinciden
-        if (checkPasswords())
-        {
-            keepPwd(); // Guardamos esa contraseña en el perfil del usuario
-             // Luego establecemos el rol del usuario
-            if(user.getTipo() == null)
+            if(database.insertNewUser(user))
             {
-                user.setRol("OPERARIO");
+                ctrl.setUsuario(user);
+                return ctrl.home();
             }
             else
             {
-                     
-            }
-            database.insertNewUser(user);
-            ctrl.setUsuario(user);
-            return ctrl.home();
+                return "register.xhtml";
+            }  
         }
         else
         {      
             return "register.xhtml";
         }
     }
-
     
-    public boolean isSkip() {
-        return skip;
-    }
-
-    public void setSkip(boolean skip) {
-        this.skip = skip;
-    }
-
     public boolean checkPasswords() {
         return pwd1.equals(pwd2);
     }

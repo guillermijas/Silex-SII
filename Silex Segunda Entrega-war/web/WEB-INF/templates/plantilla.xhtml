@@ -22,6 +22,7 @@
             <h:form> 
                 <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></div>
                 <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/></div>
+                <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.modUser()}" value="Modificar usuario"/>
                 <c:if test="#{!empty controlAutorizacion.usuario}">
                     <c:if test="#{controlAutorizacion.rol == 'ADMINISTRADOR'}">
                         <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regOperario()}" value="Registrar Operario"/></div>
@@ -30,6 +31,7 @@
                 </c:if>
             </h:form>
         </div>
+
 
         <div id="contenido" class="container" style="width: 90%;">
             <div id="content" class="center_content">
@@ -47,7 +49,5 @@
         </div>
 
         <script src="resources/js/lightbox-plus-jquery.js"></script>
-
     </h:body>
-
 </html>

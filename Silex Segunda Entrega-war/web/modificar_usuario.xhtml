@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+A esta página tan sólo puede acceder el usuario si está logeado
+-->
+<ui:composition template="/WEB-INF/templates/plantilla_formulario.xhtml"  
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">Modificar Datos Usuario</ui:define>
+    <ui:define name="another">
+        <c:choose>
+            <c:when test="#{!empty controlAutorizacion.usuario}">
+                <div>
+                    <h3 class ="col-md-10">Modificar Usuario: <h:outputText class ="text-right" value="#{control_modificar_user.username}" /></h3>
+                    <br/>
+                </div>
+                <div class="">
+                    <h:form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Email: </label>
+                            <div class="col-xs-9">
+                                <p:inputText value ="#{control_modificar_user.email}" id="inputEmail"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Contraseña: </label>
+                            <div class="col-xs-9">
+                                <p:password value ="#{control_modificar_user.pass}" id="inputPassword" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Confirmar Contraseña: </label>
+                            <div class="col-xs-9">
+                                <p:password value ="#{control_modificar_user.pass2}" id="inputPassword2" match ="inputPassword"/>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+                <div>
+                    <h:form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Nombre: </label>
+                            <div class="col-xs-9">
+                                <p:inputText value ="#{control_modificar_user.nombre}" id="inputName"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Apellidos: </label>
+                            <div class="col-xs-9">
+                                <p:inputText value ="#{control_modificar_user.apellidos}" id="inputApellidos"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Teléfono: </label>
+                            <div class="col-xs-9">
+                                <p:inputText value ="#{control_modificar_user.telefono}" id="inputTlf"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Dirección: </label>
+                            <div class="col-xs-9">
+                                <p:inputText value ="#{control_modificar_user.direccion}" id="inputDir"/>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+                <div>
+                    <h:form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Tipo: </label>
+                            <div class="col-xs-9">
+                                <p:inputText value ="#{control_modificar_user.tipo}" id="inputTipo"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Especialización: </label>
+                            <div class="col-xs-9">
+                                <p:inputText value ="#{control_modificar_user.especializacion}" id="inputEsp"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Zona Cargo: </label>
+                            <div class="col-xs-9">
+                                <p:inputText value ="#{control_modificar_user.zonaCargo}" id="inputZone"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3">Disponibilidad: </label>
+                            <div class="col-xs-9">
+                                <p:selectBooleanCheckbox value ="#{control_modificar_user.disponibilidad}" id="inputDisp"/>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+                <div class="col-md-3 barraconfirmacion"/>
+                    <div class="col-xs-4 col-md-2 text-center barraconfirmacion">
+                        <h:commandButton action="#{control_modificar_user.update()}" value="Confirmar" class="btn-primary"/>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center barraconfirmacion">
+                        <h:commandButton action="index.xhtml" immediate="true" value="Cancelar" class="btn-danger"/>
+                    </div>
+                    <div class="col-xs-4 col-md-2 text-center barraconfirmacion">
+                        <h:commandButton action="modificar_usuario.xhtml" immediate="true" value="Limpiar" class="btn-warning"/>
+                    </div>
+            </c:when>
+            <c:otherwise>
+                <div>
+                    <h4 style="color: #31b0d5">
+                        Para modificar datos de su usuario, ha de estar logueado. Pulse <a href ="login.xhtml">aquí</a> para loguearse.
+                    </h4>     
+                </div>
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+</ui:composition>
