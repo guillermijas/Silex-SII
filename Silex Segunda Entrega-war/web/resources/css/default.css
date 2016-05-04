@@ -63,7 +63,7 @@ a:link:hover, a:visited:hover  {
     padding: 10px;
     height: auto;
     margin: 0px 0px 0px 0px;
-    width: 100% !important;
+    width: 100%;
 }
 
 .center_content {
