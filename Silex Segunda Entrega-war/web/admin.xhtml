@@ -19,11 +19,11 @@
                     <h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/>
                     <p:tabView style="width: fit-content">
                         <p:tab title="Incidencias">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:accordionPanel>
+                            <h:panelGrid columns="1" cellpadding="10">
                                     <c:forEach var="item" items="#{dbaux.getAvisosIncidencia()}">
-                                        <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
-                                            <h:panelGrid columns="2" cellpadding="10" >
+                                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500">
+                                             <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
+                                                <h:panelGrid columns="1" cellpadding="5">
                                                 <p:panelGrid columns="2">
                                                     <f:facet name="header" >
                                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
@@ -89,23 +89,20 @@
                                                             <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
                                                         </p:confirmDialog>
                                                     </h:form>
-                                                </div>
-                                            </h:panelGrid>
-
-
-                                        </p:tab>
+                                                </div>  
+                                </h:panelGrid>
+                             </p:fieldset>
                                     </c:forEach>
-                                </p:accordionPanel>
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="Nuevos">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:accordionPanel>
+                            <h:panelGrid columns="1" cellpadding="10">
                                     <c:forEach var="item" items="#{dbaux.getAvisosNueva()}">
-                                        <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
-                                            <h:panelGrid columns="2" cellpadding="10">
+                                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500">
+                                             <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
+                                                <h:panelGrid columns="1" cellpadding="5">
                                                 <p:panelGrid columns="2">
-                                                    <f:facet name="header">
+                                                    <f:facet name="header" >
                                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                                     </f:facet>    
 
@@ -125,7 +122,6 @@
                                                             <input type="checkbox" disabled="disabled" checked="checked"></input>
                                                         </c:otherwise>
                                                     </c:choose>
-
                                                     <c:choose>
                                                         <c:when test="#{item.planificado} == 'false'}">
                                                             <h:outputText value="Planificado" />
@@ -157,7 +153,7 @@
                                                 </p:panelGrid>
                                                 <div>
                                                     <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-default"/>
-                                                    <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
+                                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-default"/>
                                                     <h:form>           
                                                         <p:growl id="message" showDetail="true" />
 
@@ -170,21 +166,20 @@
                                                             <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
                                                         </p:confirmDialog>
                                                     </h:form>
-                                                </div>
-                                            </h:panelGrid>
-                                        </p:tab>
+                                                </div>  
+                                </h:panelGrid>
+                             </p:fieldset>
                                     </c:forEach>
-                                </p:accordionPanel>
                             </h:panelGrid>
                         </p:tab>
                         <p:tab title="En proceso">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:accordionPanel>
+                            <h:panelGrid columns="1" cellpadding="10">
                                     <c:forEach var="item" items="#{dbaux.getAvisosEnProceso()}">
-                                        <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
-                                            <h:panelGrid columns="2" cellpadding="10">
+                                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500">
+                                             <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
+                                                <h:panelGrid columns="1" cellpadding="5">
                                                 <p:panelGrid columns="2">
-                                                    <f:facet name="header">
+                                                    <f:facet name="header" >
                                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                                     </f:facet>    
 
@@ -204,7 +199,6 @@
                                                             <input type="checkbox" disabled="disabled" checked="checked"></input>
                                                         </c:otherwise>
                                                     </c:choose>
-
                                                     <c:choose>
                                                         <c:when test="#{item.planificado} == 'false'}">
                                                             <h:outputText value="Planificado" />
@@ -236,7 +230,7 @@
                                                 </p:panelGrid>
                                                 <div>
                                                     <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-default"/>
-                                                    <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
+                                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-default"/>
                                                     <h:form>           
                                                         <p:growl id="message" showDetail="true" />
 
@@ -249,22 +243,21 @@
                                                             <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
                                                         </p:confirmDialog>
                                                     </h:form>
-                                                </div>
-                                            </h:panelGrid>
-                                        </p:tab>
+                                                </div>  
+                                </h:panelGrid>
+                             </p:fieldset>
                                     </c:forEach>
-                                </p:accordionPanel>
                             </h:panelGrid>
                         </p:tab>
 
                         <p:tab title="Cerradas">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:accordionPanel>
+                            <h:panelGrid columns="1" cellpadding="10">
                                     <c:forEach var="item" items="#{dbaux.getAvisosCerrada()}">
-                                        <p:tab title="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}">
-                                            <h:panelGrid columns="2" cellpadding="10">
+                                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500">
+                                             <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
+                                                <h:panelGrid columns="1" cellpadding="5">
                                                 <p:panelGrid columns="2">
-                                                    <f:facet name="header">
+                                                    <f:facet name="header" >
                                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                                     </f:facet>    
 
@@ -273,9 +266,6 @@
 
                                                     <h:outputText value="Fecha Inicio" />
                                                     <h:outputText value="#{item.fechainicio}" />
-
-                                                    <h:outputText value="Fecha Fin" />
-                                                    <h:outputText value="#{item.fechafin}" />
 
                                                     <c:choose>
                                                         <c:when test="#{item.urgente} == 'false'}">
@@ -287,7 +277,6 @@
                                                             <input type="checkbox" disabled="disabled" checked="checked"></input>
                                                         </c:otherwise>
                                                     </c:choose>
-
                                                     <c:choose>
                                                         <c:when test="#{item.planificado} == 'false'}">
                                                             <h:outputText value="Planificado" />
@@ -319,7 +308,7 @@
                                                 </p:panelGrid>
                                                 <div>
                                                     <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-default"/>
-                                                    <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
+                                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-default"/>
                                                     <h:form>           
                                                         <p:growl id="message" showDetail="true" />
 
@@ -332,11 +321,10 @@
                                                             <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
                                                         </p:confirmDialog>
                                                     </h:form>
-                                                </div>
-                                            </h:panelGrid>
-                                        </p:tab>
+                                                </div>  
+                                </h:panelGrid>
+                             </p:fieldset>
                                     </c:forEach>
-                                </p:accordionPanel>
                             </h:panelGrid>
                         </p:tab>
                     </p:tabView>
@@ -349,11 +337,11 @@
 
                     <p:tabView style="width: fit-content">
                         <p:tab title="En proceso">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:accordionPanel>
+                                  <h:panelGrid columns="1" cellpadding="10">
                                     <c:forEach var="item" items="#{dbaux.getOtEnProceso()}">
-                                        <p:tab title="ID Orden de trabajo: #{item.idOT}">
-                                            <h:panelGrid columns="2" cellpadding="10" >
+                                            <p:fieldset legend="ID Orden de trabajo: #{item.idOT} creada por" toggleable="true" toggleSpeed="500">
+                                             <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
+                                                <h:panelGrid columns="1" cellpadding="5">
                                                 <p:panelGrid columns="2">
                                                     <f:facet name="header" >
                                                         <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
@@ -409,19 +397,18 @@
                                                         </p:confirmDialog>
                                                     </h:form>
                                                 </div>
-                                            </h:panelGrid>
-                                        </p:tab>
+                                </h:panelGrid>
+                             </p:fieldset>
                                     </c:forEach>
-                                </p:accordionPanel>
                             </h:panelGrid>
                         </p:tab>
 
                         <p:tab title="Cerradas">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:accordionPanel>
+                                  <h:panelGrid columns="1" cellpadding="10">
                                     <c:forEach var="item" items="#{dbaux.getOtCerradas()}">
-                                        <p:tab title="ID Orden de trabajo: #{item.idOT}">
-                                            <h:panelGrid columns="2" cellpadding="10" >
+                                            <p:fieldset legend="ID Orden de trabajo: #{item.idOT} creada por" toggleable="true" toggleSpeed="500">
+                                             <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
+                                                <h:panelGrid columns="1" cellpadding="5">
                                                 <p:panelGrid columns="2">
                                                     <f:facet name="header" >
                                                         <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
@@ -432,9 +419,6 @@
 
                                                     <h:outputText value="Fecha Inicio" />
                                                     <h:outputText value="#{item.fechainicio}" />
-
-                                                    <h:outputText value="Fecha Fin" />
-                                                    <h:outputText value="#{item.fechafin}" />
 
                                                     <c:choose>
                                                         <c:when test="#{item.aviso.urgente} == 'false'}">
@@ -466,7 +450,7 @@
                                                 </p:panelGrid>
                                                 <div>
                                                     <p:commandButton value="Modificar Orden" action="#{controlOT.modificarOT(item)}" class="btn-default"/>
-                                                    
+
                                                     <h:form>           
                                                         <p:growl id="message" showDetail="true" />
 
@@ -480,10 +464,9 @@
                                                         </p:confirmDialog>
                                                     </h:form>
                                                 </div>
-                                            </h:panelGrid>
-                                        </p:tab>
+                                </h:panelGrid>
+                             </p:fieldset>
                                     </c:forEach>
-                                </p:accordionPanel>
                             </h:panelGrid>
                         </p:tab>
                     </p:tabView>

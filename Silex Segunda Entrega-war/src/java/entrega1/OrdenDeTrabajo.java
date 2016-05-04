@@ -11,6 +11,7 @@ public class OrdenDeTrabajo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idOT;
+    private Cliente cliente;
     private Enumeraciones.estado estado;
     private Enumeraciones.prioridad prioridad;
     private String instrucciones;
@@ -36,6 +37,9 @@ public class OrdenDeTrabajo implements Serializable {
 
     public Enumeraciones.estado getEstado() {
         return estado;
+    }
+    public Cliente getCliente(){
+        return cliente;
     }
 
     public Enumeraciones.prioridad getPrioridad() {
@@ -77,7 +81,9 @@ public class OrdenDeTrabajo implements Serializable {
     public void setInstrucciones(String instrucciones) {
         this.instrucciones = instrucciones;
     }
-
+    public void setCliente(Cliente cliente){
+        this.cliente = cliente;
+    }
     public void setFechainicio(Date fechainicio) {
         this.fechainicio = fechainicio;
     }
