@@ -20,7 +20,7 @@
         </c:choose>
     </ui:define>
 
-   <ui:define name="campoAvisos">
+    <ui:define name="campoAvisos">
         <!-- avisos -->
         <h:form id="form">           
             <p:growl id="msgs" showDetail="true" />
@@ -108,15 +108,15 @@
 
                                 </div>
 
-                                <div class="col-md-4">
-                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary"/>
+                                <div class="col-md-12 text-left">
+                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-7 text-left" style="margin-bottom: 10px;">
                                     <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5 text-right">
                                     <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
-                                </div>  
+                                </div> 
 
                             </p:fieldset>
                         </c:forEach>
@@ -204,13 +204,13 @@
 
                                 </div>
 
-                                <div class="col-md-4">
-                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary"/>
+                                <div class="col-md-12 text-left">
+                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-7 text-left" style="margin-bottom: 10px;">
                                     <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5 text-right">
                                     <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
                                 </div>  
 
@@ -300,15 +300,15 @@
 
                                 </div>
 
-                                <div class="col-md-4">
-                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary"/>
+                                <div class="col-md-12 text-left">
+                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-7 text-left" style="margin-bottom: 10px;">
                                     <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5 text-right">
                                     <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
-                                </div>  
+                                </div> 
 
                             </p:fieldset>
                         </c:forEach>
@@ -397,16 +397,15 @@
 
                                 </div>
 
-                                <div class="col-md-4">
-                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary"/>
+                                <div class="col-md-12 text-left">
+                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-7 text-left" style="margin-bottom: 10px;">
                                     <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5 text-right">
                                     <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
                                 </div>  
-
                             </p:fieldset>
                         </c:forEach>
                     </h:panelGrid>
@@ -422,7 +421,7 @@
                 <!-- ordenes de trabajo -->
                 <h:form id="form1">           
                     <p:growl id="msgs" showDetail="true" />
-                                        <h3> </h3>
+                    <h3> </h3>
                     <h3 style="margin-top:0">Ordenes de trabajo</h3>
 
                     <p:tabView style="width: fit-content">
