@@ -23,14 +23,28 @@
                 <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></div>
                 <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regAviso()}" value="Nuevo Aviso"/></div>
                 <c:if test="#{!empty controlAutorizacion.usuario}">
+                    <c:if test="#{controlAutorizacion.rol == 'ADMINISTRADOR'}">
+                        <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regOperario()}" value="Registrar Operario"/></div>
+                    </c:if>
                     <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.logout()}" value="Salir"/></div>
                 </c:if>
             </h:form>
         </div>
 
-        <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
+        <div id="contenido" class="container">
+            <div id="content" class="center_content">
+                <ui:insert name="bienvenida"></ui:insert>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ui:insert name="campoAvisos"></ui:insert>
+                    </div>
+                    <div class="col-md-6">
+                        <ui:insert name="campoOT"></ui:insert>
+                    </div>
+                </div>
+            </div>
         </div>
+        
         <script src="resources/js/lightbox-plus-jquery.js"></script>
 
     </h:body>

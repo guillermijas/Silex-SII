@@ -122,6 +122,16 @@ public class Aviso implements Serializable {
         return localizacion;
     }
 
+    public String getGPS() {
+        return localizacion.toString();
+    }
+
+    public void setGPS(String gps) {
+        String latitud = gps.substring(0, gps.indexOf(" "));
+        String longitud = gps.substring(gps.lastIndexOf(" "), gps.length());
+        setLocalizacion(new Coordenada(latitud, longitud));
+    }
+
     public void setIdAviso(Long idAviso) {
         this.idAviso = idAviso;
     }
@@ -205,17 +215,6 @@ public class Aviso implements Serializable {
     public void setMunicipio(String municipio) {
         this.municipio = municipio;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     @Override
     public int hashCode() {
