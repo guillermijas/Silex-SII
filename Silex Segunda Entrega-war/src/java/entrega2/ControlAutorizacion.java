@@ -88,6 +88,10 @@ public class ControlAutorizacion implements Serializable {
         return usuario.getUsername();
     }
     
+    public String modificarUsuario(){
+        return "index.xhtml";
+    }
+    
     public String getRol(){
         return usuario.getRol();
     }

@@ -19,8 +19,9 @@
             <div id="top" class="top">
                 <h:form id="menu">
                     <ul class="menulist">
-                        <li><h:commandLink action="#{controlAutorizacion.index()}" value="Página principal"/></li>
-                        <li><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></li>
+                       
+                        <li><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></li> 
+                        <li><h:commandLink action="#{controlAutorizacion.modificarUsuario}" value="Modificar usuario"/></li>
                         <c:if test="#{!empty controlAutorizacion.usuario}">
                             <li><h:commandLink action="#{controlAutorizacion.logout()}" value="Salir"/></li>
                         </c:if>

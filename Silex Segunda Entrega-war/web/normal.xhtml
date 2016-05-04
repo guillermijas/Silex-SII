@@ -72,6 +72,7 @@
                                                                         </p:panelGrid>
                                                                         <div>
                                                                             <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-default"/>
+                                                                            <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
                                                                             <h:form>           
                                                                                 <p:growl id="message" showDetail="true" />
 
@@ -160,6 +161,7 @@
 
                                                                                 <p:commandButton value="Cerrar aviso" actionListener="#{dialogView.destroyWorld}" update="message">
                                                                                     <p:confirm header="Confirmación" message="¿Está seguro?" icon="ui-icon-alert" />
+                                                                                    <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
                                                                                 </p:commandButton>
 
                                                                                 <p:confirmDialog global="true" >
@@ -238,6 +240,7 @@
                                                                         </p:panelGrid>
                                                                         <div>
                                                                             <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-default"/>
+                                                                            <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
                                                                             <h:form>           
                                                                                 <p:growl id="message" showDetail="true" />
 
@@ -322,6 +325,7 @@ l                                                                               
                                                                         </p:panelGrid>
                                                                         <div>
                                                                             <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-default"/>
+                                                                            <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
                                                                             <h:form>           
                                                                                 <p:growl id="message" showDetail="true" />
 
@@ -405,6 +409,7 @@ l                                                                               
                                                 </p:panelGrid>
                                                 <div>
                                                 <p:commandButton value="Modificar Orden" action="#{controlAviso.modificarAviso(item.idOT)}" class="btn-default"/>
+                                                <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
                                                 <h:form>           
                                                     <p:growl id="message" showDetail="true" />
 
@@ -472,6 +477,7 @@ l                                                                               
                                                 </p:panelGrid>
                                                 <div>
                                                 <p:commandButton value="Modificar Orden" action="#{controlAviso.modificarAviso(item.idOT)}" class="btn-default"/>
+                                                <p:commandButton value="Crear Orden de Trabajo" action="regOT.xhtml" class="btn-default"/>
                                                 <h:form>           
                                                     <p:growl id="message" showDetail="true" />
 
