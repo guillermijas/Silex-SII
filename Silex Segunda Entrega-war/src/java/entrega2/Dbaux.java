@@ -8,6 +8,7 @@ package entrega2;
 import entrega1.Aviso;
 import entrega1.Cliente;
 import entrega1.Coordenada;
+import entrega1.Enumeraciones.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +16,8 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import entrega1.Enumeraciones.estado;
+import entrega1.OrdenDeTrabajo;
+import java.util.Random;
 /**
  *
  * @author operador
@@ -24,10 +27,20 @@ import entrega1.Enumeraciones.estado;
 public class Dbaux implements Serializable {
 
     private static List<Aviso> avisos = new ArrayList<>();
-   
-    private String ayy = "lmao";
+    private static List<OrdenDeTrabajo> ots = new ArrayList<>();
     private static long numb = 3L;
 
+    static void addOt(Aviso av, estado est, prioridad pr, Date fI, String instr ){
+        Random rnd = new Random();
+        OrdenDeTrabajo ot = new OrdenDeTrabajo();
+        ot.setIdOT(rnd.nextLong());
+        ot.setAviso(av);
+        ot.setPrioridad(pr);
+        ot.setEstado(est);
+        ot.setFechainicio(fI);
+        ot.setInstrucciones(instr);
+        ots.add(ot);
+    }
     static void addAviso(entrega1.Enumeraciones.prioridad prioridad, String direccion, entrega1.Enumeraciones.estado estado, entrega1.Enumeraciones.gravedad gravedad, entrega1.Cliente cliente, String img, Date fecha_inicio, String Descripcion) {
         Aviso aux = new Aviso();
         aux.setPrioridad(prioridad);
@@ -59,6 +72,7 @@ public class Dbaux implements Serializable {
 
     static void init() {
         avisos = new ArrayList<Aviso>();
+        ots = new ArrayList<OrdenDeTrabajo>();
         
         Aviso avuno = new Aviso();
         avuno.setLocalizacion(new Coordenada("36.715914", "-4.477880"));
@@ -114,12 +128,12 @@ public class Dbaux implements Serializable {
         avc.setLocalizacion(new Coordenada("43.645074", "-115.993081"));
         avc.setDescripcion("He quitado el usb en modo no seguro aiudenme");
         avisos.add(avc);
-        
+       // Aviso av, estado est, prioridad pr, Date fI, String instr
+        addOt(avdos, estado.EN_PROCESO, prioridad.ALTA, new Date (2016, 4, 7), "Cambiar la tapa de la alcantarilla" );
+        addOt(avc, estado.CERRADA, prioridad.MEDIA, new Date (2016, 4, 7), "Hacer un reconocimiento de la zona" );
+
     }
     
-    public String getAyy() {
-        return ayy;
-    }
     
     public List<Aviso> getAvisosNueva(){
         List<Aviso> lista= new ArrayList<>();
@@ -164,4 +178,37 @@ public class Dbaux implements Serializable {
         return avisos;
     }
     
+    public List<OrdenDeTrabajo> getOtEnProceso(){
+        List<OrdenDeTrabajo> lista= new ArrayList<>();
+        for(int i=0; i<ots.size();i++){
+            if(ots.get(i).getEstado().equals(estado.EN_PROCESO)){
+                lista.add(ots.get(i));
+            }
+        }
+        return lista;
+    }
+    public List<OrdenDeTrabajo> getOtCerradas(){
+        List<OrdenDeTrabajo> lista= new ArrayList<>();
+        for(int i=0; i<ots.size();i++){
+            if(ots.get(i).getEstado().equals(estado.CERRADA)){
+                lista.add(ots.get(i));
+            }
+        }
+        return lista;
+    }
+    
+    public void cerrarOt(Long id){
+        int i=0;
+        while(i<ots.size()){
+            OrdenDeTrabajo oott = ots.get(i);
+            if(ots.get(i).getIdOT().equals(id)){
+                oott.setEstado(estado.CERRADA);
+                oott.setFechafin(new Date(2016,5,5));
+            }
+        }
+    }
+    
+   public void cerrarAviso(Long id){
+       
+   }
 }
