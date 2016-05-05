@@ -10,7 +10,7 @@
     <ui:define name="bienvenida">
         <c:choose>
             <c:when test="#{controlAutorizacion.usuario.rol == 'CLIENTE'}">
-                <h2>Cliente</h2>
+                <h1>Cliente</h1>
 
             </c:when>
             <c:otherwise>
@@ -107,14 +107,12 @@
 
                                 </div>
 
-                               <div class="col-md-12 text-left">
-                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
+                               <div class="col-md-7 text-left">
+                                    <p:commandButton value="Modificar" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
-                                <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
-                                </div>
+                               
                                 <div class="col-md-5 text-right">
-                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
+                                    <p:commandButton value="Cancelar" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
                                 </div> 
 
                             </p:fieldset>
@@ -203,16 +201,6 @@
 
                                 </div>
 
-                             <div class="col-md-12 text-left">
-                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
-                                </div>
-                                <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
-                                </div>
-                                <div class="col-md-5 text-right">
-                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
-                                </div> 
-
                             </p:fieldset>
                         </c:forEach>
                     </h:panelGrid>
@@ -299,16 +287,7 @@
 
                                 </div>
 
-                               <div class="col-md-12 text-left">
-                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
-                                </div>
-                                <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
-                                </div>
-                                <div class="col-md-5 text-right">
-                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
-                                </div> 
-
+                              
                             </p:fieldset>
                         </c:forEach>
                     </h:panelGrid>
@@ -395,16 +374,6 @@
                                     </div>
 
                                 </div>
-
-                                <div class="col-md-12 text-left">
-                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
-                                </div>
-                                <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
-                                </div>
-                                <div class="col-md-5 text-right">
-                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
-                                </div> 
 
                             </p:fieldset>
                         </c:forEach>

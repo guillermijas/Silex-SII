@@ -41,6 +41,9 @@ public class Aviso implements Serializable {
     private Operario operario;
 
     public Aviso() {
+        localizacion=new Coordenada();
+        cliente = new Cliente();
+        
     }
 
     public static long getSerialVersionUID() {

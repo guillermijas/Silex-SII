@@ -10,7 +10,7 @@
     <ui:define name="bienvenida">
         <c:choose>
             <c:when test="#{controlAutorizacion.rol == 'OPERARIO'}">
-                <h2>Empleado</h2>
+                <h1>Empleado</h1>
 
             </c:when>
             <c:otherwise>
@@ -418,8 +418,8 @@
             <c:when test="#{controlAutorizacion.rol == 'OPERARIO'}">
                 <h:form id="form1">           
                     <p:growl id="msgs" showDetail="true" />
-                    <h3 style="margin-top:0">Ordenes de trabajo</h3>
-                    <p:tabView style="width: fit-content">
+                    <h3>Órdenes de trabajo</h3>
+                    <p:tabView style="width: 90%">
                         <p:tab title="En proceso">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getOtEnProceso()}">

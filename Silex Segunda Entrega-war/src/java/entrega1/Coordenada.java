@@ -17,6 +17,9 @@ public class Coordenada implements Serializable {
     private String height = "0.0";
     private String lenght = "0.0";
 
+    public Coordenada(){
+        
+    }
     public Coordenada(String h, String l) {
         this.height = h;
         this.lenght = l;
