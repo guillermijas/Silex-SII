@@ -397,15 +397,7 @@
 
                                 </div>
 
-                                <div class="col-md-12 text-left">
-                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
-                                </div>
-                                <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
-                                </div>
-                                <div class="col-md-5 text-right">
-                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
-                                </div>  
+                                
                             </p:fieldset>
                         </c:forEach>
                     </h:panelGrid>
@@ -424,70 +416,106 @@
                     <h3> </h3>
                     <h3 style="margin-top:0">Órdenes de trabajo</h3>
 
-                    <p:tabView style="width: 90%">
+                    <p:tabView style="width: 100%">
                         <p:tab title="En proceso">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getOtEnProceso()}">
-                                    <p:fieldset legend="ID Orden de trabajo: #{item.idOT}" toggleable="true" toggleSpeed="500">
-                                        <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
-                                        <h:panelGrid columns="1" cellpadding="5">
-                                            <p:panelGrid columns="2">
-                                                <f:facet name="header" >
-                                                    <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
-                                                </f:facet>    
+                                    <p:fieldset legend="ID Aviso: #{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
-                                                <h:outputText value="Dirección" />
+                                        <div class="row">
+                                            <div class="col-md-12 text-center" style="margin-bottom: 10px;">
+                                                <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Dirección: " class="bold"/>
+                                            </div>
+                                            <div class="col-md-9">
                                                 <h:outputText value="#{item.aviso.direccion}" />
-
-                                                <h:outputText value="Fecha Inicio" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Fecha inicio: " class="bold"/>
+                                            </div>
+                                            <div class="col-md-9">
                                                 <h:outputText value="#{item.fechainicio}" />
-
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Urgente: " class="bold" />
+                                            </div>
+                                            <div class="col-md-9">
                                                 <c:choose>
                                                     <c:when test="#{item.aviso.urgente}">
-                                                        <h:outputText value="Urgente" />
                                                         <input type="checkbox" disabled="enabled"></input>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <h:outputText value="Urgente" />
                                                         <input type="checkbox" disabled="disabled" checked="checked"></input>
                                                     </c:otherwise>
                                                 </c:choose>
-                                                <h:outputText value="Gravedad" />
-                                                <h:outputText value="#{item.aviso.gravedad}" />
-
-
-                                                <h:outputText value="Estado" />
-                                                <h:outputText value="#{item.estado}" />
-
-
-                                                <h:outputText value="Prioridad" />
-                                                <h:outputText value="#{item.prioridad}" />
-
-                                                <h:outputText value="Instrucciones" />
-                                                <h:outputText value="#{item.instrucciones}" />  
-
-                                                <h:outputText value ="Ubicación" />
-                                                <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
-
-                                            </p:panelGrid>
-                                            <div>
-                                                <p:commandButton value="Modificar Orden" action="#{controlOT.modificarOT(item)}" class="btn-default"/>
-
-                                                <h:form>           
-                                                    <p:growl id="message" showDetail="true" />
-
-                                                    <p:commandButton value="Cerrar Orden de Trabajo" actionListener="#{dialogView.destroyWorld}" update="message">
-                                                        <p:confirm header="Confirmación" message="¿Está seguro?" icon="ui-icon-alert" />
-                                                    </p:commandButton>
-
-                                                    <p:confirmDialog global="true" >
-                                                        <p:commandButton value="Si" type="button" action="#{dbaux.cerrarOt(item.idOT)}" oncomplete="deleteDlg.hide();" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
-                                                    </p:confirmDialog>
-                                                </h:form>
                                             </div>
-                                        </h:panelGrid>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Planificado: " class="bold"/>
+
+                                            </div>
+                                            <div class="col-md-9">
+                                                <c:choose>
+                                                    <c:when test="#{item.aviso.planificado}">
+                                                        <input type="checkbox" disabled="enabled"></input>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Gravedad: " class="bold"/>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h:outputText value="#{item.aviso.gravedad}" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Estado: " class="bold" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h:outputText value="#{item.estado}" />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <h:outputText value="Prioridad: " class="bold" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h:outputText value="#{item.prioridad}" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Descripción: " class="bold" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h:outputText value="#{item.aviso.descripcion}" />  
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Instrucciones: " class="bold" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h:outputText value="#{item.instrucciones}" />  
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value ="Ubicación: " class="bold" />
+                                            </div>
+                                            <div class="col-md-9" style="margin-bottom: 10px;">
+                                                <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-7 text-left">
+                                            <p:commandButton value="Modificar Orden" action="#{controlOT.modificarOT(item)}" class="btn-primary" style="margin-bottom: 10px"/>
+                                        </div>
+                                        
+                                        <div class="col-md-5 text-right">
+                                            <p:commandButton value="Cerrar Orden" action="#{dbaux.cerrarOt(item.idOT)}" class="btn-danger"/>
+                                        </div> 
+
                                     </p:fieldset>
+
+
                                 </c:forEach>
                             </h:panelGrid>
                         </p:tab>
@@ -495,66 +523,101 @@
                         <p:tab title="Cerradas">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getOtCerradas()}">
-                                    <p:fieldset legend="ID Orden de trabajo: #{item.idOT}" toggleable="true" toggleSpeed="500">
-                                        <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}"/>
-                                        <h:panelGrid columns="1" cellpadding="5">
-                                            <p:panelGrid columns="2">
-                                                <f:facet name="header" >
-                                                    <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
-                                                </f:facet>    
+                                    <p:fieldset legend="ID Aviso: #{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
-                                                <h:outputText value="Dirección" />
+                                        <div class="row">
+                                            <div class="col-md-12 text-center" style="margin-bottom: 10px;">
+                                                <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Dirección: " class="bold"/>
+                                            </div>
+                                            <div class="col-md-9">
                                                 <h:outputText value="#{item.aviso.direccion}" />
-
-                                                <h:outputText value="Fecha Inicio" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Fecha inicio: " class="bold"/>
+                                            </div>
+                                            <div class="col-md-9">
                                                 <h:outputText value="#{item.fechainicio}" />
-
+                                            </div>
+                                             <div class="col-md-3">
+                                                <h:outputText value="Fecha fin: " class="bold"/>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h:outputText value="#{item.fechafin}" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Urgente: " class="bold" />
+                                            </div>
+                                            <div class="col-md-9">
                                                 <c:choose>
-                                                    <c:when test="#{item.aviso.urgente} == 'false'}">
-                                                        <h:outputText value="Urgente" />
-                                                        <input type="checkbox" disabled="disabled"></input>
+                                                    <c:when test="#{item.aviso.urgente}">
+                                                        <input type="checkbox" disabled="enabled"></input>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <h:outputText value="Urgente" />
                                                         <input type="checkbox" disabled="disabled" checked="checked"></input>
                                                     </c:otherwise>
                                                 </c:choose>
-                                                <h:outputText value="Gravedad" />
-                                                <h:outputText value="#{item.aviso.gravedad}" />
-
-
-                                                <h:outputText value="Estado" />
-                                                <h:outputText value="#{item.estado}" />
-
-
-                                                <h:outputText value="Prioridad" />
-                                                <h:outputText value="#{item.prioridad}" />
-
-                                                <h:outputText value="Instrucciones" />
-                                                <h:outputText value="#{item.instrucciones}" />  
-
-                                                <h:outputText value ="Ubicación" />
-                                                <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
-
-                                            </p:panelGrid>
-                                            <div>
-                                                <p:commandButton value="Modificar Orden" action="#{controlOT.modificarOT(item)}" class="btn-default"/>
-
-                                                <h:form>           
-                                                    <p:growl id="message" showDetail="true" />
-
-                                                    <p:commandButton value="Cerrar Orden de Trabajo" actionListener="#{dialogView.destroyWorld}" update="message">
-                                                        <p:confirm header="Confirmación" message="¿Está seguro?" icon="ui-icon-alert" />
-                                                    </p:commandButton>
-
-                                                    <p:confirmDialog global="true" >
-                                                        <p:commandButton value="Si" type="button" action="#{dbaux.cerrarOt(item.idOT)}" oncomplete="deleteDlg.hide();" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" oncomplete="deleteDlg.hide();" icon="ui-icon-close" />
-                                                    </p:confirmDialog>
-                                                </h:form>
                                             </div>
-                                        </h:panelGrid>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Planificado: " class="bold"/>
+
+                                            </div>
+                                            <div class="col-md-9">
+                                                <c:choose>
+                                                    <c:when test="#{item.aviso.planificado}">
+                                                        <input type="checkbox" disabled="enabled"></input>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Gravedad: " class="bold"/>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h:outputText value="#{item.aviso.gravedad}" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Estado: " class="bold" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h:outputText value="#{item.estado}" />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <h:outputText value="Prioridad: " class="bold" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h:outputText value="#{item.prioridad}" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Descripción: " class="bold" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h:outputText value="#{item.aviso.descripcion}" />  
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value="Instrucciones: " class="bold" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                <h:outputText value="#{item.instrucciones}" />  
+                                            </div>
+                                            <div class="col-md-3">
+                                                <h:outputText value ="Ubicación: " class="bold" />
+                                            </div>
+                                            <div class="col-md-9" style="margin-bottom: 10px;">
+                                                <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
+                                            </div>
+
+                                        </div>
+
+                                      
+
                                     </p:fieldset>
+
                                 </c:forEach>
                             </h:panelGrid>
                         </p:tab>
