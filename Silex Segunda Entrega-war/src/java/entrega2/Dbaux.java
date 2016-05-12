@@ -119,8 +119,8 @@ public class Dbaux implements Serializable {
         cl1.setUsername("manolo");
         
         
-        addAviso(prioridad.MEDIA, u1, "Calle Álamos, 25", estado.INCIDENCIA, gravedad.LEVE, cl1, "img/fuga (1).jpg", new Date(2016, 3, 9), "La presión del agua es muy baja en mi casa.", new Coordenada("36.715914", "-4.477880"), true, false);
-        addAviso(prioridad.ALTA, u2, "Calle Carretería, 46", estado.NUEVA, gravedad.MEDIA, "img/fuga (1).png", new Date(2016, 2, 25), "Se ha producido una pequeña fuga en la tubería principal.", new Coordenada("48.067652", "12.858095"), true, false);
+        addAviso(prioridad.MEDIA, u1, "Calle Álamos, 25", estado.INCIDENCIA, gravedad.LEVE, "img/fuga (1).jpg", new Date(2016, 3, 9), "La presión del agua es muy baja en mi casa.", new Coordenada("36.715914", "-4.477880"), true, false);
+        addAviso(prioridad.ALTA, u2, "Calle Carretería, 46", estado.NUEVA, gravedad.MEDIA,cl1, "img/fuga (1).png", new Date(2016, 2, 25), "Se ha producido una pequeña fuga en la tubería principal.", new Coordenada("48.067652", "12.858095"), true, false);
         addAviso(prioridad.ALTA, u1, "Avenida de Andalucia", estado.EN_PROCESO, gravedad.LEVE, "img/fuga (2).jpg", new Date(2016, 5, 1), "Revisión del alcantarillado", new Coordenada("36.715914", "4.477880"), false, true);
         addAviso(prioridad.BAJA, u3, "Avenida Plutarco, 58", estado.CERRADA, gravedad.ALTA, cl1, "img/fuga (3).jpg", new Date(2016, 1, 28), "Rotura de la válvula", new Coordenada("36.715914", "-4.477880"), true, false);
         
@@ -130,7 +130,7 @@ public class Dbaux implements Serializable {
         addOt(avisos.get(1), estado.EN_PROCESO, prioridad.ALTA, new Date(2016, 4, 7), "Cambiar la tapa de la alcantarilla",ops);
         ops.remove(u1);
         addOt(avisos.get(2), estado.CERRADA, prioridad.MEDIA, new Date(2016, 4, 7), "Hacer un reconocimiento de la zona",ops);
-
+        ots.get(1).setFechafin(new Date(2016,5,6));
     }
 
     public List<Aviso> getAvisosNueva() {
