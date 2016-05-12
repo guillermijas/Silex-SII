@@ -118,18 +118,14 @@ public class control_modificar_user implements Serializable
     
     public String update() // Actualiza los cambios en la base de datos y redirige al usuario a la pagina principal
     {
-        if(checkPasswords())
+        
+        if(getPass() != null && checkPasswords())
         {
-            keepPwd();
+            keepPwd();   
+        }
             FacesMessage msg = new FacesMessage("Modificación realizada con éxito", "Usuario " + getUsername() + " modificado");
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return ctrl.home();
-        }
-        else
-        {
-            return "modificar_usuario.xhtml";
-        }
-        
     }
     
     public boolean checkPasswords()

@@ -5,15 +5,44 @@
  */
 package baseDeDatos;
 
+import entrega1.Usuario;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author Charlie
- */
 @Stateless
 public class BaseDeDatos implements BaseDeDatosLocal {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @PersistenceContext(unitName = "DataBasePU")
+    
+      private static final int TAM_CADENA_VALIDACION = 20;
+
+    private EntityManager em;
+    
+    @Override
+    public void insertarUsuario(Usuario us) throws EMASAException{
+       
+        Usuario user = em.find(Usuario.class, us.getUsername());
+        if (user != null) {
+            // El usuario ya existe
+            throw new UsuarioExistenteException();
+        }
+    }
+
+    @Override
+    public void eliminarUsuario(Usuario us) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificarUsuario(Usuario us) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean estaRegistrado(Usuario us) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
 }

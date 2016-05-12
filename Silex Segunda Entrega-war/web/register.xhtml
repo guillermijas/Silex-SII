@@ -8,55 +8,58 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">Registro</ui:define>
 
-            <ui:define name="titulo-pestaña1">
-                <h3>Login</h3>
-            </ui:define>
+    <ui:define name="titulo-pestaña1">
+        <h3>Login</h3>
+    </ui:define>
 
-            <ui:define name="titulo-pestaña2">
-                <h3>Datos Usuario</h3>
-            </ui:define>
-    
-            <ui:define name="titulo-pestaña3">
-                <h3>Información profesional</h3>
-            </ui:define>
+    <ui:define name="titulo-pestaña2">
+        <h3>Datos Usuario</h3>
+    </ui:define>
 
-    
+    <ui:define name="titulo-pestaña3">
+        <h3>Información profesional</h3>
+    </ui:define>
+
+
     <ui:define name="campos-pestaña1">
         <h:form>
             <div class="row">
                 <div class="col-md-6">
-                    <h:outputText value="Nombre de usuario: *" />
+                    <h:outputText  value="Nombre de usuario: *" />
                 </div>
                 <div class="col-md-6">
-                    <p:inputText value="#{control_registro.user.username}" required="true" label="Nombre de usuario: *" requiredMessage="Campo Obligatorio"/>
+                    <p:inputText id="username" value="#{control_registro.user.username}" required="true" label="Nombre de usuario: *" requiredMessage="Campo Obligatorio"/>
                     <br/>
+                    <h:message for="username"/>
                 </div>
                 <div class="col-md-6">
                     <h:outputText value="Email: *" />
                 </div>
                 <div class="col-md-6">
-                    <p:inputText value="#{control_registro.user.email}" required ="true" validatorMessage="Formato de email incorrecto">
-                        <f:validateRegex pattern=".+@.+"/>
-                        <!--
-                        La expresión es
-                        "([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+"
-                        -->
+                    <p:inputText id = "email" value="#{control_registro.user.email}" required ="true" validatorMessage="Formato de email incorrecto">
+                        <f:validateRegex pattern="[0-9a-zA-Z._-]+@[0-9a-zA-Z._-]+(\.[0-9a-zA-Z._-]+)+"/>
                     </p:inputText>
                     <br/>
+                    <h:message for="email"/>
                 </div>
                 <div class="col-md-6">
                     <h:outputText value="Contraseña: *" />
                 </div>
                 <div class="col-md-6">
-                    <p:password id = "pwd1" value="#{control_registro.pwd1}" required="true" label="Contraseña" match="pwd2" validatorMessage="Contraseñas incorrectas"/>
+                    <p:password id = "pwd1" value="#{control_registro.pwd1}" required="true" label="Contraseña" match="pwd2" validatorMessage="Contraseñas incorrectas">
+                        <f:validateLength minimum="8"/>
+                    </p:password>
                     <br/>
                 </div>
                 <div class="col-md-6">
                     <h:outputText value="Repetir contraseña: *" />
                 </div>
                 <div class="col-md-6">
-                    <p:password id = "pwd2" value="#{control_registro.pwd2}" required="true" label="Contraseña2"/>
+                    <p:password id = "pwd2" value="#{control_registro.pwd2}" required="true" label="Contraseña2">
+                        <f:validateLength minimum="8"/>
+                    </p:password>
                     <br/>
+                    <h:message for="pwd1"/>
                 </div>
             </div>
         </h:form>

@@ -5,6 +5,7 @@
  */
 package baseDeDatos;
 
+import entrega1.Usuario;
 import javax.ejb.Local;
 
 /**
@@ -12,6 +13,10 @@ import javax.ejb.Local;
  * @author Charlie
  */
 @Local
-public interface BaseDeDatosLocal {
-    
+public interface BaseDeDatosLocal 
+{
+    public void insertarUsuario(Usuario us) throws EMASAException;
+    public void eliminarUsuario(Usuario us) throws EMASAException;
+    public void modificarUsuario(Usuario us) throws EMASAException;
+    public boolean estaRegistrado(Usuario us) throws EMASAException;
 }

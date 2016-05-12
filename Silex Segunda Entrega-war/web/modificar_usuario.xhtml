@@ -96,15 +96,17 @@ A esta página tan sólo puede acceder el usuario si está logeado
                     </h:form>
                 </div>
                 <div class="col-md-3 barraconfirmacion"/>
+                <h:form id="button_bar">
                     <div class="col-xs-4 col-md-2 text-center barraconfirmacion">
-                        <h:commandButton action="#{control_modificar_user.update()}" value="Confirmar" class="btn-primary"/>
+                        <h:commandButton action="#{control_modificar_user.update()}" value="Confirmar" styleClass="btn-primary"/>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center barraconfirmacion">
-                        <h:commandButton action="index.xhtml" immediate="true" value="Cancelar" class="btn-danger"/>
+                        <h:commandButton action="#{controlAutorizacion.home()}" immediate="true" value="Cancelar" styleClass="btn-danger"/>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center barraconfirmacion">
-                        <h:commandButton action="modificar_usuario.xhtml" immediate="true" value="Limpiar" class="btn-warning"/>
+                        <h:commandButton action="#{controlAutorizacion.modUser()}" immediate="true" value="Limpiar" styleClass="btn-warning"/>
                     </div>
+                </h:form>
             </c:when>
             <c:otherwise>
                 <div>
