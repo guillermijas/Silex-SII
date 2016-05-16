@@ -1,11 +1,15 @@
 package entrega1;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Usuario implements Serializable {
@@ -35,7 +39,14 @@ public class Usuario implements Serializable {
     private String tipo;
     private String especializacion;
     private boolean disponibilidad;
-
+    
+    // Para el registro, rellenable de forma automática
+    private String cadenaValidacion = null;
+    
+    @ManyToMany
+    @JoinTable(name = "usuario_ordenestrabajo", joinColumns = @JoinColumn(name = "usuario_fk"), inverseJoinColumns = @JoinColumn(name = "ordenes_fk"))
+    private List<OrdenDeTrabajo> ordenesTrabajo;
+    
     public Usuario() {
 
     }
@@ -45,9 +56,27 @@ public class Usuario implements Serializable {
         this.password = password;
         this.rol = rol;
     }
+    
+    public List<OrdenDeTrabajo> getOrdenesTrabajo() {
+        return ordenesTrabajo;
+    }
+
+    public void setOrdenesTrabajo(List<OrdenDeTrabajo> ordenes) {
+        this.ordenesTrabajo = ordenes;
+    }
 
     public String getUsername() {
         return this.username;
+    }
+    
+    public String getCadenaValidacion()
+    {
+        return this.cadenaValidacion;
+    }
+    
+    public void setCadenaValidacion(String cad)
+    {
+        this.cadenaValidacion = cad;
     }
 
     public void setUsername(String user) {
@@ -140,7 +169,7 @@ public class Usuario implements Serializable {
     
     public void setSexo(String sex)
     {
-        this.sexo = sexo;
+        this.sexo = sex;
     }
 
     public void setZonaCargo(String zonaCargo) {

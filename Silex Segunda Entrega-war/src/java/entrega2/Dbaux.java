@@ -10,7 +10,6 @@ import entrega1.Cliente;
 import entrega1.Coordenada;
 import entrega1.Enumeraciones;
 import entrega1.Enumeraciones.*;
-import entrega1.Operario;
 
 import java.io.Serializable;
 import java.util.ArrayList;

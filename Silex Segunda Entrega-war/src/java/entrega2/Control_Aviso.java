@@ -10,6 +10,10 @@ import java.io.Serializable;
 public class Control_Aviso implements Serializable {
 
     private Aviso aviso;
+    
+    public Control_Aviso(){
+        
+    }
 
     public void setAviso(Aviso aviso) {
         this.aviso = aviso;

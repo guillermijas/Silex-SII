@@ -17,6 +17,8 @@ public interface BaseDeDatosLocal
 {
     public void insertarUsuario(Usuario us) throws EMASAException;
     public void eliminarUsuario(Usuario us) throws EMASAException;
-    public void modificarUsuario(Usuario us) throws EMASAException;
+    public void actualizarUsuario(Usuario us) throws EMASAException;
     public boolean estaRegistrado(Usuario us) throws EMASAException;
+    public void compruebaLogin(Usuario us) throws EMASAException;
+    public void validarUsuario(Usuario us, String validacion) throws EMASAException;
 }

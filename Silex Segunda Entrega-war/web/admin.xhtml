@@ -420,6 +420,8 @@
                         <p:tab title="En proceso">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getOtEnProceso()}">
+                                    <p:fieldset legend="ID Aviso: #{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                                 <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
@@ -521,6 +523,8 @@
                         <p:tab title="Cerradas">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getOtCerradas()}">
+                                    <p:fieldset legend="ID Aviso: #{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                                 <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
@@ -607,13 +611,8 @@
                                             <div class="col-md-9" style="margin-bottom: 10px;">
                                                 <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                             </div>
-
                                         </div>
-
-                                      
-
                                     </p:fieldset>
-
                                 </c:forEach>
                             </h:panelGrid>
                         </p:tab>
