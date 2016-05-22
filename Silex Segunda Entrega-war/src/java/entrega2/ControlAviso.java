@@ -1,18 +1,28 @@
 package entrega2;
 
+import baseDeDatos.BaseDeDatosLocal;
+import baseDeDatos.EMASAException;
 import entrega1.*;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.ejb.EJB;
+import javax.inject.Inject;
 
 @Named(value = "controlAviso")
 @SessionScoped
-public class Control_Aviso implements Serializable {
+public class ControlAviso implements Serializable {
 
     private Aviso aviso;
     
-    public Control_Aviso(){
-        
+    @EJB
+    private BaseDeDatosLocal basededatos;
+    
+    @Inject
+    private ControlAutorizacion ctrl;
+    
+    public ControlAviso(){
+        aviso = new Aviso();
     }
 
     public void setAviso(Aviso aviso) {
@@ -35,6 +45,12 @@ public class Control_Aviso implements Serializable {
         setAviso(new Aviso());
         String page = "regAviso.xhtml";
         return page;
+    }
+    
+    public String addAviso() throws EMASAException
+    {
+        basededatos.insertarAviso(aviso);
+        return ctrl.home();
     }
 
     public String finalizarModifAviso() {
@@ -77,6 +93,7 @@ public class Control_Aviso implements Serializable {
     }
 
     public String getGPS() {
+        if (aviso.getLocalizacion() == null) return "";
         return aviso.getLocalizacion().getHeight() + " , " + aviso.getLocalizacion().getLenght();
     }
 

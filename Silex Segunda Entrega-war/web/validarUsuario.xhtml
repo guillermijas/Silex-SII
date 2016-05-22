@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <!--
-A esta página tan sólo puede acceder el usuario tras registrarse
+A esta página tan sólo puede acceder el usuario desde el enlace de validación
 -->
-<ui:composition template="/WEB-INF/templates/plantilla_formulario.xhtml"  
+<ui:composition template="/WEB-INF/templates/plantilla_validacion.xhtml"  
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:define name="title">Registro completo</ui:define>
-    
-    
-    
+    <ui:define name="title">Activando cuenta</ui:define>
+
+    <ui:define name="contenido">
+        <f:view>
+            <f:metadata>
+                <f:viewParam name="username" value="#{controlRegistro.username}"/>
+                <f:viewParam name="codigoValidacion" value="#{controlRegistro.validacion}"/>
+                <c:if test="#{controlRegistro.datosCorrectos()}">
+                    <f:viewAction action="#{controlRegistro.validarCuenta()}"/>
+                </c:if>
+            </f:metadata>
+        </f:view>
+        <c:choose>
+            <c:when test="#{controlRegistro.datosCorrectos()}">
+                <h:outputText value="#{controlRegistro.mensajeValidacion}"/>
+                <p><h:commandButton action="#{controlAutorizacion.home()}" value="Página Principal"/></p>
+            </c:when>
+            <c:otherwise>
+                <p>No tiene autorización para acceder a esta página, por favor, regístrese o entre en el sistema <a href="login.xhtml">aquí</a></p>
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+
 </ui:composition>

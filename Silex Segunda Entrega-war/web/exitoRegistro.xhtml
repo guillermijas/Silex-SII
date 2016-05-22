@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+A esta página tan sólo puede acceder el usuario tras registrarse
+-->
+<ui:composition template="/WEB-INF/templates/plantilla_validacion.xhtml"  
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">
+        <c:choose>
+            <c:when test="#{controlRegistro.comprobarRegistro()}">
+                    Registro con éxito
+                </c:when>
+                <c:otherwise>
+                    Acceso irregular
+                </c:otherwise>
+            </c:choose>
+    </ui:define>
+    
+    <ui:define name ="contenido">
+        <c:choose>
+            <c:when test="#{controlRegistro.comprobarRegistro()}">
+                <div>
+                    <p>Registro completado con éxito. Se ha enviado un mensaje de validación a su correo
+                        electrónico. Compruébelo y pulse el enlace para validar su cuenta.</p>
+                    <p><h:link outcome="login.xhtml">Ir a la página de login</h:link></p>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <p>No tiene autorización para acceder a esta página. Por favor, regístrese o acceda al sistema <a href="login.xhtml">aquí</a></p>
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+    
+</ui:composition>

@@ -21,7 +21,7 @@ public class OrdenDeTrabajo implements Serializable {
     private Date fechafin;
     @OneToOne(targetEntity = Aviso.class)
     private Aviso aviso;
-    @ManyToMany(mappedBy = "ordenesTrabajo")
+    @ManyToMany(mappedBy = "usuario_ordenesTrabajo")
     private List<Usuario> operarios;
 
     public OrdenDeTrabajo() {

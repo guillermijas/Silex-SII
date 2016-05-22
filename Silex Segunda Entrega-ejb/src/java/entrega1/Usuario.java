@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Usuario implements Serializable {
@@ -17,9 +20,73 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private String username;
+    
+    @OneToMany(targetEntity = Aviso.class)
+    private List<Aviso> listaAvisos_CallCenter;
+    
+    @OneToMany(targetEntity = Aviso.class)
+    private List<Aviso> listaAvisos_supervisor;
+    /*
+    @OneToMany(targetEntity = OrdenDeTrabajo.class)
+    private List<OrdenDeTrabajo> ordentrabajo_supervisor;
+    */
+
+    @ManyToMany
+    @JoinTable(name = "usuario_ordenesTrabajo", joinColumns = @JoinColumn(name = "usuario_fk"), inverseJoinColumns = @JoinColumn(name = "ordenes_fk"))
+    private List<OrdenDeTrabajo> usuario_ordenesTrabajo;
+
+    @OneToMany(mappedBy = "operario", fetch = FetchType.LAZY, targetEntity = Aviso.class)
+    private List<Aviso> listaAvisos_operario;
+
+    public List<Aviso> getListaAvisos_CallCenter() {
+        return listaAvisos_CallCenter;
+    }
+
+    public void setListaAvisos_CallCenter(List<Aviso> listaAvisos_CallCenter) {
+        this.listaAvisos_CallCenter = listaAvisos_CallCenter;
+    }
+
+    public List<Aviso> getListaAvisos_supervisor() {
+        return listaAvisos_supervisor;
+    }
+
+    public void setListaAvisos_supervisor(List<Aviso> listaAvisos_supervisor) {
+        this.listaAvisos_supervisor = listaAvisos_supervisor;
+    }
+
+    public List<OrdenDeTrabajo> getUsuario_ordenesTrabajo() {
+        return usuario_ordenesTrabajo;
+    }
+
+    public void setUsuario_ordenesTrabajo(List<OrdenDeTrabajo> usuario_ordenesTrabajo) {
+        this.usuario_ordenesTrabajo = usuario_ordenesTrabajo;
+    }
+
+    public List<Aviso> getListaAvisos_operario() {
+        return listaAvisos_operario;
+    }
+
+    public void setListaAvisos_operario(List<Aviso> listaAvisos_operario) {
+        this.listaAvisos_operario = listaAvisos_operario;
+    }
+
+    public Usuario getCapataz() {
+        return capataz;
+    }
+
+    public void setCapataz(Usuario capataz) {
+        this.capataz = capataz;
+    }
+
+    @ManyToOne(targetEntity = Usuario.class)
+    private Usuario capataz;
+
+    @OneToMany(targetEntity = Usuario.class)
+    List<Usuario> operariosRelacionados;
 
     // Usuario
-    private String username;
+    
     private String password;
     private String rol;
 
@@ -42,11 +109,8 @@ public class Usuario implements Serializable {
     
     // Para el registro, rellenable de forma automática
     private String cadenaValidacion = null;
-    
-    @ManyToMany
-    @JoinTable(name = "usuario_ordenestrabajo", joinColumns = @JoinColumn(name = "usuario_fk"), inverseJoinColumns = @JoinColumn(name = "ordenes_fk"))
-    private List<OrdenDeTrabajo> ordenesTrabajo;
-    
+    private boolean registroOk = false;
+
     public Usuario() {
 
     }
@@ -57,12 +121,20 @@ public class Usuario implements Serializable {
         this.rol = rol;
     }
     
+    public boolean isRegistroOk() {
+        return registroOk;
+    }
+
+    public void setRegistroOk(boolean registroOk) {
+        this.registroOk = registroOk;
+    }
+    
     public List<OrdenDeTrabajo> getOrdenesTrabajo() {
-        return ordenesTrabajo;
+        return usuario_ordenesTrabajo;
     }
 
     public void setOrdenesTrabajo(List<OrdenDeTrabajo> ordenes) {
-        this.ordenesTrabajo = ordenes;
+        this.usuario_ordenesTrabajo = ordenes;
     }
 
     public String getUsername() {

@@ -14,7 +14,7 @@ A esta página tan sólo puede acceder el usuario si está logeado
         <c:choose>
             <c:when test="#{!empty controlAutorizacion.usuario}">
                 <div>
-                    <h3 class ="col-md-10">Modificar Usuario: <h:outputText class ="text-right" value="#{control_modificar_user.username}" /></h3>
+                    <h3 class ="col-md-10">Modificar Usuario: <h:outputText class ="text-right" value="#{ControlModificarUsuario.username}" /></h3>
                     <br/>
                 </div>
                 <div class="">
@@ -22,19 +22,19 @@ A esta página tan sólo puede acceder el usuario si está logeado
                         <div class="form-group">
                             <label class="control-label col-xs-3">Email: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{control_modificar_user.email}" id="inputEmail"/>
+                                <p:inputText value ="#{ControlModificarUsuario.email}" id="inputEmail"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Contraseña: </label>
                             <div class="col-xs-9">
-                                <p:password value ="#{control_modificar_user.pass}" id="inputPassword" />
+                                <p:password value ="#{ControlModificarUsuario.pass}" id="inputPassword" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Confirmar Contraseña: </label>
                             <div class="col-xs-9">
-                                <p:password value ="#{control_modificar_user.pass2}" id="inputPassword2" match ="inputPassword"/>
+                                <p:password value ="#{ControlModificarUsuario.pass2}" id="inputPassword2" match ="inputPassword"/>
                             </div>
                         </div>
                     </h:form>
@@ -44,25 +44,25 @@ A esta página tan sólo puede acceder el usuario si está logeado
                         <div class="form-group">
                             <label class="control-label col-xs-3">Nombre: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{control_modificar_user.nombre}" id="inputName"/>
+                                <p:inputText value ="#{ControlModificarUsuario.nombre}" id="inputName"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Apellidos: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{control_modificar_user.apellidos}" id="inputApellidos"/>
+                                <p:inputText value ="#{ControlModificarUsuario.apellidos}" id="inputApellidos"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Teléfono: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{control_modificar_user.telefono}" id="inputTlf"/>
+                                <p:inputText value ="#{ControlModificarUsuario.telefono}" id="inputTlf"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Dirección: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{control_modificar_user.direccion}" id="inputDir"/>
+                                <p:inputText value ="#{ControlModificarUsuario.direccion}" id="inputDir"/>
                             </div>
                         </div>
                     </h:form>
@@ -72,25 +72,25 @@ A esta página tan sólo puede acceder el usuario si está logeado
                         <div class="form-group">
                             <label class="control-label col-xs-3">Tipo: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{control_modificar_user.tipo}" id="inputTipo"/>
+                                <p:inputText value ="#{ControlModificarUsuario.tipo}" id="inputTipo"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Especialización: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{control_modificar_user.especializacion}" id="inputEsp"/>
+                                <p:inputText value ="#{ControlModificarUsuario.especializacion}" id="inputEsp"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Zona Cargo: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{control_modificar_user.zonaCargo}" id="inputZone"/>
+                                <p:inputText value ="#{ControlModificarUsuario.zonaCargo}" id="inputZone"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Disponibilidad: </label>
                             <div class="col-xs-9">
-                                <p:selectBooleanCheckbox value ="#{control_modificar_user.disponibilidad}" id="inputDisp"/>
+                                <p:selectBooleanCheckbox value ="#{ControlModificarUsuario.disponibilidad}" id="inputDisp"/>
                             </div>
                         </div>
                     </h:form>
@@ -98,7 +98,7 @@ A esta página tan sólo puede acceder el usuario si está logeado
                 <div class="col-md-3 barraconfirmacion"/>
                 <h:form id="button_bar">
                     <div class="col-xs-4 col-md-2 text-center barraconfirmacion">
-                        <h:commandButton action="#{control_modificar_user.update()}" value="Confirmar" styleClass="btn-primary"/>
+                        <h:commandButton action="#{ControlModificarUsuario.update()}" value="Confirmar" styleClass="btn-primary"/>
                     </div>
                     <div class="col-xs-4 col-md-2 text-center barraconfirmacion">
                         <h:commandButton action="#{controlAutorizacion.home()}" immediate="true" value="Cancelar" styleClass="btn-danger"/>

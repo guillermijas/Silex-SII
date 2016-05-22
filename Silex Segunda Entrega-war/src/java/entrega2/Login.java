@@ -1,11 +1,14 @@
 package entrega2;
 
+import baseDeDatos.BaseDeDatosLocal;
+import baseDeDatos.EMASAException;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import entrega1.*;
+import javax.ejb.EJB;
 
 @Named(value = "login")
 @RequestScoped
@@ -16,8 +19,8 @@ public class Login {
 
     @Inject
     private ControlAutorizacion ctrl;
-    @Inject
-    private DataBase database;
+    @EJB
+    private BaseDeDatosLocal basededatos;
     @Inject
     private Hash hash;
 
@@ -25,7 +28,7 @@ public class Login {
      * Creates a new instance of Login
      */
     public Login() {
-        Dbaux.init();
+        //Dbaux.init();
     }
 
     public String getUsuario() {
@@ -46,35 +49,9 @@ public class Login {
 
     public String autenticar() {
         String page;
-        if(this.user.equals("admin")){
-        page = "admin.xhtml";
-        Usuario u = new Usuario();
-        u.setRol("ADMINISTRADOR");
-        u.setUsername("admin");
-        ctrl.setUsuario(u);
-        return page;
-        }
-        
-        if(this.user.equals("pepe")){
-        page = "normal.xhtml";
-        Usuario u = new Usuario();
-        u.setRol("OPERARIO");
-        u.setUsername("pepe");
-        ctrl.setUsuario(u);
-        return page;
-        }
-        
-        if(this.user.equals("manolo")){
-            page="cliente.xhtml";
-            Usuario u = new Usuario();
-            u.setRol("CLIENTE");
-            u.setUsername("manolo");
-            ctrl.setUsuario(u);
-            return page;
-        }
         // Una vez comprobado, compruebo si la contraseña es correcta
-        if (!database.emptyDataBase() && database.isUsernameContent(this.user)) {
-            Usuario us = database.getUserbyIndex(database.getIndexUsername(this.user));
+        if (user != null && basededatos.estaRegistrado(user)) {
+            Usuario us = basededatos.getUsuario(user);
 
             if (us.getPassword().equals(this.password)) // Comparamos con el hash
             {
@@ -93,9 +70,9 @@ public class Login {
         return page;
     }
 
-    public void deleteUser(Usuario us) {
-        if (database.isUsernameContent(us.getUsername())) {
-            database.deleteUser(us);
+    public void deleteUser(Usuario us) throws EMASAException {
+        if (basededatos.estaRegistrado(us)) {
+            basededatos.eliminarUsuario(us);
         } else {
             FacesContext ctx = FacesContext.getCurrentInstance();
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error eliminando usuario", "Usuario inexistente"));

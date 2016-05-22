@@ -19,39 +19,11 @@ public class ControlAutorizacion implements Serializable {
     public Usuario getUsuario() {
         return usuario;
     }
+
+    /*
     public String phome(Aviso avi) {
-        Dbaux.addAviso(avi.getPrioridad(), usuario, avi.getDireccion(), avi.getEstado(), avi.getGravedad(), avi.getImagen(), avi.getFechainicio(), avi.getDescripcion(), avi.getLocalizacion(), avi.isPlanificado(), avi.isUrgente());  
-             String page = null;
-        if (usuario != null) { // Si hay usuario
-            switch (usuario.getRol()) {
-                case "CLIENTE":
-                    // Si el usuario es normal
-                    page = "cliente.xhtml";
-                    break;
-                case "ADMINISTRADOR":
-                    page = "admin.xhtml";
-                    break;
-                case "OPERARIO":
-                    page = "normal.xhtml";
-                    break;
-                default:
-                    page = "normal.xhtml";
-                    break;
-            }
-        } else {
-            page = "login.xhtml";
-        }
-
-        return page;   
-    }
-    public String home() {
-        // Implementar el método
-        // Devuelve la página Home dependiendo del rol del usuario
-        // Si no hay usuario debe devolver la página de login
-        // Si el usuario es el administrador debe devolver la página admin.xhtml
-        // Si el usuario es un usuario normal debe devolver la página normal.xhtml
+        Dbaux.addAviso(avi.getPrioridad(), usuario, avi.getDireccion(), avi.getEstado(), avi.getGravedad(), avi.getImagen(), avi.getFechainicio(), avi.getDescripcion(), avi.getLocalizacion(), avi.isPlanificado(), avi.isUrgente());
         String page = null;
-
         if (usuario != null) { // Si hay usuario
             switch (usuario.getRol()) {
                 case "CLIENTE":
@@ -72,6 +44,39 @@ public class ControlAutorizacion implements Serializable {
             page = "login.xhtml";
         }
 
+        return page;
+    }
+    */
+
+    /**
+     * Devuelve la página Home dependiendo del rol del usuario Si no hay usuario
+     * debe devolver la página de login Si el usuario es el administrador debe
+     * devolver la página admin.xhtml Si el usuario es un usuario normal debe
+     * devolver la página normal.xhtml
+     *
+     * @return
+     */
+    public String home() {
+
+        String page = "login.xhtml";
+
+        if (usuario != null) { // Si hay usuario
+            switch (usuario.getRol()) {
+                case "CLIENTE":
+                    // Si el usuario es normal
+                    page = "cliente.xhtml";
+                    break;
+                case "ADMINISTRADOR":
+                    page = "admin.xhtml";
+                    break;
+                case "OPERARIO":
+                    page = "normal.xhtml";
+                    break;
+                default:
+                    page = "normal.xhtml";
+                    break;
+            }
+        }
         return page;
     }
 
@@ -129,6 +134,5 @@ public class ControlAutorizacion implements Serializable {
     public String getRol() {
         return usuario.getRol();
     }
-    
-    
+
 }

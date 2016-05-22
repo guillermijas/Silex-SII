@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap-min.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap-theme-min.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/bootstrap/css/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+        <title>
+            <ui:insert name="title">Facelets Template</ui:insert>
+        </title>
+    </h:head>
+    
+     <h:body> 
+        <div class="top row">
+            <h:form> 
+                <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></div>
+            </h:form>
+        </div>
+          <div id="contenido" class="container">
+            <div id="content" class="center_content">
+             <ui:insert name="contenido"/>
+            </div>
+          </div>  
+     </h:body>  
+</html>

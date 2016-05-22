@@ -23,7 +23,7 @@ import entrega1.Usuario;
 @Named(value = "dbaux")
 @SessionScoped
 public class Dbaux implements Serializable {
-
+    
     private static List<Aviso> avisos = new ArrayList<>();
     private static List<OrdenDeTrabajo> ots = new ArrayList<>();
     public static Aviso AvisoPrueba = getViso();
@@ -130,102 +130,5 @@ public class Dbaux implements Serializable {
         ops.remove(u1);
         addOt(avisos.get(2), estado.CERRADA, prioridad.MEDIA, new Date(2016, 4, 7), "Hacer un reconocimiento de la zona",ops);
         ots.get(1).setFechafin(new Date(2016,5,6));
-    }
-
-    public List<Aviso> getAvisosNueva() {
-        List<Aviso> lista = new ArrayList<>();
-        for (int i = 0; i < avisos.size(); i++) {
-            if (avisos.get(i).getEstado().equals(estado.NUEVA)) {
-                lista.add(avisos.get(i));
-            }
-        }
-        return lista;
-    }
-
-    public List<Aviso> getAvisosEnProceso() {
-        List<Aviso> lista = new ArrayList<>();
-        for (int i = 0; i < avisos.size(); i++) {
-            if (avisos.get(i).getEstado().equals(estado.EN_PROCESO)) {
-                lista.add(avisos.get(i));
-            }
-        }
-        return lista;
-    }
-
-    public List<Aviso> getAvisosCerrada() {
-        List<Aviso> lista = new ArrayList<>();
-        for (int i = 0; i < avisos.size(); i++) {
-            if (avisos.get(i).getEstado().equals(estado.CERRADA)) {
-                lista.add(avisos.get(i));
-            }
-        }
-        return lista;
-    }
-
-    public List<Aviso> getAvisosIncidencia() {
-        List<Aviso> lista = new ArrayList<>();
-        for (int i = 0; i < avisos.size(); i++) {
-            if (avisos.get(i).getEstado() == estado.INCIDENCIA) {
-                lista.add(avisos.get(i));
-            }
-        }
-        return lista;
-    }
-
-    public List<Aviso> getAvisos() {
-        return avisos;
-    }
-
-    public List<OrdenDeTrabajo> getOtEnProceso() {
-        List<OrdenDeTrabajo> lista = new ArrayList<>();
-        for (int i = 0; i < ots.size(); i++) {
-            if (ots.get(i).getEstado().equals(estado.EN_PROCESO)) {
-                lista.add(ots.get(i));
-            }
-        }
-        return lista;
-    }
-
-    public List<OrdenDeTrabajo> getOtCerradas() {
-        List<OrdenDeTrabajo> lista = new ArrayList<>();
-        for (int i = 0; i < ots.size(); i++) {
-            if (ots.get(i).getEstado().equals(estado.CERRADA)) {
-                lista.add(ots.get(i));
-            }
-        }
-        return lista;
-    }
-
-    public void cerrarOt(Long id) {
-        int i = 0;
-        while (i < ots.size()) {
-            OrdenDeTrabajo oott = ots.get(i);
-            if (ots.get(i).getIdOT().equals(id)) {
-                oott.setEstado(estado.CERRADA);
-                oott.setFechafin(new Date(2016, 5, 5));
-            }
-        }
-    }
-
-    public void cerrarAviso(Long id) {
-        int i = 0;
-        while (i < avisos.size()) {
-            Aviso av = avisos.get(i);
-            if (avisos.get(i).getIdAviso().equals(id)) {
-                av.setEstado(estado.CERRADA);
-                av.setFechafin(new Date(2016, 5, 5));
-            }
-        }
-    }
-    
-    //comprueba si una orden pertenece a un operario
-    public boolean perteneceAOperario(List<Usuario> ops, String username){ 
-        boolean esta = false;
-        for(int i=0; i<ops.size();i++){
-            if(ops.get(i).getUsername().equals(username)){
-                esta = true;
-            }
-        }
-        return esta;
     }
 }

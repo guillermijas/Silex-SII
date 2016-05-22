@@ -34,15 +34,17 @@ public class Aviso implements Serializable {
     @ManyToOne
     private Cliente cliente;
     @ManyToOne
-    private CallCenter callcenter;
+    private Usuario callcenter;
     @ManyToOne
-    private Supervisor supervisor;
+    private Usuario supervisor;
     @ManyToOne
-    private Operario operario;
+    private Usuario operario;
 
     public Aviso() {
+        cliente = new Cliente();
+        localizacion = new Coordenada();
     }
-
+    
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
@@ -107,15 +109,15 @@ public class Aviso implements Serializable {
         return cliente;
     }
 
-    public CallCenter getCallcenter() {
+    public Usuario getCallcenter() {
         return callcenter;
     }
 
-    public Supervisor getSupervisor() {
+    public Usuario getSupervisor() {
         return supervisor;
     }
 
-    public Operario getOperario() {
+    public Usuario getOperario() {
         return operario;
     }
 
@@ -199,15 +201,15 @@ public class Aviso implements Serializable {
         this.cliente = cliente;
     }
 
-    public void setCallcenter(CallCenter callcenter) {
+    public void setCallcenter(Usuario callcenter) {
         this.callcenter = callcenter;
     }
 
-    public void setSupervisor(Supervisor supervisor) {
+    public void setSupervisor(Usuario supervisor) {
         this.supervisor = supervisor;
     }
 
-    public void setOperario(Operario operario) {
+    public void setOperario(Usuario operario) {
         this.operario = operario;
     }
 

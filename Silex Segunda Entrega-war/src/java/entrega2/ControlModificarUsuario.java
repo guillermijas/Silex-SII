@@ -1,7 +1,10 @@
 package entrega2;
 
 
+import baseDeDatos.BaseDeDatosLocal;
+import baseDeDatos.EMASAException;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -11,10 +14,13 @@ import javax.inject.Inject;
 
 @ManagedBean
 @ViewScoped
-public class control_modificar_user implements Serializable 
+public class ControlModificarUsuario implements Serializable 
 {
     @Inject
     private ControlAutorizacion ctrl;
+    
+    @EJB
+    private BaseDeDatosLocal basededatos;
     
     @Inject
     private Hash hash;
@@ -111,12 +117,12 @@ public class control_modificar_user implements Serializable
     }
     
     
-    public control_modificar_user()
+    public ControlModificarUsuario()
     {
         
     }
     
-    public String update() // Actualiza los cambios en la base de datos y redirige al usuario a la pagina principal
+    public String update() throws EMASAException // Actualiza los cambios en la base de datos y redirige al usuario a la pagina principal
     {
         
         if(getPass() != null && checkPasswords())
@@ -125,6 +131,7 @@ public class control_modificar_user implements Serializable
         }
             FacesMessage msg = new FacesMessage("Modificación realizada con éxito", "Usuario " + getUsername() + " modificado");
             FacesContext.getCurrentInstance().addMessage(null, msg);
+            basededatos.actualizarUsuario(ctrl.getUsuario()); // Actualizamos el usuario en la base de datos
             return ctrl.home();
     }
     

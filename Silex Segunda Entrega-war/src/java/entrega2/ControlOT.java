@@ -7,11 +7,11 @@ import java.io.Serializable;
 
 @Named(value = "controlOT")
 @SessionScoped
-public class Control_OT implements Serializable {
+public class ControlOT implements Serializable {
 
     private OrdenDeTrabajo ot;
 
-    public Control_OT(){
+    public ControlOT(){
         
     }
     
