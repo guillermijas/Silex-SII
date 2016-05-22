@@ -1,6 +1,5 @@
 package entrega2;
 
-
 import baseDeDatos.BaseDeDatosLocal;
 import baseDeDatos.EMASAException;
 import java.io.Serializable;
@@ -11,20 +10,19 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-
 @ManagedBean
 @ViewScoped
-public class ControlModificarUsuario implements Serializable 
-{
+public class ControlModificarUsuario implements Serializable {
+
     @Inject
     private ControlAutorizacion ctrl;
-    
+
     @EJB
     private BaseDeDatosLocal basededatos;
-    
+
     @Inject
     private Hash hash;
-    
+
     private String pass;
     private String pass2;
 
@@ -43,8 +41,8 @@ public class ControlModificarUsuario implements Serializable
     public void setPass(String p) {
         this.pass = p;
     }
-    
-        public String getPass2() {
+
+    public String getPass2() {
         return pass2;
     }
 
@@ -115,38 +113,32 @@ public class ControlModificarUsuario implements Serializable
     public void setDisponibilidad(boolean disponibilidad) {
         ctrl.getUsuario().setDisponibilidad(disponibilidad);
     }
-    
-    
-    public ControlModificarUsuario()
-    {
-        
+
+    public ControlModificarUsuario() {
+
     }
-    
+
     public String update() throws EMASAException // Actualiza los cambios en la base de datos y redirige al usuario a la pagina principal
     {
-        
-        if(getPass() != null && checkPasswords())
-        {
-            keepPwd();   
+
+        if (getPass() != null && checkPasswords()) {
+            keepPwd();
         }
-            FacesMessage msg = new FacesMessage("Modificación realizada con éxito", "Usuario " + getUsername() + " modificado");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-            basededatos.actualizarUsuario(ctrl.getUsuario()); // Actualizamos el usuario en la base de datos
-            return ctrl.home();
+        FacesMessage msg = new FacesMessage("Modificación realizada con éxito", "Usuario " + getUsername() + " modificado");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        basededatos.actualizarUsuario(ctrl.getUsuario()); // Actualizamos el usuario en la base de datos
+        return ctrl.home();
     }
-    
-    public boolean checkPasswords()
-    {
+
+    public boolean checkPasswords() {
         return pass.equals(pass2);
     }
-    
-    public void keepPwd()
-    {
+
+    public void keepPwd() {
         ctrl.getUsuario().setPassword(hash.getHash(pass));
     }
-    
-    public String getUsername()
-    {
+
+    public String getUsername() {
         return ctrl.getUsuario().getUsername();
     }
 }

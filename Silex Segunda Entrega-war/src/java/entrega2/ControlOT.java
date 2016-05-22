@@ -11,10 +11,10 @@ public class ControlOT implements Serializable {
 
     private OrdenDeTrabajo ot;
 
-    public ControlOT(){
-        
+    public ControlOT() {
+
     }
-    
+
     public OrdenDeTrabajo getOt() {
         return ot;
     }

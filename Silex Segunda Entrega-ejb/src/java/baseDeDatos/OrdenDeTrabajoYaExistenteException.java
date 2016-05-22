@@ -9,6 +9,6 @@ package baseDeDatos;
  *
  * @author Charlie
  */
-public class OrdenDeTrabajoYaExistenteException extends EMASAException{
-    
+public class OrdenDeTrabajoYaExistenteException extends EMASAException {
+
 }

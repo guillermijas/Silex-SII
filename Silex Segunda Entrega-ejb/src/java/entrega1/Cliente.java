@@ -27,9 +27,11 @@ public class Cliente implements Serializable {
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
-    public String getUsername(){
+
+    public String getUsername() {
         return username;
     }
+
     public String getDni() {
         return dni;
     }
@@ -85,9 +87,11 @@ public class Cliente implements Serializable {
     public List<Aviso> getListaAvisos() {
         return this.listaAvisos;
     }
-    public void setUsername(String username){
+
+    public void setUsername(String username) {
         this.username = username;
     }
+
     @Override
     public int hashCode() {
         int hash = 7;

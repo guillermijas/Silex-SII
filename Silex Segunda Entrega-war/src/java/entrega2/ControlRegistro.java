@@ -30,8 +30,8 @@ public class ControlRegistro implements Serializable {
     private String validacion;
     private String mensajeValidacion;
     private String pwd1;
-    private String pwd2;    
-    
+    private String pwd2;
+
     public String getUsername() {
         return username;
     }
@@ -39,7 +39,7 @@ public class ControlRegistro implements Serializable {
     public void setUsername(String username) {
         this.username = username;
     }
-    
+
     public String getValidacion() {
         return validacion;
     }
@@ -47,7 +47,7 @@ public class ControlRegistro implements Serializable {
     public void setValidacion(String validacion) {
         this.validacion = validacion;
     }
-    
+
     public String getMensajeValidacion() {
         return mensajeValidacion;
     }
@@ -81,7 +81,7 @@ public class ControlRegistro implements Serializable {
     }
 
     public String registrar() throws EMASAException {
-        
+
         // Primero comprobamos que las contraseñas coinciden
         if (checkPasswords()) {
             keepPwd(); // Guardamos esa contraseña en el perfil del usuario
@@ -93,7 +93,7 @@ public class ControlRegistro implements Serializable {
             } else {
                 user.setRol("OPERARIO");
             }
-            
+
             if (basededatos.insertarUsuario(user)) {
                 ctrl.setUsuario(user);
                 return "exitoRegistro.xhtml";
@@ -104,24 +104,23 @@ public class ControlRegistro implements Serializable {
             return "register.xhtml";
         }
     }
+
     public String registrarOperario() throws EMASAException {
         // Primero comprobamos que las contraseñas coinciden
         if (checkPasswords()) {
             keepPwd(); // Guardamos esa contraseña en el perfil del usuario
             // Luego establecemos el rol del usuario
-                user.setRol("OPERARIO");
-                if(basededatos.insertarUsuario(user)) // Devuelve true si se ha guardado el usuario correctamente en la BD
-                {
-                    return "admin.xhtml";
-                }
-                else
-                {
-                    return "register.xhtml";
-                }
-                
+            user.setRol("OPERARIO");
+            if (basededatos.insertarUsuario(user)) // Devuelve true si se ha guardado el usuario correctamente en la BD
+            {
+                return "admin.xhtml";
             } else {
                 return "register.xhtml";
             }
+
+        } else {
+            return "register.xhtml";
+        }
     }
 
     public boolean checkPasswords() {
@@ -131,7 +130,7 @@ public class ControlRegistro implements Serializable {
     public void keepPwd() {
         user.setPassword(hash.getHash(pwd1)); // Guardamos el hash por seguridad
     }
-    
+
     public String validarCuenta() {
         try {
             if (username != null && validacion != null) {
@@ -143,14 +142,12 @@ public class ControlRegistro implements Serializable {
         }
         return null;
     }
-    
-    public boolean comprobarRegistro()
-    {
+
+    public boolean comprobarRegistro() {
         return (basededatos.getUsuario(ctrl.getUsuario().getUsername())).isRegistroOk();
     }
-    
-    public boolean datosCorrectos()
-    {
+
+    public boolean datosCorrectos() {
         return (username != null && validacion != null && basededatos.estaRegistrado(username));
     }
 }

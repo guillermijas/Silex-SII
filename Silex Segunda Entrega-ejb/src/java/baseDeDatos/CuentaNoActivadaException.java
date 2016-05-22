@@ -5,6 +5,6 @@
  */
 package baseDeDatos;
 
-public class CuentaNoActivadaException extends EMASAException{
-    
+public class CuentaNoActivadaException extends EMASAException {
+
 }

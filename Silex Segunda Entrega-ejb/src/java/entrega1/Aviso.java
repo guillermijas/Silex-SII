@@ -20,7 +20,7 @@ public class Aviso implements Serializable {
     private Coordenada localizacion;
     private boolean urgente;
     private boolean planificado;
-    private Enumeraciones.estado estado;
+    private String estado;
     private Enumeraciones.prioridad prioridad;
     @Temporal(TemporalType.DATE)
     private Date fechainicio;
@@ -31,8 +31,8 @@ public class Aviso implements Serializable {
     private OrdenDeTrabajo ordendeTrabajo;
     @ManyToOne
     private Usuario creador;
-    @ManyToOne
-    private Cliente cliente;
+    //@ManyToOne
+    //private Cliente cliente;
     @ManyToOne
     private Usuario callcenter;
     @ManyToOne
@@ -41,10 +41,10 @@ public class Aviso implements Serializable {
     private Usuario operario;
 
     public Aviso() {
-        cliente = new Cliente();
+        //cliente = new Cliente();
         localizacion = new Coordenada();
     }
-    
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
@@ -93,7 +93,7 @@ public class Aviso implements Serializable {
         return direccion;
     }
 
-    public Enumeraciones.estado getEstado() {
+    public String getEstado() {
         return estado;
     }
 
@@ -105,9 +105,6 @@ public class Aviso implements Serializable {
         return ordendeTrabajo;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
 
     public Usuario getCallcenter() {
         return callcenter;
@@ -137,8 +134,6 @@ public class Aviso implements Serializable {
         this.creador = creador;
     }
 
-    
-    
     public void setGPS(String gps) {
         String latitud = gps.substring(0, gps.indexOf(" "));
         String longitud = gps.substring(gps.lastIndexOf(" "), gps.length());
@@ -177,7 +172,7 @@ public class Aviso implements Serializable {
         this.direccion = direccion;
     }
 
-    public void setEstado(Enumeraciones.estado estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
@@ -197,9 +192,6 @@ public class Aviso implements Serializable {
         this.ordendeTrabajo = ordendeTrabajo;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
 
     public void setCallcenter(Usuario callcenter) {
         this.callcenter = callcenter;
@@ -256,6 +248,6 @@ public class Aviso implements Serializable {
 
     @Override
     public String toString() {
-        return "Aviso{" + "idAviso=" + idAviso + ", gravedad=" + gravedad + ", descripcion=" + descripcion + ", imagen=" + imagen + ", direccion=" + direccion + ", cp=" + cp + ", municipio=" + municipio + ", localizacion=" + localizacion + ", urgente=" + urgente + ", planificado=" + planificado + ", estado=" + estado + ", prioridad=" + prioridad + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", ordendeTrabajo=" + ordendeTrabajo + ", creador=" + creador + ", cliente=" + cliente + ", callcenter=" + callcenter + ", supervisor=" + supervisor + ", operario=" + operario + '}';
+        return "Aviso{";// + "idAviso=" + idAviso + ", gravedad=" + gravedad + ", descripcion=" + descripcion + ", imagen=" + imagen + ", direccion=" + direccion + ", cp=" + cp + ", municipio=" + municipio + ", localizacion=" + localizacion + ", urgente=" + urgente + ", planificado=" + planificado + ", estado=" + estado + ", prioridad=" + prioridad + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", ordendeTrabajo=" + ordendeTrabajo + ", creador=" + creador + ", cliente=" + cliente + ", callcenter=" + callcenter + ", supervisor=" + supervisor + ", operario=" + operario + '}';
     }
 }

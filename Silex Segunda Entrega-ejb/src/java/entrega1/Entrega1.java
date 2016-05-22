@@ -5,7 +5,7 @@ import javax.persistence.Persistence;
 public class Entrega1 {
 
     public static void main(String[] args) {
-       Persistence.generateSchema("DataBase", null);
+        Persistence.generateSchema("DataBase", null);
 
     }
 

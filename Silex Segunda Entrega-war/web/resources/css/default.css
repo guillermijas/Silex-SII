@@ -99,8 +99,8 @@ a:link:hover, a:visited:hover  {
 
 
 fieldset legend {
-  font-size:14px !important;
-  padding:10px;
+    font-size:14px !important;
+    padding:10px;
 }
 .bold{
     font-weight: bold;

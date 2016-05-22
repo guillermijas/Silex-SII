@@ -9,6 +9,6 @@ package baseDeDatos;
  *
  * @author Charlie
  */
-public class ContrasenaInvalidaException extends EMASAException{
-    
+public class ContrasenaInvalidaException extends EMASAException {
+
 }

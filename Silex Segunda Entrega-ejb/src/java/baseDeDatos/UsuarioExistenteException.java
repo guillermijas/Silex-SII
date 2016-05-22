@@ -10,5 +10,5 @@ package baseDeDatos;
  * @author Charlie
  */
 public class UsuarioExistenteException extends EMASAException {
-    
+
 }

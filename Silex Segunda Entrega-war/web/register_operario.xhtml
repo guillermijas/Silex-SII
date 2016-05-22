@@ -126,14 +126,14 @@
             </div>
         </h:form>
     </ui:define>
-    
+
     <ui:define name="btn_confirmar">
         <c:choose>
-           <c:when test="#{controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
-        <h:commandButton action="#{control_registro.registrarOperario()}" value="Confirmar" class="btn-primary"/>
-           </c:when>
+            <c:when test="#{controlAutorizacion.usuario.rol == 'ADMINISTRADOR'}">
+                <h:commandButton action="#{control_registro.registrarOperario()}" value="Confirmar" class="btn-primary"/>
+            </c:when>
             <c:otherwise>
-                    <h:commandButton action="null" value="Necesita ser Administrador"  disabled="#{bean.disable}" class="btn-primary"/>    
+                <h:commandButton action="null" value="Necesita ser Administrador"  disabled="#{bean.disable}" class="btn-primary"/>    
             </c:otherwise>
         </c:choose>
     </ui:define>
