@@ -1,11 +1,13 @@
 package entrega2;
 
+import baseDeDatos.BaseDeDatos;
 import baseDeDatos.BaseDeDatosLocal;
 import baseDeDatos.EMASAException;
 import entrega1.*;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 
@@ -14,15 +16,21 @@ import javax.inject.Inject;
 public class ControlAviso implements Serializable {
 
     private Aviso aviso;
-    
+
     @EJB
     private BaseDeDatosLocal basededatos;
-    
+
     @Inject
     private ControlAutorizacion ctrl;
-    
-    public ControlAviso(){
+
+    public ControlAviso() {
         aviso = new Aviso();
+    }
+
+    public String nuevoIdentAviso() {
+        aviso.setIdAviso(Enumeraciones.getIdAviso());
+        Enumeraciones.incrIdAviso();
+        return aviso.getIdAviso() + "";
     }
 
     public void setAviso(Aviso aviso) {
@@ -41,15 +49,18 @@ public class ControlAviso implements Serializable {
         }
         return page;
     }
+
     public String regAviso() {
         setAviso(new Aviso());
         String page = "regAviso.xhtml";
         return page;
     }
-    
-    public String addAviso() throws EMASAException
-    {
+
+    public String addAviso() throws EMASAException {
+        aviso.setEstado("INCIDENCIA");
         basededatos.insertarAviso(aviso);
+        System.out.println("Aviso creado con exito");
+        aviso = null;
         return ctrl.home();
     }
 
@@ -93,7 +104,9 @@ public class ControlAviso implements Serializable {
     }
 
     public String getGPS() {
-        if (aviso.getLocalizacion() == null) return "";
+        if (aviso.getLocalizacion() == null) {
+            return "";
+        }
         return aviso.getLocalizacion().getHeight() + " , " + aviso.getLocalizacion().getLenght();
     }
 
@@ -126,43 +139,9 @@ public class ControlAviso implements Serializable {
     public void setPlanificado(boolean plan) {
         aviso.setPlanificado(plan);
     }
-
-    public String getNombreCliente() {
-        return aviso.getCliente().getNombre();
+    
+    public List<Aviso> incidencias(){
+       return basededatos.getAvisosIncidencia();
     }
 
-    public void setNombreCliente(String nom) {
-        aviso.getCliente().setNombre(nom);
-    }
-
-    public String getApellidosCliente() {
-        return aviso.getCliente().getApellidos();
-
-    }
-
-    public void setApellidosCliente(String apell) {
-        aviso.getCliente().setApellidos(apell);
-    }
-
-    public String getEmailCliente() {
-        return aviso.getCliente().getEmail();
-    }
-
-    public void setEmailCliente(String email) {
-        aviso.getCliente().setEmail(email);
-    }
-
-    public String getTelefonoCliente() {
-        if (aviso.getCliente().getTelefono() != null) {
-            return aviso.getCliente().getTelefono() + "";
-        } else {
-            return "";
-        }
-    }
-
-    public void setTelefonoCliente(String telef) {
-        if (!telef.equals("")) {
-            aviso.getCliente().setTelefono(Long.parseLong(telef));
-        }
-    }
 }

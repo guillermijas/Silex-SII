@@ -9,6 +9,6 @@ package baseDeDatos;
  *
  * @author Charlie
  */
-public class CuentaInexistenteException extends EMASAException{
-    
+public class CuentaInexistenteException extends EMASAException {
+
 }

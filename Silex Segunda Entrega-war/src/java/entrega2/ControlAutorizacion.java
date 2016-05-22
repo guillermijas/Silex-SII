@@ -20,34 +20,7 @@ public class ControlAutorizacion implements Serializable {
         return usuario;
     }
 
-    /*
-    public String phome(Aviso avi) {
-        Dbaux.addAviso(avi.getPrioridad(), usuario, avi.getDireccion(), avi.getEstado(), avi.getGravedad(), avi.getImagen(), avi.getFechainicio(), avi.getDescripcion(), avi.getLocalizacion(), avi.isPlanificado(), avi.isUrgente());
-        String page = null;
-        if (usuario != null) { // Si hay usuario
-            switch (usuario.getRol()) {
-                case "CLIENTE":
-                    // Si el usuario es normal
-                    page = "cliente.xhtml";
-                    break;
-                case "ADMINISTRADOR":
-                    page = "admin.xhtml";
-                    break;
-                case "OPERARIO":
-                    page = "normal.xhtml";
-                    break;
-                default:
-                    page = "normal.xhtml";
-                    break;
-            }
-        } else {
-            page = "login.xhtml";
-        }
-
-        return page;
-    }
-    */
-
+   
     /**
      * Devuelve la página Home dependiendo del rol del usuario Si no hay usuario
      * debe devolver la página de login Si el usuario es el administrador debe
@@ -63,7 +36,6 @@ public class ControlAutorizacion implements Serializable {
         if (usuario != null) { // Si hay usuario
             switch (usuario.getRol()) {
                 case "CLIENTE":
-                    // Si el usuario es normal
                     page = "cliente.xhtml";
                     break;
                 case "ADMINISTRADOR":
@@ -90,13 +62,6 @@ public class ControlAutorizacion implements Serializable {
 
     public ControlAutorizacion() {
 
-    }
-
-    public String index() {
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        ctx.getExternalContext().invalidateSession();
-        usuario = null;
-        return "index.xhtml";
     }
 
     public String login() {

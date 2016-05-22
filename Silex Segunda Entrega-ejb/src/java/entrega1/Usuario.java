@@ -21,16 +21,16 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String username;
-    
+
     @OneToMany(targetEntity = Aviso.class)
     private List<Aviso> listaAvisos_CallCenter;
-    
+
     @OneToMany(targetEntity = Aviso.class)
     private List<Aviso> listaAvisos_supervisor;
     /*
     @OneToMany(targetEntity = OrdenDeTrabajo.class)
     private List<OrdenDeTrabajo> ordentrabajo_supervisor;
-    */
+     */
 
     @ManyToMany
     @JoinTable(name = "usuario_ordenesTrabajo", joinColumns = @JoinColumn(name = "usuario_fk"), inverseJoinColumns = @JoinColumn(name = "ordenes_fk"))
@@ -86,7 +86,6 @@ public class Usuario implements Serializable {
     List<Usuario> operariosRelacionados;
 
     // Usuario
-    
     private String password;
     private String rol;
 
@@ -106,7 +105,7 @@ public class Usuario implements Serializable {
     private String tipo;
     private String especializacion;
     private boolean disponibilidad;
-    
+
     // Para el registro, rellenable de forma automática
     private String cadenaValidacion = null;
     private boolean registroOk = false;
@@ -120,7 +119,7 @@ public class Usuario implements Serializable {
         this.password = password;
         this.rol = rol;
     }
-    
+
     public boolean isRegistroOk() {
         return registroOk;
     }
@@ -128,7 +127,7 @@ public class Usuario implements Serializable {
     public void setRegistroOk(boolean registroOk) {
         this.registroOk = registroOk;
     }
-    
+
     public List<OrdenDeTrabajo> getOrdenesTrabajo() {
         return usuario_ordenesTrabajo;
     }
@@ -140,14 +139,12 @@ public class Usuario implements Serializable {
     public String getUsername() {
         return this.username;
     }
-    
-    public String getCadenaValidacion()
-    {
+
+    public String getCadenaValidacion() {
         return this.cadenaValidacion;
     }
-    
-    public void setCadenaValidacion(String cad)
-    {
+
+    public void setCadenaValidacion(String cad) {
         this.cadenaValidacion = cad;
     }
 
@@ -166,8 +163,8 @@ public class Usuario implements Serializable {
     public String getDni() {
         return dni;
     }
-    
-    public String getSexo(){
+
+    public String getSexo() {
         return this.sexo;
     }
 
@@ -238,9 +235,8 @@ public class Usuario implements Serializable {
     public void setRol(String rol) {
         this.rol = rol;
     }
-    
-    public void setSexo(String sex)
-    {
+
+    public void setSexo(String sex) {
         this.sexo = sex;
     }
 

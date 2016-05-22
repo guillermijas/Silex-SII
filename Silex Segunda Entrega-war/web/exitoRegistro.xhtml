@@ -12,21 +12,23 @@ A esta página tan sólo puede acceder el usuario tras registrarse
     <ui:define name="title">
         <c:choose>
             <c:when test="#{controlRegistro.comprobarRegistro()}">
-                    Registro con éxito
-                </c:when>
-                <c:otherwise>
-                    Acceso irregular
-                </c:otherwise>
-            </c:choose>
+                Registro con éxito
+            </c:when>
+            <c:otherwise>
+                Acceso irregular
+            </c:otherwise>
+        </c:choose>
     </ui:define>
-    
-    <ui:define name ="contenido">
+
+    <ui:define name="contenido">
         <c:choose>
             <c:when test="#{controlRegistro.comprobarRegistro()}">
                 <div>
                     <p>Registro completado con éxito. Se ha enviado un mensaje de validación a su correo
                         electrónico. Compruébelo y pulse el enlace para validar su cuenta.</p>
-                    <p><h:link outcome="login.xhtml">Ir a la página de login</h:link></p>
+                    <h:form>
+                        <h:commandButton class="btn btn-lg" style="background-color:#2b83b5; color: white" value="Iniciar sesión" action="#{controlAutorizacion.logout()}"/>
+                    </h:form>
                 </div>
             </c:when>
             <c:otherwise>
@@ -34,5 +36,5 @@ A esta página tan sólo puede acceder el usuario tras registrarse
             </c:otherwise>
         </c:choose>
     </ui:define>
-    
+
 </ui:composition>

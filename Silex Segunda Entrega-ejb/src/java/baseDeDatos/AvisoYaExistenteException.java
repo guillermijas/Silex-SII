@@ -9,6 +9,6 @@ package baseDeDatos;
  *
  * @author Charlie
  */
-public class AvisoYaExistenteException extends EMASAException{
-    
+public class AvisoYaExistenteException extends EMASAException {
+
 }

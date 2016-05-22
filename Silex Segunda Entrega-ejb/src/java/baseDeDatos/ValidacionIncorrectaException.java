@@ -10,5 +10,5 @@ package baseDeDatos;
  * @author Charlie
  */
 public class ValidacionIncorrectaException extends EMASAException {
-    
+
 }

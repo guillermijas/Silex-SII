@@ -10,7 +10,7 @@
 
 
     <ui:define name="titulo">
-        <h1 class="col-md-10" style="color: ">Nuevo Aviso <small class="text-right"> #34809</small></h1>
+        <h1 class="col-md-10">Nuevo Aviso <small class="text-right"><h:outputText value="#{controlAviso.nuevoIdentAviso()}" /></small></h1>
         <br/>
     </ui:define>
 
@@ -131,17 +131,14 @@
 
         <h:form>
             <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="true"
-                          multiple="true" update="messages" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
+                          multiple="true" update="messages" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
                           style="width: 90%;"/>
             <p:growl id="messages" showDetail="true" />
         </h:form>    
         <br/>
-   </ui:define>
+    </ui:define>
 
-
-
-
-
+<!-->
     <ui:define name="campos-pestaña3">
         <table class="campo">
             <tr>
@@ -177,9 +174,9 @@
             </tr>
         </table>
     </ui:define>
-
+<!-->
     <ui:define name="btn_confirmar">
-        <h:commandButton action="#{controlAutorizacion.phome(controlAviso.aviso)}" value="Confirmar" class="btn-primary"/>
+        <h:commandButton action="#{controlAviso.addAviso()}" value="Confirmar" class="btn-primary"/>
     </ui:define>
 
     <ui:define name="btn_cancelar">
