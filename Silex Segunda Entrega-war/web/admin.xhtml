@@ -29,7 +29,7 @@
                 <p:tab title="Incidencias">
                     <h:panelGrid columns="1" cellpadding="10">
                         <c:forEach var="item" items="#{controlAviso.incidencias}">
-                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
                                 <div class="row">
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
@@ -114,7 +114,7 @@
                                     <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
                                 </div>
                                 <div class="col-md-5 text-right">
-                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
+                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger"/>
                                 </div> 
 
                             </p:fieldset>
@@ -306,7 +306,7 @@
                                     <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
                                 </div>
                                 <div class="col-md-5 text-right">
-                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
+                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger"/>
                                 </div> 
 
                             </p:fieldset>
@@ -317,7 +317,7 @@
                 <p:tab title="Cerradas">
                     <h:panelGrid columns="1" cellpadding="10">
                         <c:forEach var="item" items="#{controlAviso.avisosCerrados}">
-                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                 <div class="row">
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">

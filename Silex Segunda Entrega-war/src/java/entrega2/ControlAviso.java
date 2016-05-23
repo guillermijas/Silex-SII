@@ -8,8 +8,6 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 
@@ -26,14 +24,7 @@ public class ControlAviso implements Serializable {
     private ControlAutorizacion ctrl;
 
     public ControlAviso() {
-        aviso = new Aviso();
-    }
-
-    public String nuevoIdentAviso() {
-        try {
-            aviso.setIdAviso(basededatos.idNuevoAviso());
-        } catch (EMASAException ex) {}
-        return aviso.getIdAviso() + "";
+         
     }
 
     public void setAviso(Aviso aviso) {
@@ -55,6 +46,7 @@ public class ControlAviso implements Serializable {
 
     public String regAviso() {
         setAviso(new Aviso());
+        aviso.setIdAviso(basededatos.getIDNewAviso());
         String page = "regAviso.xhtml";
         return page;
     }
@@ -165,5 +157,9 @@ public class ControlAviso implements Serializable {
        return basededatos.getOtCerradas();
     }
    
-
+    public String cerrarAviso(Aviso a) throws EMASAException
+    {
+        basededatos.cerrarAviso(a.getIdAviso());
+        return ctrl.home();
+    }
 }

@@ -6,7 +6,6 @@
 package baseDeDatos;
 
 import entrega1.Aviso;
-import entrega1.Enumeraciones;
 import entrega1.OrdenDeTrabajo;
 import entrega1.Usuario;
 import java.util.ArrayList;
@@ -201,6 +200,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     public void insertarAviso(Aviso aviso) throws EMASAException {
         if (!estaRegistrado(aviso)) // Es decir, no está ya en el sistema
         {
+            //aviso.setIdAviso(getIDNewAviso());
             em.persist(aviso);
         } else {
             throw new AvisoYaExistenteException();
@@ -285,6 +285,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         return lista;
     }
 
+    @Override
     public void cerrarAviso(Long id) throws EMASAException {
         Aviso av = em.find(Aviso.class, id);
         if (av != null) {
@@ -294,6 +295,25 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         } else {
             throw new AvisoInexistenteException();
         }
+    }
+    
+    @Override
+    public long getIDNewAviso()
+    {
+        long id = 0;
+        List<Aviso> avisos = getListaAvisos();
+        
+        if(!avisos.isEmpty())
+        {
+            for(int i = 0; i < avisos.size(); i++)
+            {
+                if(avisos.get(i).getIdAviso() > id)
+                {
+                    id = avisos.get(i).getIdAviso();
+                }
+            }
+        }
+        return id + 1;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -370,17 +390,5 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         } else {
             throw new OrdenDeTrabajoInexistenteException();
         }
-    }
-
-    @Override
-    public Long idNuevoAviso() throws EMASAException {
-        TypedQuery<Long> query = em.createQuery("select e.idAviso from Enumeraciones e", Long.class); //Comprueba que los objetos que obtenemos son efectivamente usuarios
-        return Long.parseLong(query.getFirstResult()+"");
-    }
-
-    @Override
-    public Long idNuevaOT() throws EMASAException {
-        TypedQuery<Long> query = em.createQuery("select e.idOt from Enumeraciones e", Long.class); //Comprueba que los objetos que obtenemos son efectivamente usuarios
-        return Long.parseLong(query.getFirstResult()+"");
     }
 }

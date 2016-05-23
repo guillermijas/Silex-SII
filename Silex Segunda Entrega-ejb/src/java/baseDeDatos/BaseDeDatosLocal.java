@@ -51,6 +51,10 @@ public interface BaseDeDatosLocal {
     public List<Aviso> getAvisosCerrada();
 
     public List<Aviso> getAvisosIncidencia();
+    
+    public void cerrarAviso(Long id) throws EMASAException;
+    
+    public long getIDNewAviso();
 
     // Ordenes de trabajo en la BD
     public void insertarOT(OrdenDeTrabajo ot) throws EMASAException;
@@ -66,9 +70,4 @@ public interface BaseDeDatosLocal {
     public List<OrdenDeTrabajo> getOtCerradas();
 
     public void cerrarOt(Long id) throws EMASAException;
-
-    // otros
-    public Long idNuevoAviso() throws EMASAException;
-
-    public Long idNuevaOT() throws EMASAException;
 }
