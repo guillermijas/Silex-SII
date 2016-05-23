@@ -26,9 +26,7 @@
             <p:tabView style="width: 90%">
                 <p:tab title="Incidencias">
                     <h:panelGrid columns="1" cellpadding="10">
-                        <c:forEach var="item" items="#{controlAviso.incidencias}">
-<<<<<<< HEAD
-                                
+                        <c:forEach var="item" items="#{controlAviso.incidencias}">                              
                             <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
                                         <div class="row">
                                      
@@ -63,11 +61,10 @@
                                             </div>
                                             <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Planificado: " class="bold"/>
-=======
 
                             <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
                                 <div class="row">
->>>>>>> 17564657a81a865bcc950e42c54ed452c52952a1
+
 
                                     <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Dirección: " class="bold"/>
