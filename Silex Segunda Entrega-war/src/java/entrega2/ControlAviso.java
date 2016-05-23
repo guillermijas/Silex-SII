@@ -1,13 +1,15 @@
 package entrega2;
 
-import baseDeDatos.BaseDeDatos;
 import baseDeDatos.BaseDeDatosLocal;
 import baseDeDatos.EMASAException;
 import entrega1.*;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 
@@ -28,8 +30,9 @@ public class ControlAviso implements Serializable {
     }
 
     public String nuevoIdentAviso() {
-        aviso.setIdAviso(Enumeraciones.getIdAviso());
-        Enumeraciones.incrIdAviso();
+        try {
+            aviso.setIdAviso(basededatos.idNuevoAviso());
+        } catch (EMASAException ex) {}
         return aviso.getIdAviso() + "";
     }
 
@@ -58,6 +61,8 @@ public class ControlAviso implements Serializable {
 
     public String addAviso() throws EMASAException {
         aviso.setEstado("INCIDENCIA");
+        aviso.setFechainicio(new Date());
+        aviso.setCreador(basededatos.getUsuario(ctrl.getUsername()));
         basededatos.insertarAviso(aviso);
         System.out.println("Aviso creado con exito");
         aviso = null;
@@ -140,8 +145,25 @@ public class ControlAviso implements Serializable {
         aviso.setPlanificado(plan);
     }
     
-    public List<Aviso> incidencias(){
+    public List<Aviso> getIncidencias(){
        return basededatos.getAvisosIncidencia();
     }
+    public List<Aviso> getAvisosNuevos(){
+       return basededatos.getAvisosNueva();
+    }
+    public List<Aviso> getAvisosEnProceso(){
+       return basededatos.getAvisosEnProceso();
+    }
+    public List<Aviso> getAvisosCerrados(){
+       return basededatos.getAvisosCerrada();
+    }
+    
+    public List<OrdenDeTrabajo> getOrdenEnProceso(){
+       return basededatos.getOtEnProceso();
+    }
+    public List<OrdenDeTrabajo> getOrdenCerradas(){
+       return basededatos.getOtCerradas();
+    }
+   
 
 }

@@ -67,4 +67,8 @@ public interface BaseDeDatosLocal {
 
     public void cerrarOt(Long id) throws EMASAException;
 
+    // otros
+    public Long idNuevoAviso() throws EMASAException;
+
+    public Long idNuevaOT() throws EMASAException;
 }

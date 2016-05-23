@@ -1,11 +1,38 @@
 package entrega1;
 
-public class Enumeraciones {
 
-    private static Long idAviso = 0L;
-    private static Long idOt = 0L;
+public class Enumeraciones{
+    
+    private Long idAviso = 0L;
+    private Long idOt = 0L;
 
-    public enum prioridad {
+    public Long getIdAviso() {
+        return idAviso;
+    }
+
+    public void incrIdAviso() {
+        idAviso++;
+    }
+
+    public Long getIdOt() {
+        return idOt;
+    }
+
+    public void incrIdOt() {
+        idOt++;
+    }
+
+    public void setIdAviso(Long idAviso) {
+        this.idAviso = idAviso;
+    }
+
+    public void setIdOt(Long idOt) {
+        this.idOt = idOt;
+    }
+}
+
+/*
+public enum prioridad {
         BAJA, MEDIA, ALTA
     }
 
@@ -20,20 +47,4 @@ public class Enumeraciones {
     public enum Rol {
         CLIENTE, CALL_CENTER, SUPERVISOR, OPERARIO, ADMIN;
     }
-
-    public static Long getIdAviso() {
-        return idAviso;
-    }
-
-    public static void incrIdAviso() {
-        idAviso++;
-    }
-
-    public static Long getIdOt() {
-        return idOt;
-    }
-
-    public static void incrIdOt() {
-        idOt++;
-    }
-}
+*/

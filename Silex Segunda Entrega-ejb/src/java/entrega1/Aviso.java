@@ -1,6 +1,7 @@
 package entrega1;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.persistence.*;
 
@@ -9,9 +10,9 @@ public class Aviso implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idAviso;
-    private Enumeraciones.gravedad gravedad;
+    private String gravedad;
     private String descripcion;
     private String imagen;
     private String direccion;
@@ -21,7 +22,7 @@ public class Aviso implements Serializable {
     private boolean urgente;
     private boolean planificado;
     private String estado;
-    private Enumeraciones.prioridad prioridad;
+    private String prioridad;
     @Temporal(TemporalType.DATE)
     private Date fechainicio;
     @Temporal(TemporalType.DATE)
@@ -31,18 +32,29 @@ public class Aviso implements Serializable {
     private OrdenDeTrabajo ordendeTrabajo;
     @ManyToOne
     private Usuario creador;
-    //@ManyToOne
-    //private Cliente cliente;
     @ManyToOne
     private Usuario callcenter;
     @ManyToOne
     private Usuario supervisor;
     @ManyToOne
     private Usuario operario;
+    //datos de contacto cliente
+    private String nombreCliente;
+    private String telefonoCliente;
+    private String emailCliente;
 
     public Aviso() {
-        //cliente = new Cliente();
         localizacion = new Coordenada();
+    }
+
+    public String getFechainicio() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(fechainicio);
+    }
+
+    public String getFechafin() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(fechainicio);
     }
 
     public static long getSerialVersionUID() {
@@ -53,32 +65,8 @@ public class Aviso implements Serializable {
         return idAviso;
     }
 
-    public Enumeraciones.gravedad getGravedad() {
+    public String getGravedad() {
         return gravedad;
-    }
-
-    public void setFechainicio(Date fechainicio) {
-        this.fechainicio = fechainicio;
-    }
-
-    public void setFechafin(Date fechafin) {
-        this.fechafin = fechafin;
-    }
-
-    public Date getFechainicio() {
-        return fechainicio;
-    }
-
-    public boolean isUrgente() {
-        return urgente;
-    }
-
-    public boolean isPlanificado() {
-        return planificado;
-    }
-
-    public Date getFechafin() {
-        return fechafin;
     }
 
     public String getDescripcion() {
@@ -93,11 +81,31 @@ public class Aviso implements Serializable {
         return direccion;
     }
 
+    public String getCp() {
+        return cp;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public Coordenada getLocalizacion() {
+        return localizacion;
+    }
+
+    public boolean isUrgente() {
+        return urgente;
+    }
+
+    public boolean isPlanificado() {
+        return planificado;
+    }
+
     public String getEstado() {
         return estado;
     }
 
-    public Enumeraciones.prioridad getPrioridad() {
+    public String getPrioridad() {
         return prioridad;
     }
 
@@ -105,6 +113,9 @@ public class Aviso implements Serializable {
         return ordendeTrabajo;
     }
 
+    public Usuario getCreador() {
+        return creador;
+    }
 
     public Usuario getCallcenter() {
         return callcenter;
@@ -118,33 +129,23 @@ public class Aviso implements Serializable {
         return operario;
     }
 
-    public Coordenada getLocalizacion() {
-        return localizacion;
+    public String getNombreCliente() {
+        return nombreCliente;
     }
 
-    public String getGPS() {
-        return localizacion.toString();
+    public String getTelefonoCliente() {
+        return telefonoCliente;
     }
 
-    public Usuario getCreador() {
-        return creador;
-    }
-
-    public void setCreador(Usuario creador) {
-        this.creador = creador;
-    }
-
-    public void setGPS(String gps) {
-        String latitud = gps.substring(0, gps.indexOf(" "));
-        String longitud = gps.substring(gps.lastIndexOf(" "), gps.length());
-        setLocalizacion(new Coordenada(latitud, longitud));
+    public String getEmailCliente() {
+        return emailCliente;
     }
 
     public void setIdAviso(Long idAviso) {
         this.idAviso = idAviso;
     }
 
-    public void setGravedad(Enumeraciones.gravedad gravedad) {
+    public void setGravedad(String gravedad) {
         this.gravedad = gravedad;
     }
 
@@ -156,42 +157,53 @@ public class Aviso implements Serializable {
         this.imagen = imagen;
     }
 
-    public void setUrgente(boolean urgente) {
-        this.urgente = urgente;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setCp(String cp) {
+        this.cp = cp;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
     }
 
     public void setLocalizacion(Coordenada localizacion) {
         this.localizacion = localizacion;
     }
 
-    public void setPlanificado(boolean planificado) {
-        this.planificado = planificado;
+    public void setUrgente(boolean urgente) {
+        this.urgente = urgente;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setPlanificado(boolean planificado) {
+        this.planificado = planificado;
     }
 
     public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public void setPrioridad(Enumeraciones.prioridad prioridad) {
+    public void setPrioridad(String prioridad) {
         this.prioridad = prioridad;
     }
 
-    public void setOrdenTrabajo(OrdenDeTrabajo odt) {
-        this.ordendeTrabajo = odt;
+    public void setFechainicio(Date fechainicio) {
+        this.fechainicio = fechainicio;
     }
 
-    public OrdenDeTrabajo getOrdenTrabajo() {
-        return this.ordendeTrabajo;
+    public void setFechafin(Date fechafin) {
+        this.fechafin = fechafin;
     }
 
     public void setOrdendeTrabajo(OrdenDeTrabajo ordendeTrabajo) {
         this.ordendeTrabajo = ordendeTrabajo;
     }
 
+    public void setCreador(Usuario creador) {
+        this.creador = creador;
+    }
 
     public void setCallcenter(Usuario callcenter) {
         this.callcenter = callcenter;
@@ -205,20 +217,22 @@ public class Aviso implements Serializable {
         this.operario = operario;
     }
 
-    public void setCp(String cp) {
-        this.cp = cp;
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
     }
 
-    public String getCp() {
-        return cp;
+    public void setTelefonoCliente(String telefonoCliente) {
+        this.telefonoCliente = telefonoCliente;
     }
 
-    public String getMunicipio() {
-        return municipio;
+    public void setEmailCliente(String emailCliente) {
+        this.emailCliente = emailCliente;
     }
 
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
+    public void setGPS(String gps) {
+        String latitud = gps.substring(0, gps.indexOf(" "));
+        String longitud = gps.substring(gps.lastIndexOf(" "), gps.length());
+        setLocalizacion(new Coordenada(latitud, longitud));
     }
 
     @Override

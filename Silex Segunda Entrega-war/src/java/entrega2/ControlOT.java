@@ -51,10 +51,10 @@ public class ControlOT implements Serializable {
 
     public int getPrioridad() {
         int num = 1;
-        if (ot.getPrioridad() == Enumeraciones.prioridad.ALTA) {
+        if (ot.getPrioridad().equalsIgnoreCase("ALTA")) {
             num = 3;
         }
-        if (ot.getPrioridad() == Enumeraciones.prioridad.MEDIA) {
+        if (ot.getPrioridad().equalsIgnoreCase("MEDIA")) {
             num = 2;
         } else {
             num = 1;
@@ -66,13 +66,13 @@ public class ControlOT implements Serializable {
     public void setPrioridad(int i) {
         switch (i) {
             case 1:
-                ot.setPrioridad(Enumeraciones.prioridad.BAJA);
+                ot.setPrioridad("BAJA");
                 break;
             case 2:
-                ot.setPrioridad(Enumeraciones.prioridad.MEDIA);
+                ot.setPrioridad("MEDIA");
                 break;
             case 3:
-                ot.setPrioridad(Enumeraciones.prioridad.ALTA);
+                ot.setPrioridad("ALTA");
                 break;
         }
     }

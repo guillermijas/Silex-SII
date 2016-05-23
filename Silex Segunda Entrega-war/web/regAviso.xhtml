@@ -10,7 +10,7 @@
 
 
     <ui:define name="titulo">
-        <h1 class="col-md-10">Nuevo Aviso <small class="text-right"><h:outputText value="#{controlAviso.nuevoIdentAviso()}" /></small></h1>
+        <h1 class="col-md-10">Nuevo Aviso</h1>
         <br/>
     </ui:define>
 
@@ -138,7 +138,8 @@
         <br/>
     </ui:define>
 
-<!-->
+    <!-->
+
     <ui:define name="campos-pestaña3">
         <table class="campo">
             <tr>
@@ -146,7 +147,7 @@
                     <p:inputText class="campo" value="#{controlAviso.nombreCliente}"/>
                 </td>
                 <td>
-                    <p:inputText style="width: 100%" value="#{controlAviso.apellidosCliente}"/>
+                    <p:inputText style="width: 100%" value="#{controlAviso.telefonoCliente}"/>
                 </td>
             </tr>
             <tr>
@@ -154,33 +155,29 @@
                     <label class="pie">Nombre</label>
                 </td>
                 <td>
-                    <label class="pie">Apellidos</label>
+                    <label class="pie">Telefono</label>
                 </td>
-            </tr> <tr>
+            </tr> 
+            <tr>
                 <td>
                     <p:inputText class="campo" value="#{controlAviso.telefonoCliente}"/>
                 </td>
-                <td>
-                    <p:inputText style="width: 100%" value="#{controlAviso.emailCliente}"/>
-                </td>
+                
             </tr>
             <tr>
-                <td>
-                    <label class="pie">Teléfono</label>
-                </td>
                 <td>
                     <label class="pie">Correo electrónico</label>
                 </td>
             </tr>
         </table>
     </ui:define>
-<!-->
-    <ui:define name="btn_confirmar">
-        <h:commandButton action="#{controlAviso.addAviso()}" value="Confirmar" class="btn-primary"/>
-    </ui:define>
-
-    <ui:define name="btn_cancelar">
-        <h:commandButton action="#{controlAutorizacion.home()}" immediate="true" value="Cancelar" class="btn-danger"/>
-    </ui:define>
-
-</ui:composition>
+    <!-->
+        <ui:define name="btn_confirmar">
+            <h:commandButton action="#{controlAviso.addAviso()}" value="Confirmar" class="btn-primary"/>
+        </ui:define>
+    
+        <ui:define name="btn_cancelar">
+            <h:commandButton action="#{controlAutorizacion.home()}" immediate="true" value="Cancelar" class="btn-danger"/>
+        </ui:define>
+    
+    </ui:composition>

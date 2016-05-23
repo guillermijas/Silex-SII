@@ -233,7 +233,6 @@ public class BaseDeDatos implements BaseDeDatosLocal {
 
     private List<Aviso> getListaAvisos() {
         TypedQuery<Aviso> query = em.createQuery("select a from Aviso a", Aviso.class);
-        System.out.println("ttttttttttttttttttttttttttt");
         return query.getResultList();
     }
 
@@ -277,16 +276,12 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     public List<Aviso> getAvisosIncidencia() {
         List<Aviso> lista = new ArrayList<>();
         List<Aviso> avisos = getListaAvisos();
-        System.out.println("COREEEEEEEEEEEEEEEEEEEEEEEEEEEEECTIO");
-        System.out.println("COREEEEEEEEEEEEEEEEEEEEEEEEEEEEECTIO");
-        System.out.println("COREEEEEEEEEEEEEEEEEEEEEEEEEEEEECTIO");
 
         for (int i = 0; i < avisos.size(); i++) {
             if (avisos.get(i).getEstado().equalsIgnoreCase("INCIDENCIA")) {
                 lista.add(avisos.get(i));
             }
         }
-        System.out.println("tesy");
         return lista;
     }
 
@@ -294,7 +289,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         Aviso av = em.find(Aviso.class, id);
         if (av != null) {
             av.setEstado("CERRADA");
-            av.setFechafin(new Date(2016, 5, 5));
+            av.setFechafin(new Date());
             modificarAviso(av);
         } else {
             throw new AvisoInexistenteException();
@@ -346,7 +341,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         List<OrdenDeTrabajo> lista = new ArrayList<>();
         List<OrdenDeTrabajo> ots = getListaOT();
         for (int i = 0; i < ots.size(); i++) {
-            if (ots.get(i).getEstado().equals(Enumeraciones.estado.EN_PROCESO)) {
+            if (ots.get(i).getEstado().equalsIgnoreCase("EN_PROCESO")) {
                 lista.add(ots.get(i));
             }
         }
@@ -358,7 +353,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         List<OrdenDeTrabajo> lista = new ArrayList<>();
         List<OrdenDeTrabajo> ots = getListaOT();
         for (int i = 0; i < ots.size(); i++) {
-            if (ots.get(i).getEstado().equals(Enumeraciones.estado.CERRADA)) {
+            if (ots.get(i).getEstado().equalsIgnoreCase("CERRADA")) {
                 lista.add(ots.get(i));
             }
         }
@@ -369,11 +364,23 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     public void cerrarOt(Long id) throws EMASAException {
         OrdenDeTrabajo ot = em.find(OrdenDeTrabajo.class, id);
         if (ot != null) {
-            ot.setEstado(Enumeraciones.estado.CERRADA);
-            ot.setFechafin(new Date(2016, 5, 5));
+            ot.setEstado("CERRADA");
+            ot.setFechafin(new Date());
             modificarOT(ot);
         } else {
             throw new OrdenDeTrabajoInexistenteException();
         }
+    }
+
+    @Override
+    public Long idNuevoAviso() throws EMASAException {
+        TypedQuery<Long> query = em.createQuery("select e.idAviso from Enumeraciones e", Long.class); //Comprueba que los objetos que obtenemos son efectivamente usuarios
+        return Long.parseLong(query.getFirstResult()+"");
+    }
+
+    @Override
+    public Long idNuevaOT() throws EMASAException {
+        TypedQuery<Long> query = em.createQuery("select e.idOt from Enumeraciones e", Long.class); //Comprueba que los objetos que obtenemos son efectivamente usuarios
+        return Long.parseLong(query.getFirstResult()+"");
     }
 }

@@ -28,9 +28,8 @@
             <p:tabView style="width: 90%">
                 <p:tab title="Incidencias">
                     <h:panelGrid columns="1" cellpadding="10">
-                        <c:forEach var="item" items="#{dbaux.getAvisosIncidencia()}">
+                        <c:forEach var="item" items="#{controlAviso.incidencias}">
                             <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
-
                                 <div class="row">
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
@@ -124,7 +123,7 @@
                 </p:tab>
                 <p:tab title="Nuevos">
                     <h:panelGrid columns="1" cellpadding="10">
-                        <c:forEach var="item" items="#{dbaux.getAvisosNueva()}">
+                        <c:forEach var="item" items="#{controlAviso.avisosNuevos}">
                             <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                 <div class="row">
@@ -220,7 +219,7 @@
                 </p:tab>
                 <p:tab title="En proceso">
                     <h:panelGrid columns="1" cellpadding="10">
-                        <c:forEach var="item" items="#{dbaux.getAvisosEnProceso()}">
+                        <c:forEach var="item" items="#{controlAviso.avisosEnProceso}">
                             <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                 <div class="row">
@@ -317,7 +316,7 @@
 
                 <p:tab title="Cerradas">
                     <h:panelGrid columns="1" cellpadding="10">
-                        <c:forEach var="item" items="#{dbaux.getAvisosCerrada()}">
+                        <c:forEach var="item" items="#{controlAviso.avisosCerrados}">
                             <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                 <div class="row">
@@ -419,7 +418,7 @@
                     <p:tabView style="width: 100%">
                         <p:tab title="En proceso">
                             <h:panelGrid columns="1" cellpadding="10">
-                                <c:forEach var="item" items="#{dbaux.getOtEnProceso()}">
+                                <c:forEach var="item" items="#{controlAviso.ordenEnProceso}">
                                     <p:fieldset legend="ID Aviso: #{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
@@ -522,7 +521,7 @@
 
                         <p:tab title="Cerradas">
                             <h:panelGrid columns="1" cellpadding="10">
-                                <c:forEach var="item" items="#{dbaux.getOtCerradas()}">
+                                <c:forEach var="item" items="#{controlAviso.ordenCerradas}">
                                     <p:fieldset legend="ID Aviso: #{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">

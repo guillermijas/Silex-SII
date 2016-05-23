@@ -97,11 +97,20 @@ a:link:hover, a:visited:hover  {
     text-decoration : underline;
 }
 
-
 fieldset legend {
     font-size:14px !important;
     padding:10px;
 }
 .bold{
     font-weight: bold;
+}
+
+.container{
+    width: 90%;
+}
+ 
+@media screen and (max-device-width: 480px) {
+  .container {
+    width: 100%;
+  }
 }
