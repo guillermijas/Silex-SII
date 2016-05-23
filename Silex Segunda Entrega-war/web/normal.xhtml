@@ -30,7 +30,7 @@
                         <c:forEach var="item" items="#{dbaux.getAvisosIncidencia()}">
                             <c:choose>
                                 <c:when test="#{controlAutorizacion.username == item.creador.username}">
-                                    <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -130,7 +130,7 @@
                         <c:forEach var="item" items="#{dbaux.getAvisosNueva()}">
                             <c:choose>
                                 <c:when test="#{controlAutorizacion.username == item.creador.username}">
-                                    <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -230,7 +230,7 @@
                         <c:forEach var="item" items="#{dbaux.getAvisosEnProceso()}">
                             <c:choose>
                                 <c:when test="#{controlAutorizacion.username == item.creador.username}">
-                                    <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -331,7 +331,7 @@
                         <c:forEach var="item" items="#{dbaux.getAvisosCerrada()}">
                             <c:choose>
                                 <c:when test="#{controlAutorizacion.username == item.creador.username}">
-                                    <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -435,7 +435,7 @@
                         <p:tab title="En proceso">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{dbaux.getOtEnProceso()}">
-                                    <p:fieldset legend="ID Aviso: #{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">

@@ -16,9 +16,7 @@ A esta página tan sólo puede acceder el usuario desde el enlace de validación
             <f:metadata>
                 <f:viewParam name="username" value="#{controlRegistro.username}"/>
                 <f:viewParam name="codigoValidacion" value="#{controlRegistro.validacion}"/>
-                <c:if test="#{controlRegistro.datosCorrectos()}">
-                    <f:viewAction action="#{controlRegistro.validarCuenta()}"/>
-                </c:if>
+                <f:viewAction action="#{controlRegistro.validarCuenta()}"/>
             </f:metadata>
         </f:view>
         <c:choose>

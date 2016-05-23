@@ -29,7 +29,7 @@
                     <h:panelGrid columns="1" cellpadding="10">
                         <c:forEach var="item" items="#{controlAviso.incidencias}">
                                 
-                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                            <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
                                         <div class="row">
                                      
                                             <div class="col-xs-6 col-md-5">
@@ -117,7 +117,7 @@
                         <c:forEach var="item" items="#{controlAviso.avisosNuevos}">
                             <c:choose>
                                 <c:when test="#{controlAutorizacion.username == item.creador.username}">
-                                    <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -207,7 +207,7 @@
                         <c:forEach var="item" items="#{controlAviso.avisosEnProceso}">
                             <c:choose>
                                 <c:when test="#{controlAutorizacion.username == item.creador.username}">
-                                    <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -299,7 +299,7 @@
                         <c:forEach var="item" items="#{controlAviso.avisosCerrados}">
                             <c:choose>
                                 <c:when test="#{controlAutorizacion.username == item.creador.username}">
-                                    <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">

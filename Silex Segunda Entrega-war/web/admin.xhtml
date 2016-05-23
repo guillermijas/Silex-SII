@@ -29,7 +29,7 @@
                 <p:tab title="Incidencias">
                     <h:panelGrid columns="1" cellpadding="10">
                         <c:forEach var="item" items="#{controlAviso.incidencias}">
-                            <p:fieldset legend="ID Aviso: # #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                            <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
                                 <div class="row">
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
@@ -124,7 +124,7 @@
                 <p:tab title="Nuevos">
                     <h:panelGrid columns="1" cellpadding="10">
                         <c:forEach var="item" items="#{controlAviso.avisosNuevos}">
-                            <p:fieldset legend="ID Aviso: # #{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                            <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                 <div class="row">
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -317,7 +317,7 @@
                 <p:tab title="Cerradas">
                     <h:panelGrid columns="1" cellpadding="10">
                         <c:forEach var="item" items="#{controlAviso.avisosCerrados}">
-                            <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                            <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                 <div class="row">
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -419,7 +419,7 @@
                         <p:tab title="En proceso">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{controlAviso.ordenEnProceso}">
-                                    <p:fieldset legend="ID Aviso: #{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -522,7 +522,7 @@
                         <p:tab title="Cerradas">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{controlAviso.ordenCerradas}">
-                                    <p:fieldset legend="ID Aviso: #{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
