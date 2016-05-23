@@ -49,22 +49,29 @@ public class Login {
 
     public String autenticar() {
         String page;
-        // Una vez comprobado, compruebo si la contraseña es correcta
         if (user != null && basededatos.estaRegistrado(user)) {
-            Usuario us = basededatos.getUsuario(user);
+            if (basededatos.getUsuario(user).getCadenaValidacion() == null) {
+                // Una vez comprobado, compruebo si la contraseña es correcta
 
-            if (us.getPassword().equals(this.password)) // Comparamos con el hash
-            {
-                ctrl.setUsuario(us);
-                page = ctrl.home();
+                Usuario us = basededatos.getUsuario(user);
+
+                if (us.getPassword().equals(this.password)) // Comparamos con el hash
+                {
+                    ctrl.setUsuario(us);
+                    page = ctrl.home();
+                } else {
+                    FacesContext ctx = FacesContext.getCurrentInstance();
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña inválidos", "Usuario o contraseña inválidos"));
+                    page = "login.xhtml";
+                }
             } else {
                 FacesContext ctx = FacesContext.getCurrentInstance();
-                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña inválidos", "Usuario o contraseña inválidos"));
+                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario no activado", "Usuario no activado"));
                 page = "login.xhtml";
             }
         } else {
             FacesContext ctx = FacesContext.getCurrentInstance();
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña inválidos", "Usuario o contraseña inválidos"));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario no registrado", "Usuario no registrado"));
             page = "login.xhtml";
         }
         return page;
