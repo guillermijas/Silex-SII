@@ -7,6 +7,7 @@ package entrega2;
 
 import baseDeDatos.BaseDeDatosLocal;
 import baseDeDatos.EMASAException;
+import entrega1.Enumeraciones;
 import entrega1.Usuario;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -87,11 +88,11 @@ public class ControlRegistro implements Serializable {
             keepPwd(); // Guardamos esa contraseña en el perfil del usuario
             // Luego establecemos el rol del usuario
             if (user.getTipo() == null) {
-                user.setRol("CLIENTE");
+                user.setRol(Enumeraciones.Rol.CLIENTE);
             } else if (user.getZonaCargo() != null) {
-                user.setRol("SUPERVISOR");
+                user.setRol(Enumeraciones.Rol.SUPERVISOR);
             } else {
-                user.setRol("OPERARIO");
+                user.setRol(Enumeraciones.Rol.OPERARIO);
             }
 
             if (basededatos.insertarUsuario(user)) {
@@ -110,7 +111,7 @@ public class ControlRegistro implements Serializable {
         if (checkPasswords()) {
             keepPwd(); // Guardamos esa contraseña en el perfil del usuario
             // Luego establecemos el rol del usuario
-            user.setRol("OPERARIO");
+            user.setRol(Enumeraciones.Rol.OPERARIO);
             if (basededatos.insertarUsuario(user)) // Devuelve true si se ha guardado el usuario correctamente en la BD
             {
                 return "admin.xhtml";

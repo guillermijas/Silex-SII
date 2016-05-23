@@ -107,7 +107,7 @@ public class ControlModificarUsuario implements Serializable {
     }
 
     public boolean isDisponibilidad() {
-        return ctrl.getUsuario().getDisponibilidad();
+        return ctrl.getUsuario().isDisponibilidad();
     }
 
     public void setDisponibilidad(boolean disponibilidad) {

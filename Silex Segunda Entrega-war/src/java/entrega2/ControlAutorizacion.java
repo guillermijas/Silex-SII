@@ -35,13 +35,13 @@ public class ControlAutorizacion implements Serializable {
 
         if (usuario != null) { // Si hay usuario
             switch (usuario.getRol()) {
-                case "CLIENTE":
+                case CLIENTE:
                     page = "cliente.xhtml";
                     break;
-                case "ADMINISTRADOR":
+                case ADMINISTRADOR:
                     page = "admin.xhtml";
                     break;
-                case "OPERARIO":
+                case OPERARIO:
                     page = "normal.xhtml";
                     break;
                 default:
@@ -96,7 +96,7 @@ public class ControlAutorizacion implements Serializable {
         return usuario.getUsername();
     }
 
-    public String getRol() {
+    public Enumeraciones.Rol getRol() {
         return usuario.getRol();
     }
 
