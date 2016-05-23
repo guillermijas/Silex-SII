@@ -6,6 +6,7 @@
 package baseDeDatos;
 
 import entrega1.Aviso;
+import entrega1.Enumeraciones;
 import entrega1.OrdenDeTrabajo;
 import entrega1.Usuario;
 import java.util.ArrayList;
@@ -200,7 +201,6 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     public void insertarAviso(Aviso aviso) throws EMASAException {
         if (!estaRegistrado(aviso)) // Es decir, no está ya en el sistema
         {
-            //aviso.setIdAviso(getIDNewAviso());
             em.persist(aviso);
         } else {
             throw new AvisoYaExistenteException();
@@ -241,7 +241,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         List<Aviso> lista = new ArrayList<>();
         List<Aviso> avisos = getListaAvisos();
         for (int i = 0; i < avisos.size(); i++) {
-            if (avisos.get(i).getEstado().equalsIgnoreCase("NUEVA")) {
+            if (avisos.get(i).getEstado().equals(Enumeraciones.estado.NUEVO)) {
                 lista.add(avisos.get(i));
             }
         }
@@ -253,7 +253,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         List<Aviso> lista = new ArrayList<>();
         List<Aviso> avisos = getListaAvisos();
         for (int i = 0; i < avisos.size(); i++) {
-            if (avisos.get(i).getEstado().equalsIgnoreCase("EN_PROCESO")) {
+            if (avisos.get(i).getEstado().equals(Enumeraciones.estado.EN_PROCESO)) {
                 lista.add(avisos.get(i));
             }
         }
@@ -265,7 +265,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         List<Aviso> lista = new ArrayList<>();
         List<Aviso> avisos = getListaAvisos();
         for (int i = 0; i < avisos.size(); i++) {
-            if (avisos.get(i).getEstado().equalsIgnoreCase("CERRADA")) {
+            if (avisos.get(i).getEstado().equals(Enumeraciones.estado.CERRADO)) {
                 lista.add(avisos.get(i));
             }
         }
@@ -278,7 +278,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         List<Aviso> avisos = getListaAvisos();
 
         for (int i = 0; i < avisos.size(); i++) {
-            if (avisos.get(i).getEstado().equalsIgnoreCase("INCIDENCIA")) {
+            if (avisos.get(i).getEstado().equals(Enumeraciones.estado.INCIDENCIA)) {
                 lista.add(avisos.get(i));
             }
         }
@@ -289,26 +289,22 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     public void cerrarAviso(Long id) throws EMASAException {
         Aviso av = em.find(Aviso.class, id);
         if (av != null) {
-            av.setEstado("CERRADA");
+            av.setEstado(Enumeraciones.estado.CERRADO);
             av.setFechafin(new Date());
             modificarAviso(av);
         } else {
             throw new AvisoInexistenteException();
         }
     }
-    
+
     @Override
-    public long getIDNewAviso()
-    {
+    public long getIDNewAviso() {
         long id = 0;
         List<Aviso> avisos = getListaAvisos();
-        
-        if(!avisos.isEmpty())
-        {
-            for(int i = 0; i < avisos.size(); i++)
-            {
-                if(avisos.get(i).getIdAviso() > id)
-                {
+
+        if (!avisos.isEmpty()) {
+            for (int i = 0; i < avisos.size(); i++) {
+                if (avisos.get(i).getIdAviso() > id) {
                     id = avisos.get(i).getIdAviso();
                 }
             }
@@ -361,7 +357,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         List<OrdenDeTrabajo> lista = new ArrayList<>();
         List<OrdenDeTrabajo> ots = getListaOT();
         for (int i = 0; i < ots.size(); i++) {
-            if (ots.get(i).getEstado().equalsIgnoreCase("EN_PROCESO")) {
+            if (ots.get(i).getEstado().equals(Enumeraciones.estado.EN_PROCESO)) {
                 lista.add(ots.get(i));
             }
         }
@@ -373,7 +369,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         List<OrdenDeTrabajo> lista = new ArrayList<>();
         List<OrdenDeTrabajo> ots = getListaOT();
         for (int i = 0; i < ots.size(); i++) {
-            if (ots.get(i).getEstado().equalsIgnoreCase("CERRADA")) {
+            if (ots.get(i).getEstado().equals(Enumeraciones.estado.CERRADO)) {
                 lista.add(ots.get(i));
             }
         }
@@ -384,7 +380,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     public void cerrarOt(Long id) throws EMASAException {
         OrdenDeTrabajo ot = em.find(OrdenDeTrabajo.class, id);
         if (ot != null) {
-            ot.setEstado("CERRADA");
+            ot.setEstado(Enumeraciones.estado.CERRADO);
             ot.setFechafin(new Date());
             modificarOT(ot);
         } else {

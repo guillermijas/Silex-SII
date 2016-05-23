@@ -11,9 +11,8 @@ public class OrdenDeTrabajo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idOT;
-    private Usuario cliente;
-    private String estado;
-    private String prioridad;
+    private Enumeraciones.estado estado;
+    private Enumeraciones.prioridad prioridad;
     private String instrucciones;
     @Temporal(TemporalType.DATE)
     private Date fechainicio;
@@ -23,6 +22,11 @@ public class OrdenDeTrabajo implements Serializable {
     private Aviso aviso;
     @ManyToMany(mappedBy = "usuario_ordenesTrabajo")
     private List<Usuario> operarios;
+    
+    //datos de contacto cliente
+    private String nombreCliente;
+    private String telefonoCliente;
+    private String emailCliente;
 
     public OrdenDeTrabajo() {
     }
@@ -35,15 +39,11 @@ public class OrdenDeTrabajo implements Serializable {
         return idOT;
     }
 
-    public String getEstado() {
+    public Enumeraciones.estado getEstado() {
         return estado;
     }
 
-    public Usuario getCliente() {
-        return cliente;
-    }
-
-    public String getPrioridad() {
+    public Enumeraciones.prioridad getPrioridad() {
         return prioridad;
     }
 
@@ -71,20 +71,17 @@ public class OrdenDeTrabajo implements Serializable {
         this.idOT = idOT;
     }
 
-    public void setEstado(String estado) {
+
+    public void setEstado(Enumeraciones.estado estado) {
         this.estado = estado;
     }
 
-    public void setPrioridad(String prioridad) {
+    public void setPrioridad(Enumeraciones.prioridad prioridad) {
         this.prioridad = prioridad;
     }
 
     public void setInstrucciones(String instrucciones) {
         this.instrucciones = instrucciones;
-    }
-
-    public void setCliente(Usuario cliente) {
-        this.cliente = cliente;
     }
 
     public void setFechainicio(Date fechainicio) {
@@ -103,10 +100,35 @@ public class OrdenDeTrabajo implements Serializable {
         this.operarios = operarios;
     }
 
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public String getTelefonoCliente() {
+        return telefonoCliente;
+    }
+
+    public String getEmailCliente() {
+        return emailCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    public void setTelefonoCliente(String telefonoCliente) {
+        this.telefonoCliente = telefonoCliente;
+    }
+
+    public void setEmailCliente(String emailCliente) {
+        this.emailCliente = emailCliente;
+    }
+
+    
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 43 * hash + Objects.hashCode(this.idOT);
+        int hash = 7;
+        hash = 11 * hash + Objects.hashCode(this.idOT);
         return hash;
     }
 
@@ -130,7 +152,8 @@ public class OrdenDeTrabajo implements Serializable {
 
     @Override
     public String toString() {
-        return "OrdenDeTrabajo{" + "idOT=" + idOT + ", estado=" + estado + ", prioridad=" + prioridad + ", instrucciones=" + instrucciones + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", aviso=" + aviso + ", operarios=" + operarios + '}';
+        return "OrdenDeTrabajo{" + "idOT=" + idOT + ", estado=" + estado + ", prioridad=" + prioridad + ", instrucciones=" + instrucciones + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", aviso=" + aviso + ", operarios=" + operarios + ", nombreCliente=" + nombreCliente + ", telefonoCliente=" + telefonoCliente + ", emailCliente=" + emailCliente + '}';
     }
 
+   
 }

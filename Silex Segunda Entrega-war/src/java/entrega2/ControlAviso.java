@@ -52,7 +52,7 @@ public class ControlAviso implements Serializable {
     }
 
     public String addAviso() throws EMASAException {
-        aviso.setEstado("INCIDENCIA");
+        aviso.setEstado(Enumeraciones.estado.INCIDENCIA);
         aviso.setFechainicio(new Date());
         aviso.setCreador(basededatos.getUsuario(ctrl.getUsername()));
         basededatos.insertarAviso(aviso);

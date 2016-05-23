@@ -12,7 +12,6 @@ public class Aviso implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idAviso;
-    private String gravedad;
     private String descripcion;
     private String imagen;
     private String direccion;
@@ -21,8 +20,10 @@ public class Aviso implements Serializable {
     private Coordenada localizacion;
     private boolean urgente;
     private boolean planificado;
-    private String estado;
-    private String prioridad;
+    private Enumeraciones.estado estado;
+    private Enumeraciones.prioridad prioridad;
+    private Enumeraciones.gravedad gravedad;
+
     @Temporal(TemporalType.DATE)
     private Date fechainicio;
     @Temporal(TemporalType.DATE)
@@ -38,6 +39,7 @@ public class Aviso implements Serializable {
     private Usuario supervisor;
     @ManyToOne
     private Usuario operario;
+
     //datos de contacto cliente
     private String nombreCliente;
     private String telefonoCliente;
@@ -54,7 +56,7 @@ public class Aviso implements Serializable {
 
     public String getFechafin() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(fechainicio);
+        return sdf.format(fechafin);
     }
 
     public static long getSerialVersionUID() {
@@ -65,7 +67,7 @@ public class Aviso implements Serializable {
         return idAviso;
     }
 
-    public String getGravedad() {
+    public Enumeraciones.gravedad getGravedad() {
         return gravedad;
     }
 
@@ -101,11 +103,11 @@ public class Aviso implements Serializable {
         return planificado;
     }
 
-    public String getEstado() {
+    public Enumeraciones.estado getEstado() {
         return estado;
     }
 
-    public String getPrioridad() {
+    public Enumeraciones.prioridad getPrioridad() {
         return prioridad;
     }
 
@@ -145,7 +147,7 @@ public class Aviso implements Serializable {
         this.idAviso = idAviso;
     }
 
-    public void setGravedad(String gravedad) {
+    public void setGravedad(Enumeraciones.gravedad gravedad) {
         this.gravedad = gravedad;
     }
 
@@ -181,11 +183,11 @@ public class Aviso implements Serializable {
         this.planificado = planificado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Enumeraciones.estado estado) {
         this.estado = estado;
     }
 
-    public void setPrioridad(String prioridad) {
+    public void setPrioridad(Enumeraciones.prioridad prioridad) {
         this.prioridad = prioridad;
     }
 
@@ -262,6 +264,7 @@ public class Aviso implements Serializable {
 
     @Override
     public String toString() {
-        return "Aviso{";// + "idAviso=" + idAviso + ", gravedad=" + gravedad + ", descripcion=" + descripcion + ", imagen=" + imagen + ", direccion=" + direccion + ", cp=" + cp + ", municipio=" + municipio + ", localizacion=" + localizacion + ", urgente=" + urgente + ", planificado=" + planificado + ", estado=" + estado + ", prioridad=" + prioridad + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", ordendeTrabajo=" + ordendeTrabajo + ", creador=" + creador + ", cliente=" + cliente + ", callcenter=" + callcenter + ", supervisor=" + supervisor + ", operario=" + operario + '}';
+        return "Aviso{" + "idAviso=" + idAviso + ", gravedad=" + gravedad + ", descripcion=" + descripcion + ", imagen=" + imagen + ", direccion=" + direccion + ", cp=" + cp + ", municipio=" + municipio + ", localizacion=" + localizacion + ", urgente=" + urgente + ", planificado=" + planificado + ", estado=" + estado + ", prioridad=" + prioridad + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", ordendeTrabajo=" + ordendeTrabajo + ", creador=" + creador + ", callcenter=" + callcenter + ", supervisor=" + supervisor + ", operario=" + operario + ", nombreCliente=" + nombreCliente + ", telefonoCliente=" + telefonoCliente + ", emailCliente=" + emailCliente + '}';
     }
+
 }
