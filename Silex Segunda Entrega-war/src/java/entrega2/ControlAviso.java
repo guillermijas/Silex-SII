@@ -24,7 +24,7 @@ public class ControlAviso implements Serializable {
     private ControlAutorizacion ctrl;
 
     public ControlAviso() {
-         
+
     }
 
     public void setAviso(Aviso aviso) {
@@ -42,6 +42,11 @@ public class ControlAviso implements Serializable {
             page = "modificar_aviso.xhtml";
         }
         return page;
+    }
+    
+    public String confirmarModificacion() throws EMASAException{
+        basededatos.modificarAviso(aviso);
+        return ctrl.home(); 
     }
 
     public String regAviso() {
@@ -136,29 +141,32 @@ public class ControlAviso implements Serializable {
     public void setPlanificado(boolean plan) {
         aviso.setPlanificado(plan);
     }
-    
-    public List<Aviso> getIncidencias(){
-       return basededatos.getAvisosIncidencia();
+
+    public List<Aviso> getIncidencias() {
+        return basededatos.getAvisosIncidencia();
     }
-    public List<Aviso> getAvisosNuevos(){
-       return basededatos.getAvisosNueva();
+
+    public List<Aviso> getAvisosNuevos() {
+        return basededatos.getAvisosNueva();
     }
-    public List<Aviso> getAvisosEnProceso(){
-       return basededatos.getAvisosEnProceso();
+
+    public List<Aviso> getAvisosEnProceso() {
+        return basededatos.getAvisosEnProceso();
     }
-    public List<Aviso> getAvisosCerrados(){
-       return basededatos.getAvisosCerrada();
+
+    public List<Aviso> getAvisosCerrados() {
+        return basededatos.getAvisosCerrada();
     }
-    
-    public List<OrdenDeTrabajo> getOrdenEnProceso(){
-       return basededatos.getOtEnProceso();
+
+    public List<OrdenDeTrabajo> getOrdenEnProceso() {
+        return basededatos.getOtEnProceso();
     }
-    public List<OrdenDeTrabajo> getOrdenCerradas(){
-       return basededatos.getOtCerradas();
+
+    public List<OrdenDeTrabajo> getOrdenCerradas() {
+        return basededatos.getOtCerradas();
     }
-   
-    public String cerrarAviso(Aviso a) throws EMASAException
-    {
+
+    public String cerrarAviso(Aviso a) throws EMASAException {
         basededatos.cerrarAviso(a.getIdAviso());
         return ctrl.home();
     }

@@ -29,10 +29,8 @@
                         <c:forEach var="item" items="#{controlAviso.incidencias}">                              
                             <c:choose>
                                 <c:when test="#{controlAutorizacion.username == item.creador.username}">
-                                    <p:fieldset legend="ID Aviso: #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
                                         <div class="row">
-
-
                                             <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Dirección: " class="bold"/>
                                             </div>
@@ -46,9 +44,6 @@
                                             <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.fechainicio}" />
                                             </div>
-
-
-
                                             <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Urgente: " class="bold" />
                                             </div>
@@ -64,7 +59,6 @@
                                             </div>
                                             <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Planificado: " class="bold"/>
-
                                             </div>
                                             <div class="col-xs-6 col-md-7">
                                                 <c:choose>
@@ -76,15 +70,12 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
-
                                             <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Estado: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.estado}" />
                                             </div>
-
-
                                             <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Descripcion: " class="bold" />
                                             </div>
@@ -104,7 +95,7 @@
                                             </div>
 
                                             <div class="col-xs-6 col-md-5 text-right">
-                                                <p:commandButton value="Cancelar" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
+                                                <p:commandButton value="Cancelar" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger"/>
                                             </div> 
                                         </div>
                                     </p:fieldset>
@@ -118,7 +109,7 @@
                         <c:forEach var="item" items="#{controlAviso.avisosNuevos}">
                             <c:choose>
                                 <c:when test="#{controlAutorizacion.username == item.creador.username}">
-                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -194,9 +185,7 @@
                                             <div class="col-md-9" style="margin-bottom: 10px;">
                                                 <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                             </div>
-
                                         </div>
-
                                     </p:fieldset>
                                 </c:when>
                             </c:choose>
@@ -208,7 +197,7 @@
                         <c:forEach var="item" items="#{controlAviso.avisosEnProceso}">
                             <c:choose>
                                 <c:when test="#{controlAutorizacion.username == item.creador.username}">
-                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -284,10 +273,7 @@
                                             <div class="col-md-9" style="margin-bottom: 10px;">
                                                 <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                             </div>
-
                                         </div>
-
-
                                     </p:fieldset>
                                 </c:when>
                             </c:choose>
@@ -300,7 +286,7 @@
                         <c:forEach var="item" items="#{controlAviso.avisosCerrados}">
                             <c:choose>
                                 <c:when test="#{controlAutorizacion.username == item.creador.username}">
-                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.cliente.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -376,9 +362,7 @@
                                             <div class="col-md-9" style="margin-bottom: 10px;">
                                                 <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                             </div>
-
                                         </div>
-
                                     </p:fieldset>
                                 </c:when>
                             </c:choose>
