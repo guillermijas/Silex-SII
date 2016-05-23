@@ -151,4 +151,10 @@ public class ControlRegistro implements Serializable {
     public boolean datosCorrectos() {
         return (username != null && validacion != null && basededatos.estaRegistrado(username));
     }
+    
+    public String goHome()
+    {
+        ctrl.setUsuario(basededatos.getUsuario(username));
+        return ctrl.home();
+    }
 }

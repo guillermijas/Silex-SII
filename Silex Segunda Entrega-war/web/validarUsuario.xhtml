@@ -22,12 +22,11 @@ A esta página tan sólo puede acceder el usuario desde el enlace de validación
         <c:choose>
             <c:when test="#{controlRegistro.datosCorrectos()}">
                 <h:outputText value="#{controlRegistro.mensajeValidacion}"/>
-                <p><h:commandButton action="#{controlAutorizacion.home()}" value="Página Principal"/></p>
+                <p><h:commandButton action="#{controlRegistro.goHome()}" value="Página Principal"/></p>
             </c:when>
             <c:otherwise>
                 <p>No tiene autorización para acceder a esta página, por favor, regístrese o entre en el sistema <a href="login.xhtml">aquí</a></p>
             </c:otherwise>
         </c:choose>
     </ui:define>
-
 </ui:composition>
