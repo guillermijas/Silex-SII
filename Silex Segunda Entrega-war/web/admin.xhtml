@@ -11,7 +11,7 @@
 
     <ui:define name="bienvenida">
         <c:choose>
-            <c:when test="#{controlAutorizacion.rol == 'ADMINISTRADOR'}">
+            <c:when test="#{controlAutorizacion.comprobarRol() == 5}">
                 <h1>Administrador</h1>
             </c:when>
             <c:otherwise>
@@ -408,7 +408,7 @@
 
     <ui:define name="campoOT">
         <c:choose>
-            <c:when test="#{controlAutorizacion.rol == 'ADMINISTRADOR'}">
+            <c:when test="#{controlAutorizacion.comprobarRol() == 5}">
                 <!-- ordenes de trabajo -->
                 <h:form id="form1">           
                     <p:growl id="msgs" showDetail="true" />
