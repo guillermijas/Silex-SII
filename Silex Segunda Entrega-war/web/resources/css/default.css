@@ -63,6 +63,14 @@ h1 {
     box-shadow: 4px 4px 2px #888;
 }
 
+.ui-confirm-dialog{
+    position: absolute;
+ top: 40% !important;
+ left:35% !important;
+
+}
+
+
 .left_content {
     background-color: #dddddd;
     padding: 5px;
