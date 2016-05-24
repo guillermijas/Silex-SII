@@ -228,7 +228,7 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
     }
 
-    public void setDirección(String direccion) {
+    public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 

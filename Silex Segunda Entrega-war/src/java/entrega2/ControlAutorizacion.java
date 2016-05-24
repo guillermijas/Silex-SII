@@ -103,7 +103,8 @@ public class ControlAutorizacion implements Serializable {
     public String modUser() {
         return "modificar_usuario.xhtml";
     }
-        public String modUser(Usuario u) {
+
+    public String modUser(Usuario u) {
         usuario = u;
         return "modificar_usuario.xhtml";
     }
@@ -165,6 +166,22 @@ public class ControlAutorizacion implements Serializable {
         this.pass2 = pass2;
     }
 
+    public String getNombre() {
+        return usuario.getNombre();
+    }
+
+    public void setNombre(String n) {
+        usuario.setNombre(n);
+    }
+
+    public String getDni() {
+        return usuario.getDni();
+    }
+
+    public void setDni(String s) {
+        usuario.setDni(s);
+    }
+
     public String getApellidos() {
         return usuario.getApellidos();
     }
@@ -186,7 +203,7 @@ public class ControlAutorizacion implements Serializable {
     }
 
     public void setDireccion(String direccion) {
-        usuario.setDirección(direccion);
+        usuario.setDireccion(direccion);
     }
 
     public String getZonaCargo() {
@@ -221,6 +238,14 @@ public class ControlAutorizacion implements Serializable {
         usuario.setDisponibilidad(disponibilidad);
     }
 
+    public String getSexo() {
+        return usuario.getSexo();
+    }
+
+    public void getSexo(String n) {
+        usuario.setSexo(n);
+    }
+
     public boolean checkPasswords() {
         return pass.equals(pass2);
     }
@@ -231,9 +256,9 @@ public class ControlAutorizacion implements Serializable {
 
     //hasta aqui usuario
     public String update() throws EMASAException { // Actualiza los cambios en la base de datos y redirige al usuario a la pagina principal
-
         FacesMessage msg = new FacesMessage("Modificación realizada con éxito", "Usuario " + getUsername() + " modificado");
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        System.out.println("-----------"+getDni()+"--------------");
         basededatos.actualizarUsuario(usuario); // Actualizamos el usuario en la base de datos
         return home();
     }
