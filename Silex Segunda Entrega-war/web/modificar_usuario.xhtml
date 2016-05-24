@@ -61,7 +61,7 @@ A esta página tan sólo puede acceder el usuario si está logeado
                 <h:outputText class="bold" style="color: #31b0d5" value="#{controlAutorizacion.mensaje}"/>
             </div>
         </div>
-        <c:if test="#{controlAutorizacion.comprobarRol() == 4}">
+        <c:if test="#{controlAutorizacion.comprobarRol() == 4 and controlAutorizacion.username != controlAutorizacion.usernameEditado}">
             <div class="col-md-6">
                 <h:outputText value="Tipo de usuario: " />
             </div>
