@@ -12,10 +12,10 @@ A esta página se accede desde el login para recuperar una contraseña olvidada
     <ui:define name="title">Recuperar Contraseña</ui:define>
     
     <ui:define name="contenido">
-        <p>Introduzca su nombre de usuario:</p>
+        <p class="bold" style="color: #31b0d5">Introduzca su nombre de usuario:</p>
         <h:form>
             <h:inputText value="#{controlRecuperarPass.username}"/>
-            <h:commandButton value="#{controlRecuperarPass.checkUsername()}"/>
+            <h:commandButton action="#{controlRecuperarPass.checkUsername()}" value="Cambiar contraseña"/>
             <h:outputText value ="#{controlRecuperarPass.mensaje}"/>
         </h:form>
     </ui:define>

@@ -5,6 +5,7 @@ import baseDeDatos.EMASAException;
 import entrega1.Usuario;
 import javax.ejb.EJB;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @SessionScoped
@@ -13,6 +14,9 @@ public class ControlRecuperarPass {
     
     @EJB
     private BaseDeDatosLocal basededatos;
+    
+    @Inject 
+    private Hash hash;
     
     
     private String username;
@@ -91,13 +95,27 @@ public class ControlRecuperarPass {
         }
     }
     
-    public String cambiarPass()
+    private boolean checkPassword()
     {
-        if(username != null && validacion != null)
-        {
+        return pwd1.equals(pwd2);
+    }
             
+    
+    public String cambiarPass() throws EMASAException
+    {
+        if(comprobarAcceso() && checkPassword())
+        {
+            Usuario us = basededatos.getUsuario(username);
+            us.setPassword(hash.getHash(pwd1)); // Actualizamos la contraseña
+            us.setCadenaValidacion(null); // Y volvemos a poner a null la cadena de validacion
+            basededatos.actualizarUsuario(us); // Actualizamos el usuario
+            return "login.xhtml";
         }
-        return "";
+        else
+        {
+            return "";
+        }
+        
     }
     
 }
