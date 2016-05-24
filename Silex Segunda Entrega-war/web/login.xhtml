@@ -4,11 +4,13 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:p="http://primefaces.org/ui">
-    <ui:define name="title">Autenticando</ui:define>
+    <ui:define name="title">Autenticando
+    </ui:define>
+
     <ui:define name="content">
         <c:choose>
             <c:when test="#{empty controlAutorizacion.usuario}">
-                <h:form id="form" class="text-center">
+                 <h:form id="form" class="text-center">
                     <h4>Usuario </h4>
                     <div class="input-group">
                         <span class="input-group-addon glyphicon glyphicon-user"></span>
@@ -21,9 +23,12 @@
                         <span class="input-group-addon glyphicon glyphicon-lock"></span>
                         <h:inputSecret id="password" class="form-control input-lg" value="#{login.password}"/>
                     </div>
-                    <br/><br/>
+                                         <p:messages id="messages" showDetail="true" autoUpdate="true" />
+
+                    <br/>
                     <h:commandButton id="iniciarsesionbtn" class="btn btn-lg" style="background-color:#2b83b5; color: white" value="Iniciar sesión" action="#{login.autenticar()}"/>
-                    <br/><br/>
+                   <br/><br/>
+
                     <div class="row">
                         <div class="text-center col-xs-12 col-md-6">
                             <h:outputText id="recCuenta" value="Recordar cuenta"/>
@@ -37,7 +42,6 @@
                 <p>Debe salir de la aplicación si quiere entrar como otro usuario</p>
             </c:otherwise>
         </c:choose>
-        <h:messages/>
     </ui:define>
 </ui:composition>
 

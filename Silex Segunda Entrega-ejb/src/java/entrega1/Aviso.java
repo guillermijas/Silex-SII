@@ -92,6 +92,9 @@ public class Aviso implements Serializable {
     }
 
     public Coordenada getLocalizacion() {
+        if(localizacion == null){
+            localizacion = new Coordenada();
+        }
         return localizacion;
     }
 

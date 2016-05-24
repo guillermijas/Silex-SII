@@ -53,12 +53,16 @@ public class BaseDeDatos implements BaseDeDatosLocal {
             throw new UsuarioExistenteException();
         } else {
             String cadena = generarCadenaAleatoria();
+            if(!us.getUsername().equals("admin")){
             us.setCadenaValidacion(cadena);
+            }
             us.setRegistroOk(true); // Establecemos que el registro se ha producido correctamente -> Para usarlo en exitoRegistro
             em.persist(us);
             ok = true;
             // Y mandamos el email al usuario para que confirme el email
+            if(!us.getUsername().equals("admin")){
             mandarEmail(us, cadena);
+            }
         }
         return ok;
     }
