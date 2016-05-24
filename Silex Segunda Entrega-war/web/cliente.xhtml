@@ -9,7 +9,7 @@
 
     <ui:define name="bienvenida">
         <c:choose>
-            <c:when test="#{controlAutorizacion.usuario != null and controlAutorizacion.comprobarRol() == 0}">
+            <c:when test="#{controlAutorizacion.usuario!=null and controlAutorizacion.comprobarRol() == 0}">
                 <h1>Cliente</h1>
             </c:when>
             <c:otherwise>

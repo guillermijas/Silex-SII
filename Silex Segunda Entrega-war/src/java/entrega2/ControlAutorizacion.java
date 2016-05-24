@@ -23,7 +23,9 @@ public class ControlAutorizacion implements Serializable {
 
     private String pass;
     private String pass2;
+
     private Usuario usuario;
+    private Usuario usuarioEditado;
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
@@ -31,6 +33,14 @@ public class ControlAutorizacion implements Serializable {
 
     public Usuario getUsuario() {
         return usuario;
+    }
+
+    public Usuario getUsuarioEditado() {
+        return usuarioEditado;
+    }
+
+    public void setUsuarioEditado(Usuario usuarioEditado) {
+        this.usuarioEditado = usuarioEditado;
     }
 
     /**
@@ -69,6 +79,7 @@ public class ControlAutorizacion implements Serializable {
         FacesContext ctx = FacesContext.getCurrentInstance();
         ctx.getExternalContext().invalidateSession();
         usuario = null;
+        usuarioEditado = null;
         return "login.xhtml";
     }
 
@@ -101,16 +112,22 @@ public class ControlAutorizacion implements Serializable {
     }
 
     public String modUser() {
+        usuarioEditado = usuario;
         return "modificar_usuario.xhtml";
     }
 
     public String modUser(Usuario u) {
-        usuario = u;
+        usuarioEditado = u;
         return "modificar_usuario.xhtml";
     }
 
     public String adminUser() {
+        usuarioEditado = usuario;
         return "admin_usuarios.xhtml";
+    }
+
+    public String getUsernameEditado() {
+        return usuarioEditado.getUsername();
     }
 
     public String getUsername() {
@@ -143,11 +160,11 @@ public class ControlAutorizacion implements Serializable {
 
     //Metodos para el usuario
     public String getEmail() {
-        return usuario.getEmail();
+        return usuarioEditado.getEmail();
     }
 
     public void setEmail(String email) {
-        usuario.setEmail(email);
+        usuarioEditado.setEmail(email);
     }
 
     public String getPass() {
@@ -167,79 +184,79 @@ public class ControlAutorizacion implements Serializable {
     }
 
     public String getNombre() {
-        return usuario.getNombre();
+        return usuarioEditado.getNombre();
     }
 
     public void setNombre(String n) {
-        usuario.setNombre(n);
+        usuarioEditado.setNombre(n);
     }
 
     public String getDni() {
-        return usuario.getDni();
+        return usuarioEditado.getDni();
     }
 
     public void setDni(String s) {
-        usuario.setDni(s);
+        usuarioEditado.setDni(s);
     }
 
     public String getApellidos() {
-        return usuario.getApellidos();
+        return usuarioEditado.getApellidos();
     }
 
     public void setApellidos(String apellidos) {
-        usuario.setApellidos(apellidos);
+        usuarioEditado.setApellidos(apellidos);
     }
 
     public Long getTelefono() {
-        return usuario.getTelefono();
+        return usuarioEditado.getTelefono();
     }
 
     public void setTelefono(Long telefono) {
-        usuario.setTelefono(telefono);
+        usuarioEditado.setTelefono(telefono);
     }
 
     public String getDireccion() {
-        return usuario.getDireccion();
+        return usuarioEditado.getDireccion();
     }
 
     public void setDireccion(String direccion) {
-        usuario.setDireccion(direccion);
+        usuarioEditado.setDireccion(direccion);
     }
 
     public String getZonaCargo() {
-        return usuario.getZonaCargo();
+        return usuarioEditado.getZonaCargo();
     }
 
     public void setZonaCargo(String zonaCargo) {
-        usuario.setZonaCargo(zonaCargo);
+        usuarioEditado.setZonaCargo(zonaCargo);
     }
 
     public String getTipo() {
-        return usuario.getTipo();
+        return usuarioEditado.getTipo();
     }
 
     public void setTipo(String tipo) {
-        usuario.setTipo(tipo);
+        usuarioEditado.setTipo(tipo);
     }
 
     public String getEspecializacion() {
-        return usuario.getEspecializacion();
+        return usuarioEditado.getEspecializacion();
     }
 
     public void setEspecializacion(String especializacion) {
-        usuario.setEspecializacion(especializacion);
+        usuarioEditado.setEspecializacion(especializacion);
     }
 
     public boolean isDisponibilidad() {
-        return usuario.isDisponibilidad();
+        return usuarioEditado.isDisponibilidad();
     }
 
     public void setDisponibilidad(boolean disponibilidad) {
-        usuario.setDisponibilidad(disponibilidad);
+        usuarioEditado.setDisponibilidad(disponibilidad);
     }
 
     public String getSexo() {
-        return usuario.getSexo();
+        return usuarioEditado.getSexo();
     }
 
     public void setSexo(String n) {
@@ -254,7 +271,7 @@ public class ControlAutorizacion implements Serializable {
         usuario.setPassword(hash.getHash(pass));
     }
 
-    //hasta aqui usuario
+ //hasta aqui usuario
     public String update() throws EMASAException { // Actualiza los cambios en la base de datos y redirige al usuario a la pagina principal
         if(pass != null)
         {
@@ -281,5 +298,4 @@ public class ControlAutorizacion implements Serializable {
             return home();
         }    
     }
-
 }
