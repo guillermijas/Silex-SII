@@ -21,7 +21,7 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String username;
-    
+
     @OneToMany(targetEntity = Aviso.class)
     private List<Aviso> listaAvisos_CallCenter;
     @OneToMany(targetEntity = Aviso.class)
@@ -47,13 +47,13 @@ public class Usuario implements Serializable {
     private String nombre;
     private String apellidos;
     private Long telefono;
-    private String dirección;
+    private String direccion;
     private String email;
     private String sexo;
-    
+
     //admin
     public static final Usuario ADMIN = new Usuario("admin", "", Enumeraciones.Rol.ADMINISTRADOR);
-    
+
     //rol supervisor
     private String zonaCargo;
 
@@ -66,7 +66,7 @@ public class Usuario implements Serializable {
     private String cadenaValidacion = null;
     private boolean registroOk = false;
 
-    public Usuario(){
+    public Usuario() {
 
     }
 
@@ -136,8 +136,8 @@ public class Usuario implements Serializable {
         return telefono;
     }
 
-    public String getDirección() {
-        return dirección;
+    public String getDireccion() {
+        return direccion;
     }
 
     public String getEmail() {
@@ -228,8 +228,8 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
     }
 
-    public void setDirección(String dirección) {
-        this.dirección = dirección;
+    public void setDirección(String direccion) {
+        this.direccion = direccion;
     }
 
     public void setEmail(String email) {
@@ -291,15 +291,13 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "username=" + username + ", listaAvisos_CallCenter=" + listaAvisos_CallCenter + ", listaAvisos_supervisor=" 
+        return "Usuario{" + "username=" + username + ", listaAvisos_CallCenter=" + listaAvisos_CallCenter + ", listaAvisos_supervisor="
                 + listaAvisos_supervisor + ", ordentrabajo_supervisor=" + ordentrabajo_supervisor + ", usuario_ordenesTrabajo="
-                + usuario_ordenesTrabajo + ", listaAvisos_operario=" + listaAvisos_operario + ", capataz=" + capataz + ", operariosRelacionados=" 
-                + operariosRelacionados + ", password=" + password + ", rol=" + rol + ", dni=" + dni + ", nombre=" + nombre + ", apellidos=" 
-                + apellidos + ", telefono=" + telefono + ", direcci\u00f3n=" + dirección + ", email=" + email + ", sexo=" + sexo + ", zonaCargo=" 
-                + zonaCargo + ", tipo=" + tipo + ", especializacion=" + especializacion + ", disponibilidad=" + disponibilidad + ", cadenaValidacion=" 
+                + usuario_ordenesTrabajo + ", listaAvisos_operario=" + listaAvisos_operario + ", capataz=" + capataz + ", operariosRelacionados="
+                + operariosRelacionados + ", password=" + password + ", rol=" + rol + ", dni=" + dni + ", nombre=" + nombre + ", apellidos="
+                + apellidos + ", telefono=" + telefono + ", direccion=" + direccion + ", email=" + email + ", sexo=" + sexo + ", zonaCargo="
+                + zonaCargo + ", tipo=" + tipo + ", especializacion=" + especializacion + ", disponibilidad=" + disponibilidad + ", cadenaValidacion="
                 + cadenaValidacion + ", registroOk=" + registroOk + '}';
     }
-    
-
 
 }

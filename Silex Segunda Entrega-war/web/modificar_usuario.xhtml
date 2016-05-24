@@ -2,7 +2,7 @@
 <!--
 A esta página tan sólo puede acceder el usuario si está logeado
 -->
-<ui:composition template="/WEB-INF/templates/plantilla_formulario.xhtml"  
+<ui:composition template="/WEB-INF/templates/plantilla_formulario.xhtml" 
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -10,6 +10,40 @@ A esta página tan sólo puede acceder el usuario si está logeado
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">Modificar Datos Usuario</ui:define>
+
+
+
+    <ui:define name="titulo-pestaña1">
+        <h3>Login</h3>
+    </ui:define>
+
+    <ui:define name="titulo-pestaña2">
+        <h3>Datos Usuario</h3>
+    </ui:define>
+
+    <ui:define name="titulo-pestaña3">
+        <h3>Información profesional</h3>
+    </ui:define>
+
+    <ui:define name="campos-pestaña1">
+        <h:form>
+            <div class="row">
+                <div class="col-md-6">
+                    <h:outputText  value="Nombre: " />
+                </div>
+                <div class="col-md-6">
+                    <p:inputText id="username" value="#{controlAutorizacion.nombre}" />
+                    <br/>
+                </div>
+            </div>
+        </h:form>
+        <p:separator />
+    </ui:define>
+
+
+
+
+
     <ui:define name="another">
         <c:choose>
             <c:when test="#{!empty controlAutorizacion.usuario}">
@@ -22,19 +56,19 @@ A esta página tan sólo puede acceder el usuario si está logeado
                         <div class="form-group">
                             <label class="control-label col-xs-3">Email: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{ControlModificarUsuario.email}" id="inputEmail"/>
+                                <p:inputText value ="#{controlModificarUsuario.email}" id="inputEmail"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Contraseña: </label>
                             <div class="col-xs-9">
-                                <p:password value ="#{ControlModificarUsuario.pass}" id="inputPassword" />
+                                <p:password value ="#{controlModificarUsuario.pass}" id="inputPassword" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Confirmar Contraseña: </label>
                             <div class="col-xs-9">
-                                <p:password value ="#{ControlModificarUsuario.pass2}" id="inputPassword2" match ="inputPassword"/>
+                                <p:password value ="#{controlModificarUsuario.pass2}" id="inputPassword2" match ="inputPassword"/>
                             </div>
                         </div>
                     </h:form>
@@ -44,25 +78,25 @@ A esta página tan sólo puede acceder el usuario si está logeado
                         <div class="form-group">
                             <label class="control-label col-xs-3">Nombre: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{ControlModificarUsuario.nombre}" id="inputName"/>
+                                <p:inputText value ="#{controlAutorizacion.nombre}" id="inputName"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Apellidos: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{ControlModificarUsuario.apellidos}" id="inputApellidos"/>
+                                <p:inputText value ="#{controlModificarUsuario.apellidos}" id="inputApellidos"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Teléfono: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{ControlModificarUsuario.telefono}" id="inputTlf"/>
+                                <p:inputText value ="#{controlModificarUsuario.telefono}" id="inputTlf"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Dirección: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{ControlModificarUsuario.direccion}" id="inputDir"/>
+                                <p:inputText value ="#{controlModificarUsuario.direccion}" id="inputDir"/>
                             </div>
                         </div>
                     </h:form>
@@ -72,49 +106,51 @@ A esta página tan sólo puede acceder el usuario si está logeado
                         <div class="form-group">
                             <label class="control-label col-xs-3">Tipo: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{ControlModificarUsuario.tipo}" id="inputTipo"/>
+                                <p:inputText value ="#{controlModificarUsuario.tipo}" id="inputTipo"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Especialización: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{ControlModificarUsuario.especializacion}" id="inputEsp"/>
+                                <p:inputText value ="#{controlModificarUsuario.especializacion}" id="inputEsp"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Zona Cargo: </label>
                             <div class="col-xs-9">
-                                <p:inputText value ="#{ControlModificarUsuario.zonaCargo}" id="inputZone"/>
+                                <p:inputText value ="#{controlModificarUsuario.zonaCargo}" id="inputZone"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-3">Disponibilidad: </label>
                             <div class="col-xs-9">
-                                <p:selectBooleanCheckbox value ="#{ControlModificarUsuario.disponibilidad}" id="inputDisp"/>
+                                <p:selectBooleanCheckbox value ="#{controlModificarUsuario.disponibilidad}" id="inputDisp"/>
                             </div>
                         </div>
                     </h:form>
                 </div>
-                <div class="col-md-3 barraconfirmacion"/>
-                <h:form id="button_bar">
-                    <div class="col-xs-4 col-md-2 text-center barraconfirmacion">
-                        <h:commandButton action="#{ControlModificarUsuario.update()}" value="Confirmar" styleClass="btn-primary"/>
-                    </div>
-                    <div class="col-xs-4 col-md-2 text-center barraconfirmacion">
-                        <h:commandButton action="#{controlAutorizacion.home()}" immediate="true" value="Cancelar" styleClass="btn-danger"/>
-                    </div>
-                    <div class="col-xs-4 col-md-2 text-center barraconfirmacion">
-                        <h:commandButton action="#{controlAutorizacion.modUser()}" immediate="true" value="Limpiar" styleClass="btn-warning"/>
-                    </div>
-                </h:form>
+
             </c:when>
             <c:otherwise>
                 <div>
                     <h4 style="color: #31b0d5">
-                        Para modificar datos de su usuario, ha de estar logueado. Pulse <a href ="login.xhtml">aquí</a> para loguearse.
+                        Para modificar datos de su usuario, ha de estar logueado. Pulse <a href ="login.xhtml">aquí</a> para inciar sesión.
                     </h4>     
                 </div>
             </c:otherwise>
         </c:choose>
     </ui:define>
+
+    <ui:define name="btn_confirmar">
+        <h:commandButton action="#{controlAutorizacion.update()}" value="Confirmar" class="btn-primary"/>
+    </ui:define>
+
+    <ui:define name="btn_cancelar">
+        <h:commandButton action="#{controlAutorizacion.home()}" immediate="true" value="Cancelar" class="btn-danger"/>
+    </ui:define>
+
+    <ui:define name="btn_limpiar">
+        <h:commandButton action="#{controlAutorizacion.modUser()}" immediate="true" value="Cancelar" class="btn-info"/>
+    </ui:define>
+
 </ui:composition>

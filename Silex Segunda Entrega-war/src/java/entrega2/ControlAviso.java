@@ -178,7 +178,7 @@ public class ControlAviso implements Serializable {
         String nombre = "";
         if (aviso.getNombreCliente() == null) {
             if (ctrl.getUsuario().getNombre() != null && ctrl.getUsuario().getApellidos() != null) {
-                nombre = ctrl.getUsuario().getNombre() + ctrl.getUsuario().getApellidos();
+                nombre = ctrl.getUsuario().getNombre() + " " + ctrl.getUsuario().getApellidos();
             }
         } else {
             nombre = aviso.getNombreCliente();
