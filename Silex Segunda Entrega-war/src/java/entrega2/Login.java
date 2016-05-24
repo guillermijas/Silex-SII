@@ -8,6 +8,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import entrega1.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 
 @Named(value = "login")
@@ -49,6 +51,15 @@ public class Login {
 
     public String autenticar() {
         String page;
+        if (user.equals("admin") && !basededatos.estaRegistrado("admin")){
+            try {
+                basededatos.insertarUsuario(new Usuario("admin", "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918", Enumeraciones.Rol.ADMINISTRADOR));
+            } catch (EMASAException ex) {
+            }
+                    ctrl.setUsuario(basededatos.getUsuario("admin"));
+                    page = ctrl.home();
+                    return page;
+        }
         if (user != null && basededatos.estaRegistrado(user)) {
             if (basededatos.getUsuario(user).getCadenaValidacion() == null) {
                 // Una vez comprobado, compruebo si la contraseña es correcta
@@ -61,17 +72,17 @@ public class Login {
                     page = ctrl.home();
                 } else {
                     FacesContext ctx = FacesContext.getCurrentInstance();
-                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña inválidos", "Usuario o contraseña inválidos"));
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Usuario o contraseña inválidos"));
                     page = "login.xhtml";
                 }
             } else {
                 FacesContext ctx = FacesContext.getCurrentInstance();
-                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario no activado", "Usuario no activado"));
+                ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Usuario no activado"));
                 page = "login.xhtml";
             }
         } else {
             FacesContext ctx = FacesContext.getCurrentInstance();
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario no registrado", "Usuario no registrado"));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "\n Usuario no registrado"));
             page = "login.xhtml";
         }
         return page;

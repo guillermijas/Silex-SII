@@ -50,7 +50,10 @@ public class Usuario implements Serializable {
     private String dirección;
     private String email;
     private String sexo;
-
+    
+    //admin
+    public static final Usuario ADMIN = new Usuario("admin", "", Enumeraciones.Rol.ADMINISTRADOR);
+    
     //rol supervisor
     private String zonaCargo;
 
