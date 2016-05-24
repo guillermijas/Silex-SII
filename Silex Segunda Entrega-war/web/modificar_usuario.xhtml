@@ -61,6 +61,21 @@ A esta página tan sólo puede acceder el usuario si está logeado
                 <h:outputText class="bold" style="color: #31b0d5" value="#{controlAutorizacion.mensaje}"/>
             </div>
         </div>
+        <c:if test="#{controlAutorizacion.comprobarRol() == 4}">
+            <div class="col-md-6">
+                <h:outputText value="Tipo de usuario: " />
+            </div>
+            <div class="col-md-6">
+                <h:selectOneMenu class="form-control" value="#{controlAutorizacion.rol}">
+                    <f:selectItem itemValue="0" itemLabel="Cliente" />
+                    <f:selectItem itemValue="1" itemLabel="Call-Center" />
+                    <f:selectItem itemValue="2" itemLabel="Supervisor" />
+                    <f:selectItem itemValue="3" itemLabel="Operario" />
+                    <f:selectItem itemValue="4" itemLabel="Administrador" />
+                </h:selectOneMenu>
+                <br/>
+            </div>
+        </c:if>
         <p:separator />
     </ui:define>
 
@@ -92,11 +107,10 @@ A esta página tan sólo puede acceder el usuario si está logeado
                 <h:outputText value="Sexo: " />
             </div>
             <div class="col-md-6">
-                <select class="form-control" value ="#{controlAutorizacion.sexo}">
-                    <option disabled ="disabled" selected ="selected" value = ""> Seleccione una opción </option>
-                    <option>Mujer</option>
-                    <option>Hombre</option>
-                </select>                                    
+                <h:selectOneMenu class="form-control" value="#{controlAutorizacion.sexo}">
+                    <f:selectItem itemValue="Hombre" itemLabel="Hombre" />
+                    <f:selectItem itemValue="Mujer" itemLabel="Mujer" />
+                </h:selectOneMenu>                   
                 <br/>
             </div>
             <div class="col-md-6">
