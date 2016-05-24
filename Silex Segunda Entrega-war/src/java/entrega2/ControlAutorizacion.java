@@ -1,15 +1,28 @@
 package entrega2;
 
+import baseDeDatos.BaseDeDatosLocal;
+import baseDeDatos.EMASAException;
 import entrega1.*;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 @Named(value = "controlAutorizacion")
 @SessionScoped
 public class ControlAutorizacion implements Serializable {
 
+    @EJB
+    private BaseDeDatosLocal basededatos;
+
+    @Inject
+    private Hash hash;
+
+    private String pass;
+    private String pass2;
     private Usuario usuario;
 
     public void setUsuario(Usuario usuario) {
@@ -20,7 +33,6 @@ public class ControlAutorizacion implements Serializable {
         return usuario;
     }
 
-   
     /**
      * Devuelve la página Home dependiendo del rol del usuario Si no hay usuario
      * debe devolver la página de login Si el usuario es el administrador debe
@@ -91,7 +103,8 @@ public class ControlAutorizacion implements Serializable {
     public String modUser() {
         return "modificar_usuario.xhtml";
     }
-        public String modUser(Usuario u) {
+
+    public String modUser(Usuario u) {
         usuario = u;
         return "modificar_usuario.xhtml";
     }
@@ -104,9 +117,9 @@ public class ControlAutorizacion implements Serializable {
         return usuario.getUsername();
     }
 
-    public int comprobarRol(){
+    public int comprobarRol() {
         int num = -1;
-        switch (usuario.getRol()){
+        switch (usuario.getRol()) {
             case CLIENTE:
                 num = 0;
                 break;
@@ -127,4 +140,127 @@ public class ControlAutorizacion implements Serializable {
         }
         return num;
     }
+
+    //Metodos para el usuario
+    public String getEmail() {
+        return usuario.getEmail();
+    }
+
+    public void setEmail(String email) {
+        usuario.setEmail(email);
+    }
+
+    public String getPass() {
+        return this.pass;
+    }
+
+    public void setPass(String p) {
+        this.pass = p;
+    }
+
+    public String getPass2() {
+        return pass2;
+    }
+
+    public void setPass2(String pass2) {
+        this.pass2 = pass2;
+    }
+
+    public String getNombre() {
+        return usuario.getNombre();
+    }
+
+    public void setNombre(String n) {
+        usuario.setNombre(n);
+    }
+
+    public String getDni() {
+        return usuario.getDni();
+    }
+
+    public void setDni(String s) {
+        usuario.setDni(s);
+    }
+
+    public String getApellidos() {
+        return usuario.getApellidos();
+    }
+
+    public void setApellidos(String apellidos) {
+        usuario.setApellidos(apellidos);
+    }
+
+    public Long getTelefono() {
+        return usuario.getTelefono();
+    }
+
+    public void setTelefono(Long telefono) {
+        usuario.setTelefono(telefono);
+    }
+
+    public String getDireccion() {
+        return usuario.getDireccion();
+    }
+
+    public void setDireccion(String direccion) {
+        usuario.setDireccion(direccion);
+    }
+
+    public String getZonaCargo() {
+        return usuario.getZonaCargo();
+    }
+
+    public void setZonaCargo(String zonaCargo) {
+        usuario.setZonaCargo(zonaCargo);
+    }
+
+    public String getTipo() {
+        return usuario.getTipo();
+    }
+
+    public void setTipo(String tipo) {
+        usuario.setTipo(tipo);
+    }
+
+    public String getEspecializacion() {
+        return usuario.getEspecializacion();
+    }
+
+    public void setEspecializacion(String especializacion) {
+        usuario.setEspecializacion(especializacion);
+    }
+
+    public boolean isDisponibilidad() {
+        return usuario.isDisponibilidad();
+    }
+
+    public void setDisponibilidad(boolean disponibilidad) {
+        usuario.setDisponibilidad(disponibilidad);
+    }
+
+    public String getSexo() {
+        return usuario.getSexo();
+    }
+
+    public void getSexo(String n) {
+        usuario.setSexo(n);
+    }
+
+    public boolean checkPasswords() {
+        return pass.equals(pass2);
+    }
+
+    public void keepPwd() {
+        usuario.setPassword(hash.getHash(pass));
+    }
+
+    //hasta aqui usuario
+    public String update() throws EMASAException { // Actualiza los cambios en la base de datos y redirige al usuario a la pagina principal
+        FacesMessage msg = new FacesMessage("Modificación realizada con éxito", "Usuario " + getUsername() + " modificado");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        System.out.println("-----------"+getDni()+"--------------");
+        basededatos.actualizarUsuario(usuario); // Actualizamos el usuario en la base de datos
+        return home();
+    }
+
 }
