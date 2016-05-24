@@ -3,10 +3,13 @@ package entrega2;
 import baseDeDatos.BaseDeDatosLocal;
 import baseDeDatos.EMASAException;
 import entrega1.Usuario;
+import java.net.URI;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
 
 
 @ViewScoped
@@ -19,6 +22,8 @@ public class ControlRecuperarPass {
     @Inject 
     private Hash hash;
     
+    @Context
+    private UriInfo uri;
     
     private String username;
     private String pwd1;
@@ -84,7 +89,8 @@ public class ControlRecuperarPass {
             String cadena = basededatos.generarCadenaAleatoria();
             us.setCadenaValidacion(cadena);
             basededatos.actualizarUsuario(us);
-            basededatos.mandarEmailRecuperacion(us, cadena);
+            URI url = uri.getBaseUriBuilder().path("Silex_Segunda_Entrega-war").path("faces").build();
+            basededatos.mandarEmailRecuperacion(us, cadena, url.toString());
             username = null; // Reiniciamos username para usarlo en cambiarContrasena
             mensaje = "Se le ha enviado un correo electrónico para actualizar su contraseña";   
         }

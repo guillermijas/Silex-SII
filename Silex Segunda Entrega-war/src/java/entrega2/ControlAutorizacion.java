@@ -242,7 +242,7 @@ public class ControlAutorizacion implements Serializable {
         return usuario.getSexo();
     }
 
-    public void getSexo(String n) {
+    public void setSexo(String n) {
         usuario.setSexo(n);
     }
 
@@ -256,11 +256,30 @@ public class ControlAutorizacion implements Serializable {
 
     //hasta aqui usuario
     public String update() throws EMASAException { // Actualiza los cambios en la base de datos y redirige al usuario a la pagina principal
-        FacesMessage msg = new FacesMessage("Modificación realizada con éxito", "Usuario " + getUsername() + " modificado");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        System.out.println("-----------"+getDni()+"--------------");
-        basededatos.actualizarUsuario(usuario); // Actualizamos el usuario en la base de datos
-        return home();
+        if(pass != null)
+        {
+            if(checkPasswords())
+            {
+                usuario.setPassword(hash.getHash(pass));
+                basededatos.actualizarUsuario(usuario); // Actualizamos el usuario en la base de datos
+                FacesMessage msg = new FacesMessage("Modificación realizada con éxito", "Usuario " + getUsername() + " modificado");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+                return home();
+            }
+            else
+            {
+                FacesMessage msg = new FacesMessage("Las contraseñas no coinciden", "Las contraseñas no coinciden");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+                return "";
+            }
+        }
+        else
+        {
+            basededatos.actualizarUsuario(usuario);
+            FacesMessage msg = new FacesMessage("Modificación realizada con éxito", "Usuario " + getUsername() + " modificado");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            return home();
+        }    
     }
 
 }

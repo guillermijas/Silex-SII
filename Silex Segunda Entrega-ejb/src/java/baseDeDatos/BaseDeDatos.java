@@ -52,17 +52,9 @@ public class BaseDeDatos implements BaseDeDatosLocal {
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario ya existente", "Usuario ya existente"));
             throw new UsuarioExistenteException();
         } else {
-            String cadena = generarCadenaAleatoria();
-            if(!us.getUsername().equals("admin")){
-            us.setCadenaValidacion(cadena);
-            }
             us.setRegistroOk(true); // Establecemos que el registro se ha producido correctamente -> Para usarlo en exitoRegistro
             em.persist(us);
             ok = true;
-            // Y mandamos el email al usuario para que confirme el email
-            if(!us.getUsername().equals("admin")){
-            mandarEmail(us, cadena);
-            }
         }
         return ok;
     }
@@ -150,7 +142,8 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         u.setCadenaValidacion(null);
     }
 
-    private void mandarEmail(Usuario us, String cadenaAleatoria) {
+    @Override
+    public void mandarEmail(Usuario us, String cadenaAleatoria, String uri) {
         // Datos del host
         String host = "smtp.gmail.com"; // Gmail
         int port = 587;
@@ -172,8 +165,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         Session session = Session.getInstance(prp);
 
         // Definimos el texto del cuerpo del mensaje
-        String uri_base = "http://localhost:8080/Silex_Segunda_Entrega-war/faces";  //uri.getBaseUri().toString(); Null Pointer -> Preguntar
-        String url_validacion = uri_base + "/validarUsuario.xhtml?username="
+        String url_validacion = uri + "/validarUsuario.xhtml?username="
                 + us.getUsername() + "&codigoValidacion=" + cadenaAleatoria; // Inyectar en el backing bean con uri info
         String body = "Bienvenido a EMASA. Muchas gracias por registrarse.\n"
                 + "Para activar su cuenta, pulse aquí: \n " + url_validacion;
@@ -196,7 +188,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     }
     
     @Override
-    public void mandarEmailRecuperacion(Usuario us, String cadenaAleatoria) {
+    public void mandarEmailRecuperacion(Usuario us, String cadenaAleatoria, String uri) {
         // Datos del host
         String host = "smtp.gmail.com"; // Gmail
         int port = 587;
@@ -218,8 +210,8 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         Session session = Session.getInstance(prp);
 
         // Definimos el texto del cuerpo del mensaje
-        String uri_base = "http://localhost:8080/Silex_Segunda_Entrega-war/faces";  //uri.getBaseUri().toString(); Null Pointer -> Preguntar
-        String url_validacion = uri_base + "/cambiarContrasena.xhtml?username="
+        
+        String url_validacion = uri + "/cambiarContrasena.xhtml?username="
                 + us.getUsername() + "&codigoValidacion=" + cadenaAleatoria; // Inyectar en el backing bean con uri info
         String body = "Para cambiar su contraseña, pulse aquí: \n " + url_validacion;
 

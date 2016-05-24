@@ -45,23 +45,21 @@ A esta página tan sólo puede acceder el usuario si está logeado
                 <br/>
                 <h:message for="email"/>
             </div>
-            <!-->
             <div class="col-md-6">
                 <h:outputText value="Contraseña: " />
             </div>
             <div class="col-md-6">
-                <p:password value ="#{controlAutorizacion.pass}" id="inputPassword" required="false" />
+                <h:inputSecret value ="#{controlAutorizacion.pass}" id="inputPassword" required="false"/>
                 <br/>
             </div>
             <div class="col-md-6">
                 <h:outputText value="Repetir contraseña: " />
             </div>
             <div class="col-md-6">
-                <p:password value ="#{controlAutorizacion.pass2}" id="inputPassword2" match ="inputPassword" required="false"/>
+                <h:inputSecret value ="#{controlAutorizacion.pass2}" id="inputPassword2" required="false"/>
                 <br/>
-                <h:message for="pwd2"/>
+                <h:message class="bold" style="color: #31b0d5" for="inputPassword"/>
             </div>
-            <!-->
         </div>
         <p:separator />
     </ui:define>
@@ -163,7 +161,7 @@ A esta página tan sólo puede acceder el usuario si está logeado
     </ui:define>
 
     <ui:define name="btn_limpiar">
-        <h:commandButton action="#{controlAutorizacion.modUser()}" immediate="true" value="Cancelar" class="btn-warning"/>
+        <h:commandButton action="#{controlAutorizacion.modUser()}" immediate="true" value="Limpiar" class="btn-warning"/>
     </ui:define>
 
 </ui:composition>
