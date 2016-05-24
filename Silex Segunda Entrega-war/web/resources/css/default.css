@@ -45,7 +45,10 @@ h1 {
 .barraconfirmacion{
     margin-top: 30px;
 }
-
+.especial{
+    background-color: #FF6600 !important;
+    padding: 10px !important;
+}
 .top {
     position: relative;
     background-color: #036fab;

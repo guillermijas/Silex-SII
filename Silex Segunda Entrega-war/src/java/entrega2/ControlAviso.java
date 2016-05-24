@@ -141,7 +141,9 @@ public class ControlAviso implements Serializable {
     public void setPlanificado(boolean plan) {
         aviso.setPlanificado(plan);
     }
-
+    public List<Usuario> getUsuarios(){
+        return basededatos.getUsuarios();
+    }
     public List<Aviso> getIncidencias() {
         return basededatos.getAvisosIncidencia();
     }
