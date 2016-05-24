@@ -58,7 +58,7 @@ A esta página tan sólo puede acceder el usuario si está logeado
             <div class="col-md-6">
                 <h:inputSecret value ="#{controlAutorizacion.pass2}" id="inputPassword2" required="false"/>
                 <br/>
-                <h:message class="bold" style="color: #31b0d5" for="inputPassword"/>
+                <h:outputText class="bold" style="color: #31b0d5" value="#{controlAutorizacion.mensaje}"/>
             </div>
         </div>
         <p:separator />

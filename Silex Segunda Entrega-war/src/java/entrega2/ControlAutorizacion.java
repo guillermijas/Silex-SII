@@ -7,7 +7,6 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -26,6 +25,15 @@ public class ControlAutorizacion implements Serializable {
 
     private Usuario usuario;
     private Usuario usuarioEditado;
+    private String mensaje;
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
@@ -277,24 +285,21 @@ public class ControlAutorizacion implements Serializable {
         {
             if(checkPasswords())
             {
-                usuario.setPassword(hash.getHash(pass));
-                basededatos.actualizarUsuario(usuario); // Actualizamos el usuario en la base de datos
-                FacesMessage msg = new FacesMessage("Modificación realizada con éxito", "Usuario " + getUsername() + " modificado");
-                FacesContext.getCurrentInstance().addMessage(null, msg);
+                usuarioEditado.setPassword(hash.getHash(pass));
+                basededatos.actualizarUsuario(usuarioEditado); // Actualizamos el usuario en la base de datos
+                mensaje = "";
                 return home();
             }
             else
             {
-                FacesMessage msg = new FacesMessage("Las contraseñas no coinciden", "Las contraseñas no coinciden");
-                FacesContext.getCurrentInstance().addMessage(null, msg);
+                mensaje = "Las contraseñas no coinciden";
                 return "";
             }
         }
         else
         {
-            basededatos.actualizarUsuario(usuario);
-            FacesMessage msg = new FacesMessage("Modificación realizada con éxito", "Usuario " + getUsername() + " modificado");
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            basededatos.actualizarUsuario(usuarioEditado);
+            mensaje = "";
             return home();
         }    
     }
