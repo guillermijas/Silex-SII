@@ -3,7 +3,7 @@ package entrega1;
 public class Enumeraciones {
 
     public enum prioridad {
-        BAJA, MEDIA, ALTA
+        BAJA, MEDIA, ALTA // Baja -> 0, Media -> 1 y Alta -> Alta
     }
 
     public enum estado {

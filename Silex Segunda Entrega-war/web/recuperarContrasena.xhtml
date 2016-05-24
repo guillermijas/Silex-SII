@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <!--
-A esta página tan sólo puede acceder el usuario tras registrarse
+A esta página se accede desde el login para recuperar una contraseña olvidada
 -->
-<ui:composition template="/WEB-INF/templates/plantilla_validacion.xhtml"  
+<ui:composition template="/WEB-INF/templates/plantilla_recuperarPass.xhtml"  
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:define name="title"/>
-
+    <ui:define name="title">Recuperar Contraseña</ui:define>
+    
+    <ui:define name="contenido">
+        <p>Introduzca su nombre de usuario:</p>
+        <h:form>
+            <h:inputText value="#{controlRecuperarPass.username}"/>
+            <h:commandButton value="#{controlRecuperarPass.checkUsername()}"/>
+            <h:outputText value ="#{controlRecuperarPass.mensaje}"/>
+        </h:form>
+    </ui:define>
 </ui:composition>

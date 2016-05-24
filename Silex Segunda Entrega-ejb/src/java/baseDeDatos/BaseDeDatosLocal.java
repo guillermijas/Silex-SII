@@ -24,6 +24,10 @@ public interface BaseDeDatosLocal {
     public void eliminarUsuario(Usuario us) throws EMASAException;
 
     public void actualizarUsuario(Usuario us) throws EMASAException;
+    
+    public String generarCadenaAleatoria();
+    
+    public void mandarEmailRecuperacion(Usuario us, String cadenaAleatoria);
 
     public boolean estaRegistrado(Usuario us);
 
