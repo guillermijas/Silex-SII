@@ -285,7 +285,15 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         TypedQuery<Aviso> query = em.createQuery("select a from Aviso a", Aviso.class);
         return query.getResultList();
     }
+    
+    @Override
+    public List<Usuario> getUsuarios() {
+        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u", Usuario.class);
+        return query.getResultList();
+    }
 
+    
+    
     @Override
     public List<Aviso> getAvisosNueva() {
         List<Aviso> lista = new ArrayList<>();

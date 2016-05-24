@@ -103,6 +103,14 @@ public class ControlAutorizacion implements Serializable {
     public String modUser() {
         return "modificar_usuario.xhtml";
     }
+        public String modUser(Usuario u) {
+        usuario = u;
+        return "modificar_usuario.xhtml";
+    }
+
+    public String adminUser() {
+        return "admin_usuarios.xhtml";
+    }
 
     public String getUsername() {
         return usuario.getUsername();

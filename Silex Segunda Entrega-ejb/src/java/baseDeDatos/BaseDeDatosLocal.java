@@ -53,6 +53,8 @@ public interface BaseDeDatosLocal {
     public List<Aviso> getAvisosEnProceso();
 
     public List<Aviso> getAvisosCerrada();
+    
+    public List<Usuario> getUsuarios();
 
     public List<Aviso> getAvisosIncidencia();
     

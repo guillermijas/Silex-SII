@@ -45,7 +45,10 @@ h1 {
 .barraconfirmacion{
     margin-top: 30px;
 }
-
+.especial{
+    background-color: #FF6600 !important;
+    padding: 10px !important;
+}
 .top {
     position: relative;
     background-color: #036fab;
@@ -62,6 +65,14 @@ h1 {
     padding: 30px;
     box-shadow: 4px 4px 2px #888;
 }
+
+.ui-confirm-dialog{
+    position: absolute;
+ top: 40% !important;
+ left:35% !important;
+
+}
+
 
 .left_content {
     background-color: #dddddd;
