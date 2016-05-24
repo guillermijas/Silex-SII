@@ -10,17 +10,37 @@ A esta página se accede desde recuperarContrasena para modificar la contraseña
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">Cambiar Contraseña</ui:define>
-    
+
     <ui:define name="contenido">
         <f:view>
             <f:metadata>
                 <f:viewParam name="username" value="#{controlRecuperarPass.username}"/>
                 <f:viewParam name="codigoValidacion" value="#{controlRecuperarPass.validacion}"/>
-                <f:viewAction action="#{}"/>
             </f:metadata>
         </f:view>
-        <c:choose>
-            
+
+        <c:choose>    
+            <c:when test="#{controlRecuperarPass.comprobarAcceso()}">
+                <h:form>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h:outputText value="Contraseña: "/>
+                            <p:password id = "pwd1" value="#{controlRecuperarPass.pwd1}" required="true" label="Contraseña" match="pwd2" validatorMessage="Las contraseñas no coinciden"/>
+                            <h:message for="pwd1"/>
+                        </div>
+                        <div class="col-xs-6">
+                            <h:outputText value="Repita la contraseña: "/>
+                            <p:password id = "pwd2" value="#{controlRecuperarPass.pwd2}" required="true" label="Contraseña2"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-offset-5">
+                        <h:commandButton action="#{controlRecuperarPass.cambiarPass()}" value="Cambiar Contraseña"/>
+                    </div>
+                </h:form>
+            </c:when>
+            <c:otherwise>
+                <p class="bold" style="color: #31b0d5">No tiene autorización para acceder a esta página. Por favor, regístrese o acceda al sistema <a href="login.xhtml">aquí</a></p>
+            </c:otherwise>
         </c:choose>
     </ui:define>
 </ui:composition>
