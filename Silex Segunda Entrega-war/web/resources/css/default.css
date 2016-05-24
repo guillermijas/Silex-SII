@@ -68,9 +68,9 @@ h1 {
 
 .ui-confirm-dialog{
     position: absolute;
- top: 40% !important;
- left:35% !important;
-
+    top: 40% !important;
+    left: 35% !important;
+    max-width: 500px;
 }
 
 
@@ -118,10 +118,4 @@ fieldset legend {
 
 .container{
     width: 90%;
-}
- 
-@media screen and (max-device-width: 480px) {
-  .container {
-    width: 100%;
-  }
 }

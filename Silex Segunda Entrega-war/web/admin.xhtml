@@ -9,15 +9,15 @@
 
 
     <ui:define name="confirmar">
-       <h:form id="con2">
-       <p:confirmDialog id="conn"  width="500px"  global="true" showEffect="fade" >
-       <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-       <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-      </p:confirmDialog>
+        <h:form id="con2">
+            <p:confirmDialog id="conn" global="true" showEffect="fade" >
+                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
         </h:form>    
     </ui:define>
-    
-    
+
+
     <ui:define name="bienvenida">
         <c:choose>
             <c:when test="#{controlAutorizacion.comprobarRol() == 4}">
@@ -124,7 +124,7 @@
                                 </div>
                                 <div class="col-md-5 text-right">
                                     <p:commandButton value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger">
-                                            <p:confirm header="Confirmación" message="Esto cerrará el aviso. ¿Está seguro que desea continuar?" icon="ui-icon-alert" />
+                                        <p:confirm header="Confirmación" message="Esto cerrará el aviso. ¿Está seguro que desea continuar?" icon="ui-icon-alert" />
                                     </p:commandButton>
 
                                 </div> 
