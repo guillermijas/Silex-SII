@@ -93,11 +93,10 @@
                     <h:outputText value="Sexo: " />
                 </div>
                 <div class="col-md-6">
-                    <select class="form-control" value ="#{controlRegistro.user.sexo}">
-                        <option disabled ="disabled" selected ="selected" value = ""> Seleccione una opción </option>
-                        <option>Mujer</option>
-                        <option>Hombre</option>
-                    </select>                                    
+                    <h:selectOneMenu class="form-control" value="#{controlRegistro.user.sexo}">
+                        <f:selectItem itemValue="Hombre" itemLabel="Hombre" />
+                        <f:selectItem itemValue="Mujer" itemLabel="Mujer" />
+                    </h:selectOneMenu>                                       
                     <br/>
                 </div>
                 <div class="col-md-6">

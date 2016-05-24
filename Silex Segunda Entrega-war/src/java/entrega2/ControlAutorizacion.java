@@ -259,8 +259,54 @@ public class ControlAutorizacion implements Serializable {
         return usuarioEditado.getSexo();
     }
 
-    public void getSexo(String n) {
+    public void setSexo(String n) {
         usuarioEditado.setSexo(n);
+    }
+
+    public String getRol() {
+        String rol = "";
+        switch (usuarioEditado.getRol()) {
+            case CLIENTE:
+                rol = "0";
+                break;
+            case CALL_CENTER:
+                rol = "1";
+                break;
+            case SUPERVISOR:
+                rol = "2";
+                break;
+            case OPERARIO:
+                rol = "3";
+                break;
+            case ADMINISTRADOR:
+                rol = "4";
+                break;
+            default:
+                throw new AssertionError(usuarioEditado.getRol().name());
+        }
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        switch (rol) {
+            case "0":
+                usuarioEditado.setRol(Enumeraciones.Rol.CLIENTE);
+                break;
+            case "1":
+                usuarioEditado.setRol(Enumeraciones.Rol.CALL_CENTER);
+                break;
+            case "2":
+                usuarioEditado.setRol(Enumeraciones.Rol.SUPERVISOR);
+                break;
+            case "3":
+                usuarioEditado.setRol(Enumeraciones.Rol.OPERARIO);
+                break;
+            case "4":
+                usuarioEditado.setRol(Enumeraciones.Rol.ADMINISTRADOR);
+                break;
+            default:
+                throw new AssertionError(usuarioEditado.getRol().name());
+        }
     }
 
     public boolean checkPasswords() {
