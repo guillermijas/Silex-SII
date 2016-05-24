@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--
+A esta página tan sólo puede acceder el usuario si está logeado
+-->
+<ui:composition template="/WEB-INF/templates/plantilla_formulario.xhtml"  
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">Modificar Datos Usuario</ui:define>
+    <ui:define name="another">
+        <h2>Aviso cerrado correctamente</h2>
+        <h:form>
+        <p:commandButton value="Volver" action="#{controlAviso.home()}" class="btn-success"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

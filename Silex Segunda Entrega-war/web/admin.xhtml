@@ -114,7 +114,13 @@
                                     <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
                                 </div>
                                 <div class="col-md-5 text-right">
-                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger"/>
+                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger">
+                                            <p:confirm header="Confirmación" message="Esto cerrará el aviso. ¿Está seguro que desea continuar?" icon="ui-icon-alert" />
+                                    </p:commandButton>
+                                        <p:confirmDialog global="true" showEffect="fade" >
+                                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                        </p:confirmDialog>
                                 </div> 
 
                             </p:fieldset>

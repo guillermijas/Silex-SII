@@ -168,6 +168,9 @@ public class ControlAviso implements Serializable {
 
     public String cerrarAviso(Aviso a) throws EMASAException {
         basededatos.cerrarAviso(a.getIdAviso());
+        return "confirmacion.xhtml";
+    }
+    public String home(){
         return ctrl.home();
     }
 
