@@ -4,12 +4,13 @@ import baseDeDatos.BaseDeDatosLocal;
 import baseDeDatos.EMASAException;
 import entrega1.Usuario;
 import javax.ejb.EJB;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 
-@SessionScoped
-@Named
+
+@ViewScoped
+@ManagedBean
 public class ControlRecuperarPass {
     
     @EJB
@@ -74,7 +75,7 @@ public class ControlRecuperarPass {
         return username != null && validacion != null;
     }
     
-    public String checkUsername() throws EMASAException
+    public void checkUsername() throws EMASAException
     {
         if(username != null && basededatos.estaRegistrado(username))
         {
@@ -85,13 +86,11 @@ public class ControlRecuperarPass {
             basededatos.actualizarUsuario(us);
             basededatos.mandarEmailRecuperacion(us, cadena);
             username = null; // Reiniciamos username para usarlo en cambiarContrasena
-            mensaje = "Se le ha enviado un correo electrónico para actualizar su contraseña";
-            return "";
+            mensaje = "Se le ha enviado un correo electrónico para actualizar su contraseña";   
         }
         else
         {
             mensaje = "El usuario que ha introducido no está registrado";
-            return "recuperarContrasena.xhtml";
         }
     }
     
@@ -106,13 +105,23 @@ public class ControlRecuperarPass {
         if(comprobarAcceso() && checkPassword())
         {
             Usuario us = basededatos.getUsuario(username);
-            us.setPassword(hash.getHash(pwd1)); // Actualizamos la contraseña
-            us.setCadenaValidacion(null); // Y volvemos a poner a null la cadena de validacion
-            basededatos.actualizarUsuario(us); // Actualizamos el usuario
-            return "login.xhtml";
+            if(us.getCadenaValidacion().equals(validacion))
+            {
+                us.setPassword(hash.getHash(pwd1)); // Actualizamos la contraseña
+                us.setCadenaValidacion(null); // Y volvemos a poner a null la cadena de validacion
+                basededatos.actualizarUsuario(us); // Actualizamos el usuario
+                return "login.xhtml";
+            }
+            else
+            {
+                mensaje = "Cadena de validación incorrecta";
+                return "";
+            }
+            
         }
         else
         {
+            mensaje = "Las contraseñas no coinciden";
             return "";
         }
         

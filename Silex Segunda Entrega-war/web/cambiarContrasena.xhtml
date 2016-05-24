@@ -24,17 +24,27 @@ A esta página se accede desde recuperarContrasena para modificar la contraseña
                 <h:form>
                     <div class="row">
                         <div class="col-xs-6">
-                            <h:outputText value="Contraseña: "/>
-                            <p:password id = "pwd1" value="#{controlRecuperarPass.pwd1}" required="true" label="Contraseña" match="pwd2" validatorMessage="Las contraseñas no coinciden"/>
-                            <h:message for="pwd1"/>
+                            <h:outputText class="bold" style="color: #31b0d5" value="Contraseña: "/>
                         </div>
                         <div class="col-xs-6">
-                            <h:outputText value="Repita la contraseña: "/>
-                            <p:password id = "pwd2" value="#{controlRecuperarPass.pwd2}" required="true" label="Contraseña2"/>
+                            <h:outputText class="bold" style="color: #31b0d5" value="Repita la contraseña: "/>
                         </div>
                     </div>
-                    <div class="col-xs-offset-5">
-                        <h:commandButton action="#{controlRecuperarPass.cambiarPass()}" value="Cambiar Contraseña"/>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h:inputSecret id = "pwd1" value="#{controlRecuperarPass.pwd1}" required="true" label="Contraseña" requiredMessage="Las contraseñas no coinciden"/>
+                        </div>
+                        <div class="col-xs-6">
+                            <h:inputSecret id = "pwd2" value="#{controlRecuperarPass.pwd2}" required="true" label="Contraseña2"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <h:commandButton action="#{controlRecuperarPass.cambiarPass()}" value="Cambiar Contraseña"/>
+                        </div>
+                        <div class="col-xs-8">
+                            <h:outputText class="bold" style="color: #31b0d5" value="#{controlRecuperarPass.mensaje}"/>
+                        </div>
                     </div>
                 </h:form>
             </c:when>

@@ -89,7 +89,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
 
     @Override
     public void actualizarUsuario(Usuario us) throws EMASAException {
-        compruebaLogin(us);
+        //compruebaLogin(us);
         em.merge(us);
     }
 
