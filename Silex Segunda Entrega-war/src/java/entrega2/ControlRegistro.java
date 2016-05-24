@@ -10,10 +10,14 @@ import baseDeDatos.EMASAException;
 import entrega1.Enumeraciones;
 import entrega1.Usuario;
 import java.io.Serializable;
+import java.net.URI;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 @ViewScoped
 @Named
@@ -25,6 +29,9 @@ public class ControlRegistro implements Serializable {
     private ControlAutorizacion ctrl;
     @Inject
     private Hash hash;
+    
+    @Context
+    private UriInfo uri;
 
     private Usuario user = new Usuario();
     private String username;
@@ -94,8 +101,19 @@ public class ControlRegistro implements Serializable {
             } else {
                 user.setRol(Enumeraciones.Rol.OPERARIO);
             }
-
+               
+            URI url = uri.getBaseUriBuilder().path("Silex_Segunda_Entrega-war").path("faces").build(); //--> Null pointer
+            String url_base = Response.created(url).build().toString();
+            String cadena = basededatos.generarCadenaAleatoria();
+            if(!user.getRol().equals(Enumeraciones.Rol.ADMINISTRADOR))
+            {
+                user.setCadenaValidacion(cadena);
+            }
             if (basededatos.insertarUsuario(user)) {
+                if(!user.getRol().equals(Enumeraciones.Rol.ADMINISTRADOR))
+            {
+                basededatos.mandarEmail(user, cadena, url_base);
+            }
                 ctrl.setUsuario(user);
                 return "exitoRegistro.xhtml";
             } else {
