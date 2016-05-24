@@ -43,10 +43,10 @@ public class ControlAviso implements Serializable {
         }
         return page;
     }
-    
-    public String confirmarModificacion() throws EMASAException{
+
+    public String confirmarModificacion() throws EMASAException {
         basededatos.modificarAviso(aviso);
-        return ctrl.home(); 
+        return ctrl.home();
     }
 
     public String regAviso() {
@@ -170,4 +170,53 @@ public class ControlAviso implements Serializable {
         basededatos.cerrarAviso(a.getIdAviso());
         return ctrl.home();
     }
+
+    public String getNombreCliente() {
+        String nombre = "";
+        if (aviso.getNombreCliente() == null) {
+            if (ctrl.getUsuario().getNombre() != null && ctrl.getUsuario().getApellidos() != null) {
+                nombre = ctrl.getUsuario().getNombre() + ctrl.getUsuario().getApellidos();
+            }
+        } else {
+            nombre = aviso.getNombreCliente();
+        }
+        return nombre;
+    }
+
+    public void setNombreCliente(String nom) {
+        aviso.setNombreCliente(nom);
+    }
+
+    public String getEmailCliente() {
+        String email = "";
+        if (aviso.getEmailCliente() == null) {
+            if (ctrl.getUsuario().getEmail() != null) {
+                email = ctrl.getUsuario().getEmail();
+            }
+        } else {
+            email = aviso.getEmailCliente();
+        }
+        return email;
+    }
+
+    public void setEmailCliente(String email) {
+        aviso.setEmailCliente(email);
+    }
+
+    public String getTelefonoCliente() {
+        String tfn = "";
+        if (aviso.getNombreCliente() == null) {
+            if (ctrl.getUsuario().getTelefono() != null) {
+                tfn = ctrl.getUsuario().getTelefono() + "";
+            }
+        } else {
+            tfn = aviso.getTelefonoCliente();
+        }
+        return tfn;
+    }
+
+    public void setTelefonoCliente(String tfn) {
+        aviso.setTelefonoCliente(tfn);
+    }
+
 }

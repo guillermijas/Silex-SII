@@ -113,13 +113,11 @@
         <div class="row">
             <div class="col-md-3">
                 <p class="pie"><p:selectBooleanCheckbox value="#{controlAviso.urgente}"/>
-                    <span class="glyphicon glyphicon-alert"/>
-                    Urgente </p>
+                    <span class="glyphicon glyphicon-alert"/> Urgente </p>
             </div>
             <div class="col-md-3">
                 <p class="pie"><p:selectBooleanCheckbox value="#{controlAviso.planificado}"/>
-                    <span class="glyphicon glyphicon-time"/>
-                    Planificado </p>
+                    <span class="glyphicon glyphicon-time"/> Planificado </p>
             </div>
         </div>
 
@@ -138,46 +136,40 @@
         <br/>
     </ui:define>
 
-    <!-->
 
     <ui:define name="campos-pestaña3">
         <table class="campo">
             <tr>
-                <td>
-                    <p:inputText class="campo" value="#{controlAviso.nombreCliente}"/>
-                </td>
-                <td>
-                    <p:inputText style="width: 100%" value="#{controlAviso.telefonoCliente}"/>
-                </td>
+                <p:inputText class="campo" value="#{controlAviso.nombreCliente}"/>
             </tr>
             <tr>
-                <td>
-                    <label class="pie">Nombre</label>
-                </td>
-                <td>
-                    <label class="pie">Telefono</label>
-                </td>
-            </tr> 
+                <label class="pie">Nombre Contacto</label>
+            </tr>
             <tr>
                 <td>
                     <p:inputText class="campo" value="#{controlAviso.telefonoCliente}"/>
                 </td>
-                
+                <td>
+                    <p:inputText style="width: 100%" value="#{controlAviso.emailCliente}"/>
+                </td>
             </tr>
             <tr>
                 <td>
-                    <label class="pie">Correo electrónico</label>
+                    <label class="pie">Telefono Contacto</label>
                 </td>
-            </tr>
+                <td>
+                    <label class="pie">Email Contacto</label>
+                </td>
+            </tr> 
         </table>
     </ui:define>
-    <!-->
-        <ui:define name="btn_confirmar">
-            <h:commandButton action="#{controlAviso.addAviso()}" value="Confirmar" class="btn-primary"/>
-        </ui:define>
-    
-        <ui:define name="btn_cancelar">
-            <h:commandButton action="#{controlAutorizacion.home()}" immediate="true" value="Cancelar" class="btn-danger"/>
-        </ui:define>
-    
-    </ui:composition>
+
+    <ui:define name="btn_confirmar">
+        <h:commandButton action="#{controlAviso.addAviso()}" value="Confirmar" class="btn-primary"/>
+    </ui:define>
+
+    <ui:define name="btn_cancelar">
+        <h:commandButton action="#{controlAutorizacion.home()}" immediate="true" value="Cancelar" class="btn-danger"/>
+    </ui:define>
+
+</ui:composition>

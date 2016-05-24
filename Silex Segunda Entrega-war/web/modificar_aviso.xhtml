@@ -141,25 +141,15 @@
 
 
 
-<!-->
-    <ui:define name="campos-pestaña3">
+<ui:define name="campos-pestaña3">
         <table class="campo">
             <tr>
-                <td>
-                    <p:inputText class="campo" value="#{controlAviso.nombreCliente}"/>
-                </td>
-                <td>
-                    <p:inputText style="width: 100%" value="#{controlAviso.apellidosCliente}"/>
-                </td>
+                <p:inputText class="campo" value="#{controlAviso.nombreCliente}"/>
             </tr>
             <tr>
-                <td>
-                    <label class="pie">Nombre</label>
-                </td>
-                <td>
-                    <label class="pie">Apellidos</label>
-                </td>
-            </tr> <tr>
+                <label class="pie">Nombre Contacto</label>
+            </tr>
+            <tr>
                 <td>
                     <p:inputText class="campo" value="#{controlAviso.telefonoCliente}"/>
                 </td>
@@ -169,15 +159,16 @@
             </tr>
             <tr>
                 <td>
-                    <label class="pie">Teléfono</label>
+                    <label class="pie">Telefono Contacto</label>
                 </td>
                 <td>
-                    <label class="pie">Correo electrónico</label>
+                    <label class="pie">Email Contacto</label>
                 </td>
-            </tr>
+            </tr> 
         </table>
     </ui:define>
-<!-->
+    
+    
     <ui:define name="btn_confirmar">
         <h:commandButton action="#{controlAviso.confirmarModificacion()}" value="Confirmar" class="btn-primary"/>
     </ui:define>
