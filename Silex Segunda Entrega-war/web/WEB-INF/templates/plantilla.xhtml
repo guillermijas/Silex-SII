@@ -17,18 +17,23 @@
         </title>
     </h:head>
 
-    <h:body>
+    <h:body id="cueroplantilla">
         <div class="top row">
-            <h:form> 
-                <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></div>
-                <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAviso.regAviso()}" value="Nuevo Aviso"/></div>
-                <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.modUser()}" value="Modificar usuario"/></div>
-                <c:if test="#{!empty controlAutorizacion.usuario}">
-                    <c:if test="#{controlAutorizacion.comprobarRol() == 5}">
-                        <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regOperario()}" value="Registrar Operario"/></div>
-                    </c:if>
-                    <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.logout()}" value="Salir"/></div>
-                </c:if>
+            <h:form id="formP1"> 
+                <c:choose>
+                    <c:when test="#{!empty controlAutorizacion.usuario}">
+                        <div class="col-xs-3 col-md-1 text-center"><h:commandLink id="cl1" action="#{controlAutorizacion.home()}" value="Home"/></div>
+                        <div class="col-xs-3 col-md-2 text-center"><h:commandLink id="cl2" action="#{controlAviso.regAviso()}" value="Nuevo Aviso"/></div>
+                        <div class="col-xs-3 col-md-2 text-center"><h:commandLink id="cl3" action="#{controlAutorizacion.modUser()}" value="Modificar usuario"/></div>
+                        <c:if test="#{controlAutorizacion.comprobarRol() == 4}">
+                            <div class="col-xs-3 col-md-2 text-center"><h:commandLink id="cl4" action="#{controlAutorizacion.regOperario()}" value="Registrar Operario"/></div>
+                        </c:if>
+                        <div class="col-xs-3 col-md-1 text-center"><h:commandLink id="cl5" action="#{controlAutorizacion.logout()}" value="Salir"/></div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="col-xs-3 col-md-1 text-center"><h:commandLink id="cl6" action="#{controlAutorizacion.login()}" value="Login"/></div>
+                    </c:otherwise>
+                </c:choose>
             </h:form>
         </div>
 

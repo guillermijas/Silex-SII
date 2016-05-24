@@ -97,22 +97,22 @@ public class ControlAutorizacion implements Serializable {
     }
 
     public int comprobarRol(){
-        int num = 0;
+        int num = -1;
         switch (usuario.getRol()){
             case CLIENTE:
-                num = 1;
+                num = 0;
                 break;
             case CALL_CENTER:
-                num = 2;
+                num = 1;
                 break;
             case SUPERVISOR:
-                num = 3;
+                num = 2;
                 break;
             case OPERARIO:
-                num = 4;
+                num = 3;
                 break;
             case ADMINISTRADOR:
-                num = 5;
+                num = 4;
                 break;
             default:
                 throw new AssertionError(usuario.getRol().name());
