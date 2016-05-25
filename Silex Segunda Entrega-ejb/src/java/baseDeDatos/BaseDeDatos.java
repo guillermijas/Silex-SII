@@ -61,7 +61,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
 
     @Override
     public void eliminarUsuario(Usuario us) throws EMASAException {
-        compruebaLogin(us);
+        //compruebaLogin(us);
         em.remove(em.merge(us));
     }
 
