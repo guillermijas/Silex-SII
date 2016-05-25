@@ -9,7 +9,7 @@
 
     <ui:define name="bienvenida">
         <c:choose>
-            <c:when test="#{(controlAutorizacion.comprobarRol()-1 == 2)||controlAutorizacion.comprobarRol()-1 == 4}">
+            <c:when test="#{(controlAutorizacion.comprobarRol() == 1)||controlAutorizacion.comprobarRol() == 3}">
                 <h1>Empleado</h1>
 
             </c:when>
@@ -428,7 +428,7 @@
     <!-- ordenes de trabajo -->
     <ui:define name="campoOT">
         <c:choose>
-            <c:when test="#{controlAutorizacion.comprobarRol()-1 == 4}">
+            <c:when test="#{controlAutorizacion.comprobarRol() == 3}">
                 <!-- ordenes de trabajo -->
                 <h:form id="form1">           
                     <p:growl id="msgs" showDetail="true" />
@@ -436,9 +436,9 @@
                     <h3 style="margin-top:0">Órdenes de trabajo</h3>
 
                     <p:tabView id="tabOt" style="width: 100%">
-                        <p:tab id="enProcesoOt"title="En proceso">
+                        <p:tab id="enProcesoOt" title="En proceso">
                             <h:panelGrid id="panelGrid5" columns="1" cellpadding="10">
-                                <c:forEach var="item" items="#{dbaux.getOtEnProceso()}">
+                                <c:forEach var="item" items="#{controlOT.OTEnProceso}">
                                     <p:fieldset id="titulo5" legend="ID Aviso: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
@@ -477,10 +477,10 @@
                                             <div class="col-md-9">
                                                 <c:choose>
                                                     <c:when test="#{item.aviso.planificado}">
-                                                        <input id=planificado51" type="checkbox" disabled="enabled"></input>
+                                                        <input id="planificado51" type="checkbox" disabled="enabled"></input>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <input id=planificado52" type="checkbox" disabled="disabled" checked="checked"></input>
+                                                        <input id="planificado52" type="checkbox" disabled="disabled" checked="checked"></input>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
@@ -529,7 +529,7 @@
                                         </div>
 
                                         <div class="col-md-5 text-right">
-                                            <p:commandButton id="cerrarOT1" value="Cerrar Orden" action="#{dbaux.cerrarOt(item.idOT)}" class="btn-danger"/>
+                                            <p:commandButton id="cerrarOT1" value="Cerrar Orden" action="#{controlOT.cerrarOT(item)}" class="btn-danger"/>
                                         </div> 
 
                                     </p:fieldset>
@@ -541,7 +541,7 @@
 
                         <p:tab id="cerradasOT" title="Cerradas">
                             <h:panelGrid id="panelGrid6" columns="1" cellpadding="10">
-                                <c:forEach var="item" items="#{dbaux.getOtCerradas()}">
+                                <c:forEach var="item" items="#{controlOT.OTCerradas}">
                                     <p:fieldset id="titulo6" legend="ID Aviso: #{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
@@ -572,10 +572,10 @@
                                             <div class="col-md-9">
                                                 <c:choose>
                                                     <c:when test="#{item.aviso.urgente}">
-                                                        <input id="urgente61"type="checkbox" disabled="enabled"></input>
+                                                        <input id="urgente61" type="checkbox" disabled="enabled"></input>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <input id="urgente62"type="checkbox" disabled="disabled" checked="checked"></input>
+                                                        <input id="urgente62" type="checkbox" disabled="disabled" checked="checked"></input>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
