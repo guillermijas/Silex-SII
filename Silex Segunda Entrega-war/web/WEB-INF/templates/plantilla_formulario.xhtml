@@ -19,7 +19,7 @@
     <h:body>
 
         <div class="top row">
-            <h:form> 
+            <h:form id="superior"> 
                 <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.home()}" value="Home"/></div>
                 <c:if test="#{!empty controlAutorizacion.usuario}">
                 <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAviso.regAviso()}" value="Nuevo Aviso"/></div>
@@ -46,7 +46,7 @@
                     <div class="col-md-8">
                         <ui:insert name="titulo"></ui:insert>
                         <ui:insert name="another"></ui:insert>
-                        <h:form>
+                        <h:form id="cuerpo">
                             <div class="row">
                                 <div class="col-md-3">
                                     <ui:insert name="titulo-pestaña1"></ui:insert>
