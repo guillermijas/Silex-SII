@@ -10,15 +10,10 @@ import baseDeDatos.EMASAException;
 import entrega1.Enumeraciones;
 import entrega1.Usuario;
 import java.io.Serializable;
-import java.net.URI;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 
 @ViewScoped
 @Named
@@ -30,9 +25,6 @@ public class ControlRegistro implements Serializable {
     private ControlAutorizacion ctrl;
     @Inject
     private Hash hash;
-    
-    @Context
-    private UriInfo uri;
 
     private Usuario user = new Usuario();
     private String username;
@@ -40,6 +32,15 @@ public class ControlRegistro implements Serializable {
     private String mensajeValidacion;
     private String pwd1;
     private String pwd2;
+    private String mensaje;
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
 
     public String getUsername() {
         return username;
@@ -126,22 +127,20 @@ public class ControlRegistro implements Serializable {
         }
     }
 
-    public String registrarOperario() throws EMASAException {
-        // Primero comprobamos que las contraseñas coinciden
-        if (checkPasswords()) {
-            keepPwd(); // Guardamos esa contraseña en el perfil del usuario
-            // Luego establecemos el rol del usuario
-            user.setRol(Enumeraciones.Rol.OPERARIO);
-            if (basededatos.insertarUsuario(user)) // Devuelve true si se ha guardado el usuario correctamente en la BD
-            {
-                return "admin.xhtml";
-            } else {
-                return "register.xhtml";
-            }
-
-        } else {
-            return "register.xhtml";
+    public String registrarUsuario() throws EMASAException {
+        String cadena = basededatos.generarCadenaAleatoria();
+        String url_base = "http://localhost:8080/Silex_Segunda_Entrega-war/faces";
+        user.setCadenaValidacion(cadena);
+        if(basededatos.insertarUsuario(user))
+        {
+            basededatos.mandarEmailRecuperacion(user, cadena, url_base);
+            return "admin.xhtml";
         }
+        else
+        {
+            return "";
+        }
+        
     }
 
     public boolean checkPasswords() {
