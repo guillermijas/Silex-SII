@@ -20,55 +20,56 @@ import org.primefaces.event.*;
 @Named(value = "controlOT")
 @SessionScoped
 public class ControlOT implements Serializable {
-
+    
     private OrdenDeTrabajo ot;
     private Aviso av; //aviso vinculado a la ot
     
     @EJB
     private BaseDeDatosLocal basededatos;
-
+    
     @Inject
     private ControlAutorizacion ctrl;
-
+    
     public ControlOT() {
-
+        
     }
-
+    
     public OrdenDeTrabajo getOt() {
         return ot;
     }
-
+    
     public void setOt(OrdenDeTrabajo ot) {
         this.ot = ot;
     }
-
+    
     public void setAviso(Aviso av) {
         this.av = av;
     }
-
+    
     public String regOT(Aviso av) {
         setOt(new OrdenDeTrabajo());
         setAviso(av);
         ot.setIdOT(basededatos.getIDNewOT());
         return "regOT.xhtml";
     }
-
+    
     public String addOT() throws EMASAException {
-       // ot.setFechainicio(new Date());System.out.println("zdfghjkllkjhgtfrgbn");
+        // ot.setFechainicio(new Date());System.out.println("zdfghjkllkjhgtfrgbn");
         ot.setEmailCliente(av.getEmailCliente());
         ot.setTelefonoCliente(av.getTelefonoCliente());
         ot.setPrioridad(av.getPrioridad());
         ot.setAviso(av);
+        ot.setEstado(Enumeraciones.estado.EN_PROCESO);
         //av.setOrdendeTrabajo(ot);
-        ot.setNombreCliente(av.getNombreCliente());   
+        ot.setNombreCliente(av.getNombreCliente());        
         basededatos.modificarAviso(av);
         basededatos.insertarOT(ot);
-     
+        
         ot = null;
         av = null;
         return ctrl.home();
     }
-
+    
     public String modificarOT(OrdenDeTrabajo a) {
         setOt(a);
         String page = null;
@@ -77,93 +78,93 @@ public class ControlOT implements Serializable {
         }
         return page;
     }
-
+    
     public String finalizarModifOT() {
         ot = null;
         return "home.xhtml";
     }
-
+    
     public String getDireccion() {
         return av.getDireccion();
     }
-
+    
     public void setDireccion(String dire) {
         av.setDireccion(dire);
     }
-
-    public Date getFechaInicio(){
+    
+    public Date getFechaInicio() {
         return ot.getFechainicio();
     }
     
-    public void setFechaInicio(Date d){
+    public void setFechaInicio(Date d) {
         ot.setFechainicio(d);
     }
     
     public String getCP() {
         return av.getCp();
     }
-
+    
     public void setCP(String cp) {
         av.setCp(cp);
     }
-
+    
     public String getMunicipio() {
         return av.getMunicipio();
     }
-
+    
     public void setMunicipio(String muni) {
         av.setMunicipio(muni);
     }
-
+    
     public String getId() {
         return ot.getIdOT() + "";
     }
-
+    
     public boolean getUrgente() {
         return av.isUrgente();
     }
-
+    
     public void setUrgente(boolean urg) {
         av.setUrgente(urg);
     }
-
+    
     public boolean getPlanificado() {
         return av.isPlanificado();
     }
-
+    
     public void setPlanificado(boolean plan) {
         av.setPlanificado(plan);
     }
-
+    
     public String getDescripcion() {
         return av.getDescripcion();
     }
-
+    
     public void setDescripcion(String des) {
         av.setDescripcion(des);
     }
-
+    
     public String getInstrucciones() {
         return ot.getInstrucciones();
     }
-
+    
     public void setInstrucciones(String ins) {
         ot.setInstrucciones(ins);
     }
-
+    
     public String getGPS() {
         if (av.getLocalizacion() == null) {
             return "";
         }
         return av.getLocalizacion().getHeight() + " , " + av.getLocalizacion().getLenght();
     }
-
+    
     public void setGPS(String gps) {
         String latitud = gps.substring(0, gps.indexOf(" "));
         String longitud = gps.substring(gps.lastIndexOf(" "), gps.length());
         av.setLocalizacion(new Coordenada(latitud, longitud));
     }
-
+    
     public int getPrioridad() {
         int num = 1;
         if (av.getPrioridad().equals(Enumeraciones.prioridad.ALTA)) {
@@ -175,9 +176,9 @@ public class ControlOT implements Serializable {
             num = 1;
         }
         return num;
-
+        
     }
-
+    
     public void setPrioridad(int i) {
         switch (i) {
             case 1:
@@ -191,7 +192,7 @@ public class ControlOT implements Serializable {
                 break;
         }
     }
-
+    
     public int getGravedad() {
         int num = 1;
         if (av.getGravedad().equals(Enumeraciones.gravedad.ALTA)) {
@@ -199,11 +200,11 @@ public class ControlOT implements Serializable {
         }
         if (av.getGravedad().equals(Enumeraciones.gravedad.MEDIA)) {
             num = 2;
-        } 
+        }        
         return num;
-
+        
     }
-
+    
     public void setGravedad(int i) {
         switch (i) {
             case 1:
@@ -217,17 +218,17 @@ public class ControlOT implements Serializable {
                 break;
         }
     }
-
+    
     public int getEstado() {
         int num = 1;
         if (av.getEstado().equals(Enumeraciones.estado.CERRADO)) {
             num = 2;
         }
-
+        
         return num;
-
+        
     }
-
+    
     public void setEstado(int i) {
         switch (i) {
             case 1:
@@ -243,7 +244,7 @@ public class ControlOT implements Serializable {
     public void setOperarios(List<Usuario> ops) {
         ot.setOperarios(ops);
     }
-
+    
     public List<Usuario> getOperarios() {
         return ot.getOperarios();
     }
@@ -261,24 +262,21 @@ public class ControlOT implements Serializable {
             return ot.getFechainicio();
         }
     }
-
-    public void setFechainiciocalendario(String f) throws ParseException {
-        SimpleDateFormat simplefecha = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechini = simplefecha.parse(f);
-        ot.setFechainicio(fechini);
+    
+    public void setFechainiciocalendario(Date f) throws ParseException {
+        ot.setFechainicio(f);
     }
-
+    
     public void onDateSelect(SelectEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
-
+    
     public void click() {
         RequestContext requestContext = RequestContext.getCurrentInstance();
         requestContext.update("form:display");
         requestContext.execute("PF('dlg').show()");
     }
-
-
+    
 }

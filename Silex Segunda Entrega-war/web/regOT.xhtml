@@ -44,7 +44,7 @@
         <h3>Personal</h3>
     </ui:define>
 
-     <ui:define name="campos-pestaña1"> <!-- fecha de inicio-->
+    <ui:define name="campos-pestaña1"> <!-- fecha de inicio-->
         <br/>
         <h:form id="form">
             <p:growl id="msgs" showDetail="true" />
@@ -135,19 +135,6 @@
             <p:growl id="messages" showDetail="true" />
         </h:form>
         <br/>
-
-        <!-- estado -->
-        <label for="detalles" class="titulo">Estado</label>
-        <h:form>
-            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" columnClasses="label, value" >
-
-                <p:selectOneListbox id="basic" value="#{controlOT.estado}" >
-                    <f:selectItem itemLabel="En Proceso" itemValue="1" />
-                    <f:selectItem itemLabel="Cerrada" itemValue="2" />
-                </p:selectOneListbox>
-            </h:panelGrid>
-            <p:separator />
-        </h:form>
     </ui:define>
 
     <ui:define name="campos-pestaña4"> 
