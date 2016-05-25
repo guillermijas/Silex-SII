@@ -189,6 +189,50 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     }
     
     @Override
+    public void mandarEmailIniciacion(Usuario us, String cadenaAleatoria, String uri) {
+        // Datos del host
+        String host = "smtp.gmail.com"; // Gmail
+        int port = 587;
+        String email = "silexemasa@gmail.com"; // Correo de la cuenta asociada
+        String password = "EmasaSilex2016"; // Contraseña del correo
+
+        Properties prp = new Properties();
+        prp.put("mail.smtp.user", email);
+        prp.put("mail.smtp.host", host);
+        prp.put("mail.smtp.port", port);
+        prp.put("mail.smtp.starttls.enable", "true");
+        prp.put("mail.smtp.debug", "true");
+        prp.put("mail.smtp.auth", "true");
+        prp.put("mail.smtp.socketFactory.port", port);
+        prp.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        prp.put("mail.smtp.socketFactory.fallback", "false");
+
+        // Creamos una sesión con las propiedades anteriores
+        Session session = Session.getInstance(prp);
+
+        // Definimos el texto del cuerpo del mensaje
+        
+        String url_validacion = uri + "/cambiarContrasena.xhtml?username="
+                + us.getUsername() + "&codigoValidacion=" + cadenaAleatoria; // Inyectar en el backing bean con uri info
+        String body = "Para establecer su cotnraseña, pulse aquí: \n " + url_validacion + "\n Bienvenido a Emasa.";
+
+        try {
+            Message message = new MimeMessage(session);
+
+            message.setFrom(new InternetAddress(email));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(us.getEmail())); // A donde vamos a mandarlo
+            message.setSubject("Bienvenido a Emasa");
+            message.setText(body); // También puede ser un html
+
+            Transport transport = session.getTransport("smtp");
+            transport.connect(host, port, email, password);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
     public void mandarEmailRecuperacion(Usuario us, String cadenaAleatoria, String uri) {
         // Datos del host
         String host = "smtp.gmail.com"; // Gmail

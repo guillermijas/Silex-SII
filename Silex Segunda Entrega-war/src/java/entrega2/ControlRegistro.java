@@ -179,7 +179,7 @@ public class ControlRegistro implements Serializable {
         user.setCadenaValidacion(cadena);
         if(basededatos.insertarUsuario(user))
         {
-            basededatos.mandarEmailRecuperacion(user, cadena, url_base);
+            basededatos.mandarEmailIniciacion(user, cadena, url_base);
             return "admin.xhtml";
         }
         else

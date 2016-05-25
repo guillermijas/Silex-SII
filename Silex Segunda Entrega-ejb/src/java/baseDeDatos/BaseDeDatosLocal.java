@@ -27,6 +27,8 @@ public interface BaseDeDatosLocal {
     
     public String generarCadenaAleatoria();
     
+    public void mandarEmailIniciacion(Usuario us, String cadenaAleatoria, String uri);
+    
     public void mandarEmailRecuperacion(Usuario us, String cadenaAleatoria, String uri);
     
     public void mandarEmail(Usuario us, String cadenaAleatoria, String uri);
