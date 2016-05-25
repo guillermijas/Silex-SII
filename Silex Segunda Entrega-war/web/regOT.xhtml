@@ -44,14 +44,15 @@
         <h3>Personal</h3>
     </ui:define>
 
-    <ui:define name="campos-pestaña1"> <!-- fecha de inicio-->
+     <ui:define name="campos-pestaña1"> <!-- fecha de inicio-->
         <br/>
         <h:form id="form">
             <p:growl id="msgs" showDetail="true" />
-            <p:calendar id="button" value="#{calendarView.date1}" showOn="button" />
+            <p:calendar id="button" value="#{controlOT.fechainiciocalendario}" showOn="button" />
         </h:form>
         <br/> <br/> <br/>
     </ui:define>
+
 
     <!--direccion-->
     <ui:define name="campos-pestaña2">
@@ -119,7 +120,7 @@
 
         <!--instrucciones -->
         <label for="detalles" class="titulo">Instrucciones</label>
-        <p:inputTextarea counter="cnt_instrucciones" maxlength="200" counterTemplate="{0}"
+        <p:inputTextarea value="#{controlOT.instrucciones}" counter="cnt_instrucciones" maxlength="200" counterTemplate="{0}"
                          autoResize="true" class="campodescripcion" required="true" 
                          requiredMessage="Instrucciones" style="width: 100%;"/>
         <h:outputText id="cnt_instrucciones"/>
@@ -160,7 +161,7 @@
     </ui:define>
 
     <ui:define name="btn_confirmar">
-        <h:commandButton action="#{controlAutorizacion.home()}" value="Confirmar" class="btn-primary"/>
+        <h:commandButton action="#{controlOT.addOT()}" value="Confirmar" class="btn-primary"/>
     </ui:define>
 
     <ui:define name="btn_cancelar">

@@ -6,10 +6,16 @@ import entrega1.*;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.*;
 
 @Named(value = "controlOT")
 @SessionScoped
@@ -43,23 +49,21 @@ public class ControlOT implements Serializable {
     public String regOT(Aviso av) {
         setOt(new OrdenDeTrabajo());
         setAviso(av);
-        System.out.println("asdfghyjukilokjhgfdsa");
         ot.setIdOT(basededatos.getIDNewOT());
-        
-        System.out.println(av);
         return "regOT.xhtml";
     }
 
     public String addOT() throws EMASAException {
-        ot.setFechainicio(new Date());
+       // ot.setFechainicio(new Date());System.out.println("zdfghjkllkjhgtfrgbn");
         ot.setEmailCliente(av.getEmailCliente());
         ot.setTelefonoCliente(av.getTelefonoCliente());
         ot.setPrioridad(av.getPrioridad());
         ot.setAviso(av);
-        av.setOrdendeTrabajo(ot);
-        ot.setNombreCliente(av.getNombreCliente());
+        //av.setOrdendeTrabajo(ot);
+        ot.setNombreCliente(av.getNombreCliente());   
         basededatos.modificarAviso(av);
         basededatos.insertarOT(ot);
+     
         ot = null;
         av = null;
         return ctrl.home();
@@ -177,13 +181,13 @@ public class ControlOT implements Serializable {
     public void setPrioridad(int i) {
         switch (i) {
             case 1:
-                av.setPrioridad(Enumeraciones.prioridad.BAJA);
+                ot.setPrioridad(Enumeraciones.prioridad.BAJA);
                 break;
             case 2:
-                av.setPrioridad(Enumeraciones.prioridad.MEDIA);
+                ot.setPrioridad(Enumeraciones.prioridad.MEDIA);
                 break;
             case 3:
-                av.setPrioridad(Enumeraciones.prioridad.ALTA);
+                ot.setPrioridad(Enumeraciones.prioridad.ALTA);
                 break;
         }
     }
@@ -195,9 +199,7 @@ public class ControlOT implements Serializable {
         }
         if (av.getGravedad().equals(Enumeraciones.gravedad.MEDIA)) {
             num = 2;
-        } else {
-            num = 1;
-        }
+        } 
         return num;
 
     }
@@ -229,10 +231,10 @@ public class ControlOT implements Serializable {
     public void setEstado(int i) {
         switch (i) {
             case 1:
-                av.setEstado(Enumeraciones.estado.EN_PROCESO);
+                ot.setEstado(Enumeraciones.estado.EN_PROCESO);
                 break;
             case 2:
-                av.setEstado(Enumeraciones.estado.CERRADO);
+                ot.setEstado(Enumeraciones.estado.CERRADO);
                 break;
         }
     }
@@ -250,5 +252,33 @@ public class ControlOT implements Serializable {
     public List<Usuario> getListaOperarios() {
         return basededatos.getListaOperarios();
     }
+    
+    public Date getFechainiciocalendario() throws ParseException {
+        if (ot.getFechainicio() == null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            return sdf.parse(av.getFechainicio());
+        } else {
+            return ot.getFechainicio();
+        }
+    }
+
+    public void setFechainiciocalendario(String f) throws ParseException {
+        SimpleDateFormat simplefecha = new SimpleDateFormat("dd/MM/yyyy");
+        Date fechini = simplefecha.parse(f);
+        ot.setFechainicio(fechini);
+    }
+
+    public void onDateSelect(SelectEvent event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+    }
+
+    public void click() {
+        RequestContext requestContext = RequestContext.getCurrentInstance();
+        requestContext.update("form:display");
+        requestContext.execute("PF('dlg').show()");
+    }
+
 
 }
