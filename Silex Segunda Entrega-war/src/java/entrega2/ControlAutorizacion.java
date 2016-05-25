@@ -110,8 +110,8 @@ public class ControlAutorizacion implements Serializable {
         return "regAviso.xhtml";
     }
 
-    public String regUsuario() {
-        return "registerUsuario.xhtml";
+    public String regOperario() {
+        return "register_operario.xhtml";
     }
 
     public String register() {

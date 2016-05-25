@@ -30,7 +30,8 @@ public class ControlRegistro implements Serializable {
     private ControlAutorizacion ctrl;
     @Inject
     private Hash hash;
-    
+    private Enumeraciones.Rol rol = Enumeraciones.Rol.CLIENTE;
+
     @Context
     private UriInfo uri;
 
@@ -89,6 +90,52 @@ public class ControlRegistro implements Serializable {
         this.user = user;
     }
 
+    public String getRol() {
+        String rolnuevo = "0";
+        switch (rol) {
+            case CLIENTE:
+                rolnuevo = "0";
+                break;
+            case CALL_CENTER:
+                rolnuevo = "1";
+                break;
+            case SUPERVISOR:
+                rolnuevo = "2";
+                break;
+            case OPERARIO:
+                rolnuevo = "3";
+                break;
+            case ADMINISTRADOR:
+                rolnuevo = "4";
+                break;
+            default:
+                throw new AssertionError(rol.name());
+        }
+        return rolnuevo;
+    }
+
+    public void setRol(String role) {
+        switch (role) {
+            case "0":
+                rol = Enumeraciones.Rol.CLIENTE;
+                break;
+            case "1":
+                rol = Enumeraciones.Rol.CALL_CENTER;
+                break;
+            case "2":
+                rol = Enumeraciones.Rol.SUPERVISOR;
+                break;
+            case "3":
+                rol = Enumeraciones.Rol.OPERARIO;
+                break;
+            case "4":
+                rol = Enumeraciones.Rol.ADMINISTRADOR;
+                break;
+            default:
+                rol = Enumeraciones.Rol.CLIENTE;
+        }
+    }
+
     public String registrar() throws EMASAException {
 
         // Primero comprobamos que las contraseñas coinciden
@@ -102,20 +149,17 @@ public class ControlRegistro implements Serializable {
             } else {
                 user.setRol(Enumeraciones.Rol.OPERARIO);
             }
-            
-            
+
             //URI url = uri.getBaseUriBuilder().path("Silex_Segunda_Entrega-war").path("faces").build(); //--> Null pointer
             String url_base = "http://localhost:8080/Silex_Segunda_Entrega-war/faces";
             String cadena = basededatos.generarCadenaAleatoria();
-            if(!user.getRol().equals(Enumeraciones.Rol.ADMINISTRADOR))
-            {
+            if (!user.getRol().equals(Enumeraciones.Rol.ADMINISTRADOR)) {
                 user.setCadenaValidacion(cadena);
             }
             if (basededatos.insertarUsuario(user)) {
-                if(!user.getRol().equals(Enumeraciones.Rol.ADMINISTRADOR))
-            {
-                basededatos.mandarEmail(user, cadena, url_base);
-            }
+                if (!user.getRol().equals(Enumeraciones.Rol.ADMINISTRADOR)) {
+                    basededatos.mandarEmail(user, cadena, url_base);
+                }
                 ctrl.setUsuario(user);
                 return "exitoRegistro.xhtml";
             } else {
@@ -131,9 +175,8 @@ public class ControlRegistro implements Serializable {
         if (checkPasswords()) {
             keepPwd(); // Guardamos esa contraseña en el perfil del usuario
             // Luego establecemos el rol del usuario
-            user.setRol(Enumeraciones.Rol.OPERARIO);
-            if (basededatos.insertarUsuario(user)) // Devuelve true si se ha guardado el usuario correctamente en la BD
-            {
+            user.setRol(rol);
+            if (basededatos.insertarUsuario(user)) { // Devuelve true si se ha guardado el usuario correctamente en la BD
                 return "admin.xhtml";
             } else {
                 return "register.xhtml";
@@ -171,9 +214,8 @@ public class ControlRegistro implements Serializable {
     public boolean datosCorrectos() {
         return (username != null && validacion != null && basededatos.estaRegistrado(username));
     }
-    
-    public String goHome()
-    {
+
+    public String goHome() {
         ctrl.setUsuario(basededatos.getUsuario(username));
         return ctrl.home();
     }
