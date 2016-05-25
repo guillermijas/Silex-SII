@@ -17,94 +17,94 @@
         </c:choose>
     </ui:define>
 
-    <ui:define name="campoAvisos">
+   <ui:define name="campoAvisos">
         <!-- avisos -->
-        <h:form id="form">           
+        <h:form id="form1">           
             <p:growl id="msgs" showDetail="true" />
             <h3>Avisos</h3>
-            <p:tabView style="width: 90%">
-                <p:tab title="Incidencias">
-                    <h:panelGrid columns="1" cellpadding="10">
+            <p:tabView id="tabAvisos" style="width: 90%">
+                <p:tab id="incidencias" title="Incidencias">
+                    <h:panelGrid id="incidenciasPanel" columns="1" cellpadding="10">
                         <c:forEach var="item" items="#{controlAviso.incidencias}">
-                            <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                            <p:fieldset id="titulo1" legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
                                 <div class="row">
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Dirección: " class="bold"/>
+                                        <h:outputText id="direccion1" value="Dirección: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.direccion}" />
+                                        <h:outputText id="direccion11" value="#{item.direccion}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Fecha fin: " class="bold"/>
+                                        <h:outputText id="fechainicio1" value="Fecha inicio: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.fechainicio}" />
+                                        <h:outputText id="fechainicio1" value="#{item.fechainicio}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Urgente: " class="bold" />
+                                        <h:outputText id="urgente1" value="Urgente: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.urgente}">
-                                                <input type="checkbox" disabled="enabled"></input>
+                                                <input id="urgente11" type="checkbox" disabled="enabled"></input>
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                <input id="urgente12" type="checkbox" disabled="disabled" checked="checked"></input>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Planificado: " class="bold"/>
+                                        <h:outputText id="planificado1" value="Planificado: " class="bold"/>
 
                                     </div>
                                     <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.planificado}">
-                                                <input type="checkbox" disabled="enabled"></input>
+                                                <input id="planificado11" type="checkbox" disabled="enabled"></input>
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                <input id="planificado12" type="checkbox" disabled="disabled" checked="checked"></input>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Gravedad: " class="bold"/>
+                                        <h:outputText id="gravedad1" value="Gravedad: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.gravedad}" />
+                                        <h:outputText id="gravedad11" value="#{item.gravedad}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Prioridad: " class="bold" />
+                                        <h:outputText id="prioridad1" value="Prioridad: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.prioridad}" />
+                                        <h:outputText id="prioridad11" value="#{item.prioridad}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Descripcion: " class="bold" />
+                                        <h:outputText id="descripcion1" value="Descripcion: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.descripcion}" />  
+                                        <h:outputText id="descripcion11" value="#{item.descripcion}" />  
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value ="Ubicación: " class="bold" />
+                                        <h:outputText id="ubicacion1" value ="Ubicación: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
-                                        <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"  height="42" width="42"></img></a>
+                                        <a id="ubicacion11" href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                     </div>
 
                                 </div>
 
                                 <div class="col-md-12 text-left">
-                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
+                                    <p:commandButton id="modificarav1" value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
                                 <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlOT.regOT(item)}" class="btn-success"/>
+                                    <p:commandButton id="crearot1" value="Crear Orden de Trabajo" action="#{controlOT.regOT(item)}" class="btn-success"/>
                                 </div>
                                 <div class="col-md-5 text-right">
-                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger">
+                                    <p:commandButton id="cerrarav1" value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger">
                                         <p:confirm header="Confirmación" message="Esto cerrará el aviso. ¿Está seguro que desea continuar?" icon="ui-icon-alert" />
                                     </p:commandButton>
 
@@ -114,259 +114,259 @@
                         </c:forEach>
                     </h:panelGrid>
                 </p:tab>
-                <p:tab title="Nuevos">
-                    <h:panelGrid columns="1" cellpadding="10">
+                <p:tab id="nuevos" title="Nuevos">
+                    <h:panelGrid id="nuevosPanel" columns="1" cellpadding="10">
                         <c:forEach var="item" items="#{controlAviso.avisosNuevos}">
-                            <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                            <p:fieldset id="titulo2" legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                 <div class="row">
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Dirección: " class="bold"/>
+                                        <h:outputText id="direccion2" value="Dirección: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.direccion}" />
+                                        <h:outputText id="direccion21" value="#{item.direccion}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Fecha inicio: " class="bold"/>
+                                        <h:outputText id="fechainicio2" value="Fecha inicio: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.fechainicio}" />
+                                        <h:outputText id="fechainicio21" value="#{item.fechainicio}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Urgente: " class="bold" />
+                                        <h:outputText id="urgente2" value="Urgente: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.urgente}">
-                                                <input type="checkbox" disabled="enabled"></input>
+                                                <input id="urgente21" type="checkbox" disabled="enabled"></input>
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                <input id="urgente22" type="checkbox" disabled="disabled" checked="checked"></input>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Planificado: " class="bold"/>
+                                        <h:outputText id="planificado2" value="Planificado: " class="bold"/>
 
                                     </div>
                                     <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.planificado}">
-                                                <input type="checkbox" disabled="enabled"></input>
+                                                <input id="planificado21" type="checkbox" disabled="enabled"></input>
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                <input id="planificado22" type="checkbox" disabled="disabled" checked="checked"></input>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Gravedad: " class="bold"/>
+                                        <h:outputText id="gravedad2" value="Gravedad: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.gravedad}" />
+                                        <h:outputText id="gravedad21" value="#{item.gravedad}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Prioridad: " class="bold" />
+                                        <h:outputText id="prioridad2" value="Prioridad: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.prioridad}" />
+                                        <h:outputText id="prioridad21" value="#{item.prioridad}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Descripcion: " class="bold" />
+                                        <h:outputText id="descripcion2" value="Descripcion: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.descripcion}" />  
+                                        <h:outputText id="descripcion21" value="#{item.descripcion}" />  
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value ="Ubicación: " class="bold" />
+                                        <h:outputText id="ubicacion2" value ="Ubicación: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
-                                        <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"  height="42" width="42"></img></a>
+                                        <a id="ubicacion21" href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                     </div>
 
                                 </div>
 
                                 <div class="col-md-12 text-left">
-                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
+                                    <p:commandButton id="modificarav2" value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
                                 <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlOT.regOT(item)}" class="btn-success"/>
+                                    <p:commandButton id="crearot2" value="Crear Orden de Trabajo" action="#{controlOT.regOT(item)}" class="btn-success"/>
                                 </div>
                                 <div class="col-md-5 text-right">
-                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
+                                    <p:commandButton id="cerrarav2" value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
                                 </div>  
 
                             </p:fieldset>
                         </c:forEach>
                     </h:panelGrid>
                 </p:tab>
-                <p:tab title="En proceso">
-                    <h:panelGrid columns="1" cellpadding="10">
+                <p:tab id="enProceso" title="En proceso">
+                    <h:panelGrid id="enProcesoPanel" columns="1" cellpadding="10">
                         <c:forEach var="item" items="#{controlAviso.avisosEnProceso}">
-                            <p:fieldset legend="ID Aviso: # #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                            <p:fieldset id="titulo3" legend="ID Aviso: # #{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
                                 <div class="row">
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Dirección: " class="bold"/>
+                                        <h:outputText id="direccion3" value="Dirección: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.direccion}" />
+                                        <h:outputText id="direccion31" value="#{item.direccion}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Fecha Inicio: " class="bold"/>
+                                        <h:outputText id="fechainicio3" value="Fecha Inicio: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.fechainicio}" />
+                                        <h:outputText id="fechainicio31" value="#{item.fechainicio}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Urgente: " class="bold" />
+                                        <h:outputText id="urgente3" value="Urgente: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.urgente}">
-                                                <input type="checkbox" disabled="enabled"></input>
+                                                <input id="urgente31" type="checkbox" disabled="enabled"></input>
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                <input id="urgente32" type="checkbox" disabled="disabled" checked="checked"></input>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Planificado: " class="bold"/>
+                                        <h:outputText id="planificado3" value="Planificado: " class="bold"/>
 
                                     </div>
                                     <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.planificado}">
-                                                <input type="checkbox" disabled="enabled"></input>
+                                                <input id="planificado31" type="checkbox" disabled="enabled"></input>
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                <input id="planificado32" type="checkbox" disabled="disabled" checked="checked"></input>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Gravedad: " class="bold"/>
+                                        <h:outputText id="gravedad3" value="Gravedad: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.gravedad}" />
+                                        <h:outputText id="gravedad31" value="#{item.gravedad}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Prioridad: " class="bold" />
+                                        <h:outputText id="prioridad3" value="Prioridad: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.prioridad}" />
+                                        <h:outputText id="prioridad31" value="#{item.prioridad}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Descripcion: " class="bold" />
+                                        <h:outputText id="descripcion3" value="Descripcion: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.descripcion}" />  
+                                        <h:outputText id="descripcion31" value="#{item.descripcion}" />  
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value ="Ubicación: " class="bold" />
+                                        <h:outputText id="ubicacion3" value ="Ubicación: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
-                                        <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"  height="42" width="42"></img></a>
+                                        <a id="ubicacion31" href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12 text-left">
-                                    <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
+                                    <p:commandButton id="modificarav3" value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
                                 <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlOT.regOT(item)}" class="btn-success"/>
+                                    <p:commandButton id="crearot3" value="Crear Orden de Trabajo" action="#{controlOT.regOT(item)}" class="btn-success"/>
                                 </div>
                                 <div class="col-md-5 text-right">
-                                    <p:commandButton value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger"/>
+                                    <p:commandButton id="cerrarAv3" value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger"/>
                                 </div> 
                             </p:fieldset>
                         </c:forEach>
                     </h:panelGrid>
                 </p:tab>
 
-                <p:tab title="Cerradas">
-                    <h:panelGrid columns="1" cellpadding="10">
+                <p:tab id="cerradas" title="Cerradas">
+                    <h:panelGrid id="cerradasPanel" columns="1" cellpadding="10">
                         <c:forEach var="item" items="#{controlAviso.avisosCerrados}">
-                            <p:fieldset legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                            <p:fieldset id="titulo4" legend="ID Aviso: ##{item.idAviso} creado por #{item.creador.username}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                 <div class="row">
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Dirección: " class="bold"/>
+                                        <h:outputText id="direccion4" value="Dirección: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.direccion}" />
+                                        <h:outputText id="direccion41" value="#{item.direccion}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Fecha Inicio: " class="bold"/>
+                                        <h:outputText id="fechainicio4" value="Fecha Inicio: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.fechainicio}" />
+                                        <h:outputText id="fechainicio41" value="#{item.fechainicio}" />
                                     </div> 
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Fecha fin: " class="bold"/>
+                                        <h:outputText id="fechafin4" value="Fecha fin: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.fechafin}" />
+                                        <h:outputText id="fechafin41" value="#{item.fechafin}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Urgente: " class="bold" />
+                                        <h:outputText id="urgente4" value="Urgente: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.urgente}">
-                                                <input type="checkbox" disabled="enabled"></input>
+                                                <input id="urgente41" type="checkbox" disabled="enabled"></input>
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                <input id="urgente42" type="checkbox" disabled="disabled" checked="checked"></input>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Planificado: " class="bold"/>
+                                        <h:outputText id="planificado4" value="Planificado: " class="bold"/>
 
                                     </div>
                                     <div class="col-xs-6 col-md-7">
                                         <c:choose>
-                                            <c:when test="#{item.planificado}">
-                                                <input type="checkbox" disabled="enabled"></input>
+                                            <c:when  test="#{item.planificado}">
+                                                <input id="planificado41" type="checkbox" disabled="enabled"></input>
                                             </c:when>
                                             <c:otherwise>
-                                                <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                <input id="planificado42" type="checkbox" disabled="disabled" checked="checked"></input>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Gravedad: " class="bold"/>
+                                        <h:outputText id="gravedad4" value="Gravedad: " class="bold"/>
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.gravedad}" />
+                                        <h:outputText id="gravedad41" value="#{item.gravedad}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Prioridad: " class="bold" />
+                                        <h:outputText id="prioridad4" value="Prioridad: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.prioridad}" />
+                                        <h:outputText id="prioridad41" value="#{item.prioridad}" />
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value="Descripcion: " class="bold" />
+                                        <h:outputText id="descripcion4" value="Descripcion: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7">
-                                        <h:outputText value="#{item.descripcion}" />  
+                                        <h:outputText id="descripcion41" value="#{item.descripcion}" />  
                                     </div>
                                     <div class="col-xs-6 col-md-5">
-                                        <h:outputText value ="Ubicación: " class="bold" />
+                                        <h:outputText id="ubicacion4" value ="Ubicación: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
-                                        <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG" height="42" width="42"></img></a>
+                                        <a id="ubicacion41" href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                     </div>
                                 </div>
                             </p:fieldset>
@@ -382,205 +382,193 @@
         <c:choose>
             <c:when test="#{controlAutorizacion.comprobarRol() == 2}">
                 <!-- ordenes de trabajo -->
-                <h:form id="form1">           
+                <h:form id="form">           
                     <p:growl id="msgs" showDetail="true" />
                     <h3> </h3>
                     <h3 style="margin-top:0">Órdenes de trabajo</h3>
 
-                    <p:tabView style="width: 100%">
-                        <p:tab title="En proceso">
-                            <h:panelGrid columns="1" cellpadding="10">
+                    <p:tabView id="ordenesdetrabajo" style="width: 100%">
+                        <p:tab id="enProcesoOt" title="En proceso">
+                            <h:panelGrid id="enProcesoOtPanel" columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{controlAviso.ordenEnProceso}">
-                                    <p:fieldset legend="ID Aviso: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset id="titulo5" legend="ID Aviso: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                                 <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Dirección: " class="bold"/>
+                                                <h:outputText id="direccion5" value="Dirección: " class="bold"/>
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.aviso.direccion}" />
+                                                <h:outputText id="direccion51" value="#{item.aviso.direccion}" />
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Fecha inicio: " class="bold"/>
+                                                <h:outputText id="fechainicio5" value="Fecha inicio: " class="bold"/>
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.fechainicio}" />
+                                                <h:outputText id="fechainicio51" value="#{item.fechainicio}" />
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Urgente: " class="bold" />
+                                                <h:outputText id="urgente5" value="Urgente: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7">
                                                 <c:choose>
                                                     <c:when test="#{item.aviso.urgente}">
-                                                        <input type="checkbox" disabled="enabled"></input>
+                                                        <input id="urgente51" type="checkbox" disabled="enabled"></input>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                        <input id="urgente52" type="checkbox" disabled="disabled" checked="checked"></input>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Planificado: " class="bold"/>
+                                                <h:outputText id="planificado5" value="Planificado: " class="bold"/>
 
                                             </div>
                                             <div class="col-xs-6 col-md-7">
                                                 <c:choose>
                                                     <c:when test="#{item.aviso.planificado}">
-                                                        <input type="checkbox" disabled="enabled"></input>
+                                                        <input id="planificado51" type="checkbox" disabled="enabled"></input>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                        <input id="planificado52" type="checkbox" disabled="disabled" checked="checked"></input>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Gravedad: " class="bold"/>
+                                                <h:outputText id="gravedad5" value="Gravedad: " class="bold"/>
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.aviso.gravedad}" />
-                                            </div>
-                                            <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Estado: " class="bold" />
-                                            </div>
-                                            <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.estado}" />
+                                                <h:outputText id="gravedad51" value="#{item.aviso.gravedad}" />
                                             </div>
 
+
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Prioridad: " class="bold" />
+                                                <h:outputText id="prioridad5" value="Prioridad: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.prioridad}" />
+                                                <h:outputText id="prioridad51" value="#{item.prioridad}" />
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Descripción: " class="bold" />
+                                                <h:outputText id="descripcion5" value="Descripción: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.aviso.descripcion}" />  
+                                                <h:outputText id="descripcion51" value="#{item.aviso.descripcion}" />  
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Instrucciones: " class="bold" />
+                                                <h:outputText id="instrucciones1" value="Instrucciones: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.instrucciones}" />  
+                                                <h:outputText id="instrucciones11" value="#{item.instrucciones}" />  
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value ="Ubicación: " class="bold" />
+                                                <h:outputText id="ubicacion5" value ="Ubicación: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
-                                                <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"  height="42" width="42"></img></a>
+                                                <a id="ubicacion51" href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                             </div>
 
                                         </div>
 
                                         <div class="col-md-7 text-left">
-                                            <p:commandButton value="Modificar Orden" action="#{controlOT.modificarOT(item)}" class="btn-primary" style="margin-bottom: 10px"/>
+                                            <p:commandButton id="modificarOT1" value="Modificar Orden" action="#{controlOT.modificarOT(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                         </div>
 
                                         <div class="col-md-5 text-right">
-                                            <p:commandButton value="Cerrar Orden" action="#{controlOT.cerrarOT(item)}" class="btn-danger"/>
+                                            <p:commandButton id="cerrarOT1" value="Cerrar Orden" action="#{controlOT.cerrarOT(item)}" class="btn-danger"/>
                                         </div> 
 
                                     </p:fieldset>
-
-
                                 </c:forEach>
                             </h:panelGrid>
                         </p:tab>
 
-                        <p:tab title="Cerradas">
-                            <h:panelGrid columns="1" cellpadding="10">
+                        <p:tab id="cerradasOT" title="Cerradas">
+                            <h:panelGrid id="cerradasOTPanel" columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{controlAviso.ordenCerradas}">
-                                    <p:fieldset legend="ID Aviso: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset id="titulo6" legend="ID Aviso: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                                 <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Dirección: " class="bold"/>
+                                                <h:outputText id="direccion6" value="Dirección: " class="bold"/>
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.aviso.direccion}" />
+                                                <h:outputText id="direccion61" value="#{item.aviso.direccion}" />
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Fecha inicio: " class="bold"/>
+                                                <h:outputText id="fechainicio6" value="Fecha inicio: " class="bold"/>
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.fechainicio}" />
+                                                <h:outputText id="fechainicio61" value="#{item.fechainicio}" />
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Fecha fin: " class="bold"/>
+                                                <h:outputText id="fechafin6" value="Fecha fin: " class="bold"/>
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.fechafin}" />
+                                                <h:outputText id="fechafin61" value="#{item.fechafin}" />
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Urgente: " class="bold" />
+                                                <h:outputText id="urgente6" value="Urgente: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7">
                                                 <c:choose>
-                                                    <c:when test="#{item.aviso.urgente}">
+                                                    <c:when id="urgente61" test="#{item.aviso.urgente}">
                                                         <input type="checkbox" disabled="enabled"></input>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                        <input id="urgente62" type="checkbox" disabled="disabled" checked="checked"></input>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Planificado: " class="bold"/>
+                                                <h:outputText id="planificado6" value="Planificado: " class="bold"/>
 
                                             </div>
                                             <div class="col-xs-6 col-md-7">
                                                 <c:choose>
                                                     <c:when test="#{item.aviso.planificado}">
-                                                        <input type="checkbox" disabled="enabled"></input>
+                                                        <input id="planificado61" type="checkbox" disabled="enabled"></input>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <input type="checkbox" disabled="disabled" checked="checked"></input>
+                                                        <input id="planificado62" type="checkbox" disabled="disabled" checked="checked"></input>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Gravedad: " class="bold"/>
+                                                <h:outputText id="gravedad6" value="Gravedad: " class="bold"/>
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.aviso.gravedad}" />
-                                            </div>
-                                            <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Estado: " class="bold" />
-                                            </div>
-                                            <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.estado}" />
+                                                <h:outputText id="gravedad61" value="#{item.aviso.gravedad}" />
                                             </div>
 
+
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Prioridad: " class="bold" />
+                                                <h:outputText id="prioridad6" value="Prioridad: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.prioridad}" />
+                                                <h:outputText id="prioridad61" value="#{item.prioridad}" />
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Descripción: " class="bold" />
+                                                <h:outputText id="descripcion6" value="Descripción: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.aviso.descripcion}" />  
+                                                <h:outputText id="descripcion61" value="#{item.aviso.descripcion}" />  
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value="Instrucciones: " class="bold" />
+                                                <h:outputText id="instrucciones6" value="Instrucciones: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7">
-                                                <h:outputText value="#{item.instrucciones}" />  
+                                                <h:outputText id="instrucciones61" value="#{item.instrucciones}" />  
                                             </div>
                                             <div class="col-xs-6 col-md-5">
-                                                <h:outputText value ="Ubicación: " class="bold" />
+                                                <h:outputText id="ubicacion6" value ="Ubicación: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
-                                                <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"  height="42" width="42"></img></a>
+                                                <a id="ubicacion61" href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                             </div>
                                         </div>
                                     </p:fieldset>
