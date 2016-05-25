@@ -61,8 +61,9 @@ public class BaseDeDatos implements BaseDeDatosLocal {
 
     @Override
     public void eliminarUsuario(Usuario us) throws EMASAException {
-        //compruebaLogin(us);
-        em.remove(em.merge(us));
+        us.setCadenaValidacion("14");
+        em.merge(us);
+        //em.remove(em.merge(us));
     }
 
     @Override
@@ -233,7 +234,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     }
 
     private List<Usuario> getListaUsuarios() {
-        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u", Usuario.class); //Comprueba que los objetos que obtenemos son efectivamente usuarios
+        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u where u.cadenaValidacion != '14' or u.cadenaValidacion is null", Usuario.class); //Comprueba que los objetos que obtenemos son efectivamente usuarios
         return query.getResultList();
     }
 
@@ -280,7 +281,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     
     @Override
     public List<Usuario> getUsuarios() {
-        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u", Usuario.class);
+        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u where u.cadenaValidacion != '14' or u.cadenaValidacion is null", Usuario.class);
         return query.getResultList();
     }
 

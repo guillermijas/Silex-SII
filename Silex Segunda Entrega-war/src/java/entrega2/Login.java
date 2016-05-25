@@ -60,6 +60,7 @@ public class Login {
                     page = ctrl.home();
                     return page;
         }
+        
         if (user != null && basededatos.estaRegistrado(user)) {
             if (basededatos.getUsuario(user).getCadenaValidacion() == null) {
                 // Una vez comprobado, compruebo si la contraseña es correcta
@@ -76,6 +77,11 @@ public class Login {
                     page = "login.xhtml";
                 }
             } else {
+                 if (basededatos.getUsuario(user).getCadenaValidacion().equals("14")) {
+                    FacesContext ctx = FacesContext.getCurrentInstance();
+                    ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Esta cuenta de usuario está eliminada"));
+                    return "login.xhtml";    
+               }
                 FacesContext ctx = FacesContext.getCurrentInstance();
                 ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "Usuario no activado"));
                 page = "login.xhtml";
