@@ -43,7 +43,7 @@ public interface BaseDeDatosLocal {
 
     public List<Usuario> getUsuarios();
     
-    public List<Usuario> getListaOperarios();
+    public List<String> getListaOperarios();
 
     //  Avisos en la BD
     public void insertarAviso(Aviso aviso) throws EMASAException;

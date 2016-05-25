@@ -463,12 +463,12 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     }
     
     @Override
-    public List<Usuario> getListaOperarios(){
-        List<Usuario> lista = new ArrayList<>();
+    public List<String> getListaOperarios(){
+        List<String> lista = new ArrayList<>();
         List<Usuario> operarios = getUsuarios();
         for (int i = 0; i < operarios.size(); i++) {
-            if (operarios.get(i).getRol().equals(3)) {
-                lista.add(operarios.get(i));
+            if (operarios.get(i).getRol().equals(Enumeraciones.Rol.OPERARIO)) {
+                lista.add(operarios.get(i).getNombre()+" "+operarios.get(i).getApellidos());
             }
         }
         return lista;

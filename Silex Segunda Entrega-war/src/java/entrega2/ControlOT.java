@@ -50,6 +50,7 @@ public class ControlOT implements Serializable {
         setOt(new OrdenDeTrabajo());
         setAviso(av);
         ot.setIdOT(basededatos.getIDNewOT());
+        System.out.println(basededatos.getUsuarios());
         return "regOT.xhtml";
     }
     
@@ -60,7 +61,7 @@ public class ControlOT implements Serializable {
         ot.setPrioridad(av.getPrioridad());
         ot.setAviso(av);
         ot.setEstado(Enumeraciones.estado.EN_PROCESO);
-        //av.setOrdendeTrabajo(ot);
+        av.setOrdendeTrabajo(ot);
         ot.setNombreCliente(av.getNombreCliente());        
         basededatos.modificarAviso(av);
         basededatos.insertarOT(ot);
@@ -250,7 +251,7 @@ public class ControlOT implements Serializable {
     }
 
     //lista de operarios
-    public List<Usuario> getListaOperarios() {
+    public List<String> getListaOperarios() {
         return basededatos.getListaOperarios();
     }
     
