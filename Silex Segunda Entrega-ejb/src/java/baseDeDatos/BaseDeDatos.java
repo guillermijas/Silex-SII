@@ -232,12 +232,31 @@ public class BaseDeDatos implements BaseDeDatosLocal {
             throw new RuntimeException(e);
         }
     }
-
+    /*
     private List<Usuario> getListaUsuarios() {
         TypedQuery<Usuario> query = em.createQuery("select u from Usuario u where u.cadenaValidacion != '14' or u.cadenaValidacion is null", Usuario.class); //Comprueba que los objetos que obtenemos son efectivamente usuarios
         return query.getResultList();
     }
-
+    */
+    
+    @Override
+    public List<Usuario> getUsuarios() {
+        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u where u.cadenaValidacion != '14' or u.cadenaValidacion is null", Usuario.class);
+        return query.getResultList();
+    }
+    
+        @Override
+    public List<String> getListaOperarios(){
+        List<String> lista = new ArrayList<>();
+        List<Usuario> operarios = getUsuarios();
+        for (int i = 0; i < operarios.size(); i++) {
+            if (operarios.get(i).getRol().equals(Enumeraciones.Rol.OPERARIO)) {
+                lista.add(operarios.get(i).getNombre()+" "+operarios.get(i).getApellidos());
+            }
+        }
+        return lista;
+    }
+    
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     // Gestión Avisos en la BD. PK -> ID
     @Override
@@ -278,14 +297,6 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         TypedQuery<Aviso> query = em.createQuery("select a from Aviso a", Aviso.class);
         return query.getResultList();
     }
-    
-    @Override
-    public List<Usuario> getUsuarios() {
-        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u where u.cadenaValidacion != '14' or u.cadenaValidacion is null", Usuario.class);
-        return query.getResultList();
-    }
-
-    
     
     @Override
     public List<Aviso> getAvisosNueva() {
@@ -462,16 +473,6 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         return id + 1;
     }
     
-    @Override
-    public List<String> getListaOperarios(){
-        List<String> lista = new ArrayList<>();
-        List<Usuario> operarios = getUsuarios();
-        for (int i = 0; i < operarios.size(); i++) {
-            if (operarios.get(i).getRol().equals(Enumeraciones.Rol.OPERARIO)) {
-                lista.add(operarios.get(i).getNombre()+" "+operarios.get(i).getApellidos());
-            }
-        }
-        return lista;
-    }
+
 
 }
