@@ -6,22 +6,10 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">Bandeja de entrada</ui:define>
-
-
-    <ui:define name="confirmar">
-        <h:form id="con2">
-            <p:confirmDialog id="conn" global="true" showEffect="fade" >
-                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-            </p:confirmDialog>
-        </h:form>    
-    </ui:define>
-
-
-    <ui:define name="bienvenida">
+<ui:define name="bienvenida">
         <c:choose>
-            <c:when test="#{controlAutorizacion.comprobarRol() == 4}">
-                <h1>Administrador</h1>
+            <c:when test="#{controlAutorizacion.comprobarRol() == 2}">
+                <h1>Supervisor</h1>
             </c:when>
             <c:otherwise>
                 <ui:include src="/WEB-INF/templates/errorAutorizacion.xhtml"/>
@@ -392,7 +380,7 @@
 
     <ui:define name="campoOT">
         <c:choose>
-            <c:when test="#{controlAutorizacion.comprobarRol() == 4}">
+            <c:when test="#{controlAutorizacion.comprobarRol() == 2}">
                 <!-- ordenes de trabajo -->
                 <h:form id="form1">           
                     <p:growl id="msgs" showDetail="true" />

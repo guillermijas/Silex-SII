@@ -77,6 +77,9 @@ public class ControlAutorizacion implements Serializable {
                 case OPERARIO:
                     page = "normal.xhtml";
                     break;
+                case SUPERVISOR:
+                    page = "supervisor.xhtml";
+                    break;
                 default:
                     page = "normal.xhtml";
                     break;

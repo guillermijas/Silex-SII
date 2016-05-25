@@ -63,9 +63,9 @@ public class ControlOT implements Serializable {
         ot.setEstado(Enumeraciones.estado.EN_PROCESO);
         av.setOrdendeTrabajo(ot);
         ot.setNombreCliente(av.getNombreCliente());        
-        basededatos.modificarAviso(av);
-        basededatos.insertarOT(ot);
         
+        basededatos.insertarOT(ot);
+        basededatos.modificarAviso(av);
         ot = null;
         av = null;
         return ctrl.home();
@@ -73,6 +73,7 @@ public class ControlOT implements Serializable {
     
     public String modificarOT(OrdenDeTrabajo a) {
         setOt(a);
+        setAviso(a.getAviso());
         String page = null;
         if (ot != null) {
             page = "modificar_OT.xhtml";
@@ -80,9 +81,17 @@ public class ControlOT implements Serializable {
         return page;
     }
     
-    public String finalizarModifOT() {
+    public String finalizarModifOT() throws EMASAException{
+        basededatos.modificarOT(ot);
+        basededatos.modificarAviso(av);
         ot = null;
-        return "home.xhtml";
+        av = null;
+        return ctrl.home();
+    }
+    
+    public String cerrarOT (OrdenDeTrabajo o) throws EMASAException{
+        basededatos.cerrarOt(o.getIdOT());
+        return "confirmacion.xhtml";
     }
     
     public String getDireccion() {
@@ -280,4 +289,12 @@ public class ControlOT implements Serializable {
         requestContext.execute("PF('dlg').show()");
     }
     
+    public List<OrdenDeTrabajo> getOTEnProceso(){
+        return basededatos.getOtEnProceso();
+    }
+    
+    public List<OrdenDeTrabajo> getOTCerradas(){
+        return basededatos.getOtCerradas();
+                
+    }
 }
