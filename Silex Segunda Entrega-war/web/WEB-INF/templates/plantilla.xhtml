@@ -32,7 +32,7 @@
                         </c:if>
              
                         <c:if test="#{controlAutorizacion.comprobarRol() == 4}">
-                            <div class="col-xs-3 col-md-2 text-center"><h:commandLink id="cl4" action="#{controlAutorizacion.regOperario()}" value="Registrar Usuario"/></div>
+                            <div class="col-xs-3 col-md-2 text-center"><h:commandLink id="cl4" action="#{controlAutorizacion.regUsuario()}" value="Registrar Usuario"/></div>
                         </c:if>
                         <div class="col-xs-3 col-md-1 text-center"><h:commandLink id="cl5" action="#{controlAutorizacion.logout()}" value="Salir"/></div>
                     </c:when>
