@@ -7,49 +7,65 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">Registro Operario</ui:define>  
+
+    <ui:define name="titulo-pestaña1">
+        <h3>Usuario</h3>
+    </ui:define>
+
+    <ui:define name="titulo-pestaña2">
+        <h3>Datos personales</h3>
+    </ui:define>
+
+
+    <ui:define name="titulo-pestaña3">
+        <h3>Información profesional</h3>
+    </ui:define>
+
+
     <ui:define name="campos-pestaña1">
         <h:form>
             <div class="row">
                 <div class="col-md-6">
-                    <h:outputText value="Nombre de usuario: *" />
+                    <label>Nombre de usuario: <span class="oblig">*</span></label>
                 </div>
                 <div class="col-md-6">
-                    <p:inputText value="#{controlRegistro.user.username}" required="true" label="Nombre de usuario: *" requiredMessage="Campo Obligatorio"/>
+                    <p:inputText class="campo" id="username" value="#{controlRegistro.user.username}" required="true" requiredMessage="Campo Obligatorio"/>
                     <br/>
+                    <h:message for="username"/>
                 </div>
                 <div class="col-md-6">
-                    <h:outputText value="Email: *" />
+                    <label>E-mail: <span class="oblig">*</span></label>
                 </div>
                 <div class="col-md-6">
-                    <p:inputText value="#{controlRegistro.user.email}" required ="true" validatorMessage="Formato de email incorrecto">
-                        <f:validateRegex pattern=".+@.+"/>
-                        <!--
-                        La expresión es
-                        "([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|\"([]!#-[^-~ \t]|(\\[\t -~]))+\")@[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?(\.[0-9A-Za-z]([0-9A-Za-z-]{0,61}[0-9A-Za-z])?)+"
-                        -->
+                    <p:inputText class="campo" id = "email" value="#{controlRegistro.user.email}" required ="true" validatorMessage="Formato de email incorrecto">
+                        <f:validateRegex pattern="[0-9a-zA-Z._-]+@[0-9a-zA-Z._-]+(\.[0-9a-zA-Z._-]+)+"/>
                     </p:inputText>
                     <br/>
+                    <h:message for="email"/>
                 </div>
                 <div class="col-md-6">
-                    <h:outputText value="Contraseña: *" />
+                    <label>Contraseña: <span class="oblig">*</span></label>
                 </div>
                 <div class="col-md-6">
-                    <p:password id = "pwd1" value="#{controlRegistro.pwd1}" required="true" label="Contraseña" match="pwd2" validatorMessage="Contraseñas incorrectas"/>
+                    <p:password class="campo" id = "pwd1" value="#{controlRegistro.pwd1}" required="true" label="Contraseña" match="pwd2" validatorMessage="Las contraseñas no coinciden">
+                        <!-- <f:validateLength minimum="8"/> -->
+                    </p:password>
+                </div>
+                <div class="col-md-6">
+                    <label>Repetir contraseña: <span class="oblig">*</span></label>
+                </div>
+                <div class="col-md-6">
+                    <p:password class="campo" id = "pwd2" value="#{controlRegistro.pwd2}" required="true" label="Contraseña2">
+                        <!-- <f:validateLength minimum="8"/> -->
+                    </p:password>
                     <br/>
+                    <h:message for="pwd2"/>
                 </div>
                 <div class="col-md-6">
-                    <h:outputText value="Repetir contraseña: *" />
+                    <label>Tipo de usuario: <span class="oblig">*</span></label>
                 </div>
                 <div class="col-md-6">
-                    <p:password id = "pwd2" value="#{controlRegistro.pwd2}" required="true" label="Contraseña2"/>
-                    <br/>
-                </div>
-            </div>
-            <div class="col-md-6">
-                    <h:outputText value="Tipo de usuario: " />
-                </div>
-                <div class="col-md-6">
-                    <h:selectOneMenu class="form-control" value="#{controlRegistro.user.rol}">
+                    <h:selectOneMenu class="form-control" value="#{controlRegistro.rol}">
                         <f:selectItem itemValue="0" itemLabel="Cliente" />
                         <f:selectItem itemValue="1" itemLabel="Call-Center" />
                         <f:selectItem itemValue="2" itemLabel="Supervisor" />
@@ -57,64 +73,77 @@
                         <f:selectItem itemValue="4" itemLabel="Administrador" />
                     </h:selectOneMenu>
                     <br/>
-                </div>
+                </div>                               
+                <br/>
+            </div>
         </h:form>
+        <p:separator/>
+
     </ui:define>
+
+
     <ui:define name="campos-pestaña2">
         <h:form>
             <div class="row">
                 <div class="col-md-6">
-                    <h:outputText value="DNI: " />
+                    <label>DNI: </label>
                 </div>
                 <div class="col-md-6">
-                    <p:inputText value="#{controlRegistro.user.dni}" />
+                    <p:inputText class="campo" id="emaile" value="#{controlRegistro.user.dni}" />
                     <br/>
                 </div>
                 <div class="col-md-6">
-                    <h:outputText value="Nombre: " />
+                    <label>Nombre: </label>
                 </div>
                 <div class="col-md-6">
-                    <p:inputText value="#{controlRegistro.user.nombre}"/>
+                    <p:inputText class="campo" id="nombree" value="#{controlRegistro.user.nombre}"/>
                     <br/>
                 </div>
                 <div class="col-md-6">
-                    <h:outputText value="Apellidos: " />
+                    <label>Apellidos: </label>
                 </div>
                 <div class="col-md-6">
-                    <p:inputText value="#{controlRegistro.user.apellidos}" />                                    
+                    <p:inputText class="campo" id="apelle" value="#{controlRegistro.user.apellidos}" />                                    
                     <br/>
                 </div>
                 <div class="col-md-6">
-                    <h:outputText value="Sexo: " />
+                    <label>Sexo: </label>
                 </div>
                 <div class="col-md-6">
-                    <select class="form-control" value ="#{controlRegistro.user.sexo}">
-                        <option disabled ="disabled" selected ="selected" value = ""> Seleccione una opción </option>
-                        <option>Mujer</option>
-                        <option>Hombre</option>
-                    </select>                                    
+                    <h:selectOneMenu id="somb" class="form-control" value="#{controlRegistro.user.sexo}">
+                        <f:selectItem id="somb1" itemValue="Hombre" itemLabel="Hombre" />
+                        <f:selectItem id="somb2" itemValue="Mujer" itemLabel="Mujer" />
+                    </h:selectOneMenu>                                       
                     <br/>
                 </div>
                 <div class="col-md-6">
-                    <h:outputText value="Teléfono: " />
+                    <label>Teléfono: </label>
                 </div>
                 <div class="col-md-6">
-                    <p:inputText value="#{controlRegistro.user.telefono}" />
+                    <p:inputText id="tfne" class="campo" value="#{controlRegistro.user.telefono}" />
                     <br/>
                 </div>
                 <div class="col-md-6">
-                    <h:outputText value="Dirección: " />
+                    <label>Dirección: </label>
                 </div>
                 <div class="col-md-6">
-                    <p:inputText value="#{controlRegistro.user.direccion}" />
+                    <p:inputText value="#{controlRegistro.user.direccion}" id="direce" class="campo" />
                     <br/>
                 </div>
             </div>
         </h:form>
+        <p:separator/>
     </ui:define>
     <ui:define name="campos-pestaña3">
         <h:form>
             <div class="row">
+                <div class="col-md-6">
+                    <h:outputText value="Zona Cargo: " />
+                </div>
+                <div class="col-md-6">
+                    <p:inputText value="#{controlRegistro.user.zonaCargo}" />
+                    <br/>
+                </div>
                 <div class="col-md-6">
                     <h:outputText value="Tipo: " />
                 </div>
@@ -151,7 +180,7 @@
         </c:choose>
     </ui:define>
     <ui:define name="btn_cancelar">
-        <h:commandButton action="index.xhtml" immediate="true" value="Cancelar" class="btn-danger"/>
+        <h:commandButton action="#{controlAutorizacion.home()}" immediate="true" value="Cancelar" class="btn-danger"/>
     </ui:define>
 
 </ui:composition>
