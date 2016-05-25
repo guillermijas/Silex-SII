@@ -41,7 +41,7 @@ public interface BaseDeDatosLocal {
 
     public void validarUsuario(String username, String validacion) throws EMASAException;
 
-    public List<Usuario> getUsuarios();
+    //public List<Usuario> getUsuarios();
     
     public List<String> getListaOperarios();
 
