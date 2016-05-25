@@ -89,8 +89,9 @@ public class ControlRecuperarPass {
             String cadena = basededatos.generarCadenaAleatoria();
             us.setCadenaValidacion(cadena);
             basededatos.actualizarUsuario(us);
-            URI url = uri.getBaseUriBuilder().path("Silex_Segunda_Entrega-war").path("faces").build();
-            basededatos.mandarEmailRecuperacion(us, cadena, url.toString());
+            //URI url = uri.getBaseUriBuilder().path("Silex_Segunda_Entrega-war").path("faces").build();
+            String url_base = "http://localhost:8080/Silex_Segunda_Entrega-war/faces";
+            basededatos.mandarEmailRecuperacion(us, cadena, url_base);
             username = null; // Reiniciamos username para usarlo en cambiarContrasena
             mensaje = "Se le ha enviado un correo electrónico para actualizar su contraseña";   
         }

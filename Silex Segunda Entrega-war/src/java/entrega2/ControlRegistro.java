@@ -16,6 +16,7 @@ import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
@@ -101,9 +102,10 @@ public class ControlRegistro implements Serializable {
             } else {
                 user.setRol(Enumeraciones.Rol.OPERARIO);
             }
-               
-            URI url = uri.getBaseUriBuilder().path("Silex_Segunda_Entrega-war").path("faces").build(); //--> Null pointer
-            String url_base = Response.created(url).build().toString();
+            
+            
+            //URI url = uri.getBaseUriBuilder().path("Silex_Segunda_Entrega-war").path("faces").build(); //--> Null pointer
+            String url_base = "http://localhost:8080/Silex_Segunda_Entrega-war/faces";
             String cadena = basededatos.generarCadenaAleatoria();
             if(!user.getRol().equals(Enumeraciones.Rol.ADMINISTRADOR))
             {
