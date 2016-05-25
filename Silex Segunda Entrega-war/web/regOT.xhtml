@@ -48,10 +48,11 @@
         <br/>
         <h:form id="form">
             <p:growl id="msgs" showDetail="true" />
-            <p:calendar id="button" value="#{calendarView.date1}" showOn="button" />
+            <p:calendar id="button" value="#{controlOT.fechainiciocalendario}" showOn="button" />
         </h:form>
         <br/> <br/> <br/>
     </ui:define>
+
 
     <!--direccion-->
     <ui:define name="campos-pestaña2">
@@ -119,7 +120,7 @@
 
         <!--instrucciones -->
         <label for="detalles" class="titulo">Instrucciones</label>
-        <p:inputTextarea counter="cnt_instrucciones" maxlength="200" counterTemplate="{0}"
+        <p:inputTextarea value="#{controlOT.instrucciones}" counter="cnt_instrucciones" maxlength="200" counterTemplate="{0}"
                          autoResize="true" class="campodescripcion" required="true" 
                          requiredMessage="Instrucciones" style="width: 100%;"/>
         <h:outputText id="cnt_instrucciones"/>
@@ -134,19 +135,6 @@
             <p:growl id="messages" showDetail="true" />
         </h:form>
         <br/>
-
-        <!-- estado -->
-        <label for="detalles" class="titulo">Estado</label>
-        <h:form>
-            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" columnClasses="label, value" >
-
-                <p:selectOneListbox id="basic" value="#{controlOT.estado}" >
-                    <f:selectItem itemLabel="En Proceso" itemValue="1" />
-                    <f:selectItem itemLabel="Cerrada" itemValue="2" />
-                </p:selectOneListbox>
-            </h:panelGrid>
-            <p:separator />
-        </h:form>
     </ui:define>
 
     <ui:define name="campos-pestaña4"> 
@@ -160,7 +148,7 @@
     </ui:define>
 
     <ui:define name="btn_confirmar">
-        <h:commandButton action="#{controlAutorizacion.home()}" value="Confirmar" class="btn-primary"/>
+        <h:commandButton action="#{controlOT.addOT()}" value="Confirmar" class="btn-primary"/>
     </ui:define>
 
     <ui:define name="btn_cancelar">

@@ -367,10 +367,11 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     // Gestión de Ordenes de trabajo en la BD. PK -> ID
     @Override
     public void insertarOT(OrdenDeTrabajo ot) throws EMASAException {
-        if (OTRegistrado(ot)) {
-            throw new OrdenDeTrabajoYaExistenteException();
-        } else {
+        if (!OTRegistrado(ot)) {
             em.persist(ot);
+        } else {
+            throw new OrdenDeTrabajoYaExistenteException();
+            
         }
     }
 
@@ -449,7 +450,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     public long getIDNewOT() {
         long id = 0;
         List<OrdenDeTrabajo> ots = getListaOrdenes();
-
+        
         if (!ots.isEmpty()) {
             for (int i = 0; i < ots.size(); i++) {
                 if (ots.get(i).getIdOT() > id) {
@@ -457,6 +458,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
                 }
             }
         }
+        
         return id + 1;
     }
     

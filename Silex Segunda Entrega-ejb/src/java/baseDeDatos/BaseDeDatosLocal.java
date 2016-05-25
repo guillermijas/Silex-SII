@@ -45,7 +45,7 @@ public interface BaseDeDatosLocal {
     
     public List<Usuario> getListaOperarios();
 
-    // Avisos en la BD
+    //  Avisos en la BD
     public void insertarAviso(Aviso aviso) throws EMASAException;
 
     public void eliminarAviso(Aviso aviso) throws EMASAException;
