@@ -16,6 +16,8 @@ import javax.inject.Inject;
 public class ControlAviso implements Serializable {
 
     private Aviso aviso;
+    private int prioridad = 0;
+    private int gravedad = 0;
 
     @EJB
     private BaseDeDatosLocal basededatos;
@@ -57,9 +59,15 @@ public class ControlAviso implements Serializable {
     }
 
     public String addAviso() throws EMASAException {
-        aviso.setEstado(Enumeraciones.estado.INCIDENCIA);
+        if (ctrl.comprobarRol() == 0) {
+            aviso.setEstado(Enumeraciones.estado.INCIDENCIA);
+        } else {
+            aviso.setEstado(Enumeraciones.estado.NUEVO);
+        }
         aviso.setFechainicio(new Date());
         aviso.setCreador(basededatos.getUsuario(ctrl.getUsername()));
+        aviso.setPrioridad(Enumeraciones.prioridad.BAJA);
+        aviso.setGravedad(Enumeraciones.gravedad.LEVE);
         basededatos.insertarAviso(aviso);
         System.out.println("Aviso creado con exito");
         aviso = null;
@@ -141,9 +149,125 @@ public class ControlAviso implements Serializable {
     public void setPlanificado(boolean plan) {
         aviso.setPlanificado(plan);
     }
-    public List<Usuario> getUsuarios(){
+
+    public String getEstado() {
+        String estado = "0";
+        switch (aviso.getEstado()) {
+            case INCIDENCIA:
+                estado = "0";
+                break;
+            case NUEVO:
+                estado = "1";
+                break;
+            case EN_PROCESO:
+                estado = "2";
+                break;
+            case CERRADO:
+                estado = "3";
+                break;
+            default:
+                throw new AssertionError(aviso.getEstado().name());
+        }
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        switch (estado) {
+            case "0":
+                aviso.setEstado(Enumeraciones.estado.INCIDENCIA);
+                break;
+            case "1":
+                aviso.setEstado(Enumeraciones.estado.NUEVO);
+                break;
+            case "2":
+                aviso.setEstado(Enumeraciones.estado.EN_PROCESO);
+                break;
+            case "3":
+                aviso.setEstado(Enumeraciones.estado.CERRADO);
+                break;
+            default:
+                aviso.setEstado(Enumeraciones.estado.INCIDENCIA);
+        }
+    }
+
+    public int getPrioridad() {
+        int prio = 0;
+        if (aviso.getPrioridad() != null) {
+            switch (aviso.getPrioridad()) {
+                case BAJA:
+                    prio = 0;
+                    break;
+                case MEDIA:
+                    prio = 1;
+                    break;
+                case ALTA:
+                    prio = 2;
+                    break;
+                default:
+                    throw new AssertionError(aviso.getPrioridad().name());
+            }
+        }
+        return prio;
+    }
+
+    public void setPrioridad(int prio) {
+        prioridad = prio;
+        switch (prioridad) {
+            case 0:
+                aviso.setPrioridad(Enumeraciones.prioridad.BAJA);
+                break;
+            case 1:
+                aviso.setPrioridad(Enumeraciones.prioridad.MEDIA);
+                break;
+            case 2:
+                aviso.setPrioridad(Enumeraciones.prioridad.ALTA);
+                break;
+            default:
+                throw new AssertionError(aviso.getEstado().name());
+        }
+    }
+    
+    public int getGravedad() {
+        int gra = 0;
+        if (aviso.getGravedad() != null) {
+            switch (aviso.getGravedad()) {
+                case LEVE:
+                    gra = 0;
+                    break;
+                case MEDIA:
+                    gra = 1;
+                    break;
+                case ALTA:
+                    gra = 2;
+                    break;
+                default:
+                    throw new AssertionError(aviso.getPrioridad().name());
+            }
+        }
+        return gra;
+    }
+
+    public void setGravedad(int gra) {
+        gravedad = gra;
+        switch (prioridad) {
+            case 0:
+                aviso.setGravedad(Enumeraciones.gravedad.LEVE);
+                break;
+            case 1:
+                aviso.setGravedad(Enumeraciones.gravedad.MEDIA);
+                break;
+            case 2:
+                aviso.setGravedad(Enumeraciones.gravedad.ALTA);
+                break;
+            default:
+                throw new AssertionError(aviso.getEstado().name());
+        }
+    }
+
+    public List<Usuario> getUsuarios() {
         return basededatos.getUsuarios();
     }
+
     public List<Aviso> getIncidencias() {
         return basededatos.getAvisosIncidencia();
     }
@@ -172,7 +296,8 @@ public class ControlAviso implements Serializable {
         basededatos.cerrarAviso(a.getIdAviso());
         return "confirmacion.xhtml";
     }
-    public String home(){
+
+    public String home() {
         return ctrl.home();
     }
 
