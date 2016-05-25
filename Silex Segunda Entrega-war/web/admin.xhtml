@@ -43,22 +43,22 @@
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Dirección: " class="bold"/>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.direccion}" />
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Fecha fin: " class="bold"/>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.fechainicio}" />
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Urgente: " class="bold" />
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.urgente}">
                                                 <input type="checkbox" disabled="enabled"></input>
@@ -68,11 +68,11 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Planificado: " class="bold"/>
 
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.planificado}">
                                                 <input type="checkbox" disabled="enabled"></input>
@@ -82,35 +82,28 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Gravedad: " class="bold"/>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.gravedad}" />
                                     </div>
-                                    <div class="col-md-3">
-                                        <h:outputText value="Estado: " class="bold" />
-                                    </div>
-                                    <div class="col-md-9">
-                                        <h:outputText value="#{item.estado}" />
-                                    </div>
-
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Prioridad: " class="bold" />
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.prioridad}" />
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Descripcion: " class="bold" />
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.descripcion}" />  
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value ="Ubicación: " class="bold" />
                                     </div>
-                                    <div class="col-md-9" style="margin-bottom: 10px;">
+                                    <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
                                         <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                     </div>
 
@@ -120,7 +113,7 @@
                                     <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
                                 <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
+                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlOT.regOT(item)}" class="btn-success"/>
                                 </div>
                                 <div class="col-md-5 text-right">
                                     <p:commandButton value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger">
@@ -142,22 +135,22 @@
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Dirección: " class="bold"/>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.direccion}" />
                                     </div>
-                                    <div class="col-md-3">
-                                        <h:outputText value="Fecha fin: " class="bold"/>
+                                    <div class="col-xs-6 col-md-5">
+                                        <h:outputText value="Fecha inicio: " class="bold"/>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.fechainicio}" />
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Urgente: " class="bold" />
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.urgente}">
                                                 <input type="checkbox" disabled="enabled"></input>
@@ -167,11 +160,11 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Planificado: " class="bold"/>
 
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.planificado}">
                                                 <input type="checkbox" disabled="enabled"></input>
@@ -181,35 +174,28 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Gravedad: " class="bold"/>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.gravedad}" />
                                     </div>
-                                    <div class="col-md-3">
-                                        <h:outputText value="Estado: " class="bold" />
-                                    </div>
-                                    <div class="col-md-9">
-                                        <h:outputText value="#{item.estado}" />
-                                    </div>
-
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Prioridad: " class="bold" />
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.prioridad}" />
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Descripcion: " class="bold" />
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.descripcion}" />  
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value ="Ubicación: " class="bold" />
                                     </div>
-                                    <div class="col-md-9" style="margin-bottom: 10px;">
+                                    <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
                                         <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                     </div>
 
@@ -219,7 +205,7 @@
                                     <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
                                 <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
+                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlOT.regOT(item)}" class="btn-success"/>
                                 </div>
                                 <div class="col-md-5 text-right">
                                     <p:commandButton value="Cerrar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-danger"/>
@@ -237,22 +223,22 @@
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Dirección: " class="bold"/>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.direccion}" />
                                     </div>
-                                    <div class="col-md-3">
-                                        <h:outputText value="Fecha fin: " class="bold"/>
+                                    <div class="col-xs-6 col-md-5">
+                                        <h:outputText value="Fecha Inicio: " class="bold"/>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.fechainicio}" />
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Urgente: " class="bold" />
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.urgente}">
                                                 <input type="checkbox" disabled="enabled"></input>
@@ -262,11 +248,11 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Planificado: " class="bold"/>
 
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.planificado}">
                                                 <input type="checkbox" disabled="enabled"></input>
@@ -276,50 +262,41 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Gravedad: " class="bold"/>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.gravedad}" />
                                     </div>
-                                    <div class="col-md-3">
-                                        <h:outputText value="Estado: " class="bold" />
-                                    </div>
-                                    <div class="col-md-9">
-                                        <h:outputText value="#{item.estado}" />
-                                    </div>
-
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Prioridad: " class="bold" />
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.prioridad}" />
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Descripcion: " class="bold" />
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.descripcion}" />  
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value ="Ubicación: " class="bold" />
                                     </div>
-                                    <div class="col-md-9" style="margin-bottom: 10px;">
+                                    <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
                                         <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                     </div>
-
                                 </div>
 
                                 <div class="col-md-12 text-left">
                                     <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
                                 <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlAutorizacion.regOT()}" class="btn-success"/>
+                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlOT.regOT(item)}" class="btn-success"/>
                                 </div>
                                 <div class="col-md-5 text-right">
                                     <p:commandButton value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger"/>
                                 </div> 
-
                             </p:fieldset>
                         </c:forEach>
                     </h:panelGrid>
@@ -334,22 +311,28 @@
                                     <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                         <a href="#{item.imagen}" data-lightbox="#{item.imagen}"><img src="#{item.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Dirección: " class="bold"/>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.direccion}" />
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
+                                        <h:outputText value="Fecha Inicio: " class="bold"/>
+                                    </div>
+                                    <div class="col-xs-6 col-md-7">
+                                        <h:outputText value="#{item.fechainicio}" />
+                                    </div> 
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Fecha fin: " class="bold"/>
                                     </div>
-                                    <div class="col-md-9">
-                                        <h:outputText value="#{item.fechainicio}" />
+                                    <div class="col-xs-6 col-md-7">
+                                        <h:outputText value="#{item.fechafin}" />
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Urgente: " class="bold" />
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.urgente}">
                                                 <input type="checkbox" disabled="enabled"></input>
@@ -359,11 +342,11 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Planificado: " class="bold"/>
 
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <c:choose>
                                             <c:when test="#{item.planificado}">
                                                 <input type="checkbox" disabled="enabled"></input>
@@ -373,41 +356,31 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Gravedad: " class="bold"/>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.gravedad}" />
                                     </div>
-                                    <div class="col-md-3">
-                                        <h:outputText value="Estado: " class="bold" />
-                                    </div>
-                                    <div class="col-md-9">
-                                        <h:outputText value="#{item.estado}" />
-                                    </div>
-
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Prioridad: " class="bold" />
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.prioridad}" />
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value="Descripcion: " class="bold" />
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-xs-6 col-md-7">
                                         <h:outputText value="#{item.descripcion}" />  
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-xs-6 col-md-5">
                                         <h:outputText value ="Ubicación: " class="bold" />
                                     </div>
-                                    <div class="col-md-9" style="margin-bottom: 10px;">
+                                    <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
                                         <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                     </div>
-
                                 </div>
-
-
                             </p:fieldset>
                         </c:forEach>
                     </h:panelGrid>
@@ -419,7 +392,7 @@
 
     <ui:define name="campoOT">
         <c:choose>
-            <c:when test="#{controlAutorizacion.comprobarRol() == 5}">
+            <c:when test="#{controlAutorizacion.comprobarRol() == 4}">
                 <!-- ordenes de trabajo -->
                 <h:form id="form1">           
                     <p:growl id="msgs" showDetail="true" />
@@ -436,22 +409,22 @@
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                                 <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Dirección: " class="bold"/>
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.aviso.direccion}" />
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Fecha inicio: " class="bold"/>
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.fechainicio}" />
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Urgente: " class="bold" />
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <c:choose>
                                                     <c:when test="#{item.aviso.urgente}">
                                                         <input type="checkbox" disabled="enabled"></input>
@@ -461,11 +434,11 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Planificado: " class="bold"/>
 
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <c:choose>
                                                     <c:when test="#{item.aviso.planificado}">
                                                         <input type="checkbox" disabled="enabled"></input>
@@ -475,41 +448,41 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Gravedad: " class="bold"/>
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.aviso.gravedad}" />
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Estado: " class="bold" />
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.estado}" />
                                             </div>
 
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Prioridad: " class="bold" />
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.prioridad}" />
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Descripción: " class="bold" />
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.aviso.descripcion}" />  
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Instrucciones: " class="bold" />
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.instrucciones}" />  
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value ="Ubicación: " class="bold" />
                                             </div>
-                                            <div class="col-md-9" style="margin-bottom: 10px;">
+                                            <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
                                                 <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                             </div>
 
@@ -539,28 +512,28 @@
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
                                                 <a href="#{item.aviso.imagen}" data-lightbox="#{item.aviso.imagen}"><img src="#{item.aviso.imagen}" alt="No hay imagen" width="150" height="150"></img></a>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Dirección: " class="bold"/>
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.aviso.direccion}" />
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Fecha inicio: " class="bold"/>
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.fechainicio}" />
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Fecha fin: " class="bold"/>
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.fechafin}" />
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Urgente: " class="bold" />
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <c:choose>
                                                     <c:when test="#{item.aviso.urgente}">
                                                         <input type="checkbox" disabled="enabled"></input>
@@ -570,11 +543,11 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Planificado: " class="bold"/>
 
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <c:choose>
                                                     <c:when test="#{item.aviso.planificado}">
                                                         <input type="checkbox" disabled="enabled"></input>
@@ -584,41 +557,41 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Gravedad: " class="bold"/>
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.aviso.gravedad}" />
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Estado: " class="bold" />
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.estado}" />
                                             </div>
 
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Prioridad: " class="bold" />
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.prioridad}" />
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Descripción: " class="bold" />
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.aviso.descripcion}" />  
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value="Instrucciones: " class="bold" />
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-xs-6 col-md-7">
                                                 <h:outputText value="#{item.instrucciones}" />  
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-xs-6 col-md-5">
                                                 <h:outputText value ="Ubicación: " class="bold" />
                                             </div>
-                                            <div class="col-md-9" style="margin-bottom: 10px;">
+                                            <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
                                                 <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"></img></a>
                                             </div>
                                         </div>

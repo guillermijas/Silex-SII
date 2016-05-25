@@ -9,9 +9,10 @@ A esta página tan sólo puede acceder el usuario si está logeado
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:define name="title">Correcto</ui:define>
+    <ui:define name="title">ERROR</ui:define>
     <ui:define name="another">
-        <h2>Tarea realizada correctamente</h2>
+        <h1>ERROR.</h1>
+        <h2>El usuario ADMIN no puede eliminarse.</h2>
         <h:form>
         <p:commandButton value="Volver" action="#{controlAviso.home()}" class="btn-success"/>
         </h:form>

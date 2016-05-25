@@ -61,8 +61,9 @@ public class BaseDeDatos implements BaseDeDatosLocal {
 
     @Override
     public void eliminarUsuario(Usuario us) throws EMASAException {
-        compruebaLogin(us);
-        em.remove(em.merge(us));
+        us.setCadenaValidacion("14");
+        em.merge(us);
+        //em.remove(em.merge(us));
     }
 
     @Override
@@ -233,7 +234,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     }
 
     private List<Usuario> getListaUsuarios() {
-        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u", Usuario.class); //Comprueba que los objetos que obtenemos son efectivamente usuarios
+        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u where u.cadenaValidacion != '14' or u.cadenaValidacion is null", Usuario.class); //Comprueba que los objetos que obtenemos son efectivamente usuarios
         return query.getResultList();
     }
 
@@ -280,7 +281,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     
     @Override
     public List<Usuario> getUsuarios() {
-        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u", Usuario.class);
+        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u where u.cadenaValidacion != '14' or u.cadenaValidacion is null", Usuario.class);
         return query.getResultList();
     }
 
@@ -437,4 +438,38 @@ public class BaseDeDatos implements BaseDeDatosLocal {
             throw new OrdenDeTrabajoInexistenteException();
         }
     }
+    
+    @Override
+    public List<OrdenDeTrabajo> getListaOrdenes() {
+        TypedQuery<OrdenDeTrabajo> query = em.createQuery("select a from OrdenDeTrabajo a", OrdenDeTrabajo.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public long getIDNewOT() {
+        long id = 0;
+        List<OrdenDeTrabajo> ots = getListaOrdenes();
+
+        if (!ots.isEmpty()) {
+            for (int i = 0; i < ots.size(); i++) {
+                if (ots.get(i).getIdOT() > id) {
+                    id = ots.get(i).getIdOT();
+                }
+            }
+        }
+        return id + 1;
+    }
+    
+    @Override
+    public List<Usuario> getListaOperarios(){
+        List<Usuario> lista = new ArrayList<>();
+        List<Usuario> operarios = getUsuarios();
+        for (int i = 0; i < operarios.size(); i++) {
+            if (operarios.get(i).getRol().equals(3)) {
+                lista.add(operarios.get(i));
+            }
+        }
+        return lista;
+    }
+
 }

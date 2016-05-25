@@ -18,7 +18,7 @@
     <ui:define name="panel-lateral">
         <div class="row" style="margin-top: 50px;">
             <h:form style="text-align: center;">
-                <h:commandLink class="btn-default col-xs-4 col-md-5" style="padding: 5px 20px 5px 20px;">
+                <h:commandLink class="btn-default col-xs-4 col-md-5"  action="img/form.pdf" style="padding: 5px 20px 5px 20px;">
                     <span class="glyphicon glyphicon-file"> PDF</span>
                 </h:commandLink>
 
@@ -78,6 +78,13 @@
 
     <ui:define name="titulo-pestaña3">
         <h3>Cliente</h3>
+    </ui:define>
+
+    <ui:define name="titulo-pestaña4">
+        <c:if test="#{controlAutorizacion.comprobarRol() != 0 }">
+            <h3>Estado</h3>
+        </c:if>
+
     </ui:define>
 
 
@@ -141,7 +148,7 @@
 
 
 
-<ui:define name="campos-pestaña3">
+    <ui:define name="campos-pestaña3">
         <table class="campo">
             <tr>
                 <p:inputText class="campo" value="#{controlAviso.nombreCliente}"/>
@@ -167,8 +174,35 @@
             </tr> 
         </table>
     </ui:define>
-    
-    
+
+    <ui:define name="campos-pestaña4">
+        <c:if test="#{controlAutorizacion.comprobarRol() != 0 }">
+            <h:selectOneMenu id="som" class="form-control" value="#{controlAviso.estado}">
+                <f:selectItem id="somc1" itemValue="0" itemLabel="Incidencia" />
+                <f:selectItem id="somc2" itemValue="1" itemLabel="Nuevo Aviso" />
+                <f:selectItem id="somc3" itemValue="2" itemLabel="En proceso" />
+                <f:selectItem id="somc4" itemValue="3" itemLabel="Cerrado" />
+            </h:selectOneMenu>
+            <br/>
+
+            <label for="detalles" class="titulo">Prioridad</label>
+            <h:panelGrid id="pg1" columns="1" style="margin-bottom: 10px">
+                <h:inputHidden id="txt2" value="#{controlAviso.prioridad}" />
+                <p:slider for="txt2" style="width: 200px" maxValue="3" minValue="1" step="1" displayTemplate="{value}" />
+            </h:panelGrid>
+            <br/>
+
+
+            <label for="detalles" class="titulo">Gravedad</label>
+            <h:panelGrid id="pg2" columns="1" style="margin-bottom: 10px">
+                <h:inputHidden id="txt3" value="#{controlAviso.gravedad}" />
+                <p:slider for="txt3" style="width: 200px" maxValue="3" minValue="1" step="1" displayTemplate="{value}" />
+            </h:panelGrid>
+            <br/>
+
+        </c:if>
+    </ui:define>
+
     <ui:define name="btn_confirmar">
         <h:commandButton action="#{controlAviso.confirmarModificacion()}" value="Confirmar" class="btn-primary"/>
     </ui:define>

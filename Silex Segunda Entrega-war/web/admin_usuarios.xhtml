@@ -53,10 +53,13 @@
 
                 <p:column id="especial" headerText="Modificar">
                     <p:commandButton value="Modificar" action="#{controlAutorizacion.modUser(usuario)}" class="btn-primary" style="margin-bottom: 10px"/>
-
                 </p:column>
 
-
+                <p:column  headerText="Eliminar">
+                    <p:commandButton value="Eliminar" action="#{controlAutorizacion.elimUser(usuario)}" class="btn-primary" style="margin-bottom: 10px">
+                    <p:confirm header="Confirmación" message="Esto eliminará permanentemente el usuario. ¿Está seguro que desea continuar?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                </p:column>
 
             </p:dataTable>        
         </h:form>

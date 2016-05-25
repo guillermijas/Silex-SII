@@ -1,3 +1,5 @@
+package entrega2;
+
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;

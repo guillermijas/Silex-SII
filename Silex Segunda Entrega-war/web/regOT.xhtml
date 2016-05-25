@@ -24,7 +24,7 @@
 
 
     <ui:define name="titulo">
-        <h1 class="col-md-10" style="color: ">Nueva Orden de Trabajo <small class="text-right"> #34809</small></h1>
+        <h1 class="col-md-10">Crear Orden de Trabajo</h1>
         <br/>
     </ui:define>
 
@@ -56,15 +56,15 @@
     <!--direccion-->
     <ui:define name="campos-pestaña2">
         <br/>
-        <p:inputText class="campo"/>
+        <p:inputText value="#{controlOT.direccion}" class="campo"/>
         <label for="direccion" class="pie">Calle, número</label>
         <table class="campo">
             <tr>
                 <td>
-                    <p:inputText class="campo" required="true" requiredMessage="Código postal obligatorio"/>
+                    <p:inputText class="campo" value="#{controlOT.CP}" required="true" requiredMessage="Código postal obligatorio"/>
                 </td>
                 <td>
-                    <p:inputText style="width: 100%" required="true" requiredMessage="Municipio obligatorio"/>
+                    <p:inputText style="width: 100%" value="#{controlOT.municipio}" required="true" requiredMessage="Municipio obligatorio"/>
                 </td>
             </tr>
             <tr>
@@ -76,7 +76,7 @@
                 </td>
             </tr>
         </table>
-        <p:inputText class="campo" />
+        <p:inputText value="#{controlOT.GPS}" class="campo" />
         <label class="pie">Coordenadas GPS</label>
     </ui:define>
 
@@ -102,7 +102,7 @@
         <label for="detalles" class="titulo">Prioridad</label>
         <td>
             <h:panelGrid columns="1" style="margin-bottom: 10px">
-                <h:inputHidden id="txt2" value="#{sliderView.number1}" />
+                <h:inputHidden id="txt2" value="#{controlOT.prioridad}" />
                 <p:slider for="txt2" style="width: 200px" maxValue="3" minValue="1" step="1" displayTemplate="{value}" />
             </h:panelGrid>
         </td>
@@ -112,7 +112,7 @@
 
         <label for="detalles" class="titulo">Gravedad</label>
         <h:panelGrid columns="1" style="margin-bottom: 10px">
-            <h:inputHidden id="txt3" value="#{sliderView.number2}" />
+            <h:inputHidden id="txt3" value="#{controlOT.gravedad}" />
             <p:slider for="txt3" style="width: 200px" maxValue="3" minValue="1" step="1" displayTemplate="{value}" />
         </h:panelGrid>
         <br/>
@@ -140,13 +140,9 @@
         <h:form>
             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" columnClasses="label, value" >
 
-                <p:selectOneListbox id="basic" value="#{selectOneView.option}" >
-                    <f:selectItem itemLabel="Nueva" itemValue="1" />
-                    <f:selectItem itemLabel="Incidencia" itemValue="2" />
-                    <f:selectItem itemLabel="Pendiente de asignar" itemValue="3" />
-                    <f:selectItem itemLabel="Pendiente de confirmación" itemValue="4" />
-                    <f:selectItem itemLabel="Finalizada" itemValue="5" />
-                    <f:selectItem itemLabel="Cerrada" itemValue="6" />
+                <p:selectOneListbox id="basic" value="#{controlOT.estado}" >
+                    <f:selectItem itemLabel="En Proceso" itemValue="1" />
+                    <f:selectItem itemLabel="Cerrada" itemValue="2" />
                 </p:selectOneListbox>
             </h:panelGrid>
             <p:separator />
@@ -157,8 +153,8 @@
         <br/>
 
         <h:form>
-            <p:selectManyCheckbox id="grid"  value="#{checkboxView1.selectedOperarios}" layout="responsive" columns="3" style="margin-right: 15px">
-                <f:selectItems class="col-md-2"   value="#{checkboxView1.operarios}" var="op" itemLabel="#{op}" itemValue="#{op}"  />
+            <p:selectManyCheckbox id="grid"  value="#{controlOT.operarios}" layout="responsive" columns="3" style="margin-right: 15px">
+                <f:selectItems class="col-md-2"   value="#{controlOT.listaOperarios}" var="op" itemLabel="#{op}" itemValue="#{op}"  />
             </p:selectManyCheckbox>
         </h:form>
     </ui:define>
@@ -172,6 +168,3 @@
     </ui:define>
 
 </ui:composition>
-
-
-

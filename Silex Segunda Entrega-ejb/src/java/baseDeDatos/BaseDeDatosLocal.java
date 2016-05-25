@@ -41,6 +41,10 @@ public interface BaseDeDatosLocal {
 
     public void validarUsuario(String username, String validacion) throws EMASAException;
 
+    public List<Usuario> getUsuarios();
+    
+    public List<Usuario> getListaOperarios();
+
     // Avisos en la BD
     public void insertarAviso(Aviso aviso) throws EMASAException;
 
@@ -56,8 +60,6 @@ public interface BaseDeDatosLocal {
 
     public List<Aviso> getAvisosCerrada();
     
-    public List<Usuario> getUsuarios();
-
     public List<Aviso> getAvisosIncidencia();
     
     public void cerrarAviso(Long id) throws EMASAException;
@@ -78,4 +80,9 @@ public interface BaseDeDatosLocal {
     public List<OrdenDeTrabajo> getOtCerradas();
 
     public void cerrarOt(Long id) throws EMASAException;
+    
+    public List<OrdenDeTrabajo> getListaOrdenes();
+    
+    public long getIDNewOT();
+
 }

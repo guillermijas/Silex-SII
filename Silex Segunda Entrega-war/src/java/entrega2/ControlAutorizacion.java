@@ -3,9 +3,12 @@ package entrega2;
 import baseDeDatos.BaseDeDatosLocal;
 import baseDeDatos.EMASAException;
 import entrega1.*;
+import entrega1.Enumeraciones.Rol;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -128,6 +131,17 @@ public class ControlAutorizacion implements Serializable {
         usuarioEditado = u;
         return "modificar_usuario.xhtml";
     }
+    public String elimUser(Usuario u) {
+        if(u.getUsername().equals("admin")){
+         return "error.xhtml";   
+        }
+        try {
+            basededatos.eliminarUsuario(u);
+        } catch (EMASAException ex) {
+            Logger.getLogger(ControlAutorizacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "confirmacion.xhtml";
+    }
 
     public String adminUser() {
         usuarioEditado = usuario;
@@ -163,6 +177,34 @@ public class ControlAutorizacion implements Serializable {
             default:
                 throw new AssertionError(usuario.getRol().name());
         }
+        return num;
+    }
+    public int comprobarRol(Rol u) {
+        if(u == null){
+            return 0;
+        }
+        int num = -1;
+
+        switch (u) {
+            case CLIENTE:
+                num = 0;
+                break;
+            case CALL_CENTER:
+                num = 1;
+                break;
+            case SUPERVISOR:
+                num = 2;
+                break;
+            case OPERARIO:
+                num = 3;
+                break;
+            case ADMINISTRADOR:
+                num = 4;
+                break;
+            default:
+                throw new AssertionError(usuario.getRol().name());
+        }
+
         return num;
     }
 
