@@ -437,4 +437,38 @@ public class BaseDeDatos implements BaseDeDatosLocal {
             throw new OrdenDeTrabajoInexistenteException();
         }
     }
+    
+    @Override
+    public List<OrdenDeTrabajo> getListaOrdenes() {
+        TypedQuery<OrdenDeTrabajo> query = em.createQuery("select a from OrdenDeTrabajo a", OrdenDeTrabajo.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public long getIDNewOT() {
+        long id = 0;
+        List<OrdenDeTrabajo> ots = getListaOrdenes();
+
+        if (!ots.isEmpty()) {
+            for (int i = 0; i < ots.size(); i++) {
+                if (ots.get(i).getIdOT() > id) {
+                    id = ots.get(i).getIdOT();
+                }
+            }
+        }
+        return id + 1;
+    }
+    
+    @Override
+    public List<Usuario> getListaOperarios(){
+        List<Usuario> lista = new ArrayList<>();
+        List<Usuario> operarios = getUsuarios();
+        for (int i = 0; i < operarios.size(); i++) {
+            if (operarios.get(i).getRol().equals(3)) {
+                lista.add(operarios.get(i));
+            }
+        }
+        return lista;
+    }
+
 }

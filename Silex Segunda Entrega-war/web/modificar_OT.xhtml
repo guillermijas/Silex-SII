@@ -48,7 +48,7 @@
         <br/>
         <h:form id="form">
             <p:growl id="msgs" showDetail="true" />
-            <p:calendar id="button" value="#{calendarView.date1}" showOn="button" />
+            <p:calendar id="button" value="#{controlOT.fechaInicio}" showOn="button" />
         </h:form>
         <br/> <br/> <br/>
     </ui:define>
@@ -56,15 +56,15 @@
     <!--direccion-->
     <ui:define name="campos-pestaña2">
         <br/>
-        <p:inputText class="campo" value="#{controlOT.aviso.direccion}"/>
+        <p:inputText class="campo" value="#{controlOT.direccion}"/>
         <label for="direccion" class="pie">Calle, número</label>
         <table class="campo">
             <tr>
                 <td>
-                    <p:inputText class="campo" value="#{controlOT.aviso.cp}"/>
+                    <p:inputText class="campo" value="#{controlOT.CP}"/>
                 </td>
                 <td>
-                    <p:inputText style="width: 100%" value="#{controlOT.aviso.municipio}"/>
+                    <p:inputText style="width: 100%" value="#{controlOT.municipio}"/>
                 </td>
             </tr>
             <tr>
@@ -76,7 +76,7 @@
                 </td>
             </tr>
         </table>
-        <p:inputText class="campo" value="#{controlOT.aviso.GPS}"/>
+        <p:inputText class="campo" value="#{controlOT.GPS}"/>
         <label class="pie">Coordenadas GPS</label>
     </ui:define>
 
@@ -86,12 +86,12 @@
         <!-- boolean checkboxes -->
         <div class="row">
             <div class="col-md-3">
-                <p class="pie"><p:selectBooleanCheckbox value="#{controlOT.aviso.urgente}"/>
+                <p class="pie"><p:selectBooleanCheckbox value="#{controlOT.urgente}"/>
                     <span class="glyphicon glyphicon-alert"/>
                     Urgente </p>
             </div>
             <div class="col-md-3">
-                <p class="pie"><p:selectBooleanCheckbox value="#{controlOT.aviso.planificado}"/>
+                <p class="pie"><p:selectBooleanCheckbox value="#{controlOT.planificado}"/>
                     <span class="glyphicon glyphicon-time"/>
                     Planificado </p>
             </div>
@@ -102,7 +102,7 @@
         <label for="detalles" class="titulo">Prioridad</label>
         <td>
             <h:panelGrid columns="1" style="margin-bottom: 10px">
-                <h:inputHidden id="txt2" value="#{sliderView.number1}" />
+                <h:inputHidden id="txt2" value="#{controlOT.prioridad}" />
                 <p:slider for="txt2" style="width: 200px" maxValue="3" minValue="1" step="1" displayTemplate="{value}" />
             </h:panelGrid>
         </td>
@@ -112,7 +112,7 @@
 
         <label for="detalles" class="titulo">Gravedad</label>
         <h:panelGrid columns="1" style="margin-bottom: 10px">
-            <h:inputHidden id="txt3" value="#{sliderView.number2}" />
+            <h:inputHidden id="txt3" value="#{controlOT.gravedad}" />
             <p:slider for="txt3" style="width: 200px" maxValue="3" minValue="1" step="1" displayTemplate="{value}" />
         </h:panelGrid>
         <br/>
@@ -140,13 +140,10 @@
         <h:form>
             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" columnClasses="label, value" >
 
-                <p:selectOneListbox id="basic" value="#{selectOneView.option}" >
-                    <f:selectItem itemLabel="Nueva" itemValue="1" />
-                    <f:selectItem itemLabel="Incidencia" itemValue="2" />
-                    <f:selectItem itemLabel="Pendiente de asignar" itemValue="3" />
-                    <f:selectItem itemLabel="Pendiente de confirmación" itemValue="4" />
-                    <f:selectItem itemLabel="Finalizada" itemValue="5" />
-                    <f:selectItem itemLabel="Cerrada" itemValue="6" />
+                <p:selectOneListbox id="basic" value="#{controlOT.estado}" >
+                    <f:selectItem itemLabel="En Proceso" itemValue="1" />
+                    <f:selectItem itemLabel="Cerrada" itemValue="2" />
+                    
                 </p:selectOneListbox>
             </h:panelGrid>
             <p:separator />
@@ -171,6 +168,3 @@
     </ui:define>
 
 </ui:composition>
-
-
-
