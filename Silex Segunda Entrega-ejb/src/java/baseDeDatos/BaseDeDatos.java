@@ -239,6 +239,12 @@ public class BaseDeDatos implements BaseDeDatosLocal {
     }
     */
     
+    @Override
+    public List<Usuario> getUsuarios() {
+        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u where u.cadenaValidacion != '14' or u.cadenaValidacion is null", Usuario.class);
+        return query.getResultList();
+    }
+    
         @Override
     public List<String> getListaOperarios(){
         List<String> lista = new ArrayList<>();
@@ -291,14 +297,6 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         TypedQuery<Aviso> query = em.createQuery("select a from Aviso a", Aviso.class);
         return query.getResultList();
     }
-    
-    @Override
-    public List<Usuario> getUsuarios() {
-        TypedQuery<Usuario> query = em.createQuery("select u from Usuario u where u.cadenaValidacion != '14' or u.cadenaValidacion is null", Usuario.class);
-        return query.getResultList();
-    }
-
-    
     
     @Override
     public List<Aviso> getAvisosNueva() {
