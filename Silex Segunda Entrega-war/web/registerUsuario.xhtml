@@ -45,8 +45,7 @@
                     <br/>
                 </div>
             </div>
-            <c:if test="#{controlAutorizacion.comprobarRol() == 4 and controlAutorizacion.username != controlAutorizacion.usernameEditado}">
-                <div class="col-md-6">
+            <div class="col-md-6">
                     <h:outputText value="Tipo de usuario: " />
                 </div>
                 <div class="col-md-6">
@@ -59,7 +58,6 @@
                     </h:selectOneMenu>
                     <br/>
                 </div>
-            </c:if>
         </h:form>
     </ui:define>
     <ui:define name="campos-pestaña2">
