@@ -221,7 +221,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
 
             message.setFrom(new InternetAddress(email));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(us.getEmail())); // A donde vamos a mandarlo
-            message.setSubject("Recuperación de Contraseña");
+            message.setSubject("Reestablecer Contraseña");
             message.setText(body); // También puede ser un html
 
             Transport transport = session.getTransport("smtp");
