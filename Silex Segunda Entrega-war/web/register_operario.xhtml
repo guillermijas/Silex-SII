@@ -45,6 +45,21 @@
                     <br/>
                 </div>
             </div>
+            <c:if test="#{controlAutorizacion.comprobarRol() == 4 and controlAutorizacion.username != controlAutorizacion.usernameEditado}">
+                <div class="col-md-6">
+                    <h:outputText value="Tipo de usuario: " />
+                </div>
+                <div class="col-md-6">
+                    <h:selectOneMenu class="form-control" value="#{controlRegistro.user.rol}">
+                        <f:selectItem itemValue="0" itemLabel="Cliente" />
+                        <f:selectItem itemValue="1" itemLabel="Call-Center" />
+                        <f:selectItem itemValue="2" itemLabel="Supervisor" />
+                        <f:selectItem itemValue="3" itemLabel="Operario" />
+                        <f:selectItem itemValue="4" itemLabel="Administrador" />
+                    </h:selectOneMenu>
+                    <br/>
+                </div>
+            </c:if>
         </h:form>
     </ui:define>
     <ui:define name="campos-pestaña2">
