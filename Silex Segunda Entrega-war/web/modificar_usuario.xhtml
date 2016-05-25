@@ -28,7 +28,7 @@ A esta página tan sólo puede acceder el usuario si está logeado
     <ui:define name="campos-pestaña1">
         <div class="row">
             <div class="col-md-6">
-                <h:outputText  value="Nombre de usuario: " />
+                <h:outputText id="etiqUsername"  value="Nombre de usuario: " />
             </div>
             <div class="col-md-6">
                 <h:outputText id="username" value="#{controlAutorizacion.usernameEditado}" />
@@ -36,7 +36,7 @@ A esta página tan sólo puede acceder el usuario si está logeado
                 <h:message for="username"/>
             </div>
             <div class="col-md-6">
-                <h:outputText value="Email: " />
+                <h:outputText id="etiqEmail" value="Email: " />
             </div>
             <div class="col-md-6">
                 <p:inputText id = "email" value="#{controlAutorizacion.email}" required ="true" validatorMessage="Formato de email incorrecto">
@@ -46,7 +46,7 @@ A esta página tan sólo puede acceder el usuario si está logeado
                 <h:message for="email"/>
             </div>
             <div class="col-md-6">
-                <h:outputText value="Contraseña: " />
+                <h:outputText id="Pass2In" value="Contraseña: " />
             </div>
             <div class="col-md-6">
                 <h:inputSecret value ="#{controlAutorizacion.pass}" id="inputPassword" required="false"/>
@@ -58,15 +58,15 @@ A esta página tan sólo puede acceder el usuario si está logeado
             <div class="col-md-6">
                 <h:inputSecret value ="#{controlAutorizacion.pass2}" id="inputPassword2" required="false"/>
                 <br/>
-                <h:outputText class="bold" style="color: #31b0d5" value="#{controlAutorizacion.mensaje}"/>
+                <h:outputText id="mensaje" class="bold" style="color: #31b0d5" value="#{controlAutorizacion.mensaje}"/>
             </div>
         </div>
         <c:if test="#{controlAutorizacion.comprobarRol() == 4 and controlAutorizacion.username != controlAutorizacion.usernameEditado}">
             <div class="col-md-6">
-                <h:outputText value="Tipo de usuario: " />
+                <h:outputText value="Tipo de usuario: " id ="usertype" />
             </div>
             <div class="col-md-6">
-                <h:selectOneMenu class="form-control" value="#{controlAutorizacion.rol}">
+                <h:selectOneMenu id ="selectrol" class="form-control" value="#{controlAutorizacion.rol}">
                     <f:selectItem itemValue="0" itemLabel="Cliente" />
                     <f:selectItem itemValue="1" itemLabel="Call-Center" />
                     <f:selectItem itemValue="2" itemLabel="Supervisor" />
@@ -83,48 +83,48 @@ A esta página tan sólo puede acceder el usuario si está logeado
     <ui:define name="campos-pestaña2">
         <div class="row">
             <div class="col-md-6">
-                <h:outputText value="DNI: " />
+                <h:outputText id ="etiqDNI" value="DNI: " />
             </div>
             <div class="col-md-6">
-                <p:inputText class="campo" value="#{controlAutorizacion.dni}" />
+                <p:inputText id="DNIin" class="campo" value="#{controlAutorizacion.dni}" />
                 <br/>
             </div>
             <div class="col-md-6">
-                <h:outputText value="Nombre: " />
+                <h:outputText id="etiqNombre" value="Nombre: " />
             </div>
             <div class="col-md-6">
-                <p:inputText value="#{controlAutorizacion.nombre}"/>
+                <p:inputText id="nombreIn" value="#{controlAutorizacion.nombre}"/>
                 <br/>
             </div>
             <div class="col-md-6">
-                <h:outputText value="Apellidos: " />
+                <h:outputText id="etiqApell" value="Apellidos: " />
             </div>
             <div class="col-md-6">
-                <p:inputText value="#{controlAutorizacion.apellidos}" />                                    
+                <p:inputText id="ApellIn" value="#{controlAutorizacion.apellidos}" />                                    
                 <br/>
             </div>
             <div class="col-md-6">
-                <h:outputText value="Sexo: " />
+                <h:outputText id="etiqSex" value="Sexo: " />
             </div>
             <div class="col-md-6">
-                <h:selectOneMenu class="form-control" value="#{controlAutorizacion.sexo}">
+                <h:selectOneMenu id="selectSex" class="form-control" value="#{controlAutorizacion.sexo}">
                     <f:selectItem itemValue="Hombre" itemLabel="Hombre" />
                     <f:selectItem itemValue="Mujer" itemLabel="Mujer" />
                 </h:selectOneMenu>                   
                 <br/>
             </div>
             <div class="col-md-6">
-                <h:outputText value="Teléfono: " />
+                <h:outputText id="etiqTlf" value="Teléfono: " />
             </div>
             <div class="col-md-6">
-                <p:inputText value="#{controlAutorizacion.telefono}" />
+                <p:inputText id="TlfIn" value="#{controlAutorizacion.telefono}" />
                 <br/>
             </div>
             <div class="col-md-6">
-                <h:outputText value="Dirección: " />
+                <h:outputText id="etiqDir" value="Dirección: " />
             </div>
             <div class="col-md-6">
-                <p:inputText value="#{controlAutorizacion.direccion}" />
+                <p:inputText id="DirIn" value="#{controlAutorizacion.direccion}" />
                 <br/>
             </div>
         </div>
@@ -133,31 +133,31 @@ A esta página tan sólo puede acceder el usuario si está logeado
     <ui:define name="campos-pestaña3">
         <div class="row">
             <div class="col-md-6">
-                <h:outputText value="Zona Cargo: " />
+                <h:outputText id="etiqZone" value="Zona Cargo: " />
             </div>
             <div class="col-md-6">
-                <p:inputText value="#{controlAutorizacion.zonaCargo}" />
+                <p:inputText id="ZineIn" value="#{controlAutorizacion.zonaCargo}" />
                 <br/>
             </div>
             <div class="col-md-6">
-                <h:outputText value="Tipo: " />
+                <h:outputText id="etiqType" value="Tipo: " />
             </div>
             <div class="col-md-6">
-                <p:inputText value="#{controlAutorizacion.tipo}" />
+                <p:inputText id="TypeIn" value="#{controlAutorizacion.tipo}" />
                 <br/>
             </div>
             <div class="col-md-6">
-                <h:outputText value="Especialización: " />
+                <h:outputText id="etiqEsp" value="Especialización: " />
             </div>
             <div class="col-md-6">
-                <p:inputText value="#{controlAutorizacion.especializacion}"/>
+                <p:inputText id="EspIn" value="#{controlAutorizacion.especializacion}"/>
                 <br/>
             </div>
             <div class="col-md-6">
-                <h:outputText value="Disponibilidad: " />
+                <h:outputText id="etiqDisp" value="Disponibilidad: " />
             </div>
             <div class="col-md-6">
-                <p:selectBooleanCheckbox value="#{controlAutorizacion.disponibilidad}" />
+                <p:selectBooleanCheckbox id="DispIn" value="#{controlAutorizacion.disponibilidad}" />
                 <br/>
             </div>
         </div>
@@ -167,15 +167,15 @@ A esta página tan sólo puede acceder el usuario si está logeado
 
 
     <ui:define name="btn_confirmar">
-        <h:commandButton action="#{controlAutorizacion.update()}" value="Confirmar" class="btn-primary"/>
+        <h:commandButton id="confirmar_button" action="#{controlAutorizacion.update()}" value="Confirmar" class="btn-primary"/>
     </ui:define>
 
     <ui:define name="btn_cancelar">
-        <h:commandButton action="#{controlAutorizacion.home()}" immediate="true" value="Cancelar" class="btn-danger"/>
+        <h:commandButton id="cancelar_button" action="#{controlAutorizacion.home()}" immediate="true" value="Cancelar" class="btn-danger"/>
     </ui:define>
 
     <ui:define name="btn_limpiar">
-        <h:commandButton action="#{controlAutorizacion.modUser()}" immediate="true" value="Limpiar" class="btn-warning"/>
+        <h:commandButton id="limpiar_button" action="#{controlAutorizacion.modUser()}" immediate="true" value="Limpiar" class="btn-warning"/>
     </ui:define>
 
 </ui:composition>
