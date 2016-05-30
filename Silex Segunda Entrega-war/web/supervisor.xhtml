@@ -6,6 +6,17 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">Bandeja de entrada</ui:define>
+    
+        <ui:define name="confirmar">
+        <h:form id="con2">
+            <p:confirmDialog id="conn" global="true" showEffect="fade" >
+                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+        </h:form>    
+    </ui:define>
+
+    
 <ui:define name="bienvenida">
         <c:choose>
             <c:when test="#{controlAutorizacion.comprobarRol() == 2}">
@@ -92,18 +103,15 @@
                                         <h:outputText value ="Ubicación: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
-                                        <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"  height="42" width="42"></img></a>
+                                        <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG" height="42" width="42"></img></a>
                                     </div>
 
                                 </div>
 
-                                <div class="col-md-12 text-left">
+                                <div class="col-md-5 text-left">
                                     <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
-                                <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlOT.regOT(item)}" class="btn-success"/>
-                                </div>
-                                <div class="col-md-5 text-right">
+                                <div class="col-md-7 text-right">
                                     <p:commandButton value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger">
                                         <p:confirm header="Confirmación" message="Esto cerrará el aviso. ¿Está seguro que desea continuar?" icon="ui-icon-alert" />
                                     </p:commandButton>
@@ -184,7 +192,7 @@
                                         <h:outputText value ="Ubicación: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
-                                        <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"  height="42" width="42"></img></a>
+                                        <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG" height="42" width="42"></img></a>
                                     </div>
 
                                 </div>
@@ -272,7 +280,7 @@
                                         <h:outputText value ="Ubicación: " class="bold" />
                                     </div>
                                     <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
-                                        <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG"  height="42" width="42"></img></a>
+                                        <a href="#{item.localizacion.linkGoogle}+#{item.localizacion.height}+#{item.localizacion.lenght}"><img src="img/Mapa.PNG" height="42" width="42"></img></a>
                                     </div>
                                 </div>
 
@@ -391,7 +399,7 @@
                         <p:tab title="En proceso">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{controlAviso.ordenEnProceso}">
-                                    <p:fieldset legend="ID Aviso: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Orden Trabajo: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -471,7 +479,7 @@
                                                 <h:outputText value ="Ubicación: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
-                                                <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"  height="42" width="42"></img></a>
+                                                <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG" height="42" width="42"></img></a>
                                             </div>
 
                                         </div>
@@ -494,7 +502,7 @@
                         <p:tab title="Cerradas">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{controlAviso.ordenCerradas}">
-                                    <p:fieldset legend="ID Aviso: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Orden Trabajo: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -580,7 +588,7 @@
                                                 <h:outputText value ="Ubicación: " class="bold" />
                                             </div>
                                             <div class="col-xs-6 col-md-7" style="margin-bottom: 10px;">
-                                                <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG"  height="42" width="42"></img></a>
+                                                <a href="#{item.aviso.localizacion.linkGoogle}+#{item.aviso.localizacion.height}+#{item.aviso.localizacion.lenght}"><img src="img/Mapa.PNG" height="42" width="42"></img></a>
                                             </div>
                                         </div>
                                     </p:fieldset>

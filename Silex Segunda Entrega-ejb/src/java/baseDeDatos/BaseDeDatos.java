@@ -50,7 +50,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
             // El usuario ya existe
             FacesContext ctx = FacesContext.getCurrentInstance();
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario ya existente", "Usuario ya existente"));
-            throw new UsuarioExistenteException();
+            //throw new UsuarioExistenteException();
         } else {
             us.setRegistroOk(true); // Establecemos que el registro se ha producido correctamente -> Para usarlo en exitoRegistro
             em.persist(us);
@@ -214,7 +214,7 @@ public class BaseDeDatos implements BaseDeDatosLocal {
         
         String url_validacion = uri + "/cambiarContrasena.xhtml?username="
                 + us.getUsername() + "&codigoValidacion=" + cadenaAleatoria; // Inyectar en el backing bean con uri info
-        String body = "Para establecer su cotnraseña, pulse aquí: \n " + url_validacion + "\n Bienvenido a Emasa.";
+        String body = "Para establecer su contraseña, pulse aquí: \n " + url_validacion + "\n Bienvenido a Emasa.";
 
         try {
             Message message = new MimeMessage(session);

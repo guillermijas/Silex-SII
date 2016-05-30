@@ -12,19 +12,20 @@ A esta página se accede desde el login para recuperar una contraseña olvidada
     <ui:define name="title">Recuperar Contraseña</ui:define>
     
     <ui:define name="contenido">
-        <p class="bold" style="color: #31b0d5">Introduzca su nombre de usuario:</p>
+        <p class="bold" style="color: #036fab">Introduzca su nombre de usuario:</p>
         <h:form>
             <div class="row">
-                <div class="col-xs-6">
-                <h:inputText value="#{controlRecuperarPass.username}"/>
+                <div class="col-xs-12">
+                <h:inputText class="form-control input-lg campo" value="#{controlRecuperarPass.username}"/>
+                <br/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-3">
-                <h:commandButton action="#{controlRecuperarPass.checkUsername()}" value="Validar"/>
+                <h:commandButton class="btn btn-lg" style="background-color: #2b83b5; color: white;"  action="#{controlRecuperarPass.checkUsername()}" value="Aceptar"/>
                 </div>
-                <div class="col-xs-offset-2">
-                    <h:outputText class="bold" style="color: #31b0d5" value="#{controlRecuperarPass.mensaje}"/>
+                <div class="col-xs-offset-5">
+                    <h:outputText class="oblig" style="color: #31b0d5" value="#{controlRecuperarPass.mensaje}"/>
                 </div>
             </div>
         </h:form>

@@ -144,21 +144,12 @@ public class ControlRegistro implements Serializable {
         // Primero comprobamos que las contraseñas coinciden
         if (checkPasswords()) {
             keepPwd(); // Guardamos esa contraseña en el perfil del usuario
-            // Luego establecemos el rol del usuario
-            if (user.getTipo() == null) {
-                user.setRol(Enumeraciones.Rol.CLIENTE);
-            } else if (user.getZonaCargo() != null) {
-                user.setRol(Enumeraciones.Rol.SUPERVISOR);
-            } else {
-                user.setRol(Enumeraciones.Rol.OPERARIO);
-            }
-
+            rol = Enumeraciones.Rol.CLIENTE;
+            user.setRol(rol);
             //URI url = uri.getBaseUriBuilder().path("Silex_Segunda_Entrega-war").path("faces").build(); //--> Null pointer
             String url_base = "http://localhost:8080/Silex_Segunda_Entrega-war/faces";
             String cadena = basededatos.generarCadenaAleatoria();
-            if (!user.getRol().equals(Enumeraciones.Rol.ADMINISTRADOR)) {
-                user.setCadenaValidacion(cadena);
-            }
+            user.setCadenaValidacion(cadena);
             if (basededatos.insertarUsuario(user)) {
                 if (!user.getRol().equals(Enumeraciones.Rol.ADMINISTRADOR)) {
                     basededatos.mandarEmail(user, cadena, url_base);
@@ -166,7 +157,7 @@ public class ControlRegistro implements Serializable {
                 ctrl.setUsuario(user);
                 return "exitoRegistro.xhtml";
             } else {
-                return "register.xhtml";
+                return "registerIncorrecto.xhtml";
             }
         } else {
             return "register.xhtml";
@@ -176,6 +167,7 @@ public class ControlRegistro implements Serializable {
     public String registrarUsuario() throws EMASAException {
         String cadena = basededatos.generarCadenaAleatoria();
         String url_base = "http://localhost:8080/Silex_Segunda_Entrega-war/faces";
+        user.setRol(rol);
         user.setCadenaValidacion(cadena);
         if(basededatos.insertarUsuario(user))
         {

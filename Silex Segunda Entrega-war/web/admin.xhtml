@@ -109,13 +109,10 @@
 
                                 </div>
 
-                                <div class="col-md-12 text-left">
+                                <div class="col-md-5 text-left">
                                     <p:commandButton value="Modificar Aviso" action="#{controlAviso.modificarAviso(item)}" class="btn-primary" style="margin-bottom: 10px"/>
                                 </div>
-                                <div class="col-md-7 text-left" style="margin-bottom: 10px;">
-                                    <p:commandButton value="Crear Orden de Trabajo" action="#{controlOT.regOT(item)}" class="btn-success"/>
-                                </div>
-                                <div class="col-md-5 text-right">
+                                <div class="col-md-7 text-right">
                                     <p:commandButton value="Cerrar Aviso" action="#{controlAviso.cerrarAviso(item)}" class="btn-danger">
                                         <p:confirm header="Confirmación" message="Esto cerrará el aviso. ¿Está seguro que desea continuar?" icon="ui-icon-alert" />
                                     </p:commandButton>
@@ -403,7 +400,7 @@
                         <p:tab title="En proceso">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{controlAviso.ordenEnProceso}">
-                                    <p:fieldset legend="ID Aviso: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Orden Trabajo: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">
@@ -506,7 +503,7 @@
                         <p:tab title="Cerradas">
                             <h:panelGrid columns="1" cellpadding="10">
                                 <c:forEach var="item" items="#{controlAviso.ordenCerradas}">
-                                    <p:fieldset legend="ID Aviso: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
+                                    <p:fieldset legend="ID Orden Trabajo: ##{item.idOT}" toggleable="true" toggleSpeed="500" style="font-size: 14px;">
 
                                         <div class="row">
                                             <div class="col-md-12 text-center" style="margin-bottom: 10px;">

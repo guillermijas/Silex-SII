@@ -6,21 +6,20 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:define name="title">Registro Operario</ui:define>  
+    <ui:define name="title">Registro Usuario</ui:define>  
 
     <ui:define name="titulo-pestaña1">
         <h3>Usuario</h3>
     </ui:define>
-
+<!-->
     <ui:define name="titulo-pestaña2">
         <h3>Datos personales</h3>
     </ui:define>
 
-
     <ui:define name="titulo-pestaña3">
         <h3>Información profesional</h3>
     </ui:define>
-
+<!-->
 
     <ui:define name="campos-pestaña1">
         <h:form>
@@ -63,7 +62,7 @@
 
     </ui:define>
 
-
+<!-->
     <ui:define name="campos-pestaña2">
         <h:form>
             <div class="row">
@@ -150,7 +149,7 @@
             </div>
         </h:form>
     </ui:define>
-
+<!-->
     <ui:define name="btn_confirmar">
         <c:choose>
             <c:when test="#{controlAutorizacion.comprobarRol() == 4}">

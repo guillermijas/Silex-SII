@@ -30,7 +30,7 @@
                             <div class="col-xs-3 col-md-2 text-center"><h:commandLink id="cl3b" action="#{controlAutorizacion.adminUser()}" value="Modificar usuarios"/></div>
                         </c:if>
                     <c:if test="#{controlAutorizacion.comprobarRol() == 4}">
-                        <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regUsuario()}" value="Registrar Operario"/></div>
+                        <div class="col-xs-3 col-md-2 text-center"><h:commandLink action="#{controlAutorizacion.regUsuario()}" value="Registrar Usuario"/></div>
                     </c:if>
                    <div class="col-xs-3 col-md-1 text-center"><h:commandLink action="#{controlAutorizacion.logout()}" value="Salir"/></div>
                 </c:if>
